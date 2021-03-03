@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "repository": "https://github.com/zsh2401/tdscore",
   "author": "Seymour Zhang<zsh2401@163.com>",
-  "license": "MIT",
+  "license": "MulanPSL2",
   "main": "lib/index.js",
   "unpkg": "dist/tdscore.js",
   "typings": "lib/index.d.ts",

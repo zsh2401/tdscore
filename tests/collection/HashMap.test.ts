@@ -1,0 +1,205 @@
+import HashMap from "../../src/data-structure/map/HashMap";
+import IMap from "../../src/data-structure/IMap";
+import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
+import hashCode from "../../src/util/hash";
+import dsEquals from "../../src/dsEquals";
+// import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
+
+describe("HashMap test", () => {
+    it("basic put and get", () => {
+        const map: IMap<string, number> = new HashMap<string, number>();
+        map.mapPut("a", 1);
+        expect(map.mapGet("a")).toBe(1);
+    });
+
+    it("replace", () => {
+        const map: IMap<string, number> = new HashMap<string, number>();
+        map.mapPut("a", 1);
+        map.mapPut("a", 2);
+        // console.log(map.toString());
+        expect(map.mapGet("a")).toBe(2);
+    })
+
+    it("delete", () => {
+        const map: IMap<string, number> = new HashMap<string, number>();
+        map.mapPut("a", 1);
+        map.mapRemove("a");
+        expect(map.mapGet("a")).toBeNull();
+    })
+
+    it("get size", () => {
+        const map: IMap<string, number> = new HashMap<string, number>();
+
+        map.mapPut("a", 1);
+        map.mapRemove("a");
+
+        map.mapPut("a", 1);
+        map.mapPut("b", 2401);
+
+        expect(map.size()).toBe(2);
+        expect(map.mapGet("b")).toBe(2401);
+    });
+
+    it("growable", () => {
+        const map: IMap<number, number> = new HashMap<number, number>();
+        for (let i = 0; i < 20; i++) {
+            map.mapPut(i, i);
+        }
+        expect(map.mapGet(3)).toBe(3);
+    });
+
+    it("mixed display", () => {
+        const map: IMap<number, number> = new HashMap<number, number>();
+        for (let i = 0; i < 20; i++) {
+            if (i == 9) {
+                // console.log(map.toString());
+            }
+            map.mapPut(Math.random() * 1000, i);
+        };
+        // console.log(map.toString());
+    })
+
+    it("growable", () => {
+        const map: IMap<number, number> = new HashMap<number, number>();
+        for (let i = 0; i < 20; i++) {
+            map.mapPut(i, i);
+        }
+        // console.log(map.toString());
+        //@ts-ignore
+        const capcity = map.table.length;
+        expect(capcity).toBe(32);
+        // console.log(map.toString());
+        expect(map.mapGet(3)).toBe(3);
+        expect(map.mapGet(19)).toBe(19);
+
+    })
+
+    it("same bucket", () => {
+        const map = new HashMap<number, number>();
+        //@ts-ignore
+        const bucket1: number = map.indexFor(1);
+        //@ts-ignore
+        const bucket2: number = map.indexFor(1 + 16);
+        expect(bucket1).toEqual(bucket2);
+    })
+    it("function as key",()=>{
+        const map = new HashMap<()=>void,()=>void>();
+        let flag = false;
+        const fKey = ()=>{};
+        const fValue = ()=>{flag = true};
+        map.mapPut(fKey,fValue);
+        expect(dsEquals(map.mapGet(fKey),fValue)).toBeTruthy();
+        map.mapGet(fKey)!();
+        expect(flag).toBeTruthy();
+    });
+    it("handle null key", () => {
+        const map = new HashMap<number | null, number>();
+
+        map.mapPut(null, 2401);
+        expect(map.mapGet(null)).toBe(2401);
+        expect(map.size()).toBe(1);
+
+        map.mapRemove(null);
+        expect(map.size()).toBe(0);
+    });
+
+    it("collision test", () => {
+        const PRESENT = 2401;
+        const map = new HashMap<number | null, number>();
+
+        map.mapPut(1, 1);
+        map.mapPut(17, 17);
+
+        expect(map.mapGet(1)).toBe(1);
+        expect(map.mapGet(17)).toBe(17);
+        expect(map.size()).toBe(2);
+
+        map.mapRemove(17);
+        expect(map.mapGet(17)).toBeNull();
+        expect(map.size()).toBe(1);
+
+        map.mapPut(null, 2401);
+        map.mapPut(0, 2402);
+
+        expect(map.mapGet(null)).toBe(2401);
+        expect(map.mapGet(0)).toBe(2402);
+    });
+
+    it("extreme collision test", () => {
+        const map = new HashMap<number | null, number>();
+        for (let i = 0; i < 10; i++) {
+            map.mapPut(i * 16, 0);
+        }
+        console.log(map.toString());
+    });
+
+    it("key is null", () => {
+        const map = new HashMap<number | null, number>();
+        map.mapPut(null, 0);
+        map.mapPut(1, 1);
+
+        expect(map.mapGet(null)).toBe(0);
+        expect(map.mapGet(1)).toBe(1);
+        expect(map.size()).toBe(2);
+
+        map.mapRemove(null);
+        expect(map.mapGet(null)).toBeNull();
+        expect(map.size()).toBe(1);
+
+    })
+    it("get pairs", () => {
+        const map = new HashMap<number, number>();
+        expect(map.mapGetPairs().length).toBe(0);
+        map.mapPut(1, 1);
+        expect(map.mapGetPairs().length).toBe(1);
+    })
+
+    it("get when there's no element", () => {
+        const map = new HashMap<string, number>();
+        expect(map.mapGet("a")).toBeNull();
+    });
+    it("toString", () => {
+        const map = new HashMap<number | null, string>();
+        map.mapPut(null, "a");
+        map.mapPut(0, "b");
+        map.mapPut(1, "c");
+    })
+    it("iterator works", () => {
+        const map = new HashMap<number | null, string>();
+        map.mapPut(null, "a");
+        map.mapPut(0, "b");
+        map.mapPut(1, "c");
+
+        const valueList: (string | null)[] = [];
+        const iterator = map.getIterator();
+        while (iterator.hasNext()) {
+            valueList.push(iterator.next().value);
+        }
+
+        expect(valueList.length).toBe(3);
+        expect(valueList.findIndex(it => it === "a")).not.toBe(-1);
+        expect(valueList.findIndex(it => it === "b")).not.toBe(-1);
+        expect(valueList.findIndex(it => it === "c")).not.toBe(-1);
+    });
+
+    it("week hash test", () => {
+        const map = new HashMap<any, string>();
+        const keyOne = {};
+        const keyTwo = {};
+        const keyThree = { f: null };
+        map.mapPut(keyOne, "a");
+
+        expect(map.mapGet(keyOne)).toEqual(map.mapGet(keyTwo));
+        //@ts-ignore
+        expect(keyOne[WEEK_HASHCODE_GETTER_NAME]).toBeDefined();
+
+        expect(map.mapGet(keyThree)).toBeNull();
+        map.mapPut(keyThree, "b");
+        expect(map.mapGet(keyThree)).toBe("b");
+
+        map.mapRemove(keyOne);
+        expect(map.mapGet(keyOne)).toBeNull();
+        expect(map.mapGet(keyTwo)).toBeNull();
+    });
+
+});

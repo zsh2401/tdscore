@@ -1,0 +1,27 @@
+import dfs from "../../src/collection/graph/dfs";
+import { GraphNode } from "../../src/collection/graph/GraphNode"
+
+describe("DFS", () => {
+    it("works", () => {
+        const root = new GraphNode<number>(1);
+        const n2 = new GraphNode<number>(2);
+        const n3 = new GraphNode<number>(3);
+        const n4 = new GraphNode<number>(4);
+        const n5 = new GraphNode<number>(5);
+        root.out.put(n2, 0);
+        n2.out.put(n3, 0);
+        n3.out.put(n4, 0);
+        n4.out.put(root, 0);
+        n4.out.put(n5, 0);
+
+        const vList: number[] = [];
+        dfs(root, node => {
+            vList.push(node.data)
+        });
+        expect(vList).toContain(1);
+        expect(vList).toContain(2);
+        expect(vList).toContain(3);
+        expect(vList).toContain(4);
+        expect(vList).toContain(5);
+    })
+})

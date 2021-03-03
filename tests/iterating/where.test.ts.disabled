@@ -1,0 +1,74 @@
+// import { contains, forEach, IIterable, IIterator, isEmpty, size, toJSArray } from "../../src/collection/iterating"
+// import where from "../../src/collection/iterating/where";
+// import IList from "../../src/collection/linear/IList";
+// import IListIterator from "../../src/collection/linear/IListIterator";
+// import LinkedList from "../../src/collection/linear/LinkedList";
+// import ListIterator from "../../src/collection/linear/ListIterator";
+// import DSArray from "../../src/DSArray"
+// import DSEvent, { EventArgs } from "../../src/DSEvent";
+
+// describe("where", () => {
+//     it("Not contais 1", () => {
+//         let nums: IIterable<number> = new DSArray(10, (i: number) => i);
+//         nums = where(nums, (num) => num != 1);
+//         expect(contains(nums, 1)).toBeFalsy();
+//     });
+
+//     it("hasn't next when there is no element", () => {
+//         const l = new LinkedList();
+//         l.addAll([0, 123, 12, 1, 43, 6, 4, 52, 41, 6745, 21, 4156, 26, 23412, 4]);
+//         console.log(size(l));
+//         expect(isEmpty(where(l, () => false))).toBeTruthy();
+//     })
+
+//     it("Not filter immidatly", () => {
+//         let nextCalled = 0;
+//         const l = new TestList<number>();
+//         l.gettingIterator.add((s, e) => {
+//             e.iterator.nextCalled.add(() => {
+//                 nextCalled++;
+//             });
+//         });
+//         l.addAll([1, 2, 232, 132, 1321, 321, 312513, 17, 76, 5634, 2]);
+
+//         const iterable = where(l, (num) => num < 100);
+//         const iterator = iterable.getIterator();
+//         expect(nextCalled).toBe(0);
+
+//         expect(iterator.next()).toBe(1);
+//         expect(nextCalled).toBe(1);
+
+//         expect(iterator.next()).toBe(2);
+//         expect(nextCalled).toBe(2);
+
+//         expect(iterator.hasNext()).toBeTruthy();
+//         expect(iterator.next()).toBe(17);
+//         expect(nextCalled).toBe(8);
+//     });
+
+//     class TestIterator<E> extends ListIterator<E>{
+//         nextCalled: DSEvent = new DSEvent();
+//         constructor(source: IList<E>) {
+//             super(source);
+//         }
+//         next(): E {
+//             this.nextCalled.raise(this, new EventArgs());
+//             return super.next();
+//         }
+//     }
+//     class GettingIteratorEventArgs<E> extends EventArgs {
+//         readonly iterator: TestIterator<E>;
+//         constructor(v: TestIterator<E>) {
+//             super();
+//             this.iterator = v;
+//         }
+//     }
+//     class TestList<E> extends LinkedList<E>{
+//         gettingIterator: DSEvent<GettingIteratorEventArgs<E>> = new DSEvent();
+//         getIterator(): IListIterator<E> {
+//             const v = new TestIterator(this);
+//             this.gettingIterator.raise(this, new GettingIteratorEventArgs(v));
+//             return v;
+//         }
+//     }
+// })

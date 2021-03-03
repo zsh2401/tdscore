@@ -1,10 +1,10 @@
-/*
-Action.ts (c) 2021
+
+$TM_FILENAME (c) $CURRENT_YEAR
 
 Author: Seymour Zhang and other contributors.
-Description: description
+Description: ${1:description}
 
-Created:  2021-03-03T07:10:51.413Z
+Created:  !date!
 Modified: !date!
 
 Copyright (c) 2021 Seymour Zhang and other contributors.
@@ -18,22 +18,3 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details.
 Mulan Permissive Software License，Version 2
 
-*/
-
-export default Action0;
-
-export interface Action0 {
-    (): void;
-}
-export interface Action1<A0> {
-    (arg0: A0): void;
-}
-export interface Action2<A0, A1> {
-    (arg0: A0, arg1: A1): void;
-}
-export interface Action3<A0, A1, A2> {
-    (arg0: A0, arg1: A1, arg2: A2): void;
-}
-export interface Action4<A0, A1, A2, A3> {
-    (arg0: A0, arg1: A1, arg2: A2, arg3: A3): void;
-}

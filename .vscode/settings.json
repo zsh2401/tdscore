@@ -1,0 +1,8 @@
+{
+    "powerHeader.autoInsert.enable": false,
+    "powerHeader.template": "file://$WORKSPACE_FOLDER/.vscode/header_template.txt",
+    "powerHeader.update.enable": "disable",
+    "eslint.packageManager": "yarn",
+    "language": "typescript",
+    "autoFix": true
+}

@@ -1,0 +1,24 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "env": {
+        "node": true,
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "no-console": 0
+    }
+}

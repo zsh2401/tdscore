@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports":true
+  }
+}

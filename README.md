@@ -1,12 +1,15 @@
-# 😊Seymour Zhang's DS Core
-Data Structure & Algorithms implenemntes with pure TypeScript.✨
+# 😊TDSCore
+Data Structure & Algorithms implenemntes with pure TypeScript.✨    
+Runs on any JavaScript runtime(Browser, Node.js,etc.).
 
-[![TS-DSCore Test](https://github.com/zsh2401/data-structure-and-algorithms/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
+[![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscoree)
 ![](https://badgen.net/npm/dy/tdscore)
 
 # Install
+## Install with npm
 `npm install sz-dscore`
+## 
 # Usage
 ## Example
 ```javascript
@@ -18,7 +21,7 @@ All collections/data structure implemented can be imported and used directly.
 ```typescript
 import {HashMap} from "sz-dscore"
 //or
-import HashMap from "sz-dscore/dist/data-structure/map/HashMap"
+import HashMap from "sz-dscore/lib/data-structure/map/HashMap"
 
 let hashMap = new HashMap<string,number>();
 hashMap.put("a",1);

@@ -1,28 +1,27 @@
 import path from 'path'
 import webpack from 'webpack'
+import TerserPlugin from "terser-webpack-plugin"
 const config: webpack.Configuration = {
-	entry: path.resolve(__dirname, "./src/index.ts"),
+	entry: {
+		"tdscore": path.resolve(__dirname, "./src/index.ts"),
+		"tdscore.min": path.resolve(__dirname, "./src/index.ts")
+	},
 
 	output: {
-		filename: 'tdscore.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, './dist'),
 		library: "tdscore",
-		globalObject:"this",
+		globalObject: "this",
 		libraryTarget: "umd"
 	},
+
+	devtool: "source-map",
 
 	mode: "production",
 
 	module: {
 		rules: [
 			{ test: /\.(ts|tsx)?$/, loader: 'ts-loader' },
-
-			// {
-			// 	test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)?$/,
-			// 	use: {
-			// 		loader: 'url-loader?limit=100000&name=images/[name]_[hash:8].[ext]'
-			// 	}
-			// },
 		]
 	},
 
@@ -33,32 +32,19 @@ const config: webpack.Configuration = {
 		})
 	],
 
-	// optimization: {
-	// 	// minimizer: [
-	// 	// 	new UglifyJsPlugin({
-	// 	// 		uglifyOptions: {
-	// 	// 			compress: true
-	// 	// 		}
-	// 	// 	})
-	// 	// ],
-	// 	splitChunks: {
-	// 		cacheGroups: {
-	// 			// vendors: {
-	// 			// 	name:"vendors",
-	// 			// 	priority: -10,
-	// 			// 	chunks:'initial',
-	// 			// 	test: /[\\/]node_modules[\\/]/
-	// 			// },
-	// 		},
-	// 		// name: true,
-	// 		chunks: 'async',
-	// 		minSize: 20000,
-	// 		minRemainingSize: 0,
-	// 		// maxSize: 0,
-	// 		// maxSize: 
-	// 	}
-	// },
+	optimization: {
+		// minimize: false,
+		minimizer: [
+			new TerserPlugin({
+				include: /\.min\.js$/,
+				// cache: true,
+				parallel: true,
+				// sourceMap: true, // Must be set to true if using source-maps in production
+				terserOptions: {},
+			})
+		]
 
+	},
 
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js']

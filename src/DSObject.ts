@@ -4,6 +4,7 @@ import _uuid from "./math/uuid";
 import dsEquals from "./dsEquals";
 import hashCode from "./util/hash";
 import dsHashCode from "./dsHashCode";
+import Nullable from "./Nullable";
 /**
  * 所有本库内类的基类，其类似于Java，C#的Object或Objective-C中的NSObject。
  * 提供了@see {@link DSObject}
@@ -40,15 +41,15 @@ export default class DSObject implements IHashCodeGettable {
         return false;
     }
 
-    static isDSObject(e: any): e is DSObject {
+    static isDSObject<T extends DSObject = DSObject>(e: any): e is T {
         return typeof (<DSObject>e).getClassName === "function";
     }
 
-    referenceEquals(other: DSObject | null | undefined): boolean {
-        return other !== null && other !== undefined && this.uuid == other.uuid;
+    referenceEquals(other: Nullable<DSObject>): boolean {
+        return other !== null && other !== undefined && this.uuid === other.uuid && this === other;
     }
 
-    equals(other: DSObject | null | undefined): boolean {
+    equals(other: Nullable<DSObject>): boolean {
         return other !== null && other !== undefined && this.referenceEquals(other);
     }
 
@@ -76,4 +77,12 @@ export default class DSObject implements IHashCodeGettable {
         console.log(this.toString());
     }
 
+    dslog(message?: any, ...optionalParams: any[]) {
+        console.log(message, optionalParams);
+    }
+
+    dserror(data: any[]) {
+        console.error(data);
+    }
+    
 }

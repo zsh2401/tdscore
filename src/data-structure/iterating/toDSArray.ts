@@ -7,8 +7,13 @@ export default function toDSArray<E, V = E>(iterable: IIterable<E> | E[], mapper
         //@ts-expect-error
         return e;
     }
+
     if (isJSArray(iterable)) {
-        return new DSArray(iterable.length, (i: number) => mapper!(iterable[i]));
+        const result = new DSArray<V>(iterable.length);
+        for (let i = 0; i < iterable.length; i++) {
+            result[i] = mapper(iterable[i]);
+        }
+        return result;
     } else {
         const jsArray = toJSArray(iterable);
         return new DSArray(jsArray.length, (i: number) => mapper!(jsArray[i]));

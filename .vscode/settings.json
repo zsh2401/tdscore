@@ -1,8 +1,35 @@
 {
-    "powerHeader.autoInsert.enable": false,
-    "powerHeader.template": "file://$WORKSPACE_FOLDER/.vscode/header_template.txt",
-    "powerHeader.update.enable": "disable",
     "eslint.packageManager": "yarn",
-    "language": "typescript",
-    "autoFix": true
+    "fileHeaderComment.parameter": {
+        "*": {
+            "projectName": "tdscore",
+            "license": [
+                " Copyright (c) ${year} Seymour Zhang and all contributors of this project.",
+                " ${projectName} is licensed under Mulan PSL v2.",
+                " You can use this software according to the terms and conditions of the Mulan PSL v2.",
+                " You may obtain a copy of Mulan PSL v2 at:",
+                "          http://license.coscl.org.cn/MulanPSL2",
+                " THIS SOFTWARE IS PROVIDED ON AN \"AS IS\" BASIS, WITHOUT WARRANTIES OF ANY KIND,",
+                " EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,",
+                " MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.",
+                " See the Mulan PSL v2 for more details.",
+                " Mulan Permissive Software License，Version 2"
+            ]
+        }
+    },
+    "fileHeaderComment.template": {
+        "*": [
+            "${commentbegin}",
+            "${commentprefix} ${filename}",
+            "${commentprefix} Created on ${datetime24h}",
+            "${commentprefix}",
+            "${commentprefix} Description: ",
+            "${commentprefix}   No description.",
+            "${commentprefix}",
+            "${commentprefix} Copyright (c) ${year} ${projectName}",
+            "${commentprefix} ",
+            "${commentprefix}${license}",
+            "${commentend}"
+        ]
+    }
 }

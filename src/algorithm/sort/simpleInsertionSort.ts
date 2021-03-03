@@ -1,6 +1,6 @@
 /*
- * IInternalSortAlgorithm.ts
- * Created on Wed Mar 03 2021 22:32:35
+ * simpleInsertionSort.ts
+ * Created on Wed Mar 03 2021 22:33:01
  *
  * Description: 
  *   No description.
@@ -20,14 +20,10 @@
  */
 
 import MixedArray from "../../MixedArray";
+import { IComparer } from "./IInternalSortAlgorithm";
 
-export default interface ISortAlgorithm<E> {
-    (target: MixedArray<E>, comparer: IComparer<E>): void;
-}
+export default function <E>
+    (a: MixedArray<E>, comparer: IComparer<E>) {
 
-export interface IComparer<E> {
-    /**
-     * @returns Should exchange elements
-     */
-    (a: E, b: E): boolean;
+    throw new Error("Method not implemented");
 }

@@ -25,7 +25,7 @@ export default class DSNumber extends DSObject {
         return this.value.toString();
     }
 
-    closeTo(other: MixedNumber, p: number = 5): boolean {
+    isCloseTo(other: MixedNumber, p: number = 5): boolean {
         const maxDiff = 1 / (p ** 10);
         const actualDiff = this.sub(other).abs();
         return actualDiff.lessThan(maxDiff);
@@ -40,6 +40,11 @@ export default class DSNumber extends DSObject {
         }
         return super.equals(other);
     }
+
+    notEquals(other: any): boolean {
+        return !super.equals(other);
+    }
+
     sin(): DSNumber {
         return new DSNumber(this.value.sin());
     }
@@ -52,7 +57,7 @@ export default class DSNumber extends DSObject {
         return this.value.lessThan(this.toDeciaml(other));
     }
 
-    lessThanOrEqualTo(other: MixedNumber): boolean {
+    lessThanOrEqualsTo(other: MixedNumber): boolean {
         return this.value.lessThanOrEqualTo(this.toDeciaml(other));
     }
 
@@ -60,7 +65,7 @@ export default class DSNumber extends DSObject {
         return this.value.greaterThan(this.toDeciaml(other));
     }
 
-    greaterThanOrEqualTo(other: MixedNumber): boolean {
+    greaterThanOrEqualsTo(other: MixedNumber): boolean {
         return this.value.greaterThanOrEqualTo(this.toDeciaml(other));
     }
 
@@ -121,10 +126,25 @@ export default class DSNumber extends DSObject {
     }
 
     newHashCode(): number {
+
         return dsHashCode(this.decString());
     }
 
-    static valueOf(data: number | string): DSNumber {
+    static valueOf(data: number | string | DSNumber): DSNumber {
+        if (DSNumber.isDSObject<DSNumber>(data)) {
+            return data;
+        }
         return new DSNumber(new Decimal(data));
     }
+
+    static v(data: number | string | DSNumber): DSNumber {
+        return DSNumber.valueOf(data);
+    }
+}
+/**
+ * The fastest way to covert your number to DSNumber!
+ * @param data 
+ */
+export function asdn(data: number | string | DSNumber): DSNumber {
+    return DSNumber.valueOf(data);
 }

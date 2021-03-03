@@ -1,6 +1,6 @@
 /*
- * IInternalSortAlgorithm.ts
- * Created on Wed Mar 03 2021 22:32:35
+ * binSort.ts
+ * Created on Wed Mar 03 2021 22:32:14
  *
  * Description: 
  *   No description.
@@ -18,16 +18,17 @@
  * See the Mulan PSL v2 for more details.
  * Mulan Permissive Software License，Version 2
  */
+/*
+ * Created on Wed Mar 03 2021
+ *
+ * Copyright (c) 2021 Your Company
+ */
 
 import MixedArray from "../../MixedArray";
+import { IComparer } from "./IInternalSortAlgorithm";
 
-export default interface ISortAlgorithm<E> {
-    (target: MixedArray<E>, comparer: IComparer<E>): void;
-}
+export default function <E>
+    (a: MixedArray<E>, comparer: IComparer<E>) {
 
-export interface IComparer<E> {
-    /**
-     * @returns Should exchange elements
-     */
-    (a: E, b: E): boolean;
+    throw new Error("Method not implemented");
 }

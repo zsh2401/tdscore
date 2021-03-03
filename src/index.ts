@@ -20,6 +20,9 @@ export { default as INotifyCollectionChanged } from "./INotifyCollectionChanged"
 export { default as DSNumber } from "./DSNumber"
 export { default as DSDataType } from "./DSDataType"
 export { default as Ref } from "./Ref"
+export { default as Nullable } from "./Nullable"
+export { default as DSObjectType } from "./DSObjectType"
+
 export {
     default as MixedArray,
     toJSArray as MixedToJSArray,

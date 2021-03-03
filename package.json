@@ -1,13 +1,13 @@
 {
-  "name": "dscore",
-  "version": "0.0.5",
+  "name": "tdscore",
+  "version": "0.0.6",
   "repository": "https://github.com/zsh2401/data-structure",
   "author": "Seymour Zhang<zsh2401@163.com>",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "release": "npm version patch && tsc && npm publish",
+    "release": "tsc && npm publish",
     "test": "jest",
     "test-c": "jest --coverage"
   },

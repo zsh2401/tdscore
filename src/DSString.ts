@@ -7,10 +7,10 @@ export default class DSString extends DSDataType<string> {
     static valueOf(raw: string): DSString {
         return new DSString(raw);
     }
-    format(a:any) {
+    format(a: any) {
         //TODO not implemented
     }
-    slice(){
+    slice() {
         //TODO not implemented
     }
 }

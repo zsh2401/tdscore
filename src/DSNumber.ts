@@ -26,7 +26,6 @@ export default class DSNumber extends DSObject {
     }
 
     closeTo(other: MixedNumber, p: number = 5): boolean {
-        // console.log(`${this.value.toString()}\t${other}`);
         const maxDiff = 1 / (p ** 10);
         const actualDiff = this.sub(other).abs();
         return actualDiff.lessThan(maxDiff);

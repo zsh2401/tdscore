@@ -3,7 +3,6 @@ import { getHashCodeString } from "./util/hash/hashcode.impl";
 import _uuid from "./math/uuid";
 import dsEquals from "./dsEquals";
 import hashCode from "./util/hash";
-import { isString } from "./util/hash/typechecker";
 import dsHashCode from "./dsHashCode";
 /**
  * 所有本库内类的基类，其类似于Java，C#的Object或Objective-C中的NSObject。
@@ -21,10 +20,6 @@ export default class DSObject implements IHashCodeGettable {
         } catch {
             return hashCode(DSObject.HASHSEED + this.constructor.name + this.uuid);
         }
-    }
-
-    constructor() {
-        super();
     }
 
     getClassName() {

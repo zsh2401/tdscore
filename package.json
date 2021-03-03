@@ -1,7 +1,7 @@
 {
   "name": "tdscore",
   "version": "0.1.0",
-  "repository": "https://github.com/zsh2401/data-structure",
+  "repository": "https://github.com/zsh2401/tdscore",
   "author": "Seymour Zhang<zsh2401@163.com>",
   "license": "MIT",
   "main": "lib/index.js",

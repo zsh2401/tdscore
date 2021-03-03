@@ -7,26 +7,29 @@ Runs on any JavaScript runtime(Browser, Node.js,etc.).
 ![](https://badgen.net/npm/dy/tdscore)
 
 # Install
-## Install with npm
+## NPM💖
 `npm install sz-dscore`
-## 
-# Usage
-## Example
-```javascript
-//Or any other things.
-import { DSArray } from "sz-dscore"
+## Script tag👏
+```html
+<srcipt src="./tdscore.js"></script>
 ```
-## Data-Structure
-All collections/data structure implemented can be imported and used directly.
+
+# Usage
+## Import & Basic usage🎉
 ```typescript
-import {HashMap} from "sz-dscore"
-//or
+//Browser
+const HashMap = tdscore.HashMap;
+
+//ES Module
+import { HashMap } from "sz-dscore"
+
+//Tree Shaking
 import HashMap from "sz-dscore/lib/data-structure/map/HashMap"
 
 let hashMap = new HashMap<string,number>();
 hashMap.put("a",1);
 ```
-# Documentation
+# Documents
 It's still writing.
 
 # Contribute

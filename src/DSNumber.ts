@@ -1,6 +1,8 @@
 import Decimal from "decimal.js";
 import DSObject from "./DSObject";
 import dsHashCode from "./dsHashCode";
+import DSArray from "./DSArray";
+import { toDSArray } from "./data-structure";
 
 export type MixedNumber = DSNumber | number;
 
@@ -39,6 +41,12 @@ export default class DSNumber extends DSObject {
             return this.value.equals(other);
         }
         return super.equals(other);
+    }
+
+    toBit(): DSArray<boolean> {
+        return toDSArray<boolean, boolean>((this.toJSNumber() >>> 0).toString(2).split('').map((b) => {
+            return b === "1" ? true : false;
+        }));
     }
 
     notEquals(other: any): boolean {

@@ -50,7 +50,7 @@ export default class DSNumber extends DSObject {
     }
 
     notEquals(other: any): boolean {
-        return !super.equals(other);
+        return !this.equals(other);
     }
 
     sin(): DSNumber {

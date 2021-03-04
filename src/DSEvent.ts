@@ -1,4 +1,6 @@
+import LinkedList from "./data-structure/linear/LinkedList";
 import HashSet from "./data-structure/HashSet";
+import ICollection from "./data-structure/ICollection";
 import ISet from "./data-structure/ISet";
 import DSObject from "./DSObject";
 
@@ -10,31 +12,51 @@ export class EventArgs extends DSObject {
 
 }
 
+const DEFAULT_PASSWORD = "";
+function sha256(str: string): string {
+
+}
 export default class DSEvent<A = EventArgs, R = void> extends DSObject {
 
-    private readonly set: ISet<Handler<A, R>>;
+    private readonly listeners: ICollection<Handler<A, R>>;
+    private readonly passwordSha256: string | null;
 
-    constructor() {
+    constructor(password?: string) {
         super();
-        this.set = new HashSet();
+        this.listeners = new LinkedList();
+        this.passwordSha256 = password === undefined ? null : sha256(password);
     }
 
-    raise(sender: any, args: A) {
-        this.set.forEach((handler: Handler<A, R>) => {
+    private passwordIsCorrect(pwd?: string): boolean {
+        if (this.passwordSha256) {
+            if (pwd) {
+                return sha256(pwd) === this.passwordSha256;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    raise(sender: any, args: A, password?: string) {
+        if (!this.passwordIsCorrect(password)) {
+            throw new Error("Password is required and your password is not correct.");
+        }
+        this.listeners.forEach((handler: Handler<A, R>) => {
             handler(sender, args);
         });
     }
 
     add(handler: Handler<A, R>) {
-        this.set.setAdd(handler);
+        this.listeners.collectionAdd(handler);
     }
 
     remove(handler: Handler<A, R>) {
-        this.set.setRemove(handler);
+        this.listeners.collectionRemove(handler);
     }
 
     clear() {
-        this.set.clear();
+        this.listeners.clear();
     }
 
 }

@@ -25,14 +25,19 @@
 import MixedArray from "../../MixedArray";
 import { IComparer } from "./IInternalSortAlgorithm";
 
-/**
+ /**
+ * 
  * Quick Sort
+ * 
+ * @SortType Exchange Sort
  * @Stability Unstable
- * @TimeComplexity O(nlog(n))
+ * @BestTimeComplexity O(n log2 n)
+ * @WorstTimeComplexity O(n ^ 2)
+ * @TimeComplexity O(n log2 n)
  * @SpaceComplexity O(1)
  * 
- * @param a 
- * @param comparer 
+ * @param a The target array which is being sorted.
+ * @param comparer The comparer used to compare elements.
  */
 export default function <E>(array: MixedArray<E>, comparer: IComparer<E>) {
     quickSortInner(array, comparer, 0, array.length - 1);
@@ -50,7 +55,7 @@ function quickSortInner<E>(array: MixedArray<E>, comparer: IComparer<E>,
     let toRight = true;
     while (iLow < iHigh) {
 
-        if (comparer(s[iLow], s[iHigh])) {
+        if (comparer(s[iLow], s[iHigh]) === "leftGreaterThanRight") {
             const tmp = s[iLow];
             s[iLow] = s[iHigh];
             s[iHigh] = tmp;

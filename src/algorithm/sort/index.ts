@@ -28,7 +28,7 @@ export { default as qucikSort } from "./quickSort"
 /**
  * Insertion sort.
  */
-export { default as insertionSort } from "./simpleInsertionSort"
+export { default as simpleInsertionSort } from "./simpleInsertionSort"
 export { default as shellSort } from "./shellSort"
 
 /**

@@ -46,13 +46,17 @@ import MixedArray from "../../MixedArray";
 import { IComparer } from "./IInternalSortAlgorithm";
 
 /**
+ * 
  * Bubble Sort
+ * 
  * @Stability Stable
+ * @BestTimeComplexity O(n)
+ * @WorstTimeComplexity O(n ^ 2)
  * @TimeComplexity O(n^2)
  * @SpaceComplexity O(1)
  * 
- * @param a 
- * @param comparer 
+ * @param a The target array which is being sorted.
+ * @param comparer The comparer used to compare elements.
  */
 export default function bubbleSort<E>
     (a: MixedArray<E>, comparer: IComparer<E>) {
@@ -61,7 +65,7 @@ export default function bubbleSort<E>
     for (let i = 0; (i < a.length - 1 && exchangedLastTime); i++) {
         exchangedLastTime = false;
         for (let j = 0; j < a.length - i - 1; j++) {
-            if (comparer(a[j], a[j + 1])) {
+            if (comparer(a[j], a[j + 1]) === "leftGreaterThanRight") {
                 const tmp = a[j];
                 a[j] = a[j + 1];
                 a[j + 1] = tmp;

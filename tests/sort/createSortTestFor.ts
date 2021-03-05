@@ -1,20 +1,24 @@
 import IInternalSortAlgorithm, { IComparer } from "../../src/algorithm/sort/IInternalSortAlgorithm"
+import { ascdeningComparer, descdeningComparer } from "../../src/algorithm/sort/comparers"
 import "ts-jest"
 export default function (name: string, iternalSortAlgorithm: IInternalSortAlgorithm<number>):
     () => void {
-    const asending: IComparer<number> = (a: number, b: number) => a > b;
-    const descending: IComparer<number> = (a: number, b: number) => a < b;
     return () => {
         it(`Ascending Sort for ${name}`, () => {
             const arr = generateRandomArray();
-            iternalSortAlgorithm(arr, asending);
+            iternalSortAlgorithm(arr, ascdeningComparer);
             expect(isAscending(arr)).toBeTruthy();
         });
 
         it(`Descending Sort for ${name}`, () => {
             const arr = generateRandomArray();
-            iternalSortAlgorithm(arr, descending);
+            iternalSortAlgorithm(arr, descdeningComparer);
             expect(isDescending(arr)).toBeTruthy();
+        });
+
+        it(`It's safe for empty array ${name}`, () => {
+            const arr: any[] = []
+            expect(() => iternalSortAlgorithm(arr, ascdeningComparer)).not.toThrow();
         });
     }
 }

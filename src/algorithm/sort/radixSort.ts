@@ -28,6 +28,19 @@ export interface RadixSortElementWithData<E> {
     number: number;
     data: E;
 }
+
+ /**
+ * 
+ * Radix Sort
+ * 
+ * @Stability Stable
+ * @WorstTimeComplexity O(d( n + r))
+ * @TimeComplexity O(d( n + r))
+ * @SpaceComplexity O(rd)
+ * 
+ * @param a The target array which is being sorted.
+ * @param comparer ignored
+ */
 export default function <E>
     (a: IArrayLike<RadixSortElement<E>>, comparer: IComparer<number>): void {
 

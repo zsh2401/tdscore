@@ -19,11 +19,40 @@
  * Mulan Permissive Software License，Version 2
  */
 
+import { ArrayList, IList, IQueue, UngrowableArrayList } from "../../data-structure";
 import MixedArray from "../../MixedArray";
 import { IComparer } from "./IInternalSortAlgorithm";
 
+type RadixSortElement<E> = number | RadixSortElementWithData<E>;
+export interface RadixSortElementWithData<E> {
+    number: number;
+    data: E;
+}
 export default function <E>
-    (a: MixedArray<E>, comparer: IComparer<E>) {
+    (a: MixedArray<RadixSortElement<E>>, comparer: IComparer<number>): void {
 
-    throw new Error("Method not implemented");
+    const s = (a as RadixSortElement<E>[]);
+
+    const buckets: IList<IQueue<RadixSortElement<E>>> = new UngrowableArrayList(9);
+    for (let i = 0; i < 9; i++) {
+        buckets.listAdd(new ArrayList<RadixSortElement<E>>());
+    }
+
+    let maxBit = 1
+    for (let i = 0; i < maxBit; i++) {
+        s.forEach((element) => {
+            const num = typeof element === "number" ? element : element.number;
+            const str = num.toFixed(0)
+            const radix: number = Number.parseInt(str[str.length - i - 1]) ?? 0;
+            console.log(`${element} ${radix} ${str.length - i}`);
+            buckets.listGet(radix).queueEn(element);
+        });
+        let i = 0;
+        buckets.forEach(bucket => {
+            while (bucket.collectionSize() > 0) {
+                a[i++] = bucket.queueDe();
+            }
+        })
+    }
+
 }

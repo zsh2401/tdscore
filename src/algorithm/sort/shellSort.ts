@@ -22,8 +22,42 @@
 import MixedArray from "../../MixedArray";
 import { IComparer } from "./IInternalSortAlgorithm";
 
+/**
+* 
+* Shell Sort
+* 
+* Shellsort, also known as Shell sort or Shell's method, 
+* is an in-place comparison sort. It can be seen as either a generalization of 
+* sorting by exchange (bubble sort) or sorting by insertion (insertion sort).
+* The method starts by sorting pairs of elements far apart from each 
+* other, then progressively reducing the gap between elements to be compared. 
+* By starting with far apart elements, it can move some out-of-place elements 
+* into position faster than a simple nearest neighbor exchange. Donald Shell 
+* published the first version of this sort in 1959. The running time of 
+* Shellsort is heavily dependent on the gap sequence it uses. For many practical 
+* variants, determining their time complexity remains an open problem.
+* 
+* @SortType Insertion Sort
+* @Stability Unstable
+* @TimeComplexity O(n ^ 1.5)
+* @SpaceComplexity O(1)
+* 
+* @param a The target array which is being sorted.
+* @param comparer The comparer used to compare elements.
+*/
 export default function <E>
     (a: MixedArray<E>, comparer: IComparer<E>) {
 
-    throw new Error("Method not implemented");
+    const s = (a as E[]);
+    for (let delta = 5; delta > 0; delta = Math.floor(delta / 2)) {
+        for (let i = delta; i < a.length; i++) {
+            const tmp = s[i];
+            let j: number;
+            for (j = i; j >= delta && comparer(s[j - delta], tmp) === "leftGreaterThanRight"; j -= delta) {
+                s[j] = s[j - delta]
+            }
+            s[j] = tmp;
+        }
+    }
+
 }

@@ -23,14 +23,14 @@ Runs on any JavaScript runtime(Browser, Node.js,etc.).
 const HashMap = tdscore.HashMap;
 
 //ES Module
-import { HashMap } from "sz-dscore"
+import { HashMap } from "tdscore"
 
 //Common JS
 const tdscore = require("tdscore");
 const HashMap = tdscore.HashMap;
 
 //Tree Shaking
-import HashMap from "sz-dscore/lib/data-structure/map/HashMap"
+import HashMap from "tdscore/lib/data-structure/map/HashMap"
 
 /**
  * Usage
@@ -42,6 +42,8 @@ let hashMap = new HashMap<string,number>();
 var hashMap = new HashMap();
 
 hashMap.mapPut("a",1);
+
+console.log(hashMap.mapGet("a")); // 1
 
 ```
 # Documents

@@ -1,6 +1,9 @@
 import path from 'path'
 import webpack from 'webpack'
 import TerserPlugin from "terser-webpack-plugin"
+import WebpackBundleAnalyzer from "webpack-bundle-analyzer"
+// const WEB = process.env.WEB !== undefined && process.env.WEB !== "0";
+// const NODE_MajorVersion = Number.parseInt(process.version.split(".")[0].replace("v", ""));
 const config: webpack.Configuration = {
 	entry: {
 		"tdscore": path.resolve(__dirname, "./src/index.ts"),
@@ -21,7 +24,10 @@ const config: webpack.Configuration = {
 
 	module: {
 		rules: [
-			{ test: /\.(ts|tsx)?$/, loader: 'ts-loader' },
+			{
+				test: /\.(ts|tsx)?$/,
+				loader: 'ts-loader',
+			},
 		]
 	},
 
@@ -29,11 +35,13 @@ const config: webpack.Configuration = {
 		new webpack.ProgressPlugin(),
 		new webpack.ProvidePlugin({
 			process: 'process/browser',
-		})
+		}),
+		new WebpackBundleAnalyzer.BundleAnalyzerPlugin({
+			analyzerMode:"static",
+		}),
 	],
 
 	optimization: {
-		// minimize: false,
 		minimizer: [
 			new TerserPlugin({
 				include: /\.min\.js$/,

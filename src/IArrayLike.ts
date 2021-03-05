@@ -1,6 +1,6 @@
 /*
- * radixSort.ts
- * Created on Wed Mar 03 2021 22:32:52
+ * IArrayLike.ts
+ * Created on Sat Mar 06 2021 00:59:31
  *
  * Description: 
  *   No description.
@@ -19,11 +19,24 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import IArrayLike from "../../IArrayLike";
-import { IComparer } from "./IInternalSortAlgorithm";
+import DSObject from "./DSObject";
+import DSArray from "./DSArray";
 
-export default function <E>
-    (a: IArrayLike<E>, comparer: IComparer<E>) {
-
-    throw new Error("Method not implemented");
+export default interface IArrayLike<T> {
+    length: number;
+    [index: number]: T;
+}
+export function toDSArray<E>(array: IArrayLike<E>): DSArray<E> {
+    const result = new DSArray<E>(array.length);
+    for (let i = 0; i < array.length; i++) {
+        result[i] = array[i]
+    }
+    return result;
+}
+export function toJSArray<E>(array: IArrayLike<E>): E[] {
+    const result: E[] = []
+    for (let i = 0; i < array.length; i++) {
+        result.push(array[i]);
+    }
+    return result;
 }

@@ -10,6 +10,7 @@
  * See the Mulan PSL v2 for more details.
  * Mulan Permissive Software License，Version 2
  */
+
 export { default as DSArray, from } from "./DSArray"
 export { default as DSObject } from "./DSObject"
 export { default as DSEvent } from "./DSEvent"
@@ -21,17 +22,22 @@ export { default as DSNumber } from "./DSNumber"
 export { default as DSDataType } from "./DSDataType"
 export { default as Ref } from "./Ref"
 export { default as Nullable } from "./Nullable"
+export { default as Optional } from "./Optional"
 export { default as DSObjectType } from "./DSObjectType"
+export { default as defaultOf } from './defaultOf'
 
 export {
-    default as MixedArray,
-    toJSArray as MixedToJSArray,
-    toDSArray as MixedToDSArray
-} from "./MixedArray"
+    default as IArrayLike,
+    toJSArray as toJSArray,
+    toDSArray as toDSArray
+} from "./IArrayLike"
 
 export * from "./Func"
 export * from "./Action"
 
-export * as Algorithm from "./algorithm"
-export * as DSMath from "./math"
+export * as algorithm from "./algorithm"
+export * as math from "./math"
 export * from "./data-structure"
+export * as util from "./util"
+
+import "./ext"

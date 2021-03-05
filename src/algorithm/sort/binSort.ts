@@ -24,11 +24,11 @@
  * Copyright (c) 2021 Your Company
  */
 
-import MixedArray from "../../MixedArray";
+import IArrayLike from "../../IArrayLike";
 import { IComparer } from "./IInternalSortAlgorithm";
 
 export default function <E>
-    (a: MixedArray<E>, comparer: IComparer<E>) {
+    (a: IArrayLike<E>, comparer: IComparer<E>) {
 
     throw new Error("Method not implemented");
 }

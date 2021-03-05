@@ -3,7 +3,8 @@ import IIterable from "./data-structure/IIterable";
 import IIterator from "./data-structure/IIterator";
 import DSArrayWithoutProxy from "./DSArrayWithoutProxy"
 import DSObject from "./DSObject"
-/**
+import IArrayLike from "./IArrayLike";
+/**IArrayLike
  * 默认数据提供器
  * --
  * Default value provider.
@@ -17,8 +18,7 @@ type DefaultValue = ((i: number) => any) | any;
  * <br/>
  * Stricted, length-fixed array, like C, C++, C# and Java etc.
  */
-declare class DSArray<E> extends DSObject implements IIterable<E>{
-
+declare class DSArray<E> extends DSObject implements IIterable<E>, IArrayLike<E>{
     constructor(length: number, defaultValue?: DefaultValue);
 
     /**

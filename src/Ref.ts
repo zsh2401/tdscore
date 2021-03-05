@@ -19,9 +19,12 @@ export class SettingEventArgs<T> extends EventArgs {
     }
 }
 export default class Ref<T extends number | boolean | string> extends DSObject {
+
     readonly setting: DSEvent<SettingEventArgs<T>> = new DSEvent();
     readonly getting: DSEvent<GettingEventArgs<T>> = new DSEvent();
+
     private _v: T;
+
     set value(value: T) {
         const args = new SettingEventArgs(value);
         this.setting.raise(this, args);
@@ -29,6 +32,7 @@ export default class Ref<T extends number | boolean | string> extends DSObject {
             this._v = args.newValue;
         }
     }
+
     get value() {
         const args = new GettingEventArgs(this.value);
         this.getting.raise(this, args);
@@ -38,13 +42,16 @@ export default class Ref<T extends number | boolean | string> extends DSObject {
             throw new Error("Prevented");
         }
     }
+
     constructor(value: T) {
         super();
         this._v = value;
     }
+
     getHashCode() {
         return hashCode(this._v);
     }
+    
     toString() {
         return DSObject.toString(this._v);
     }

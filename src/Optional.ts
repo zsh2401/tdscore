@@ -1,6 +1,8 @@
+import { DSObject } from ".";
+
 /*
- * radixSort.ts
- * Created on Wed Mar 03 2021 22:32:52
+ * Optional.ts
+ * Created on Sat Mar 06 2021 00:59:28
  *
  * Description: 
  *   No description.
@@ -18,12 +20,21 @@
  * See the Mulan PSL v2 for more details.
  * Mulan Permissive Software License，Version 2
  */
+export default class Optional<E> extends DSObject {
+    private readonly _innerValue: E | undefined | null;
+    constructor(value?: E) {
+        super();
+        this._innerValue = value;
+    }
 
-import IArrayLike from "../../IArrayLike";
-import { IComparer } from "./IInternalSortAlgorithm";
-
-export default function <E>
-    (a: IArrayLike<E>, comparer: IComparer<E>) {
-
-    throw new Error("Method not implemented");
+    get isPresent() {
+        return this._innerValue !== null && this._innerValue !== undefined;
+    }
+    
+    get value(): E {
+        if (!this.isPresent) {
+            throw new Error("Value not presented!");
+        }
+        return this._innerValue!;
+    }
 }

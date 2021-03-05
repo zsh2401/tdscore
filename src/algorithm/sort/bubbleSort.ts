@@ -42,7 +42,7 @@ Mulan Permissive Software License，Version 2
 /**
  * 冒泡排序
  */
-import MixedArray from "../../MixedArray";
+import IArrayLike from "../../IArrayLike";
 import { IComparer } from "./IInternalSortAlgorithm";
 
 /**
@@ -59,7 +59,7 @@ import { IComparer } from "./IInternalSortAlgorithm";
  * @param comparer The comparer used to compare elements.
  */
 export default function bubbleSort<E>
-    (a: MixedArray<E>, comparer: IComparer<E>) {
+    (a: IArrayLike<E>, comparer: IComparer<E>) {
 
     let exchangedLastTime = true;
     for (let i = 0; (i < a.length - 1 && exchangedLastTime); i++) {

@@ -1,7 +1,10 @@
 import IInternalSortAlgorithm, { IComparer } from "../../src/algorithm/sort/IInternalSortAlgorithm"
 import { ascdeningComparer, descdeningComparer } from "../../src/algorithm/sort/comparers"
 import "ts-jest"
-export default function (name: string, iternalSortAlgorithm: IInternalSortAlgorithm<number>):
+export interface Option {
+    descend?: boolean;
+}
+export default function (name: string, iternalSortAlgorithm: IInternalSortAlgorithm<number>, option?: Option):
     () => void {
     return () => {
         it(`Ascending Sort for ${name}`, () => {
@@ -10,11 +13,13 @@ export default function (name: string, iternalSortAlgorithm: IInternalSortAlgori
             expect(isAscending(arr)).toBeTruthy();
         });
 
-        it(`Descending Sort for ${name}`, () => {
-            const arr = generateRandomArray();
-            iternalSortAlgorithm(arr, descdeningComparer);
-            expect(isDescending(arr)).toBeTruthy();
-        });
+        if (option && option.descend !== undefined && option.descend) {
+            it(`Descending Sort for ${name}`, () => {
+                const arr = generateRandomArray();
+                iternalSortAlgorithm(arr, descdeningComparer);
+                expect(isDescending(arr)).toBeTruthy();
+            });
+        }
 
         it(`It's safe for empty array ${name}`, () => {
             const arr: any[] = []
@@ -26,7 +31,7 @@ function generateRandomArray(): number[] {
     const len = Math.floor(3 + Math.random() * 17);
     const a: number[] = [];
     for (let i = 0; i < len; i++) {
-        a.push(Math.floor(Math.random() * 20));
+        a.push(Math.floor(Math.random() * 100));
     }
     return a;
 }

@@ -33,8 +33,8 @@ export default function <E>
 
     const s = (a as RadixSortElement<E>[]);
 
-    const buckets: IList<IQueue<RadixSortElement<E>>> = new UngrowableArrayList(9);
-    for (let i = 0; i < 9; i++) {
+    const buckets: IList<IQueue<RadixSortElement<E>>> = new UngrowableArrayList(10);
+    for (let i = 0; i < 10; i++) {
         buckets.listAdd(new ArrayList<RadixSortElement<E>>());
     }
 
@@ -42,15 +42,26 @@ export default function <E>
     for (let i = 0; i < maxBit; i++) {
         s.forEach((element) => {
             const num = typeof element === "number" ? element : element.number;
-            const str = num.toFixed(0)
-            const radix: number = Number.parseInt(str[str.length - i - 1]) ?? 0;
-            console.log(`${element} ${radix} ${str.length - i}`);
+            const str = num.toFixed(0);
+
+            //Update max bit
+            const bitCount = Math.floor(Math.log10(num)) + 1;
+            if (i === 0 && (bitCount > maxBit)) {
+                maxBit = bitCount;
+            }
+
+            let radix: number = Number.parseInt(str.charAt(str.length - i - 1));
+            if (Number.isNaN(radix)) {
+                radix = 0;
+            }
             buckets.listGet(radix).queueEn(element);
         });
-        let i = 0;
+
+        let j = 0;
         buckets.forEach(bucket => {
-            while (bucket.collectionSize() > 0) {
-                a[i++] = bucket.queueDe();
+            // console.log(`${bucket.toJSArray()}`);
+            while (!bucket.isEmpty()) {
+                a[j++] = bucket.queueDe();
             }
         })
     }

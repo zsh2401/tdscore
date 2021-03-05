@@ -23,7 +23,7 @@ export default function (name: string, iternalSortAlgorithm: IInternalSortAlgori
     }
 }
 function generateRandomArray(): number[] {
-    const len = Math.floor(Math.random() * 20);
+    const len = Math.floor(3 + Math.random() * 17);
     const a: number[] = [];
     for (let i = 0; i < len; i++) {
         a.push(Math.floor(Math.random() * 20));

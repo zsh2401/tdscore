@@ -22,7 +22,7 @@
  * 快速排序
  */
 
-import MixedArray from "../../MixedArray";
+import IArrayLike from "../../IArrayLike";
 import { IComparer } from "./IInternalSortAlgorithm";
 
  /**
@@ -39,10 +39,10 @@ import { IComparer } from "./IInternalSortAlgorithm";
  * @param a The target array which is being sorted.
  * @param comparer The comparer used to compare elements.
  */
-export default function <E>(array: MixedArray<E>, comparer: IComparer<E>) {
+export default function <E>(array: IArrayLike<E>, comparer: IComparer<E>) {
     quickSortInner(array, comparer, 0, array.length - 1);
 }
-function quickSortInner<E>(array: MixedArray<E>, comparer: IComparer<E>,
+function quickSortInner<E>(array: IArrayLike<E>, comparer: IComparer<E>,
     low: number, high: number) {
 
     if (low >= high) return;
@@ -51,14 +51,13 @@ function quickSortInner<E>(array: MixedArray<E>, comparer: IComparer<E>,
     let iHigh = high;
     const iPivot = iHigh;
 
-    let s = (array as E[]);
     let toRight = true;
     while (iLow < iHigh) {
 
-        if (comparer(s[iLow], s[iHigh]) === "leftGreaterThanRight") {
-            const tmp = s[iLow];
-            s[iLow] = s[iHigh];
-            s[iHigh] = tmp;
+        if (comparer(array[iLow], array[iHigh]) === "leftGreaterThanRight") {
+            const tmp = array[iLow];
+            array[iLow] = array[iHigh];
+            array[iHigh] = tmp;
             toRight != toRight;
         }
 
@@ -68,10 +67,10 @@ function quickSortInner<E>(array: MixedArray<E>, comparer: IComparer<E>,
             iHigh--;
         }
     }
-    const tmp = s[iPivot];
-    s[iPivot] = s[iHigh];
-    s[iHigh] = tmp;
+    const tmp = array[iPivot];
+    array[iPivot] = array[iHigh];
+    array[iHigh] = tmp;
 
-    quickSortInner(s, comparer, low, iLow - 1);
-    quickSortInner(s, comparer, iLow + 1, high);
+    quickSortInner(array, comparer, low, iLow - 1);
+    quickSortInner(array, comparer, iLow + 1, high);
 }

@@ -19,10 +19,10 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import MixedArray from "../../MixedArray";
+import IArrayLike from "../../IArrayLike";
 
 export default interface ISortAlgorithm<E> {
-    (target: MixedArray<E>, comparer: IComparer<E>): void;
+    (target: IArrayLike<E>, comparer: IComparer<E>): void;
 }
 export type ComparerResult = "equal" | "leftGreaterThanRight" | "rightGreaterThanLeft";
 export interface IComparer<E> {

@@ -20,7 +20,7 @@
  */
 
 import { ArrayList, IList, IQueue, UngrowableArrayList } from "../../data-structure";
-import MixedArray from "../../MixedArray";
+import IArrayLike from "../../IArrayLike";
 import { IComparer } from "./IInternalSortAlgorithm";
 
 type RadixSortElement<E> = number | RadixSortElementWithData<E>;
@@ -29,7 +29,7 @@ export interface RadixSortElementWithData<E> {
     data: E;
 }
 export default function <E>
-    (a: MixedArray<RadixSortElement<E>>, comparer: IComparer<number>): void {
+    (a: IArrayLike<RadixSortElement<E>>, comparer: IComparer<number>): void {
 
     const s = (a as RadixSortElement<E>[]);
 

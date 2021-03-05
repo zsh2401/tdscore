@@ -25,5 +25,9 @@ import { IComparer } from "./IInternalSortAlgorithm";
 export default function <E>
     (a: IArrayLike<E>, comparer: IComparer<E>) {
 
-    throw new Error("Method not implemented");
+    for (let delta = a.length; delta > 0; Math.floor(delta /= 2)) {
+
+        //use insertion sort in group.
+        
+    }
 }

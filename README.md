@@ -1,6 +1,7 @@
 # 😊TDSCore
-Data Structure & Algorithms implenemntes with pure TypeScript.✨    
-Runs on any JavaScript runtime(Browser, Node.js,etc.).
+Data Structure & Algorithms implenemntes with 99% TypeScript.✨    
+Runs on any JavaScript runtime(Browser, Node.js, etc. )   
+Designed for study and science computing.
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscore)
@@ -46,8 +47,9 @@ hashMap.mapPut("a",1);
 console.log(hashMap.mapGet("a")); // 1
 
 ```
-# Documents
+# Documents 🍕
 It's still writing.
 
-# Contribute
+# Contribution 🎁
+Please develop on the dev branch.    
 Pull Requests are always welcomed.

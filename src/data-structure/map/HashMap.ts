@@ -176,6 +176,10 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
     }
 
 
+    /**
+     * inflate the table.
+     * @param toSize 
+     */
     private inflateTable(toSize: number) {
         const capcity = HashMap.roundUpToPowerOf2(toSize);
         const newTable = this.newTable(capcity);
@@ -185,6 +189,13 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         this.hashSeed = Math.random() * (Number.MAX_VALUE / 2);;
     }
 
+    /**
+     * 
+     * Find the number which is power of 2 and bigger than num at one 2 times.
+     * 
+     * @param num 
+     * @returns 
+     */
     private static roundUpToPowerOf2(num: number) {
         if (num % 2 === 0) {
             return num;
@@ -193,14 +204,40 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
             return Math.pow(2, times);
         }
     }
+
+    /**
+     * Get the correspoding bucket object of hash.
+     * 
+     * @param hash 
+     * @returns 
+     */
     private findBucket(hash: number) {
         const i = this.indexFor(hash, this.table.length);
         return this.table[i];
     }
+
+    /**
+     * 
+     * Get the index of bucket which could store 
+     * the element which hashcode is the ceterin value. 
+     * 
+     * @param hash 
+     * @param tableLength 
+     * @returns 
+     */
     private indexFor(hash: number, tableLength: number): number {
         return hash & (tableLength - 1);
     }
 
+    /**
+     * 
+     * Insert node into the correspoding bucket.
+     * 
+     * @param hash 
+     * @param bucket 
+     * @param key 
+     * @param value 
+     */
     private addNode(hash: number, bucket: HashMapEntry<K, V> | null, key: K, value: V) {
         if (this.reachResizeThreshold()) {
             this.resize(this.table.length * 2);
@@ -220,10 +257,25 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         this._size++;
     }
 
+    /**
+     * 
+     * Check if the size reached the threshold to 
+     * trigger the operation of resize()
+     * 
+     * @returns 
+     */
     private reachResizeThreshold() {
         return this._size >= this.threshold;
     }
 
+    /**
+     * 
+     * Expand the hash table to a new safe size.
+     * Transfer elements in old bucketes(hash table) into new buckets(hash table),
+     * and discard the elder.
+     * 
+     * @param newCapcity 
+     */
     private resize(newCapcity: number) {
         if (newCapcity > MAXIMUM_CAPCITY) {
             this._loadFactor = Number.MAX_VALUE;
@@ -235,6 +287,13 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         this.threshold = newCapcity * this._loadFactor;
     }
 
+    /**
+     * 
+     * Create a new empty hash table for storing buckets.
+     * 
+     * @param newSize 
+     * @returns 
+     */
     private newTable(newSize: number): DSArray<HashMapEntry<K, V> | null> {
         return new DSArray<HashMapEntry<K, V> | null>(newSize, null);
     }
@@ -252,8 +311,15 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
     }
 
-    //TODO transfer() used infinity time.
-    private transfer(dest: DSArray<HashMapEntry<K, V> | null>, rehash: boolean = true) {
+    timeUsedForTransfering = 0;
+
+    /**
+     * Transfer elements in current buckets into new buckets.
+     * @param dest 
+     * @param rehash 
+     */
+    private transfer(dest: DSArray<HashMapEntry<K, V> | null>, rehash: boolean = false) {
+        const start = new Date();
         for (let i = 0; i < this.table.length; i++) {
             let current: HashMapEntry<K, V> | null = this.table[i];
             while (current !== null) {
@@ -267,6 +333,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
                 current = current.next;
             }
         }
+        this.timeUsedForTransfering += (new Date().getTime() - start.getTime());
     }
     toString() {
         let chainStr = "";

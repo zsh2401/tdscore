@@ -147,6 +147,7 @@ describe("HashMap test", () => {
         expect(map.size()).toBe(1);
 
     })
+
     it("get pairs", () => {
         const map = new HashMap<number, number>();
         expect(map.mapGetPairs().length).toBe(0);
@@ -154,16 +155,20 @@ describe("HashMap test", () => {
         expect(map.mapGetPairs().length).toBe(1);
     })
 
-    it("get when there's no element", () => {
+    it("Could work at exception when there's no element", () => {
         const map = new HashMap<string, number>();
         expect(map.mapGet("a")).toBeNull();
+        expect(map.size()).toBe(0);
+        expect(map.collectionSize()).toBe(0);
     });
+
     it("toString", () => {
         const map = new HashMap<number | null, string>();
         map.mapPut(null, "a");
         map.mapPut(0, "b");
         map.mapPut(1, "c");
     })
+
     it("iterator works", () => {
         const map = new HashMap<number | null, string>();
         map.mapPut(null, "a");
@@ -204,12 +209,13 @@ describe("HashMap test", () => {
 
     it("A number of call of get() & put()", () => {
         const map = new HashMap<number, number>();
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < 10_000; i++) {
             expect(() => {
                 map.mapPut(i, i * 2)
             }).not.toThrow();
             expect(map.mapGet(i)).toBe(i * 2);;
         }
+        console.log("the time used for transfering " + map.timeUsedForTransfering);
     });
 
 });

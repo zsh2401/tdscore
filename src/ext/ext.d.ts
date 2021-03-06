@@ -6,7 +6,7 @@ import { IHashCodeGettable } from "../util/hash";
 
 //TODO test
 export declare global {
-    interface Array<T> extends IArrayLike<T>, IIterable<T> {
+    interface Array<T> extends IHashCodeGettable, IArrayLike<T>, IIterable<T> {
         getIterator(): IIterator<T>
         toDSArray(): DSArray<E>
     }
@@ -16,7 +16,7 @@ export declare global {
     interface String extends IHashCodeGettable {
         toDSNumber(): DSNumber;
     }
-    interface Boolean extends IHashCodeGettable{
+    interface Boolean extends IHashCodeGettable {
 
     }
 }

@@ -2,6 +2,7 @@ import IIterable from "../data-structure/IIterable";
 import IIterator from "../data-structure/IIterator";
 import DSArray from "../DSArray";
 import DSNumber from "../DSNumber";
+import { IHashCodeGettable } from "../util/hash";
 
 //TODO test
 export declare global {
@@ -9,10 +10,13 @@ export declare global {
         getIterator(): IIterator<T>
         toDSArray(): DSArray<E>
     }
-    interface Number {
+    interface Number extends IHashCodeGettable {
         toDSNumber(): DSNumber;
     }
-    interface String {
+    interface String extends IHashCodeGettable {
         toDSNumber(): DSNumber;
+    }
+    interface Boolean extends IHashCodeGettable{
+
     }
 }

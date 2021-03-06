@@ -1,3 +1,5 @@
+import "./ext"
+
 const PI = Math.PI;
 const ONE_DEGREE = PI / 180;
 const DEGREE_30 = PI / 6;

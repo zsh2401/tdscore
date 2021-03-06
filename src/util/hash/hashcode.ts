@@ -11,10 +11,10 @@ export default function (v: any): number {
         return getHashCodeString(v);
     } else if (isNumber(v)) {
         return getHashCodeNumber(v);
-    } else if (isHashCodeGettable(v)) {
-        return getHashCode4HashCodeGettable(v);
     } else if (isBoolean(v)) {
         return getHashCodeBoolean(v);
+    } else if (isHashCodeGettable(v)) {
+        return getHashCode4HashCodeGettable(v);
     }
     else {
         return getHashCodeAny(v);

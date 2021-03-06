@@ -1,3 +1,4 @@
+import "./ext"
 import IHashCodeGettable from "./util/hash/IHashCodeGettable";
 import { getHashCodeString } from "./util/hash/hashcode.impl";
 import _uuid from "./math/uuid";
@@ -5,6 +6,7 @@ import dsEquals from "./dsEquals";
 import hashCode from "./util/hash";
 import dsHashCode from "./dsHashCode";
 import Nullable from "./Nullable";
+
 /**
  * 所有本库内类的基类，其类似于Java，C#的Object或Objective-C中的NSObject。
  * 提供了@see {@link DSObject}
@@ -84,5 +86,5 @@ export default class DSObject implements IHashCodeGettable {
     dserror(data: any[]) {
         console.error(data);
     }
-    
+
 }

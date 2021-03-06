@@ -252,6 +252,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
     }
 
+    //TODO transfer() used infinity time.
     private transfer(dest: DSArray<HashMapEntry<K, V> | null>, rehash: boolean = true) {
         for (let i = 0; i < this.table.length; i++) {
             let current: HashMapEntry<K, V> | null = this.table[i];

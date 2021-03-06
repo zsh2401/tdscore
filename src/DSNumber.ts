@@ -6,6 +6,13 @@ import { toDSArray } from "./data-structure";
 
 export type MixedNumber = DSNumber | number;
 
+const cache: DSArray<DSNumber> = new DSArray(2 ** 8);
+function initCache(factory: (num: number) => DSNumber) {
+    for (let i = 0; i < 2 ** 8; i++) {
+        cache[i] = factory(i);
+    }
+}
+
 /**
  * 支持任意精度计算的DSNumber包装类
  */
@@ -142,6 +149,15 @@ export default class DSNumber extends DSObject {
         if (DSNumber.isDSObject<DSNumber>(data)) {
             return data;
         }
+        if (typeof data === "string") {
+            data = Number.parseFloat(data);
+        }
+        if (data >= -128 && data <= 127) {
+            if (cache[0] === undefined) {
+                initCache((n) => new DSNumber(new Decimal(n)));
+            }
+            return cache[data + 128];
+        }
         return new DSNumber(new Decimal(data));
     }
 
@@ -149,6 +165,7 @@ export default class DSNumber extends DSObject {
         return DSNumber.valueOf(data);
     }
 }
+
 /**
  * The fastest way to covert your number to DSNumber!
  * @param data 

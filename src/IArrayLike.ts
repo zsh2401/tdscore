@@ -19,13 +19,14 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import DSObject from "./DSObject";
 import DSArray from "./DSArray";
 
 export default interface IArrayLike<T> {
     length: number;
     [index: number]: T;
 }
+
+
 export function toDSArray<E>(array: IArrayLike<E>): DSArray<E> {
     const result = new DSArray<E>(array.length);
     for (let i = 0; i < array.length; i++) {
@@ -33,6 +34,8 @@ export function toDSArray<E>(array: IArrayLike<E>): DSArray<E> {
     }
     return result;
 }
+
+
 export function toJSArray<E>(array: IArrayLike<E>): E[] {
     const result: E[] = []
     for (let i = 0; i < array.length; i++) {

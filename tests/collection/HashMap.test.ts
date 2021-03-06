@@ -82,13 +82,13 @@ describe("HashMap test", () => {
         const bucket2: number = map.indexFor(1 + 16);
         expect(bucket1).toEqual(bucket2);
     })
-    it("function as key",()=>{
-        const map = new HashMap<()=>void,()=>void>();
+    it("function as key", () => {
+        const map = new HashMap<() => void, () => void>();
         let flag = false;
-        const fKey = ()=>{};
-        const fValue = ()=>{flag = true};
-        map.mapPut(fKey,fValue);
-        expect(dsEquals(map.mapGet(fKey),fValue)).toBeTruthy();
+        const fKey = () => { };
+        const fValue = () => { flag = true };
+        map.mapPut(fKey, fValue);
+        expect(dsEquals(map.mapGet(fKey), fValue)).toBeTruthy();
         map.mapGet(fKey)!();
         expect(flag).toBeTruthy();
     });
@@ -200,6 +200,16 @@ describe("HashMap test", () => {
         map.mapRemove(keyOne);
         expect(map.mapGet(keyOne)).toBeNull();
         expect(map.mapGet(keyTwo)).toBeNull();
+    });
+
+    it("A number of call of get() & put()", () => {
+        const map = new HashMap<number, number>();
+        for (let i = 0; i < 10000; i++) {
+            expect(() => {
+                map.mapPut(i, i * 2)
+            }).not.toThrow();
+            expect(map.mapGet(i)).toBe(i * 2);;
+        }
     });
 
 });

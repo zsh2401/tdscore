@@ -58,7 +58,7 @@ export default class HashSet<E>
         let str = "";
         const iterator = this.getIterator();
         while(iterator.hasNext()){
-            str += iterator.next();
+            str += iterator.next() + " ";
         }
         return str;
     }

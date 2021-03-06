@@ -1,4 +1,4 @@
-export default function <E>(type: string): E {
+export default function defaultOf<E>(type: string): E {
     switch (type) {
         case "bigint":
         case "number":

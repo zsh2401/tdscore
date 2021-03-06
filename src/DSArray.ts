@@ -4,7 +4,7 @@ import IIterator from "./data-structure/IIterator";
 import DSArrayWithoutProxy from "./DSArrayWithoutProxy"
 import DSObject from "./DSObject"
 import IArrayLike from "./IArrayLike";
-/**IArrayLike
+/**
  * 默认数据提供器
  * --
  * Default value provider.
@@ -94,7 +94,7 @@ export function create<E>(length: number, defaultValue?: DefaultValue): DSArray<
                 }
                 return v;
             } else if (isNumber) {
-                throw new RangeError("Index out of range");
+                throw new RangeError(`Index out of range ${String(p)}`);
             } else {
                 //@ts-ignore
                 return target[p];

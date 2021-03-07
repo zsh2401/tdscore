@@ -63,6 +63,13 @@ console.log(hashMap.mapGet("a")); // 1
 # Documents 🍕
 It's still writing.
 
-# Contribution 🎁
-Please develop on the dev branch.    
-Pull Requests are always welcomed.
+<div align="center">
+
+# Contributors
+Please develop on the dev branch, and Pull Requests are always welcomed.
+
+<!-- <a href="https://github.com/zsh2401/tdscore/graphs/contributors"> -->
+  <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
+<!-- </a> -->
+
+</div>

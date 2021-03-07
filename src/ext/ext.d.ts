@@ -7,8 +7,10 @@ import { IHashCodeGettable } from "../util/hash";
 //TODO test
 export declare global {
     interface Array<T> extends IHashCodeGettable, IArrayLike<T>, IIterable<T> {
-        getIterator(): IIterator<T>
-        toDSArray(): DSArray<E>
+        getIterator(): IIterator<T>;
+        toDSArray(): DSArray<E>;
+        remove(item: E): void;
+        indexOf(item: E): number;
     }
     interface Number extends IHashCodeGettable {
         toDSNumber(): DSNumber;

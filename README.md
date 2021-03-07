@@ -20,7 +20,7 @@ Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨
 # Features
 * Readable: Designed for study at first🌌.
 * Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
-* Smaller: 22.5kB minified and gzipped😍.
+* Smaller: 23.2kB minified and gzipped😍.
 * A series of tools which can enhance the ability of ECMA Script🚀.
 
 # Getting Started
@@ -32,7 +32,7 @@ TDSCore is supporting AMD, CommonJS, ES Moudle and Global variable.
 
 ### Browser👏
 ```html
-<srcipt src="./tdscore.js"></script>
+<srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```
 
 ### Import🎉

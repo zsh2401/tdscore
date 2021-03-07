@@ -2,4 +2,6 @@ src
 tests
 jest.config.jest
 *.lock
+.vscode
+.github
 coverage

@@ -1,18 +1,23 @@
 # 😊TDSCore
-Data Structure & Algorithms implenemntes with 99% TypeScript.✨    
-Runs on any JavaScript runtime(Browser, Node.js, etc. )   
-Designed for study and science computing.
+Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript.✨    
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscore)
 ![](https://badgen.net/npm/dy/tdscore)
 
-# Install
+# Features
+* Readable: Designed for study at first🌌.
+* Runs on everywhere: Using only ECMAScript 5 features🚄.
+* Smaller: 22.5kB minified and gzipped😍.
+* A series of tools which can enhance the ability of ECMA Script🚀.
 
-## NPM💖
+# Load
+TDSCore is supporting AMD, CommonJS, ES Moudle and Global variable.
+
+## [Node.js](http://nodejs.org/)
 `npm install tdscore`
 
-## Script tag👏
+## Browser👏
 ```html
 <srcipt src="./tdscore.js"></script>
 ```

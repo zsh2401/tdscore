@@ -1,4 +1,4 @@
-import "./ext"
+import "../ext"
 
 export { default as ISet } from "./ISet"
 export { default as IMap } from "./IMap"

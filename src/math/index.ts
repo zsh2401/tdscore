@@ -1,4 +1,4 @@
-import "./ext"
+import "../ext"
 
 const PI = Math.PI;
 const ONE_DEGREE = PI / 180;

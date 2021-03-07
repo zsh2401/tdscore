@@ -19,12 +19,12 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import { asdn, MixedNumber } from "../../DSNumber";
+import { MixedNumber } from "../../DSNumber";
 import { ComparerResult } from "./IInternalSortAlgorithm"
 
 export function ascdeningComparer(a: MixedNumber, b: MixedNumber): ComparerResult {
-    const _a = asdn(a);
-    const _b = asdn(b);
+    const _a = a.toDSNumber();
+    const _b = b.toDSNumber();
     if (_b.greaterThan(_a)) {
         return "rightGreaterThanLeft"
     } else if (_a.greaterThan(b)) {
@@ -35,8 +35,8 @@ export function ascdeningComparer(a: MixedNumber, b: MixedNumber): ComparerResul
 }
 
 export function descdeningComparer(a: MixedNumber, b: MixedNumber): ComparerResult {
-    const _a = asdn(a);
-    const _b = asdn(b);
+    const _a = a.toDSNumber();
+    const _b = b.toDSNumber();
     if (_b.greaterThan(_a)) {
         return "leftGreaterThanRight"
     } else if (_a.greaterThan(b)) {

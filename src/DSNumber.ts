@@ -1,4 +1,5 @@
-import Decimal from "decimal.js";
+import "./ext"
+import BigNumber from "bignumber.js"
 import DSObject from "./DSObject";
 import dsHashCode from "./dsHashCode";
 import DSArray from "./DSArray";
@@ -13,6 +14,7 @@ function initCache(factory: (num: number) => DSNumber) {
     }
 }
 
+// type CoreNumber =
 /**
  * 支持任意精度计算的DSNumber包装类
  */
@@ -23,11 +25,15 @@ export default class DSNumber extends DSObject {
     static readonly PI = DSNumber.valueOf(Math.PI);
     static readonly ONE = DSNumber.valueOf(1);
 
-    private readonly value: Decimal;
+    private readonly value: BigNumber;
 
-    private constructor(value: Decimal) {
+    private constructor(value: BigNumber) {
         super();
         this.value = value;
+    }
+
+    toDSNumber() {
+        return this;
     }
 
     toString(): string {
@@ -43,9 +49,9 @@ export default class DSNumber extends DSObject {
     equals(other: any): boolean {
         if (DSObject.typeEquals(this, other)) {
             const o = other as DSNumber;
-            return this.value.equals(o.value);
+            return this.value.isEqualTo(o.value);
         } else if (typeof other === "number") {
-            return this.value.equals(other);
+            return this.value.isEqualTo(other);
         }
         return super.equals(other);
     }
@@ -60,53 +66,43 @@ export default class DSNumber extends DSObject {
         return !this.equals(other);
     }
 
-    sin(): DSNumber {
-        return new DSNumber(this.value.sin());
-    }
 
     pow(n: MixedNumber): DSNumber {
-        return new DSNumber(this.value.pow(this.toDeciaml(n)));
+        return new DSNumber(this.value.pow(n.toDSNumber().value));
     }
 
     lessThan(other: MixedNumber): boolean {
-        return this.value.lessThan(this.toDeciaml(other));
+        return this.value.isLessThan(other.toDSNumber().value);
     }
 
     lessThanOrEqualsTo(other: MixedNumber): boolean {
-        return this.value.lessThanOrEqualTo(this.toDeciaml(other));
+        return this.value.isLessThanOrEqualTo(other.toDSNumber().value);
     }
 
     greaterThan(other: MixedNumber): boolean {
-        return this.value.greaterThan(this.toDeciaml(other));
+        return this.value.isGreaterThan(other.toDSNumber().value);
     }
 
     greaterThanOrEqualsTo(other: MixedNumber): boolean {
-        return this.value.greaterThanOrEqualTo(this.toDeciaml(other));
+        return this.value.isGreaterThanOrEqualTo(other.toDSNumber().value);
     }
 
     plus(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.plus(this.toDeciaml(other)));
+        return new DSNumber(this.value.plus(other.toDSNumber().value));
     }
 
     sub(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.sub(this.toDeciaml(other)));
+        return new DSNumber(this.value.minus(other.toDSNumber().value));
     }
 
     mul(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.mul(this.toDeciaml(other)));
+        return new DSNumber(this.value.multipliedBy(other.toDSNumber().value));
     }
 
     dividedBy(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.dividedBy(this.toDeciaml(other)));
+        return new DSNumber(this.value.dividedBy(other.toDSNumber().value));
     }
 
-    private toDeciaml(o: MixedNumber): Decimal {
-        if (typeof o === "number") {
-            return new Decimal(o);
-        } else {
-            return o.value;
-        }
-    }
 
     isPosivite(): boolean {
         return this.value.isPositive();
@@ -121,19 +117,19 @@ export default class DSNumber extends DSObject {
     }
 
     hexString(): string {
-        return this.value.toHex();
+        return this.value.toString(16);
     }
 
     binString(): string {
-        return this.value.toBinary();
+        return this.value.toString(2);
     }
 
     octString(): string {
-        return this.value.toOctal();
+        return this.value.toString(8);
     }
 
     decString(): string {
-        return this.value.toString();
+        return this.value.toString(10);
     }
 
     toJSNumber(): number {
@@ -141,7 +137,6 @@ export default class DSNumber extends DSObject {
     }
 
     newHashCode(): number {
-
         return dsHashCode(this.decString());
     }
 
@@ -149,27 +144,17 @@ export default class DSNumber extends DSObject {
         if (DSNumber.isDSObject<DSNumber>(data)) {
             return data;
         }
-        if (typeof data === "string") {
-            data = Number.parseFloat(data);
-        }
-        if (data >= -128 && data <= 127) {
+        if (typeof data === "number" && data >= -128 && data <= 127 && Number.isInteger(data)) {
             if (cache[0] === undefined) {
-                initCache((n) => new DSNumber(new Decimal(n)));
+                initCache((n) => new DSNumber(new BigNumber(n)));
             }
             return cache[data + 128];
+        } else {
+            return new DSNumber(new BigNumber(data));
         }
-        return new DSNumber(new Decimal(data));
     }
 
     static v(data: number | string | DSNumber): DSNumber {
         return DSNumber.valueOf(data);
     }
-}
-
-/**
- * The fastest way to covert your number to DSNumber!
- * @param data 
- */
-export function asdn(data: number | string | DSNumber): DSNumber {
-    return DSNumber.valueOf(data);
 }

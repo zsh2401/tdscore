@@ -19,7 +19,7 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import { DSObject } from ".";
+import DSObject from "./DSObject";
 
 /**
  * StopWatch, designed for record time span.
@@ -35,7 +35,7 @@ export default class StopWatch extends DSObject {
         this.end = this.end.bind(this);
         this.start = this.start.bind(this);
     }
-    
+
     /**
      * Get total ms.
      */

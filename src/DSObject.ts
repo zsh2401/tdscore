@@ -1,4 +1,4 @@
-import "./ext"
+
 import IHashCodeGettable from "./util/hash/IHashCodeGettable";
 import { getHashCodeString } from "./util/hash/hashcode.impl";
 import _uuid from "./math/uuid";

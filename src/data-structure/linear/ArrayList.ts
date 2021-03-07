@@ -52,7 +52,7 @@ export default class ArrayList<E> extends UngrowableArrayList<E>{
      */
     protected copyToNewArray(oldArray: DSArray<E>, newArray: DSArray<E>) {
         for (let i = 0; i < oldArray.length; i++) {
-            newArray.set(i, oldArray.get(i));
+            newArray[i] = oldArray[i];
         }
     }
 

@@ -1,6 +1,6 @@
-import { append, defaultOrFirst, size } from "../../src/data-structure/iterating"
+import { append, defaultOrFirst, size,last } from "../../src/data-structure/iterating"
 import IIterable from "../../src/data-structure/IIterable"
-import last from "../../src/data-structure/iterating/last";
+// import last from "../../src/data-structure/iterating/last";
 import DSArray from "../../src/DSArray"
 
 describe("append test", () => {

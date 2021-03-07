@@ -1,4 +1,4 @@
-import { DSObject } from ".";
+import DSObject from "./DSObject";
 
 export default DSObjectType;
 type DSObjectType<T extends DSObject> = {

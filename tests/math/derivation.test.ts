@@ -29,13 +29,13 @@ describe("Derivative Test", () => {
         expect(dfsin(0)).toBeCloseTo(cos(0));
     });
 
-    it("DSFun's derivation: sin'' x should be -sin x", () => {
-        const originalF = (x: DSNumber): DSNumber => {
-            return x.sin();
-        }
-        const f = derivationOf(derivationOf(originalF));
-        expect(f(DSNumber.ONE).toJSNumber()).toBeCloseTo(-sin(1))
-    })
+    // it("DSFun's derivation: sin'' x should be -sin x", () => {
+    //     const originalF = (x: DSNumber): DSNumber => {
+    //         return x.sin();
+    //     }
+    //     const f = derivationOf(derivationOf(originalF));
+    //     expect(f(DSNumber.ONE).toJSNumber()).toBeCloseTo(-sin(1))
+    // })
 
     // it("DSFun's derivation: sin''''' x should be sin x", () => {
     //     const originalF = (x: DSNumber): DSNumber => {

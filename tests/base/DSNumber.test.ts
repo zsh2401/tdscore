@@ -14,4 +14,9 @@ describe("DSNumber Test", () => {
         const b = DSNumber.valueOf(1000);
         expect(a.referenceEquals(b)).toBeFalsy();
     });
+
+    it("0.1 + 0.2", () => {
+        const r = DSNumber.valueOf("0.1").plus(DSNumber.valueOf("0.2"));
+        expect(r.equals(DSNumber.valueOf("0.3"))).toBeTruthy();
+    })
 });

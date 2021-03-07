@@ -1,4 +1,4 @@
-import DSArray, { create } from "../../DSArray";
+import DSArray from "../../DSArray";
 import IMap, { KeyValuePair, ReadonlyKeyValuePair } from "../IMap";
 import _hashCode from "../../util/hash/hashcode"
 import IIterator from "../IIterator";
@@ -9,7 +9,7 @@ import { Func1 } from "../../Func";
 const DEFAULT_INITIAL_CAPCITY: number = 16;
 const DEFAULT_LOAD_FACTOR = 0.75;
 const MAXIMUM_CAPCITY = 1 << 30;
-const EMPTY_TABLE: DSArray<any> = create<any>(0);
+const EMPTY_TABLE: DSArray<any> = new DSArray(0);
 
 export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 

@@ -1,13 +1,10 @@
-import "./ext"
 import BigNumber from "bignumber.js"
 import DSObject from "./DSObject";
 import dsHashCode from "./dsHashCode";
-import DSArray from "./DSArray";
-import { toDSArray } from "./data-structure";
 
 export type MixedNumber = DSNumber | number;
 
-const cache: DSArray<DSNumber> = new DSArray(2 ** 8);
+const cache: DSNumber[] = [];
 function initCache(factory: (num: number) => DSNumber) {
     for (let i = 0; i < 2 ** 8; i++) {
         cache[i] = factory(i);
@@ -56,10 +53,10 @@ export default class DSNumber extends DSObject {
         return super.equals(other);
     }
 
-    toBit(): DSArray<boolean> {
-        return toDSArray<boolean, boolean>((this.toJSNumber() >>> 0).toString(2).split('').map((b) => {
+    toBit(): ArrayLike<boolean> {
+        return (this.toJSNumber() >>> 0).toString(2).split('').map((b) => {
             return b === "1" ? true : false;
-        }));
+        });
     }
 
     notEquals(other: any): boolean {

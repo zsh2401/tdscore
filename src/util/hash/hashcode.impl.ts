@@ -1,8 +1,8 @@
-import { IHashCodeGettable } from ".";
+import IHashCodeGettable from "./IHashCodeGettable";
 import weekhash from "./weekhash";
 const STR_HASH_SEED = 0;
 const VALUE_FOR_TRUE = 1231;
-const VALUE_FOR_FALSE = 1237
+const VALUE_FOR_FALSE = 1237;
 const VALUE_FOR_NULL = 0;
 const VALUE_FOR_UNDEFINED = -1;
 export function getHashCodeBoolean(v: boolean) {

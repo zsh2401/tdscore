@@ -1,5 +1,3 @@
-import { DSObject } from ".";
-
 /*
  * Optional.ts
  * Created on Sat Mar 06 2021 00:59:28
@@ -20,6 +18,9 @@ import { DSObject } from ".";
  * See the Mulan PSL v2 for more details.
  * Mulan Permissive Software License，Version 2
  */
+
+import DSObject from "./DSObject";
+
 export default class Optional<E> extends DSObject {
     private readonly _innerValue: E | undefined | null;
     constructor(value?: E) {

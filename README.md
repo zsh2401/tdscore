@@ -6,7 +6,9 @@
 
 Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨ 
 
+
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
+[![Publish](https://github.com/zsh2401/tdscore/actions/workflows/publish.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/publish.yml)
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscore)
 ![](https://badgen.net/npm/dy/tdscore)
 

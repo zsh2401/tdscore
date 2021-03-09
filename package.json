@@ -1,6 +1,7 @@
 {
   "name": "tdscore",
-  "version": "0.1.13",
+  "version": "0.1.14",
+  "description": "Data Structure, algorithms, mathmatic codes and enhancement of ECMAScript written by TypeScript",
   "repository": "https://github.com/zsh2401/tdscore",
   "author": "Seymour Zhang<zsh2401@163.com>",
   "license": "MulanPSL2",

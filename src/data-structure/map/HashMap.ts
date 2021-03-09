@@ -335,6 +335,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         }
         this.timeUsedForTransfering += (new Date().getTime() - start.getTime());
     }
+    
     toString() {
         let chainStr = "";
         let notUsed = 0;

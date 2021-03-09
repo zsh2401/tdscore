@@ -25,5 +25,29 @@ import { IComparer } from "./IInternalSortAlgorithm";
 export default function <E>
     (a: IArrayLike<E>, comparer: IComparer<E>) {
 
-    throw new Error("Method not implemented");
+    buildMaxHeap(a);
+
+    for (let i = a.length - 1; i > 0; i--) {
+        swap(a, 0, i);
+        len--;
+        heapify(a, 0);
+    }
+    return a;
+}
+function buildMaxHeap<E>(a: IArrayLike<E>) {
+
+}
+function heapify<E>(a: IArrayLike<E>) {
+
+}
+function swap<E>(a: IArrayLike<E>, i: number, j: number) {
+    const tmp = a[i];
+    a[j] = a[i]
+    a[i] = tmp;
+}
+interface Node<E> {
+    parent?: Node<E>;
+    data: E;
+    left?: Node<E>;
+    right?: Node<E>;
 }

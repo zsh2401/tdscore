@@ -54,7 +54,7 @@ function quickSortInner<E>(array: IArrayLike<E>, comparer: IComparer<E>,
     let toRight = true;
     while (iLow < iHigh) {
 
-        if (comparer(array[iLow], array[iHigh]) === "leftGreaterThanRight") {
+        if (comparer(array[iLow], array[iHigh]) > 0) {
             const tmp = array[iLow];
             array[iLow] = array[iHigh];
             array[iHigh] = tmp;

@@ -15,7 +15,7 @@ export default function (name: string, iternalSortAlgorithm: IInternalSortAlgori
             expect(isAscending(arr)).toBeTruthy();
         });
 
-        if (option && option.descend !== undefined && option.descend) {
+        if ((option === undefined || option.descend === undefined) || (option && option.descend !== undefined && option.descend)) {
             it(`Descending Sort for ${name}`, () => {
                 const arr = generateRandomArray();
                 iternalSortAlgorithm(arr, descdeningComparer);

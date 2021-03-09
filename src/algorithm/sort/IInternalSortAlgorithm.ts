@@ -24,10 +24,10 @@ import IArrayLike from "../../IArrayLike";
 export default interface ISortAlgorithm<E> {
     (target: IArrayLike<E>, comparer: IComparer<E>): void;
 }
-export type ComparerResult = "equal" | "leftGreaterThanRight" | "rightGreaterThanLeft";
 export interface IComparer<E> {
     /**
-     * @returns Should exchange elements
+     * Compare the a and b
+     * @returns nagative number if a less than b, zero if a equals b, positive number if a greater than b.
      */
-    (a: E, b: E): ComparerResult;
+    (a: E, b: E): number;
 }

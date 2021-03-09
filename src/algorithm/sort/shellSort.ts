@@ -53,7 +53,7 @@ export default function <E>
         for (let i = delta; i < a.length; i++) {
             const tmp = s[i];
             let j: number;
-            for (j = i; j >= delta && comparer(s[j - delta], tmp) === "leftGreaterThanRight"; j -= delta) {
+            for (j = i; j >= delta && comparer(s[j - delta], tmp) > 0; j -= delta) {
                 s[j] = s[j - delta]
             }
             s[j] = tmp;

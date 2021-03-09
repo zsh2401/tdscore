@@ -20,28 +20,15 @@
  */
 
 import { MixedNumber } from "../../DSNumber";
-import { ComparerResult } from "./IInternalSortAlgorithm"
 
-export function ascdeningComparer(a: MixedNumber, b: MixedNumber): ComparerResult {
+export function ascdeningComparer(a: MixedNumber, b: MixedNumber): number {
     const _a = a.toDSNumber();
     const _b = b.toDSNumber();
-    if (_b.greaterThan(_a)) {
-        return "rightGreaterThanLeft"
-    } else if (_a.greaterThan(b)) {
-        return "leftGreaterThanRight"
-    } else {
-        return "equal";
-    }
+    return _a.sub(_b).toJSNumber();
 }
 
-export function descdeningComparer(a: MixedNumber, b: MixedNumber): ComparerResult {
+export function descdeningComparer(a: MixedNumber, b: MixedNumber): number {
     const _a = a.toDSNumber();
     const _b = b.toDSNumber();
-    if (_b.greaterThan(_a)) {
-        return "leftGreaterThanRight"
-    } else if (_a.greaterThan(b)) {
-        return "rightGreaterThanLeft"
-    } else {
-        return "equal";
-    }
+    return - (_a.sub(_b).toJSNumber());
 }

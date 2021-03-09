@@ -65,7 +65,7 @@ export default function bubbleSort<E>
     for (let i = 0; (i < a.length - 1 && exchangedLastTime); i++) {
         exchangedLastTime = false;
         for (let j = 0; j < a.length - i - 1; j++) {
-            if (comparer(a[j], a[j + 1]) === "leftGreaterThanRight") {
+            if (comparer(a[j], a[j + 1]) > 0) {
                 const tmp = a[j];
                 a[j] = a[j + 1];
                 a[j + 1] = tmp;

@@ -54,7 +54,7 @@ function findMin<E>(e: IArrayLike<E>, comparer: IComparer<E>, start: number = 0,
     end ??= e.length;
 
     for (let i = start; i <= end; i++) {
-        if (comparer(e[i], e[min]) === "rightGreaterThanLeft") {
+        if (comparer(e[i], e[min]) < 0) {
             min = i;
         }
     }

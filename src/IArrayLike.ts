@@ -19,27 +19,48 @@
  * Mulan Permissive Software License，Version 2
  */
 
+import { DSObject } from ".";
 import DSArray from "./DSArray";
+import { isJSArray } from "./util/type-checking";
 
 export default interface IArrayLike<T> {
     length: number;
     [index: number]: T;
 }
 
-
-export function toDSArray<E>(array: IArrayLike<E>): DSArray<E> {
+export function copyTo<E>(src: IArrayLike<E>, dest: IArrayLike<E>, start?: number, length?: number) {
+    start ??= 0;
+    length ??= src.length;
+    for (let i = start; i < start + length && i < dest.length; i++) {
+        dest[i - start] = src[i];
+    }
+}
+export function clone<E>(src: IArrayLike<E>): IArrayLike<E> {
+    const dest = new DSArray<E>(src.length);
+    copyTo(src, dest, 0, dest.length);
+    return dest;
+}
+export function toDSArray<E>(array: IArrayLike<E>, alwaysNew: boolean = false): DSArray<E> {
+    if (!alwaysNew && DSObject.isDSObject<DSArray<E>>(array)) {
+        return array;
+    }
     const result = new DSArray<E>(array.length);
     for (let i = 0; i < array.length; i++) {
         result[i] = array[i]
     }
     return result;
 }
-
-
-export function toJSArray<E>(array: IArrayLike<E>): E[] {
+export function toJSArray<E>(array: IArrayLike<E>, alwaysNew: boolean = false): E[] {
+    if (!alwaysNew && isJSArray<E>(array)) {
+        return array;
+    }
     const result: E[] = []
     for (let i = 0; i < array.length; i++) {
         result.push(array[i]);
     }
     return result;
+}
+
+export function toESArray<E>(array: IArrayLike<E>): E[] {
+    return toJSArray(array);
 }

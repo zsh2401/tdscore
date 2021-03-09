@@ -4,6 +4,7 @@ import IIterator from "./data-structure/IIterator";
 import find from "./data-structure/iterating/find"
 import toJSArray from "./data-structure/iterating/toJSArray";
 import hashCode from "./util/hash";
+import IArrayLike from "./IArrayLike";
 /**
  * 默认数据提供器
  * --
@@ -20,7 +21,7 @@ type DefaultValue<E> = ((i: number) => E) | E;
  */
 //@ts-expect-error
 @dsarry
-export default class DSArray<E> extends DSObject implements IIterable<E>{
+export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIterable<E>{
 
     readonly length: number;
 
@@ -30,6 +31,10 @@ export default class DSArray<E> extends DSObject implements IIterable<E>{
         super();
         this.length = size;
         this.defaultValue = defaultValue;
+    }
+
+    toDSArray(): DSArray<E> {
+        return this;
     }
 
     defaultValueOf(i: number): E | undefined {
@@ -66,6 +71,14 @@ export default class DSArray<E> extends DSObject implements IIterable<E>{
      */
     set(index: number, value: E): void {
         this[index] = value;
+    }
+
+    copyTo(dest: IArrayLike<E>, start?: number, length?: number): void {
+        start ??= 0;
+        length ??= this.length;
+        for (let i = start; i < start + length && i < dest.length; i++) {
+            dest[i - start] = this[i];
+        }
     }
 
     contains(v: E): boolean {

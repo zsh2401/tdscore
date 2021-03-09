@@ -130,7 +130,7 @@ describe("HashMap test", () => {
         for (let i = 0; i < 10; i++) {
             map.mapPut(i * 16, 0);
         }
-        console.log(map.toString());
+        // console.log(map.toString());
     });
 
     it("key is null", () => {
@@ -207,7 +207,7 @@ describe("HashMap test", () => {
         expect(map.mapGet(keyTwo)).toBeNull();
     });
 
-    it("A number of call of get() & put()", () => {
+    it("10,000 times of get() & put()", () => {
         const map = new HashMap<number, number>();
         for (let i = 0; i < 10_000; i++) {
             expect(() => {
@@ -215,7 +215,6 @@ describe("HashMap test", () => {
             }).not.toThrow();
             expect(map.mapGet(i)).toBe(i * 2);;
         }
-        console.log("the time used for transfering " + map.timeUsedForTransfering);
     });
 
 });

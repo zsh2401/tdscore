@@ -2,6 +2,7 @@ import IInternalSortAlgorithm from "../../src/algorithm/sort/IInternalSortAlgori
 import { ascdeningComparer, descdeningComparer } from "../../src/algorithm/sort/comparers"
 import "ts-jest"
 import "../../src/ext"
+import { DSArray } from "../../src"
 export interface Option {
     descend?: boolean;
 }
@@ -36,7 +37,7 @@ function generateRandomArray(): number[] {
     }
     return a;
 }
-function isAscending(a: number[]) {
+function isAscending(a: ArrayLike<number>) {
     for (let i = 0; i < a.length - 1; i++) {
         if (a[i] > a[i + 1]) {
             return false;
@@ -44,7 +45,7 @@ function isAscending(a: number[]) {
     }
     return true;
 }
-function isDescending(a: number[]) {
+function isDescending(a: ArrayLike<number>) {
     for (let i = 0; i < a.length - 1; i++) {
         if (a[i] < a[i + 1]) {
             return false;

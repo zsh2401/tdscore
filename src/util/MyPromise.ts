@@ -19,7 +19,8 @@ export interface Executor<T> {
     (resolve: Resolver<T>, rejecter: Rejecter): void;
 }
 export type PromiseStatus = "pending" | "fullfilled" | "rejected";
-export default class MyPromise<T> extends DSObject implements Promise<T>{
+
+export default class MyPromise<T> extends DSObject{
 
     private status: PromiseStatus = "pending";
 
@@ -65,7 +66,7 @@ export default class MyPromise<T> extends DSObject implements Promise<T>{
         }
     }
 
-    then(h: ThenHandler<T> | Promise<T>) {
+    then(h: ThenHandler<T>) {
         if (this.status === "pending") {
             this.thenHandlers.push(h);
         } else if (this.status === "fullfilled") {

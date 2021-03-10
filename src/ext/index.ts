@@ -19,7 +19,8 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import "./ArrayExtension"
-import "./StringExtension"
-import "./NumberExtension"
-import "./BooleanExtension"
+import "./array-ext"
+import "./string-ext"
+import "./number-ext"
+import "./boolean-ext"
+import "./object-ext"

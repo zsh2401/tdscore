@@ -1,5 +1,5 @@
 import { IIterable } from "..";
-import { isIterable, isJSArray } from "../../util/type-checking";
+import { isIterable, isJSArray } from "../../util/type";
 import IIterator from "../IIterator";
 import toDSArray from "./toDSArray";
 

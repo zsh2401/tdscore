@@ -2,7 +2,6 @@ import IInternalSortAlgorithm from "../../src/algorithm/sort/IInternalSortAlgori
 import { ascdeningComparer, descdeningComparer } from "../../src/algorithm/sort/comparers"
 import "ts-jest"
 import "../../src/ext"
-import { DSArray } from "../../src"
 export interface Option {
     descend?: boolean;
 }

@@ -24,7 +24,7 @@ export { default as Ref } from "./Ref"
 export { default as Nullable } from "./Nullable"
 export { default as Optional } from "./Optional"
 export { default as DSObjectType } from "./DSObjectType"
-export { default as defaultOf } from './defaultOf'
+export { default as defaultOf } from './util/type/defaultOf'
 
 export {
     default as IArrayLike,

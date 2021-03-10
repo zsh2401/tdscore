@@ -1,3 +1,4 @@
+const DEFAULT_SYMBOL = Symbol("0");
 export default function defaultOf<E>(type: string): E {
     switch (type) {
         case "bigint":
@@ -7,10 +8,12 @@ export default function defaultOf<E>(type: string): E {
         case "boolean":
             //@ts-expect-error
             return false;
+        case "symbol":
+            //@ts-expect-error
+            return DEFAULT_SYMBOL;
         case "function":
         case "object":
         case "string":
-        case "symbol":
         case "undefined":
         default:
             //@ts-expect-error

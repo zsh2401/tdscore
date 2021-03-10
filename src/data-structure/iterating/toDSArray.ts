@@ -1,5 +1,5 @@
 import DSArray from "../../DSArray";
-import { isJSArray } from "../../util/type-checking";
+import { isJSArray } from "../../util/type";
 import IIterable from "../IIterable";
 import toJSArray from "./toJSArray";
 export default function toDSArray<E, V = E>(iterable: IIterable<E> | E[], mapper?: ((e: E) => V)): DSArray<V> {

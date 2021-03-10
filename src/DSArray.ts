@@ -5,6 +5,7 @@ import find from "./data-structure/iterating/find"
 import toJSArray from "./data-structure/iterating/toJSArray";
 import hashCode from "./util/hash";
 import IArrayLike from "./IArrayLike";
+import seal from "./util/type/seal";
 /**
  * 默认数据提供器
  * --
@@ -21,6 +22,7 @@ type DefaultValue<E> = ((i: number) => E) | E;
  */
 //@ts-expect-error
 @dsarry
+@seal
 export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIterable<E>{
 
     readonly length: number;

@@ -6,6 +6,8 @@ import { IHashCodeGettable } from "../util/hash";
 
 //TODO test
 export declare global {
+
+
     interface Array<T> extends IHashCodeGettable, IArrayLike<T>, IIterable<T> {
         getIterator(): IIterator<T>;
         toDSArray(): DSArray<E>;
@@ -19,6 +21,16 @@ export declare global {
         toDSNumber(): DSNumber;
     }
     interface Boolean extends IHashCodeGettable {
+        toDSNumber(): DSNumber;
+    }
 
+    interface ObjectConstructor {
+        dsHashCodeOf(o: any);
+        dsEquals(a: any, b: any);
+    }
+    
+    interface Object {
+        dsHashCode();
+        dsEquals(other: any);
     }
 }

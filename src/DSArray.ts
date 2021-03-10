@@ -15,14 +15,18 @@ import seal from "./util/type/seal";
 type DefaultValue<E> = ((i: number) => E) | E;
 
 /**
- * 限制性，不可增长的数组，类似于C系语言中的所有的一般。
+ * 
+ * 限制性，不可变长的数组，类似于C系语言中的所有的一般。
  * 用于模拟数据结构中对数组的严格操作。
- * <br/>
+ * 不要继承此类
+ * 
  * Stricted, length-fixed array, like C, C++, C# and Java etc.
+ * DO NOT EXTENDS THIS OBJECT
+ * 
  */
 //@ts-expect-error
 @dsarry
-@seal
+// @seal
 export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIterable<E>{
 
     readonly length: number;
@@ -130,7 +134,9 @@ function dsarry(
     }
 }
 function toIndex<E>(len: number, p: any): [isNumber: boolean, isValid: boolean, validIndex: number] {
-    // console.log(`toIndex: ${typeof p}:${p} len:${len}`);
+    if(typeof p === "symbol"){
+        p = "NaN"
+    }
     var n = Number(p);
     return [!isNaN(n), n >= 0 && n < len, n];
 }

@@ -43,7 +43,8 @@ export function isDSObject<R extends DSObject = DSObject>(e: any): e is R {
     return false;
 }
 export function isDSArray<E>(e: any): e is DSArray<E> {
-    return e instanceof DSArray;
+    return typeof e === "object" && e.constructor.name === "DSArray"
+    // return e instanceof DSArray;
 }
 export function isArrayLike<E>(e: any): e is IArrayLike<E> {
     return isDSArray(e) || isJSArray(e);

@@ -33,13 +33,14 @@ jobs:
       run: yarn
 
     - name: Codecov
-      run: yarn global add codecov | 
+      run: |
+        yarn global add codecov 
         codecov
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Build
       run: yarn build
-      
+
     - name: Test
       run: yarn test

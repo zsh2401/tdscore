@@ -44,7 +44,7 @@ export default class DSObject implements IHashCodeGettable {
     }
 
     static isDSObject<T extends DSObject = DSObject>(e: any): e is T {
-        return typeof (<DSObject>e).getClassName === "function";
+        return e instanceof DSObject;
     }
 
     referenceEquals(other: Nullable<DSObject>): boolean {

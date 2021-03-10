@@ -42,7 +42,7 @@ export function clone<E>(src: IArrayLike<E>): IArrayLike<E> {
     return dest;
 }
 export function toDSArray<E>(array: IArrayLike<E>, alwaysNew: boolean = false): DSArray<E> {
-    if (!alwaysNew && DSObject.isDSObject<DSArray<E>>(array)) {
+    if (!alwaysNew && array instanceof DSArray) {
         return array;
     }
     const result = new DSArray<E>(array.length);
@@ -52,7 +52,7 @@ export function toDSArray<E>(array: IArrayLike<E>, alwaysNew: boolean = false): 
     return result;
 }
 export function toJSArray<E>(array: IArrayLike<E>, alwaysNew: boolean = false): E[] {
-    if (!alwaysNew && isJSArray<E>(array)) {
+    if (!alwaysNew && array instanceof Array) {
         return array;
     }
     const result: E[] = []

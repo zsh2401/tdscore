@@ -138,7 +138,7 @@ export default class DSNumber extends DSObject {
     }
 
     static valueOf(data: number | string | DSNumber): DSNumber {
-        if (DSNumber.isDSObject<DSNumber>(data)) {
+        if (data instanceof DSNumber) {
             return data;
         }
         if (typeof data === "number" && data >= -128 && data <= 127 && Number.isInteger(data)) {

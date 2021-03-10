@@ -2,6 +2,7 @@ import path from 'path'
 import webpack from 'webpack'
 import TerserPlugin from "terser-webpack-plugin"
 import WebpackBundleAnalyzer from "webpack-bundle-analyzer"
+import pkfInf from './package.json'
 // const WEB = process.env.WEB !== undefined && process.env.WEB !== "0";
 // const NODE_MajorVersion = Number.parseInt(process.version.split(".")[0].replace("v", ""));
 const config: webpack.Configuration = {
@@ -32,12 +33,15 @@ const config: webpack.Configuration = {
 	},
 
 	plugins: [
+		new webpack.DefinePlugin({
+			"__TDSCORE_VERSION__": pkfInf.version
+		}),
 		new webpack.ProgressPlugin(),
 		new webpack.ProvidePlugin({
 			process: 'process/browser',
 		}),
 		new WebpackBundleAnalyzer.BundleAnalyzerPlugin({
-			analyzerMode:"static",
+			analyzerMode: "static",
 		}),
 	],
 

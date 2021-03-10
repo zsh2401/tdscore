@@ -9,9 +9,12 @@ Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
 [![Publish](https://github.com/zsh2401/tdscore/actions/workflows/publish.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/publish.yml)
+![](https://img.shields.io/github/languages/top/zsh2401/tdscore)
+![](https://img.shields.io/node/v/tdscore)
+
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscore)
 ![](https://badgen.net/npm/dy/tdscore)
-
+![](https://img.shields.io/bundlephobia/minzip/tdscore)
 </div>
 
    
@@ -20,7 +23,7 @@ Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨
 # Features
 * Readable: Designed for study at first🌌.
 * Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
-* Smaller: 23.2kB minified and gzipped😍.
+* Smaller:  minified and gzipped😍 .
 * A series of tools which can enhance the ability of ECMA Script🚀.
 
 # Getting Started
@@ -61,6 +64,11 @@ var hashMap = new HashMap();
 hashMap.mapPut("a",1);
 console.log(hashMap.mapGet("a")); // 1
 ```
+# RunKit
+Try any Node.js package right in your browser.   
+[RunKit for TDSCore](https://npm.runkit.com/tdscore)
+
+
 
 # Documents 🍕
 It's still writing.

@@ -10,6 +10,9 @@
   "typings": "lib/index.d.ts",
   "module": "es/index.js",
   "lint": "eslint src/*",
+  "engines": {
+    "node": "*"
+  },
   "scripts": {
     "build:dist": "cross-env TS_NODE_PROJECT=\"./tsconfig-for-webpack.json\" webpack --config ./webpack.config.ts",
     "build:lib": "tsc",

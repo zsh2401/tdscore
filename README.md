@@ -2,7 +2,7 @@
 
 ![](./icon.png)
 
-# 😊TDSCore
+# 😊 [TDSCore](http://tc.zsh2401.top)
 
 Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨ 
 
@@ -23,7 +23,7 @@ Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨
 # Features
 * Readable: Designed for study at first🌌.
 * Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
-* Smaller:  minified and gzipped😍 .
+* Smaller:  19.1kB minified and gzipped😍(v0.1.16).
 * A series of tools which can enhance the ability of ECMA Script🚀.
 
 # Getting Started
@@ -64,14 +64,12 @@ var hashMap = new HashMap();
 hashMap.mapPut("a",1);
 console.log(hashMap.mapGet("a")); // 1
 ```
-# RunKit
+# Try on RunKit
 Try any Node.js package right in your browser.   
 [RunKit for TDSCore](https://npm.runkit.com/tdscore)
 
-
-
 # Documents 🍕
-It's still writing.
+[View on website](http://tc.zsh2401.top/docs)
 
 <div align="center">
 

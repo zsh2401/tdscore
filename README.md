@@ -1,10 +1,12 @@
+# WARNING: This library is still developing, do not use this under production environment.
+
 <div align="center">
 
 ![](./icon.png)
 
 # 😊 [TDSCore](http://tc.zsh2401.top)
 
-Data Structure, Algorithms, Mathmatic codes implenemntes with 99% TypeScript!✨ 
+Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScript!✨ 
 
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)

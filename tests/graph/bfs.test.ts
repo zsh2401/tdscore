@@ -1,12 +1,12 @@
 import IUniGraph from "../../src/data-structure/graph/IUniGraph"
 import bfs from "../../src/data-structure/graph/bfs"
-import MartixGraph from '../../src/data-structure/graph/MartixGraph'
+import Graph from '../../src/data-structure/graph/Graph'
 import { IList, LinkedList } from "../../src";
 import Edge from "../../src/data-structure/graph/Edge";
 describe("BFS", () => {
 
     it("No edges", () => {
-        const g: IUniGraph<number> = new MartixGraph();
+        const g: IUniGraph<number> = new Graph();
         for (let i = 0; i < 1000; i++) {
             g.vertices.collectionAdd(i);
         }
@@ -16,7 +16,7 @@ describe("BFS", () => {
     })
 
     it("Won't back", () => {
-        const g: IUniGraph<string> = new MartixGraph();
+        const g: IUniGraph<string> = new Graph();
         g.vertices.collectionAdd("A");
         g.vertices.collectionAdd("B");
         g.edges.collectionAdd(new Edge("B", "A"));
@@ -29,7 +29,7 @@ describe("BFS", () => {
 
     it("IS BFS", () => {
         type T = string;
-        const graph: IUniGraph<T, Edge<T>> = new MartixGraph();
+        const graph: IUniGraph<T, Edge<T>> = new Graph();
         graph.vertices.collectionAdd("A");
         graph.vertices.collectionAdd("B");
         graph.vertices.collectionAdd("C");
@@ -46,7 +46,7 @@ describe("BFS", () => {
 
     it("Work correctly", () => {
         type T = string;
-        const graph: IUniGraph<T> = new MartixGraph<T>();
+        const graph: IUniGraph<T> = new Graph<T>();
         graph.vertices.collectionAdd("A");
         graph.vertices.collectionAdd("B");
         graph.edges.collectionAdd(new Edge("A", "B"));
@@ -60,7 +60,7 @@ describe("BFS", () => {
 
     it("No cycle and repeat", () => {
         type T = string;
-        const graph: IUniGraph<T> = new MartixGraph<T>();
+        const graph: IUniGraph<T> = new Graph<T>();
         graph.vertices.collectionAdd("A");
         graph.vertices.collectionAdd("B");
         graph.vertices.collectionAdd("C");

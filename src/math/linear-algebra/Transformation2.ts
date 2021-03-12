@@ -1,4 +1,4 @@
-import { Martix, Vector2 } from ".";
+import Vector2 from "./Vector2"
 import Transformation from "./Transformation";
 
 export default class Transformation2 extends Transformation {

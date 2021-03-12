@@ -35,7 +35,7 @@ export default abstract class ListBase<E> extends CollectionBase<E>
 
     protected throwIfIndexOutOfBound(position: number) {
         if (position < 0 || position >= this.size()) {
-            throw new RangeError("Index out of bound.");
+            throw new RangeError(`Index out of bound. ${position}`);
         }
     }
 

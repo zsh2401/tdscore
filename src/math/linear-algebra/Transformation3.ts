@@ -1,4 +1,4 @@
-import { Vector3 } from ".";
+import Vector3 from "./Vector3";
 import Transformation from "./Transformation";
 
 export default class Transformation3 extends Transformation {

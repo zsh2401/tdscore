@@ -1,4 +1,4 @@
-import { DSNumber } from "..";
+import DSNumber from "../DSNumber";
 
 export default interface DSFun {
     (x: DSNumber): DSNumber;

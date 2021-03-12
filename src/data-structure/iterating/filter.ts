@@ -3,7 +3,7 @@ import LinkedList from "../linear/LinkedList";
 import DSArray from "../../DSArray";
 import { Func2 } from "../../Func";
 
-export default function filter<E>(iterable: IIterable<E>,
+export default function <E>(iterable: IIterable<E>,
     filter: Func2<E, number, boolean>): DSArray<E> {
     const i = iterable.getIterator();
     const list = new LinkedList<E>();

@@ -1,4 +1,3 @@
-import Martix from "./Martix";
 import Transformation3 from "./Transformation3";
 import Vector from "./Vector";
 

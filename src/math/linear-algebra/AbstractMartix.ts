@@ -1,6 +1,8 @@
 import IClonable from "../../data-structure/IClonable";
-import { IIterable, IIterator, toDSArray } from "../../data-structure/";
+import toDSArray from "../../data-structure/iterating/toDSArray";
 import DSObject from "../../DSObject";
+import IIterable from "../../data-structure/IIterable"
+import IIterator from "../../data-structure/IIterator"
 import defaultValue from "../../util/type/defaultOf";
 
 export type RowIndex = number;

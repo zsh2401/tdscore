@@ -27,7 +27,6 @@ import LinkedList from "../linear/LinkedList";
 import IQueue from "../linear/IQueue";
 import IUniGraph, { IEdge } from "./IUniGraph";
 import IIterable from "../IIterable";
-import size from "../iterating/size";
 
 export default function bfs<E>(
     g: IUniGraph<E>,

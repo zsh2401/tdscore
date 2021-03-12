@@ -1,9 +1,26 @@
-import DSArray from "../../DSArray";
+import HashSet  from "../../data-structure/HashSet";
+import DSObject from "../../DSObject";
+import ICollection from "../ICollection";
+import IUniGraph, { DEFAULT_WEIGHT, IEdge } from "./IUniGraph";
 
-export default class MartixGraph{
-    private readonly array;
-    constructor(nodeCount:number){
-        this.array = new DSArray<DSArray<number>>(nodeCount,
-            (i:number)=>new DSArray<number>(nodeCount));
+class MartixGraphEdge<E> extends DSObject implements IEdge<E>{
+    readonly from: E;
+    readonly to: E;
+    readonly weigth: number;
+    constructor(from: E, to: E, w?: number) {
+        super();
+        this.from = from;
+        this.to = to;
+        this.weigth ??= DEFAULT_WEIGHT;
+    }
+}
+export default class MartixGraph<E> extends DSObject implements IUniGraph<E>{
+    private _vertices = new HashSet<E>();
+    private _edges = new HashSet<IEdge<E>>();
+    get vertices(): ICollection<E> {
+        return this._vertices;
+    }
+    get edges(): ICollection<IEdge<E>> {
+        return this._edges;
     }
 }

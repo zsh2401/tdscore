@@ -117,12 +117,12 @@ export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIter
         return toJSArray(this);
     }
 
+    static from<E>(src: ArrayLike<E>): DSArray<E> {
+        return from(src);
+    }
+
     static copy<E>(src: DSArray<E>, dest: DSArray<E>, start?: number, count?: number): void {
-        start ??= 0;
-        count ??= dest.length;
-        for (let i = 0; i < count; i++) {
-            dest[i] = src[start + i];
-        }
+        return copy(src, dest, start, count);
     }
 
 }
@@ -130,7 +130,7 @@ function dsarry(
     constructor: (new (length: number, defaultValue?: DefaultValue<any>) => DSArray<any>)
 ): (new (length: number, defaultValue?: DefaultValue<any>) => DSArray<any>) {
     //@ts-ignore
-    return function (length: number, defaultValue?: DefaultValue): {} {
+    const result = function (length: number, defaultValue?: DefaultValue): {} {
         const dsarray: DSArray<any> = new constructor(length);
         const handler: ProxyHandler<DSArray<any>> = {
             get: (target, p) => {
@@ -153,9 +153,29 @@ function dsarry(
 
         return new Proxy(dsarray, handler);
     }
+
+    result.copy = copy;
+    result.from = from;
+    //@ts-ignore
+    return result;
+}
+function from<E>(src: ArrayLike<E>): DSArray<E> {
+    const a = new DSArray<E>(src.length);
+    for (let i = 0; i < src.length; i++) {
+        a[i] = src[i];
+    }
+    return a;
+}
+
+function copy<E>(src: DSArray<E>, dest: DSArray<E>, start?: number, count?: number): void {
+    start ??= 0;
+    count ??= dest.length;
+    for (let i = 0; i < count; i++) {
+        dest[i] = src[start + i];
+    }
 }
 function toIndex<E>(len: number, p: any): [isNumber: boolean, isValid: boolean, validIndex: number] {
-    if(typeof p === "symbol"){
+    if (typeof p === "symbol") {
         p = "NaN"
     }
     var n = Number(p);

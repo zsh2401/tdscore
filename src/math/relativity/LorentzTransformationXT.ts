@@ -1,6 +1,5 @@
-import { Vector2 } from "../linear-algebra";
+import Vector2 from "../linear-algebra/Vector2";
 import Transformation from "../linear-algebra/Transformation";
-import Transformation2 from "../linear-algebra/Transformation2";
 
 export default class LorzentzTransformationXT extends Transformation {
     constructor(x: number, t: number, c: number = 1) {

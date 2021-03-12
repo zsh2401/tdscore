@@ -1,6 +1,9 @@
-import { Martix } from ".";
-import { getIterator as _getIterator, IReadonlyList, toDSArray, toList } from "../../data-structure";
+import Martix  from "./Martix";
+import _getIterator from "../../data-structure/iterating/getIterator"
+import toList from "../../data-structure/iterating/toList"
+import IReadonlyList from "../../data-structure/linear/IReadonlyList"
 import Vector from "./Vector";
+import DSArray  from "../../DSArray";
 
 export default class Transformation
     extends Martix {
@@ -9,7 +12,7 @@ export default class Transformation
 
     constructor(...baseVectors: Vector[]) {
         super(Transformation.to2DMartix(baseVectors));
-        this.baseVectors = toList(toDSArray(baseVectors));
+        this.baseVectors = toList(DSArray.from(baseVectors));
     }
 
     private static to2DMartix(baseVectors: Vector[]) {

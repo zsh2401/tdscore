@@ -1,6 +1,6 @@
 import DSArray from "../../DSArray";
 import IMap, { KeyValuePair, ReadonlyKeyValuePair } from "../IMap";
-import _hashCode from "../../util/hash/hashcode"
+import _hashCode from "../../util/hash/hashCode"
 import IIterator from "../IIterator";
 import HashMapEntry from "./HashMapEntry";
 import MapBase from "./MapBase";

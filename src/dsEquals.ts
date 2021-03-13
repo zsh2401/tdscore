@@ -1,5 +1,5 @@
 import DSObject from "./DSObject";
-import hashCode from "./util/hash";
+import { hashCode } from "./util/hash";
 
 export default function dsEquals(left: any, right: any) {
     //undefiend || null

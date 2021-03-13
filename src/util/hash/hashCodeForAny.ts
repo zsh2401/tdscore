@@ -1,5 +1,5 @@
 import uuid from "../../math/uuid";
-import { getHashCodeString } from "./hashcode.impl";
+import { getHashCodeString } from "./hashCodeForPrimitiveType";
 
 export const WEEK_HASHCODE_GETTER_NAME = "___ds_getHashCode";
 
@@ -25,6 +25,6 @@ export default function (obj: any): number {
         writable: false,
         value: (): number => hash
     });
-    
+
     return hash;
 }

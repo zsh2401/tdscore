@@ -20,10 +20,10 @@
  */
 
 import IHashCodeGettable from "./util/hash/IHashCodeGettable";
-import { getHashCodeString } from "./util/hash/hashcode.impl";
+import { getHashCodeString } from "./util/hash/hashCodeForPrimitiveType";
 import _uuid from "./math/uuid";
 import dsEquals from "./dsEquals";
-import hashCode from "./util/hash";
+import { hashCode } from "./util/hash";
 import dsHashCode from "./dsHashCode";
 import Nullable from "./Nullable";
 

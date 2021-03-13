@@ -1,7 +1,6 @@
 import HashMap from "../../src/data-structure/map/HashMap";
 import IMap from "../../src/data-structure/IMap";
-import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
-import hashCode from "../../src/util/hash";
+import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
 import dsEquals from "../../src/dsEquals";
 // import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
 

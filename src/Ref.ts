@@ -1,6 +1,6 @@
 import DSEvent, { EventArgs } from "./DSEvent";
 import DSObject from "./DSObject";
-import hashCode from "./util/hash";
+import { hashCode } from "./util/hash";
 
 export class GettingEventArgs<T> extends EventArgs {
     prevent: boolean = false;
@@ -51,7 +51,7 @@ export default class Ref<T extends number | boolean | string> extends DSObject {
     getHashCode() {
         return hashCode(this._v);
     }
-    
+
     toString() {
         return DSObject.toString(this._v);
     }

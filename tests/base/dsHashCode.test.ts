@@ -1,7 +1,7 @@
 import { IHashCodeGettable } from "../../src/util/hash";
 import dsHashCode from "../../src/dsHashCode"
 import DSObject from "../../src/DSObject"
-import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
+import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
 describe("Hash test", () => {
     it("For function", () => {
         let flag = false;

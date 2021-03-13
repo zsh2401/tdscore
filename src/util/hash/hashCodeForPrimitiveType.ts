@@ -1,5 +1,3 @@
-import IHashCodeGettable from "./IHashCodeGettable";
-import weekhash from "./weekhash";
 const STR_HASH_SEED = 0;
 const VALUE_FOR_TRUE = 1231;
 const VALUE_FOR_FALSE = 1237;
@@ -28,10 +26,4 @@ export function getHashCodeNumber(v: number) {
         v = Number.parseInt(v.toString(2).replace(".", ""), 2);
         return v;
     }
-}
-export function getHashCode4HashCodeGettable(hashobj: IHashCodeGettable) {
-    return hashobj.getHashCode();
-}
-export function getHashCodeAny(v: any) {
-    return weekhash(v);
 }

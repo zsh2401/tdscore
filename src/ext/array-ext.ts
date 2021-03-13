@@ -1,6 +1,6 @@
 import toDSArray from "../data-structure/iterating/toDSArray";
 import getIterator from "../data-structure/iterating/getIterator"
-import { getHashCodeAny } from "../util/hash/hashcode.impl";
+import getHashCodeAny from "../util/hash/hashCodeForAny";
 import dsHashCode from "../dsHashCode";
 Array.prototype.getIterator = function () {
     return getIterator(this);

@@ -19,25 +19,32 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import { isString, isNumber, isHashCodeGettable, isBoolean } from "./typechecker"
+import IHashCodeGettable from "./IHashCodeGettable"
 import {
-    getHashCodeAny, getHashCodeBoolean, getHashCode4HashCodeGettable,
+    getHashCodeBoolean,
     getHashCodeNumber, getHashCodeString, getHashCodeNullOrUndefined
-} from "./hashcode.impl"
+} from "./hashCodeForPrimitiveType"
+import hashCodeForAny from "./hashCodeForAny";
+
 export default function (v: any): number {
     if (v == null || v == undefined) {
         return getHashCodeNullOrUndefined(v);
     }
-    else if (isString(v)) {
-        return getHashCodeString(v);
-    } else if (isNumber(v)) {
-        return getHashCodeNumber(v);
-    } else if (isBoolean(v)) {
-        return getHashCodeBoolean(v);
-    } else if (isHashCodeGettable(v)) {
-        return getHashCode4HashCodeGettable(v);
+    switch (typeof v) {
+        case "string":
+            return getHashCodeString(v);
+        case "number":
+            return getHashCodeNumber(v);
+        case "boolean":
+            return getHashCodeBoolean(v);
+        default:
+            if (isHashCodeGettable(v)) {
+                return v.getHashCode();
+            } else {
+                return hashCodeForAny(v);
+            }
     }
-    else {
-        return getHashCodeAny(v);
-    }
+}
+function isHashCodeGettable(e: any): e is IHashCodeGettable {
+    return (<IHashCodeGettable>e).getHashCode !== undefined;
 }

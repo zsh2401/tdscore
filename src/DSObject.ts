@@ -33,7 +33,7 @@ import Nullable from "./Nullable";
  */
 export default class DSObject implements IHashCodeGettable {
 
-    protected readonly uuid = _uuid();
+    protected readonly __dsuuid = _uuid();
     private __hashCode = 0;
     static readonly HASHSEED = "Burning Bright@-*&";
 
@@ -41,7 +41,7 @@ export default class DSObject implements IHashCodeGettable {
         try {
             return getHashCodeString(JSON.stringify(this));
         } catch {
-            return hashCode(DSObject.HASHSEED + this.constructor.name + this.uuid);
+            return hashCode(DSObject.HASHSEED + this.constructor.name + this.__dsuuid);
         }
     }
 
@@ -68,7 +68,7 @@ export default class DSObject implements IHashCodeGettable {
     }
 
     referenceEquals(other: Nullable<DSObject>): boolean {
-        return other !== null && other !== undefined && this.uuid === other.uuid && this === other;
+        return other !== null && other !== undefined && this.__dsuuid === other.__dsuuid && this === other;
     }
 
     equals(other: Nullable<DSObject>): boolean {

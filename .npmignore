@@ -1,6 +1,9 @@
 src
 tests
-jest.config.jest
+jest.config.js
+.eslintrc.json
+tsconfig*.json
+webpack*.ts
 *.lock
 .vscode
 .github

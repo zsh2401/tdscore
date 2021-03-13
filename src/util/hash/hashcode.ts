@@ -46,5 +46,5 @@ export default function (v: any): number {
     }
 }
 function isHashCodeGettable(e: any): e is IHashCodeGettable {
-    return (<IHashCodeGettable>e).getHashCode !== undefined;
+    return typeof (<IHashCodeGettable>e).getHashCode === "function";
 }

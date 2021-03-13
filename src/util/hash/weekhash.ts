@@ -19,7 +19,12 @@ export default function (obj: any): number {
     }
     const hash = getHashCodeString(str);
 
-    obj[WEEK_HASHCODE_GETTER_NAME] = (): number => hash;
-
+    Object.defineProperty(obj, WEEK_HASHCODE_GETTER_NAME, {
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: (): number => hash
+    });
+    
     return hash;
 }

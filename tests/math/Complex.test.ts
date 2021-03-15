@@ -1,17 +1,32 @@
-import Complex  from "../../src/math/Complex"
+import Complex from "../../src/math/Complex"
 describe("Complex test", () => {
     it("add", () => {
-        expect(Complex.plainAdd(3, 4, 5, -6)).toStrictEqual([8, -2]);
+        const a = new Complex(3, 4);
+        const b = new Complex(5, -6);
+        expect(a.add(b).toTuple()).toStrictEqual([8, -2]);
     });
+
     it("sub", () => {
-        expect(Complex.plainSub(1, 2, 3, 4)).toStrictEqual([-2, -2]);
+        const a = new Complex(1, 2);
+        const b = new Complex(3, 4);
+        expect(a.sub(b).toTuple()).toStrictEqual([-2, -2]);
     })
+
     it("mul", () => {
-        expect(Complex.plainMul(1, 2, 3, 4)).toStrictEqual([-5, 10]);
-        expect(Complex.plainMul(2, -3, 4, 2)).toStrictEqual([14, -8]);
+        const a = new Complex(1, 2);
+        const b = new Complex(3, 4);
+        expect(a.mul(b).toTuple()).toStrictEqual([-5, 10]);
+
+        const c = new Complex(2, -3);
+        const d = new Complex(4, 2);
+        expect(c.mul(d).toTuple()).toStrictEqual([14, -8]);
     });
-    it("div", () => {
-        const [real, img] = Complex.plainDiv(3, 2, 4, 5);
+
+    it("div by", () => {
+
+        const a = new Complex(3, 2);
+        const b = new Complex(4, 5);
+        const [real, img] = a.divBy(b).toTuple();
         expect(real).toBeCloseTo(22 / 41);
         expect(img).toBeCloseTo(-7 / 41);
     });

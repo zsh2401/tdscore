@@ -47,12 +47,7 @@ export default class HashSet<E>
         this.add(e);
     }
     collectionRemove(e: E): boolean {
-        if (this.contains(e)) {
-            this.remove(e);
-            return true;
-        } else {
-            return false;
-        }
+        return this.remove(e)
     }
     toArray() {
         return this.innerMap.mapGetKeys();

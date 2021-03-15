@@ -47,8 +47,11 @@ export default class Complex extends DSObject {
     mul(other: Complex): Complex {
         return Complex.mul(this, other);
     }
-    div(other: Complex): Complex {
+    divBy(other: Complex): Complex {
         return Complex.div(this, other);
+    }
+    toTuple(): [number, number] {
+        return [this._real, this._imaginary];
     }
     static plainAdd(a: number, b: number, c: number, d: number): [number, number] {
         return [a + c, b + d];

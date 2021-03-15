@@ -21,6 +21,7 @@
 
 import IIterable from "./data-structure/IIterable";
 import DSArray from "./DSArray";
+import { isJSArray } from "./util/type";
 
 export default interface IArrayLike<T> extends IIterable<T> {
     length: number;
@@ -30,7 +31,8 @@ export default interface IArrayLike<T> extends IIterable<T> {
 export function copyTo<E>(src: IArrayLike<E>, dest: IArrayLike<E>, start?: number, length?: number) {
     start ??= 0;
     length ??= src.length;
-    for (let i = start; i < start + length && i < dest.length; i++) {
+    const destLength = isJSArray(dest) ? Number.POSITIVE_INFINITY : dest.length;
+    for (let i = start; i < start + length && i <= destLength; i++) {
         dest[i - start] = src[i];
     }
 }

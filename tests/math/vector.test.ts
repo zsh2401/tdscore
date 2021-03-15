@@ -1,6 +1,6 @@
 import Vector2 from "../../src/math/linear-algebra/Vector2"
 import Transformation2 from "../../src/math/linear-algebra/Transformation2"
-import { cos, sin, DEGREE_90, DEGREE_180 } from "../../src/math/"
+import { cos, sin, DEGREE_90, DEGREE_180 } from "../../src/math"
 
 describe("Vector Test", () => {
     it("add", () => {

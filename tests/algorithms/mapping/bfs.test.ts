@@ -1,8 +1,8 @@
-import IUniGraph from "../../src/data-structure/graph/IUniGraph"
-import bfs from "../../src/data-structure/graph/bfs"
-import Graph from '../../src/data-structure/graph/Graph'
-import { IList, LinkedList } from "../../src";
-import Edge from "../../src/data-structure/graph/Edge";
+import IUniGraph from "../../../src/data-structure/graph/IUniGraph"
+import bfs from "../../../src/data-structure/graph/bfs"
+import Graph from '../../../src/data-structure/graph/Graph'
+import { IList, LinkedList } from "../../../src";
+import Edge from "../../../src/data-structure/graph/Edge";
 describe("BFS", () => {
 
     it("No edges", () => {

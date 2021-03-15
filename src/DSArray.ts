@@ -64,14 +64,14 @@ export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIter
         return this;
     }
 
-    defaultValueOf(i: number): E | undefined {
-        if (typeof this.defaultValue === "function") {
-            //@ts-ignore
-            return this.defaultValue(i);
-        } else {
-            return this.defaultValue;
-        }
-    }
+    // defaultValueOf(i: number): E | undefined {
+    //     if (typeof this.defaultValue === "function") {
+    //         //@ts-ignore
+    //         return this.defaultValue(i);
+    //     } else {
+    //         return this.defaultValue;
+    //     }
+    // }
 
     getIterator(): IIterator<E> {
         return new DSArrayIterator(this);

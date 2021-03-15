@@ -23,7 +23,7 @@ import DSObject from "./DSObject";
 
 export default class Optional<E> extends DSObject {
     private readonly _innerValue: E | undefined | null;
-    constructor(value?: E) {
+    constructor(value?: E | null | undefined) {
         super();
         this._innerValue = value;
     }
@@ -31,7 +31,7 @@ export default class Optional<E> extends DSObject {
     get isPresent() {
         return this._innerValue !== null && this._innerValue !== undefined;
     }
-    
+
     get value(): E {
         if (!this.isPresent) {
             throw new Error("Value not presented!");

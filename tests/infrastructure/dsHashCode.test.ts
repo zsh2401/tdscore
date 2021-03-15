@@ -32,7 +32,7 @@ describe("Hash test", () => {
         expect(dsHashCode(a)).toBe(value);
         expect(dsHashCode(b)).toBe(value);
         expect(dsHashCode(c)).toBe(value);
-    });
+    })
 
     it("Strictly equal objects have equal hash codes", () => {
         const a = {};

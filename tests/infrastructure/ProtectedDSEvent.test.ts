@@ -1,8 +1,7 @@
 import "ts-jest"
-import dsEquals from "../../src/dsEquals";
 import { EventArgs } from "../../src/DSEvent";
-import DSObject from "../../src/DSObject"
 import ProtectedDSEvent from "../../src/ProtectedDSEvent";
+
 describe("DSEvent Test", () => {
 
     it("Won't throw error when set to not throw", () => {

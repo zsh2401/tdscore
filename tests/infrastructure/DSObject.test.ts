@@ -2,9 +2,11 @@ import HashMap from "../../src/data-structure/map/HashMap";
 import DSObject from "../../src/DSObject";
 import "ts-jest"
 describe("DSObject", () => {
-    it("call toString",()=>{
+
+    it("call toString", () => {
         Object.prototype.toString.call(new DSObject());
     });
+
     it("default to string implements.", () => {
         class B extends DSObject { }
         let b = new B()
@@ -38,7 +40,7 @@ describe("DSObject", () => {
         const a = new A();
         expect(a.equals(a)).toBeTruthy()
     });
-    
+
     it("getHashCode()'s stability", () => {
         class A extends DSObject {
             x: number = 0;
@@ -50,14 +52,14 @@ describe("DSObject", () => {
         expect(b.getHashCode()).toBe(a.getHashCode());
     });
 
-    it("should get class name",()=>{
-        class A{
+    it("should get class name", () => {
+        class A {
         }
         let a = new A();
         expect(a.constructor.name).toBe("A");
     });
 
-    it("get get hashmap classname",()=>{
-        expect(new HashMap<string,number>().getClassName()).toBe("HashMap");
+    it("get get hashmap classname", () => {
+        expect(new HashMap<string, number>().getClassName()).toBe("HashMap");
     })
 });

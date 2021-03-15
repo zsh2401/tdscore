@@ -34,13 +34,12 @@ export default class Ref<T extends number | boolean | string> extends DSObject {
     }
 
     get value() {
-        const args = new GettingEventArgs(this.value);
+        const args = new GettingEventArgs(this._v);
         this.getting.raise(this, args);
         if (args.prevent) {
-            return args.value;
-        } else {
             throw new Error("Prevented");
         }
+        return args.value;
     }
 
     constructor(value: T) {

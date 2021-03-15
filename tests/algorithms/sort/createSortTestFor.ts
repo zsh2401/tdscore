@@ -1,7 +1,7 @@
-import IInternalSortAlgorithm from "../../src/algorithm/sort/IInternalSortAlgorithm"
-import { ascdeningComparer, descdeningComparer } from "../../src/algorithm/sort/comparers"
+import IInternalSortAlgorithm from "../../../src/algorithm/sort/IInternalSortAlgorithm"
+import { ascdeningComparer, descdeningComparer } from "../../../src/algorithm/sort/comparers"
 import "ts-jest"
-import "../../src/ext"
+import "../../../src/ext"
 export interface Option {
     descend?: boolean;
 }

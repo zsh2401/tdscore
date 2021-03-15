@@ -24,24 +24,7 @@ describe("Derivative Test", () => {
     it("sin' x should be equals to cos' x", () => {
         const fsin: Fun = sin;
         const dfsin = derivation(sin);
-        // expect(cos(0)).toBeCloseTo(1);
-        // expect(sin(0)).toBeCloseTo(0);
         expect(dfsin(0)).toBeCloseTo(cos(0));
     });
 
-    // it("DSFun's derivation: sin'' x should be -sin x", () => {
-    //     const originalF = (x: DSNumber): DSNumber => {
-    //         return x.sin();
-    //     }
-    //     const f = derivationOf(derivationOf(originalF));
-    //     expect(f(DSNumber.ONE).toJSNumber()).toBeCloseTo(-sin(1))
-    // })
-
-    // it("DSFun's derivation: sin''''' x should be sin x", () => {
-    //     const originalF = (x: DSNumber): DSNumber => {
-    //         return x.sin();
-    //     }
-    //     const f = derivationOf(derivationOf(derivationOf(derivationOf(derivationOf(originalF)))));
-    //     expect(f(DSNumber.ONE).toJSNumber()).toBeCloseTo(sin(1))
-    // })
 });

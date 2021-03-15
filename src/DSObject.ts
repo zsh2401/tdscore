@@ -75,14 +75,6 @@ export default class DSObject implements IHashCodeGettable {
         return other !== null && other !== undefined && this.referenceEquals(other);
     }
 
-    static equals(left: any, right: any) {
-        return dsEquals(left, right);
-    }
-
-    static hashCode(value: any) {
-        return dsHashCode(value);
-    }
-
     static toString(value: any) {
         if (value instanceof DSObject) {
             return value.toString();

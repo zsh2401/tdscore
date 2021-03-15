@@ -43,6 +43,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         for (let i = 0; i < this.table.length; i++) {
             this.table[i] = null;
         }
+        this._size = 0;
     }
     collectionAny(): ReadonlyKeyValuePair<K, V> {
         // if(this.)
@@ -335,7 +336,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         }
         this.timeUsedForTransfering += (new Date().getTime() - start.getTime());
     }
-    
+
     toString() {
         let chainStr = "";
         let notUsed = 0;

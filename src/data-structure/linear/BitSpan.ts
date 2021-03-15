@@ -28,6 +28,7 @@ import { toDSArray, toJSArray } from "../iterating";
 
 type Data = boolean[] | MixedNumber[] | DSArray<boolean> | DSArray<MixedNumber>;
 
+//TODO
 export default class BitSpan extends DSObject implements IIterable<boolean>{
 
     private list: DSArray<boolean>;

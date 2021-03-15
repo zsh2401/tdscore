@@ -7,7 +7,7 @@ export type MixedNumber = DSNumber | number;
 const cache: DSNumber[] = [];
 function initCache(factory: (num: number) => DSNumber) {
     for (let i = 0; i < 2 ** 8; i++) {
-        cache[i] = factory(i);
+        cache[i] = factory(i - 128);
     }
 }
 

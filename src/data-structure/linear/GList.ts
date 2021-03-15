@@ -1,4 +1,3 @@
-import IIterator from "../IIterator";
 import IList from "./IList";
 import LinkedList from "./LinkedList";
 import ListBase from "./ListBase";
@@ -79,4 +78,4 @@ export function isNormalElement<E>(element: GListElemType<E>): element is E {
     const fGlist = (<GList<E>>element);
     const clazzName: string | undefined = fGlist.getClassName && fGlist.getClassName();
     return clazzName !== "GList";
-} 
+}

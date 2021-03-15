@@ -49,7 +49,7 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
         return this.array[position];
     }
 
-    private throwIfOutOfRange(position: number) {
+    protected throwIfOutOfRange(position: number) {
         if (position < 0 || position >= this.size()) {
             throw new Error("Index out of bound!");
         }

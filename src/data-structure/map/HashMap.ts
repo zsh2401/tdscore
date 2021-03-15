@@ -1,3 +1,23 @@
+/*
+ * HashMap.ts
+ * Created on Mon Mar 15 2021 15:53:10
+ *
+ * Description: 
+ *   HashMap which turn to HashMap in JDK 1.7
+ *
+ * Copyright (c) 2021 tdscore
+ * 
+ * Copyright (c) 2021 Seymour Zhang and all contributors of this project.
+ * tdscore is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *          http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+ * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+ * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
+ */
+
 import DSArray from "../../DSArray";
 import IMap, { KeyValuePair, ReadonlyKeyValuePair } from "../IMap";
 import _hashCode from "../../util/hash/hashCode"
@@ -46,8 +66,10 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         this._size = 0;
     }
     collectionAny(): ReadonlyKeyValuePair<K, V> {
-        // if(this.)
-        throw new Error("Method not implemented.");
+        if (this.size() === 0) {
+            throw new Error("There's no element");
+        }
+        return this.getIterator().next();
     }
     private refreshCacheIfNeed() {
         if (this.version === this.lastUpdateVersion) {

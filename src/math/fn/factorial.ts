@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Mon Mar 15 2021 15:50:51
+ * factorial.ts
+ * Created on Tue Mar 16 2021 21:59:09
  *
  * Description: 
  *   No description.
@@ -18,13 +18,17 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
-export { default as ITreeNode } from "./ITreeNode"
-export { default as toTreeNode } from './toTreeNode'
-export { default as treeForEachNode } from "./treeForEachNode"
-export { default as treeForEach } from "./treeForEach"
-export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
-export { default as countOf } from "./countOf"
-export { default as leafsOf } from "./leafsOf"
+import DSNumber, { MixedNumber } from "../../DSNumber";
+import DSFun from "../DSFun";
+
+const f: DSFun = (x: MixedNumber): DSNumber => {
+    x = DSNumber.valueOf(x);
+    if (x.lessThan(0)) {
+        throw new RangeError("negative number is meaningless.");
+    }
+    if (x.equals(0) || x.equals(1)) {
+        return DSNumber.valueOf(1)
+    }
+    return x.mul(f(x.sub(1)));
+}
+export default f;

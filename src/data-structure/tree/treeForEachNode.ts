@@ -27,7 +27,7 @@ import ITreeNode from "./ITreeNode";
 import toTreeNode from "./toTreeNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
 
-export default function forEachNode<E>(tree: ITree<E> | ITreeNode<E>,
+export default function forEachNode<E>(tree: UTree<E>,
     consumer: Action1<ITreeNode<E>>,
     strategy: TreeTraversingStrategy = "pre-order"): void {
 

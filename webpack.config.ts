@@ -1,5 +1,5 @@
 import path from 'path'
-import webpack from 'webpack'
+import webpack, { web } from 'webpack'
 import TerserPlugin from "terser-webpack-plugin"
 import WebpackBundleAnalyzer from "webpack-bundle-analyzer"
 import pkfInf from './package.json'
@@ -18,7 +18,8 @@ const config: webpack.Configuration = {
 		path: path.resolve(__dirname, './dist'),
 		library: "tdscore",
 		globalObject: "this",
-		libraryTarget: "umd"
+		libraryTarget: "var",
+		auxiliaryComment:"fuck this way"
 	},
 
 	devtool: "source-map",
@@ -36,7 +37,8 @@ const config: webpack.Configuration = {
 
 	plugins: [
 		new webpack.DefinePlugin({
-			"__TDSCORE_VERSION__": pkfInf.version
+			"__TDSCORE_VERSION__": pkfInf.version,
+			"__FOR_QJS__":false
 		}),
 		new webpack.ProgressPlugin(),
 		new webpack.ProvidePlugin({

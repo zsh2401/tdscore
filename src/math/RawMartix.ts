@@ -26,7 +26,7 @@ export type RawTransformation2<E> = [[E, E], [E, E]]
 export type RawTransformation3<E> = [[E, E, E], [E, E, E], [E, E, E]]
 
 export interface IElementOperator<E> {
-    (a: E, b: E): void;
+    (a: E, b: E): E;
 }
 
 export function add<E>(a: RawMartix<E>, b: RawMartix<E>,

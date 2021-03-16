@@ -1,6 +1,6 @@
 /*
  * index.ts
- * Created on Mon Mar 15 2021 15:50:51
+ * Created on Tue Mar 16 2021 22:20:50
  *
  * Description: 
  *   No description.
@@ -18,13 +18,6 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
-export { default as ITreeNode } from "./ITreeNode"
-export { default as toTreeNode } from './toTreeNode'
-export { default as treeForEachNode } from "./treeForEachNode"
-export { default as treeForEach } from "./treeForEach"
-export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
-export { default as countOf } from "./countOf"
-export { default as leafsOf } from "./leafsOf"
+export { default as sin } from "./sin"
+export { default as pow } from "./pow"
+export { default as factorial } from "./factorial"

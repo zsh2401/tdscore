@@ -15,8 +15,8 @@ const config: webpack.Configuration = {
 		filename: '[name].js',
 		path: path.resolve(__dirname, './dist'),
 		library: "tdscore",
-		globalObject: "this",
-		libraryTarget: "var"
+		globalObject: "globalThis",
+		libraryTarget: "global"
 	},
 
 	devtool: "source-map",
@@ -35,9 +35,14 @@ const config: webpack.Configuration = {
 		]
 	},
 
+	// externals: {
+	// 	"bignumber.js": "BigNumber"
+	// },
+
 	plugins: [
 		new webpack.DefinePlugin({
-			"__TDSCORE_VERSION__": pkfInf.version
+			"__TDSCORE_VERSION__": pkfInf.version,
+			"__FOR_QJS__": true
 		}),
 		new webpack.ProgressPlugin(),
 		new webpack.ProvidePlugin({

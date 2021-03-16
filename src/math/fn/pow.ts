@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Mon Mar 15 2021 15:50:51
+ * pow.ts
+ * Created on Tue Mar 16 2021 21:59:04
  *
  * Description: 
  *   No description.
@@ -18,13 +18,10 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
-export { default as ITreeNode } from "./ITreeNode"
-export { default as toTreeNode } from './toTreeNode'
-export { default as treeForEachNode } from "./treeForEachNode"
-export { default as treeForEach } from "./treeForEach"
-export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
-export { default as countOf } from "./countOf"
-export { default as leafsOf } from "./leafsOf"
+import DSNumber from "../../DSNumber";
+import { MixedNumber } from "../../DSNumber";
+const f = (x: MixedNumber, n: MixedNumber): DSNumber => {
+    return x.toDSNumber().pow(n);
+}
+f.fname = "pow"
+export default f;

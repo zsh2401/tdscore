@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Mon Mar 15 2021 15:50:51
+ * countOf.ts
+ * Created on Tue Mar 16 2021 21:06:08
  *
  * Description: 
  *   No description.
@@ -18,13 +18,16 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
-export { default as ITreeNode } from "./ITreeNode"
-export { default as toTreeNode } from './toTreeNode'
-export { default as treeForEachNode } from "./treeForEachNode"
-export { default as treeForEach } from "./treeForEach"
-export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
-export { default as countOf } from "./countOf"
-export { default as leafsOf } from "./leafsOf"
+import IArrayLike from "../../IArrayLike";
+import { UTree } from "./ITree";
+import forEachNode from "./treeForEachNode";
+
+export default function leafsOf<E>(tree: UTree<E>): IArrayLike<E> {
+    const result: E[] = [];
+    forEachNode(tree, (node) => {
+        if (node.children === null || node.children === undefined || node.children.size() === 0) {
+            result.push(node.data)
+        }
+    });
+    return result;
+}

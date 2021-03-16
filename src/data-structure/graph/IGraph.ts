@@ -25,7 +25,7 @@ export function edgeHashCodeOf<E>(edge: IEdge<E>): number {
 /**
  * G = (V,E)
  */
-export default interface IUniGraph<TElement, TEdge extends IEdge<TElement> = Edge<TElement>> {
+export default interface IGraph<TElement, TEdge extends IEdge<TElement> = Edge<TElement>> {
     readonly vertices: ICollection<TElement>;
     readonly edges: ICollection<TEdge>;
 }

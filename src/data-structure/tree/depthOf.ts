@@ -27,8 +27,8 @@ export default function depthOf<E>(tree: UTree<E>): number {
         return 0;
     }
     let max = 0;
-    for (let i = 0; i < node.children.size(); i++) {
-        const d = depthOf(node.children.listGet(i));
+    for (let i = 0; i < (node.children?.size() ?? 0); i++) {
+        const d = depthOf(node.children?.listGet(i));
         if (d > max) {
             max = d;
         }

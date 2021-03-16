@@ -78,8 +78,8 @@ Try any Node.js package right in your browser.
 # Contributors
 Please develop on the dev branch, and Pull Requests are always welcomed.
 
-<!-- <a href="https://github.com/zsh2401/tdscore/graphs/contributors"> -->
+<a href="https://github.com/zsh2401/tdscore/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
-<!-- </a> -->
+</a>
 
 </div>

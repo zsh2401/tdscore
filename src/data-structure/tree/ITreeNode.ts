@@ -24,5 +24,5 @@ import IList from "../linear/IList";
 export default interface ITreeNode<E> {
     parent?: ITreeNode<E> | null;
     data: E;
-    children: IList<ITreeNode<E>>;
+    children?: IList<ITreeNode<E>> | null;
 }

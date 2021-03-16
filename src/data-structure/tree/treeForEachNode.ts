@@ -19,6 +19,7 @@
  */
 
 import { Action1 } from "../../Action";
+import { ArrayList } from "../linear";
 import IQueue from "../linear/IQueue";
 import LinkedList from "../linear/LinkedList"
 import ITree, { UTree } from "./ITree";
@@ -33,35 +34,35 @@ export default function forEachNode<E>(tree: ITree<E> | ITreeNode<E>,
     const node = toTreeNode(tree);
 
     if (node) {
-        if (node.children.size() > 2 && strategy === "in-order") {
+        const children = node.children ? node.children : new ArrayList<ITreeNode<E>>(0);
+        if (children.size() > 2 && strategy === "in-order") {
             throw new Error("In order traversing do not supports non-BinTree!");
         }
         switch (strategy) {
-            
+
             case "pre-order":
                 consumer(node);
-                node.children.forEach((child) => {
+                children.forEach((child) => {
                     forEachNode(child, consumer, strategy);
                 });
                 break;
 
             case "in-order":
                 try {
-                    forEachNode(node.children.listGet(0), consumer, strategy) //Left
+                    forEachNode(children.listGet(0), consumer, strategy) //Left
                 } finally { }
                 consumer(node);
                 try {
-                    forEachNode(node.children.listGet(1), consumer, strategy) //Right
+                    forEachNode(children.listGet(1), consumer, strategy) //Right
                 } finally { }
                 break;
 
             case "post-order":
-                node.children.forEach((child) => {
+                children.forEach((child) => {
                     forEachNode(child, consumer, strategy);
                 });
                 consumer(node);
                 break;
-
 
             case "level-order":
             default:
@@ -79,9 +80,11 @@ function levelOrder<E>(_node: UTree<E>, visitor: Action1<ITreeNode<E>>) {
         // console.log("?");
         const [n, l] = q.queueDe();
         // visitor(n.data,l);
-        const cIterator = node.children.getIterator();
-        while (cIterator.hasNext()) {
-            q.queueEn([cIterator.next(), l + 1]);
+        if (node.children) {
+            const cIterator = node.children.getIterator();
+            while (cIterator.hasNext()) {
+                q.queueEn([cIterator.next(), l + 1]);
+            }
         }
     }
 }

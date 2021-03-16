@@ -49,8 +49,9 @@ export default class DSNumber extends DSObject {
             return this.value.isEqualTo(o.value);
         } else if (typeof other === "number") {
             return this.value.isEqualTo(other);
+        } else {
+            return super.equals(other);
         }
-        return super.equals(other);
     }
 
     toBit(): ArrayLike<boolean> {

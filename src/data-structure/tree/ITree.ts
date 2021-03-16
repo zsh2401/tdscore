@@ -24,7 +24,7 @@ export default interface ITree<E> {
     root: ITreeNode<E> | null;
 }
 
-export type UTree<E> = ITree<E> | ITreeNode<E> | null;
+export type UTree<E> = ITree<E> | ITreeNode<E> | null | undefined;
 // export function leafsOf<E>(tree: ITree<E> | ITreeNode<E>): number {
 //     let count = 0;
 //     forEachNode(tree, (node) => {

@@ -25,11 +25,11 @@ import HashSet from "../HashSet";
 import filter from "../iterating/filter";
 import LinkedList from "../linear/LinkedList";
 import IQueue from "../linear/IQueue";
-import IUniGraph, { IEdge } from "./IUniGraph";
+import IGraph, { IEdge } from "./IGraph";
 import IIterable from "../IIterable";
 
 export default function bfs<E>(
-    g: IUniGraph<E>,
+    g: IGraph<E>,
     viewer: Action1<E>,
     first?: E) {
 
@@ -55,7 +55,7 @@ export default function bfs<E>(
         }
     }
 }
-function edgesOf<E>(vertex: E, g: IUniGraph<E>): IIterable<IEdge<E>> {
+function edgesOf<E>(vertex: E, g: IGraph<E>): IIterable<IEdge<E>> {
     const data = filter(g.edges, (_edge) => dsEquals(vertex, _edge.from));
     return data;
 }

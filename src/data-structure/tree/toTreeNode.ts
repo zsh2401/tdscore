@@ -21,9 +21,9 @@
 import ITree from "./ITree";
 import ITreeNode from "./ITreeNode";
 
-export default function <E>(tree: ITree<E> | ITreeNode<E> | null):
+export default function <E>(tree: ITree<E> | ITreeNode<E> | null | undefined):
     ITreeNode<E> | null {
-    if (tree === null) {
+    if (tree === null || tree === undefined) {
         return null;
     } else {
         //@ts-ignore

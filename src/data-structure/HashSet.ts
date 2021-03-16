@@ -34,46 +34,59 @@ export default class HashSet<E>
         super();
         this.innerMap = new HashMap();
     }
-    setAdd(e: E): void {
+
+    setAdd(e: E): HashSet<E> {
         this.add(e);
+        return this;
     }
+
     setRemove(e: E): boolean {
         return this.remove(e);
     }
+
     collectionClear(): void {
         this.innerMap.collectionClear();
     }
+
     collectionAdd(e: E): void {
         this.add(e);
     }
+
     collectionRemove(e: E): boolean {
         return this.remove(e)
     }
+
     toArray() {
         return this.innerMap.mapGetKeys();
     }
     getIterator() {
         return this.innerMap.mapGetKeys().getIterator();
     }
+
     size() {
         return this.innerMap.size();
     }
+
     contains(e: E) {
         return this.innerMap.mapGetKeys().contains(e);
     }
+
     isEmpty() {
         return this.innerMap.isEmpty();
     }
+
     add(e: E) {
         this.innerMap.mapPut(e, PRESENT);
     }
+
     remove(e: E): boolean {
         return this.innerMap.mapRemove(e);
     }
+
     toString(): string {
         let str = "";
         const iterator = this.getIterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             str += iterator.next() + " ";
         }
         return str;

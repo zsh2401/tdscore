@@ -75,14 +75,6 @@ export default class DSObject implements IHashCodeGettable {
         return other !== null && other !== undefined && this.referenceEquals(other);
     }
 
-    static toString(value: any) {
-        if (value instanceof DSObject) {
-            return value.toString();
-        } else {
-            return "" + value;
-        }
-    }
-
     toString() {
         return `${__dirname}::${this.getClassName()}@${this.getHashCode()}`;
     }
@@ -98,5 +90,4 @@ export default class DSObject implements IHashCodeGettable {
     dserror(data: any[]) {
         console.error(data);
     }
-
 }

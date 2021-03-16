@@ -1,6 +1,5 @@
 import DSArray from "../DSArray";
 import DSObject from "../DSObject";
-import hashCode from "../util/hash";
 import contains from "./iterating/contains"
 import isEmpty from "./iterating/isEmpty"
 import size from "./iterating/size"
@@ -11,12 +10,18 @@ import { Action1 } from "../Action";
 import toDSArray from "./iterating/toDSArray";
 import forEach from "./iterating/forEach"
 import { Func1 } from "../Func";
+import dsEquals from "../dsEquals";
 
 export default abstract class CollectionBase<E>
     extends DSObject implements ICollection<E>, IClonable<ICollection<E>>{
     constructor() {
         super();
     }
+
+    abstract collectionAdd(e: E): void;
+    abstract collectionRemove(e: E): boolean;
+    abstract collectionClear(): void;
+    
     forEach(consumer: Action1<E>) {
         forEach(this, consumer);
     }
@@ -32,9 +37,8 @@ export default abstract class CollectionBase<E>
 
     collectionContains(e: E): boolean {
         const i = this.getIterator();
-        const h = hashCode(e);
         while (i.hasNext()) {
-            if (h === hashCode(i.next())) {
+            if (dsEquals(i.next(), e)) {
                 return true;
             }
         }
@@ -77,20 +81,17 @@ export default abstract class CollectionBase<E>
         }
     }
 
-    abstract collectionAdd(e: E): void;
-    abstract collectionRemove(e: E): boolean;
-    abstract collectionClear(): void;
-
     clear(): void {
         this.collectionClear();
     }
-    // clone():ICollection
+ 
     size(): number {
         return size(this);
     }
     contains(o: E): boolean {
         return contains(this, o);
     }
+
     abstract getIterator(): IIterator<E>;
 
     isEmpty(): boolean {

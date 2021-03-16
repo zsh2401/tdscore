@@ -1,5 +1,5 @@
 import DSObject from "../../DSObject";
-import { edgeHashCodeOf, IEdge } from "./IUniGraph";
+import { edgeHashCodeOf, IEdge } from "./IGraph";
 
 export default class Edge<E> extends DSObject
     implements IEdge<E>{

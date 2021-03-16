@@ -29,6 +29,7 @@ describe("DSNumber Test", () => {
 
 
     it("not equals", () => {
+        expect(DSNumber.valueOf(65).notEquals("A")).toBeTruthy();
         expect(DSNumber.valueOf(10).notEquals(11)).toBeTruthy();
         expect(DSNumber.valueOf(10).notEquals(DSNumber.valueOf(11))).toBeTruthy();
     })

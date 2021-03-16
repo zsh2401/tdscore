@@ -1,22 +1,22 @@
-import IUniGraph from "../../../src/data-structure/graph/IUniGraph"
+import IGraph from "../../../src/data-structure/graph/IGraph"
 import bfs from "../../../src/data-structure/graph/bfs"
-import Graph from '../../../src/data-structure/graph/Graph'
+import SimpleGraph from '../../../src/data-structure/graph/SimpleGraph'
 import { IList, LinkedList } from "../../../src";
 import Edge from "../../../src/data-structure/graph/Edge";
 describe("BFS", () => {
 
     it("No edges", () => {
-        const g: IUniGraph<number> = new Graph();
+        const g: IGraph<number> = new SimpleGraph();
         for (let i = 0; i < 1000; i++) {
             g.vertices.collectionAdd(i);
         }
         const viewed: IList<number> = new LinkedList<number>();
-        bfs(g, (node) => viewed.collectionAdd(node));
+        bfs<number>(g, (node) => viewed.collectionAdd(node));
         expect(viewed.size()).toBe(1);
     })
 
     it("Won't back", () => {
-        const g: IUniGraph<string> = new Graph();
+        const g: IGraph<string> = new SimpleGraph();
         g.vertices.collectionAdd("A");
         g.vertices.collectionAdd("B");
         g.edges.collectionAdd(new Edge("B", "A"));
@@ -29,7 +29,7 @@ describe("BFS", () => {
 
     it("IS BFS", () => {
         type T = string;
-        const graph: IUniGraph<T, Edge<T>> = new Graph();
+        const graph: IGraph<T, Edge<T>> = new SimpleGraph();
         graph.vertices.collectionAdd("A");
         graph.vertices.collectionAdd("B");
         graph.vertices.collectionAdd("C");
@@ -46,7 +46,7 @@ describe("BFS", () => {
 
     it("Work correctly", () => {
         type T = string;
-        const graph: IUniGraph<T> = new Graph<T>();
+        const graph: IGraph<T> = new SimpleGraph<T>();
         graph.vertices.collectionAdd("A");
         graph.vertices.collectionAdd("B");
         graph.edges.collectionAdd(new Edge("A", "B"));
@@ -60,7 +60,7 @@ describe("BFS", () => {
 
     it("No cycle and repeat", () => {
         type T = string;
-        const graph: IUniGraph<T> = new Graph<T>();
+        const graph: IGraph<T> = new SimpleGraph<T>();
         graph.vertices.collectionAdd("A");
         graph.vertices.collectionAdd("B");
         graph.vertices.collectionAdd("C");

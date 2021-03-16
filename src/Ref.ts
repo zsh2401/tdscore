@@ -52,6 +52,6 @@ export default class Ref<T extends number | boolean | string> extends DSObject {
     }
 
     toString() {
-        return DSObject.toString(this._v);
+        return this._v + "";
     }
 }

@@ -14,10 +14,11 @@
     "node": ">= 6.4.0"
   },
   "scripts": {
-    "build:dist": "cross-env TS_NODE_PROJECT=\"./tsconfig-for-webpack.json\" webpack --config ./webpack.config.ts",
+    "build:dist": "cross-env TS_NODE_PROJECT=\"./tsconfig.webpack.json\" webpack --config ./webpack.config.ts",
+    "build:qjs": "cross-env TS_NODE_PROJECT=\"./tsconfig.webpack.json\" webpack --config ./webpack.config.qjs.ts",
     "build:lib": "tsc",
-    "build:es": "tsc --project tsconfig-es.json",
-    "build": "npm run build:es && npm run build:dist && npm run build:lib",
+    "build:es": "tsc --project tsconfig.es.json",
+    "build": "npm run build:es && npm run build:dist && npm run build:lib && npm run build:qjs",
     "lint": "eslint src/",
     "release": "npm run build && npm publish",
     "test": "jest",

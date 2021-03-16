@@ -4,7 +4,7 @@ module.exports = {
     maxConcurrency: 1,
     globals: {
         'ts-jest': {
-            tsconfig: 'tsconfig-for-test.json'
+            tsconfig: 'tsconfig.test.json'
         }
     }
 }

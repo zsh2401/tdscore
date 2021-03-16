@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ES6",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "./src",
+  ],
+  "exclude": [
+    "./tests",
+    "./node_modules",
+  ]
+}

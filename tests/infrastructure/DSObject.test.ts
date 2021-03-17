@@ -1,5 +1,6 @@
 import HashMap from "../../src/data-structure/map/HashMap";
 import DSObject from "../../src/DSObject";
+import { Vector2 } from "../../src/math"
 import "ts-jest"
 describe("DSObject", () => {
 
@@ -61,5 +62,10 @@ describe("DSObject", () => {
 
     it("get get hashmap classname", () => {
         expect(new HashMap<string, number>().getClassName()).toBe("HashMap");
+    })
+
+    it("isDSObject", () => {
+        expect(DSObject.isDSObject(new Vector2(0, 0))).toBeTruthy()
+        
     })
 });

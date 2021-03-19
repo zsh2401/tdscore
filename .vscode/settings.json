@@ -31,5 +31,5 @@
             "${commentend}"
         ]
     },
-    "GitCommitPlugin.MaxSubjectWords": 40
+    "GitCommitPlugin.MaxSubjectWords": 50
 }

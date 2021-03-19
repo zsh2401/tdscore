@@ -7,7 +7,7 @@ import IIterator from "./IIterator";
 import ICollection from "./ICollection";
 import IClonable from "./IClonable";
 import { Action1 } from "../Action";
-import toDSArray from "./iterating/toDSArray";
+import toDSArray from "./iterating/toDSArrayForItertable";
 import forEach from "./iterating/forEach"
 import { Func1 } from "../Func";
 import dsEquals from "../dsEquals";

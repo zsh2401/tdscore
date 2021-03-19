@@ -23,7 +23,7 @@ import DSObject from "./DSObject";
 import IIterable from "./data-structure/IIterable";
 import IIterator from "./data-structure/IIterator";
 import find from "./data-structure/iterating/find"
-import toJSArray from "./data-structure/iterating/toJSArray";
+import toJSArray from "./data-structure/iterating/toJSArrayForItertable";
 import hashCode from "./util/hash";
 import IArrayLike from "./IArrayLike";
 import seal from "./util/type/seal";

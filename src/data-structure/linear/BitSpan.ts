@@ -24,7 +24,7 @@ import { IIterable, IIterator } from "..";
 import { DSObject } from "../..";
 import DSArray from "../../DSArray";
 import { MixedNumber } from "../../DSNumber";
-import { toDSArray, toJSArray } from "../iterating";
+import { toDSArrayForItertable, toJSArrayForItertable } from "../iterating";
 
 type Data = boolean[] | MixedNumber[] | DSArray<boolean> | DSArray<MixedNumber>;
 
@@ -35,7 +35,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
 
     constructor(data: boolean[]) {
         super();
-        this.list = toDSArray(data);
+        this.list = toDSArrayForItertable(data);
     }
 
     static of(...rest: (boolean | MixedNumber)[]): BitSpan {
@@ -50,7 +50,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
         return new BitSpan(result.toJSArray());
     }
     static ofDSA(data: DSArray<(boolean | MixedNumber)>) {
-        BitSpan.of(...toJSArray(data))
+        BitSpan.of(...toJSArrayForItertable(data))
     }
 
     moveRight(bit: number) {

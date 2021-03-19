@@ -3,7 +3,7 @@ import DSObject from "../../DSObject";
 import Ref from "../../Ref";
 import hashCode from "../../util/hash";
 import { ReadonlyKeyValuePair } from "../IMap";
-import { toDSArray } from "../iterating";
+import { toDSArrayForItertable } from "../iterating";
 import IList from "../linear/IList";
 import LinkedList from "../linear/LinkedList";
 import MapBase from "./MapBase";
@@ -19,13 +19,13 @@ export default class TreeMap<K, V> extends MapBase<K, V>{
     }
     mapGetKeys(): DSArray<K> {
         this.updateCacheIfNeed();
-        return toDSArray(this.cachedEntries, (entry) => {
+        return toDSArrayForItertable(this.cachedEntries, (entry) => {
             return entry.getKey()
         });
     }
     mapGetValues(): DSArray<V> {
         this.updateCacheIfNeed();
-        return toDSArray(this.cachedEntries, (entry) => {
+        return toDSArrayForItertable(this.cachedEntries, (entry) => {
             return entry.getValue()
         });
     }
@@ -37,7 +37,7 @@ export default class TreeMap<K, V> extends MapBase<K, V>{
         if (this.lastUpdatedVersion !== this.version.value) {
             const entries = new LinkedList<Entry<K, V>>();
             this.preOrder(this.root, entries);
-            this.cachedEntries = toDSArray(entries);
+            this.cachedEntries = toDSArrayForItertable(entries);
             this.lastUpdatedVersion = this.version.value;
         }
     }

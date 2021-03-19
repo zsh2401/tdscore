@@ -194,9 +194,9 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         return this.mapGetPairs();
     }
 
-    getIterator(): IIterator<KeyValuePair<K, V>> {
-        return this.mapGetPairs().getIterator();
-    }
+    // getIterator(): IIterator<KeyValuePair<K, V>> {
+    //     return this.mapGetPairs().getIterator();
+    // }
 
 
     /**

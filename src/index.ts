@@ -27,8 +27,8 @@ export { default as defaultOf } from './util/type/defaultOf'
 export { default as StopWatch } from "./StopWatch"
 export {
     default as IArrayLike,
-    toJSArray as toJSArray,
-    toDSArray as toDSArray
+    toJSArray,
+    toDSArray
 } from "./IArrayLike"
 
 export * from "./Func"
@@ -36,6 +36,9 @@ export * from "./Action"
 
 export * as algorithm from "./algorithm"
 export * as math from "./math"
+/**
+ * @deprecated
+ */
 export * as DSMath from "./math"
 export * as util from "./util"
 

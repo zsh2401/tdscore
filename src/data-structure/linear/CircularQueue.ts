@@ -1,8 +1,8 @@
 import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
 import defaultOrFirst from "../iterating/defaultOrFirst"
-import toDSArray from "../iterating/toDSArray"
-import toJSArray from "../iterating/toJSArray"
+import toDSArray from "../iterating/toDSArrayForItertable"
+import toJSArray from "../iterating/toJSArrayForItertable"
 import IIterator from "../IIterator";
 import IQueue from "./IQueue";
 import { Action1 } from "../../Action";

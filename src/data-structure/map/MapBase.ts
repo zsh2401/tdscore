@@ -1,8 +1,9 @@
 import DSArray from "../../DSArray";
 import IIterator from "../IIterator";
-import toDSArray from "../iterating/toDSArray";
+import toDSArray from "../iterating/toDSArrayForItertable";
 import CollectionBase from "../CollectionBase";
 import IMap, { KeyValuePair, ReadonlyKeyValuePair } from "../IMap";
+import dsEquals from "../../dsEquals";
 
 export default abstract class MapBase<K, V>
     extends CollectionBase<ReadonlyKeyValuePair<K, V>> implements IMap<K, V> {
@@ -10,7 +11,7 @@ export default abstract class MapBase<K, V>
         this.mapPut(e.key, e.value);
     }
     collectionRemove(e: ReadonlyKeyValuePair<K, V>): boolean {
-        if (this.mapGet(e.key)) {
+        if (dsEquals(this.mapGet(e.key), e.value)) {
             this.mapRemove(e.key);
             return true;
         } else {
@@ -23,7 +24,7 @@ export default abstract class MapBase<K, V>
 
     contains(o: KeyValuePair<K, V>): boolean {
         const contained = this.mapGetKeys().contains(o.key);
-        const valueIsCorrect = this.mapGet(o.key) === o.value;
+        const valueIsCorrect = dsEquals(this.mapGet(o.key), o.value);
         return contained && valueIsCorrect;
     }
 

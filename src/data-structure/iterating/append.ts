@@ -53,13 +53,10 @@ class AppendIterator<E> extends DSObject implements IIterator<E>{
         throw new Error("No element.");
     }
     current() {
-        try {
-            return this.source.current()
-        } catch (err) {
-            if (this.newElementTook) {
-                throw new Error("Can not take any element");
-            }
+        if (this.newElementTook) {
             return this.newEle;
+        } else {
+            return this.source.current()
         }
     }
 }

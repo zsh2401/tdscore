@@ -2,6 +2,7 @@ import { IHashCodeGettable } from "../../src/util/hash";
 import dsHashCode from "../../src/dsHashCode"
 import DSObject from "../../src/DSObject"
 import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
+import { HASHCODE_FOR_TRUE, HASHCODE_FOR_FALSE } from "../../src/util/hash/hashCodeForPrimitiveType"
 describe("Hash test", () => {
     it("For function", () => {
         let flag = false;
@@ -11,6 +12,11 @@ describe("Hash test", () => {
         expect(flag).toBeTruthy();
         expect(dsHashCode(a)).toBe(dsHashCode(a));
     });
+
+    it("for boolean", () => {
+        expect(dsHashCode(true)).toBe(HASHCODE_FOR_TRUE)
+        expect(dsHashCode(false)).toBe(HASHCODE_FOR_FALSE)
+    })
 
     it("Custom HashCode", () => {
         const value = Math.random() * 1000;

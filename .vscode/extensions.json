@@ -2,6 +2,7 @@
     "recommendations": [
         "doi.fileheadercomment",
         "orta.vscode-jest",
-        "markis.code-coverage"
+        "markis.code-coverage",
+        "redjue.git-commit-plugin"
     ]
 }

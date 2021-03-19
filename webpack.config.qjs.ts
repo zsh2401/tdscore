@@ -60,7 +60,12 @@ const config: webpack.Configuration = {
 				// cache: true,
 				parallel: true,
 				// sourceMap: true, // Must be set to true if using source-maps in production
-				terserOptions: {},
+				terserOptions: {
+					compress: {
+						dead_code: true,
+						unused: true
+					}
+				},
 			})
 		]
 

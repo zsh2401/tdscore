@@ -4,7 +4,7 @@
 
 ![](./icon.png)
 
-# 😊 [TDSCore](http://tc.zsh2401.top)
+# 😊 [TDSCore](http://ds.zsh2401.top)
 
 Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScript!✨ 
 
@@ -71,7 +71,7 @@ Try any Node.js package right in your browser.
 [RunKit for TDSCore](https://npm.runkit.com/tdscore)
 
 # Documents 🍕
-[View on website](http://tc.zsh2401.top/docs)
+[View on website](http://ds.zsh2401.top)
 
 <div align="center">
 

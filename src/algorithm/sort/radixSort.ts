@@ -29,22 +29,20 @@ export interface RadixSortElementWithData<E> {
     data: E;
 }
 
- /**
- * 
- * Radix Sort
- * 
- * @Stability Stable
- * @WorstTimeComplexity O(d( n + r))
- * @TimeComplexity O(d( n + r))
- * @SpaceComplexity O(rd)
- * 
- * @param a The target array which is being sorted.
- * @param comparer ignored
- */
+/**
+* 
+* Radix Sort
+* 
+* @Stability Stable
+* @WorstTimeComplexity O(d( n + r))
+* @TimeComplexity O(d( n + r))
+* @SpaceComplexity O(rd)
+* 
+* @param a The target array which is being sorted.
+* @param comparer ignored
+*/
 export default function <E>
     (a: IArrayLike<RadixSortElement<E>>, comparer: IComparer<number>): void {
-
-    const s = (a as RadixSortElement<E>[]);
 
     const buckets: IList<IQueue<RadixSortElement<E>>> = new UngrowableArrayList(10);
     for (let i = 0; i < 10; i++) {
@@ -53,7 +51,8 @@ export default function <E>
 
     let maxBit = 1
     for (let i = 0; i < maxBit; i++) {
-        s.forEach((element) => {
+        for (let j = 0; j < a.length; j++) {
+            const element = a[j]
             const num = typeof element === "number" ? element : element.number;
             const str = num.toFixed(0);
 
@@ -68,7 +67,8 @@ export default function <E>
                 radix = 0;
             }
             buckets.listGet(radix).queueEn(element);
-        });
+        }
+
 
         let j = 0;
         buckets.forEach(bucket => {

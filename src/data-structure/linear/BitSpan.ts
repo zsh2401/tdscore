@@ -22,20 +22,77 @@
 import { ArrayList, IList } from ".";
 import { IIterable, IIterator } from "..";
 import { DSObject } from "../..";
+import { Action1 } from "../../Action";
 import DSArray from "../../DSArray";
 import { MixedNumber } from "../../DSNumber";
+import { Func1 } from "../../Func";
+import ICollection from "../ICollection";
 import { toDSArrayForItertable, toJSArrayForItertable } from "../iterating";
 
 type Data = boolean[] | MixedNumber[] | DSArray<boolean> | DSArray<MixedNumber>;
 
 //TODO
-export default class BitSpan extends DSObject implements IIterable<boolean>{
+export default class BitSpan extends DSObject implements ICollection<boolean>, IIterable<boolean>{
 
     private list: DSArray<boolean>;
 
     constructor(data: boolean[]) {
         super();
         this.list = toDSArrayForItertable(data);
+    }
+    collectionIsReadOnly(): boolean {
+        return true;
+    }
+    collectionAdd(e: boolean): void {
+        throw new Error("Method not implemented.");
+    }
+    collectionRemove(e: boolean): boolean {
+        throw new Error("Method not implemented.");
+    }
+    collectionClear(): void {
+        throw new Error("Method not implemented.");
+    }
+    collectionAny(): boolean {
+        throw new Error("Method not implemented.");
+    }
+    collectionSize(): number {
+        throw new Error("Method not implemented.");
+    }
+    collectionIsEmpty(): boolean {
+        throw new Error("Method not implemented.");
+    }
+    collectionContains(e: boolean): boolean {
+        throw new Error("Method not implemented.");
+    }
+    collectionToArray(): DSArray<boolean> {
+        throw new Error("Method not implemented.");
+    }
+    collectionToJSArray(): boolean[] {
+        throw new Error("Method not implemented.");
+    }
+    forEach(consumer: Action1<boolean>): void {
+        throw new Error("Method not implemented.");
+    }
+    map<T>(consumer: Func1<boolean, T>): DSArray<T> {
+        throw new Error("Method not implemented.");
+    }
+    clear(): void {
+        throw new Error("Method not implemented.");
+    }
+    size(): number {
+        throw new Error("Method not implemented.");
+    }
+    isEmpty(): boolean {
+        throw new Error("Method not implemented.");
+    }
+    toArray(): DSArray<boolean> {
+        throw new Error("Method not implemented.");
+    }
+    toJSArray(): boolean[] {
+        throw new Error("Method not implemented.");
+    }
+    contains(o: boolean): boolean {
+        throw new Error("Method not implemented.");
     }
 
     static of(...rest: (boolean | MixedNumber)[]): BitSpan {
@@ -89,9 +146,9 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
         throw new Error("Method not implemented.");
     }
 
-    toArray(): DSArray<number> {
-        throw new Error("Method not implemented.");
-    }
+    // toArray(): DSArray<number> {
+    //     throw new Error("Method not implemented.");
+    // }
 
     getIterator(): IIterator<boolean> {
         return this.list.getIterator();

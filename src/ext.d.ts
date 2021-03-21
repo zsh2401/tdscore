@@ -1,8 +1,8 @@
-import IIterable from "../data-structure/IIterable";
-import IIterator from "../data-structure/IIterator";
-import DSArray from "../DSArray";
-import DSNumber from "../DSNumber";
-import { IHashCodeGettable } from "../util/hash";
+import IIterable from "./data-structure/IIterable";
+import IIterator from "./data-structure/IIterator";
+import DSArray from "./DSArray";
+import DSNumber from "./DSNumber";
+import { IHashCodeGettable } from "./util/hash";
 
 //TODO test
 export declare global {

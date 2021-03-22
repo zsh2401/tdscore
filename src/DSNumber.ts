@@ -2,8 +2,7 @@ import BigNumber from "bignumber.js"
 import DSObject from "./DSObject";
 import dsHashCode from "./dsHashCode";
 import IArrayLike from "./IArrayLike";
-
-export type MixedNumber = DSNumber | number;
+import MixedNumber from "./MixedNumber";
 
 const cache: DSNumber[] = [];
 function initCache(factory: (num: number) => DSNumber) {

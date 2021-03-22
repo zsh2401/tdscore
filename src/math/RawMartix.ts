@@ -18,7 +18,8 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import DSNumber, { MixedNumber } from "../DSNumber"
+import DSNumber from "../DSNumber"
+import MixedNumber from "../MixedNumber"
 
 export type RawMartix<E> = E[][]
 export type RawVector<E> = ([E])[]

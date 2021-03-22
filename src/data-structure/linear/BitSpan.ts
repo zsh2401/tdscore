@@ -19,12 +19,12 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import { ArrayList, IList } from ".";
+import { ArrayList } from ".";
 import { IIterable, IIterator } from "..";
 import { DSObject } from "../..";
 import { Action1 } from "../../Action";
 import DSArray from "../../DSArray";
-import { MixedNumber } from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
 import { Func1 } from "../../Func";
 import ICollection from "../ICollection";
 import { toDSArrayForItertable, toJSArrayForItertable } from "../iterating";

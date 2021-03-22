@@ -17,7 +17,8 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import DSNumber, { MixedNumber } from "../../DSNumber";
+import DSNumber from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
 import DSFun from "../DSFun";
 import factorial from "./factorial";
 import pow from "./pow";

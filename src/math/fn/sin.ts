@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { MixedNumber } from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
 import DSFun from "../DSFun";
 import DSNumber from "../../DSNumber"
 import factorial from "./factorial";
@@ -31,7 +31,7 @@ const LATEST_TERMS = DSNumber.valueOf(15);
 const f: DSFun = (x: MixedNumber): DSNumber => {
     x = DSNumber.valueOf(x)
     let result = ZERO;
-    
+
     const terms = LATEST_TERMS.plus(x.dividedBy(2).abs());
 
     for (let i = ZERO; i.lessThan(terms); i = i.plus(ONE)) {

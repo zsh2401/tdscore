@@ -19,7 +19,7 @@
  */
 
 import DSNumber from "../../DSNumber";
-import { MixedNumber } from "../../DSNumber";
+import  MixedNumber  from "../../MixedNumber";
 const f = (x: MixedNumber, n: MixedNumber): DSNumber => {
     return x.toDSNumber().pow(n);
 }

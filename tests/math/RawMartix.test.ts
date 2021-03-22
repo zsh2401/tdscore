@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Mon Mar 15 2021 15:50:51
+ * RawMartix.test.ts
+ * Created on Fri Mar 19 2021 20:08:35
  *
  * Description: 
  *   No description.
@@ -17,14 +17,17 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+import "ts-jest"
+import { martixMul, martixDet, NumberOperator } from "../../src/math"
+it("martix", () => {
+    const r = martixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
+    // expect()
+})
 
-export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
-export { default as ITreeNode } from "./ITreeNode"
-export { default as toTreeNode } from './toTreeNode'
-export { default as treeForEachNode } from "./treeForEachNode"
-export { default as treeForEach } from "./treeForEach"
-export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
-export { default as countOf } from "./countOf"
-export { default as leafsOf } from "./leafsOf"
+// it("det", () => {
+//     expect(martixDet([
+//         [0, 0, 3],
+//         [0, 5, 0],
+//         [8, 0, 0]
+//     ], NumberOperator)).toBe(0);
+// })

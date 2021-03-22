@@ -1,4 +1,4 @@
-import { toDSArray } from "../../../data-structure/iterating";
+import { toDSArrayForItertable } from "../../../data-structure/iterating";
 import DSArray from "../../../DSArray";
 
 /**

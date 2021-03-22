@@ -2,7 +2,7 @@ import IList from "./IList";
 import _forEach from "../iterating/forEach"
 import _size from "../iterating/size"
 import _find from "../iterating/find"
-import toDSArray from "../iterating/toDSArray"
+import toDSArray from "../iterating/toDSArrayForItertable"
 import ListIterator from "./ListIterator";
 import { Action1 } from "../../Action";
 import IReadonlyList from "./IReadonlyList";

@@ -30,5 +30,6 @@
             "${commentprefix}${license}",
             "${commentend}"
         ]
-    }
+    },
+    "GitCommitPlugin.MaxSubjectWords": 50
 }

@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Mon Mar 15 2021 15:50:51
+ * size.test.ts
+ * Created on Fri Mar 19 2021 18:36:50
  *
  * Description: 
  *   No description.
@@ -18,13 +18,17 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
-export { default as ITreeNode } from "./ITreeNode"
-export { default as toTreeNode } from './toTreeNode'
-export { default as treeForEachNode } from "./treeForEachNode"
-export { default as treeForEach } from "./treeForEach"
-export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
-export { default as countOf } from "./countOf"
-export { default as leafsOf } from "./leafsOf"
+import "ts-jest"
+import { HashMap, HashSet, size } from "../../../src"
+it("to be zero", () => {
+    expect(size(new HashMap())).toBe(0)
+})
+
+it("to be i", () => {
+    const len = Math.floor(Math.random() * 1000) + 999;
+    const set = new HashSet();
+    for (let i = 0; i < len; i++) {
+        set.add(i);
+    }
+    expect(size(set)).toBe(len)
+})

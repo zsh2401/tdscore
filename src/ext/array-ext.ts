@@ -1,4 +1,4 @@
-import toDSArray from "../data-structure/iterating/toDSArray";
+import toDSArray from "../data-structure/iterating/toDSArrayForItertable";
 import getIterator from "../data-structure/iterating/getIterator"
 import getHashCodeAny from "../util/hash/hashCodeForAny";
 import dsHashCode from "../dsHashCode";

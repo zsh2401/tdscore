@@ -9,8 +9,22 @@ describe("dsEquals' test", () => {
         expect(dsEquals("", null)).toBeFalsy();
         expect(dsEquals(null, "null")).toBeFalsy();
         expect(dsEquals(null, undefined)).toBeFalsy();
+        expect(dsEquals(undefined, null)).toBeFalsy();
     });
 
+    it("Does a DSObject equals to othe?", () => {
+        const a = new DSObject();
+        expect(dsEquals(a, 1)).toBeFalsy()
+        expect(dsEquals(1, a)).toBeFalsy()
+
+        class CustomEquals extends DSObject {
+            equals(other: any) {
+                return other === 1;
+            }
+        }
+        expect(dsEquals(1, new CustomEquals())).toBeTruthy()
+        expect(dsEquals(new CustomEquals(), 1)).toBeTruthy()
+    })
     it("undefiened related", () => {
         expect(dsEquals(undefined, undefined)).toBeTruthy();
         expect(dsEquals("", undefined)).toBeFalsy();
@@ -28,7 +42,7 @@ describe("dsEquals' test", () => {
         expect(dsEquals(new Test(), new Test())).toBeTruthy();
         expect(dsEquals(new Test(), null)).toBeFalsy();
         expect(dsEquals(null, new Test())).toBeFalsy();
-        expect(times).toBe(1);
+        expect(times).toBe(3);
     });
 
     it("call hash code method", () => {

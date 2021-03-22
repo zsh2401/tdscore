@@ -1,7 +1,8 @@
 import HashMap from "../../src/data-structure/map/HashMap";
-import IMap from "../../src/data-structure/IMap";
+import IMap, { ReadonlyKeyValuePair } from "../../src/data-structure/IMap";
 import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
 import dsEquals from "../../src/dsEquals";
+import ICollection from "../../src/data-structure/ICollection";
 // import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
 
 describe("HashMap test", () => {
@@ -57,6 +58,38 @@ describe("HashMap test", () => {
         };
         // console.log(map.toString());
     })
+
+    it("contains", () => {
+        const map = new HashMap();
+        map.mapPut("a", 1);
+        expect(map.contains({ key: "a", value: 1 })).toBeTruthy()
+        expect(map.contains({ key: "a", value: 2 })).toBeFalsy()
+    })
+
+    it("collection test", () => {
+        const map: ICollection<ReadonlyKeyValuePair<string, string>> = new HashMap();
+        map.collectionAdd({ key: "1", value: "1" });
+        map.collectionAdd({ key: "2", value: "2" })
+        map.collectionAdd({ key: "2", value: "3" })
+
+        expect(map.size()).toBe(2);
+        expect(map.collectionContains({ key: "1", value: "1" })).toBeTruthy()
+        expect(map.collectionContains({ key: "2", value: "2" })).toBeFalsy()
+        expect(map.collectionContains({ key: "2", value: "3" })).toBeTruthy()
+
+        expect(map.collectionRemove({ key: "2", value: "2" })).toBeFalsy()
+        expect(map.size()).toBe(2);
+        expect(map.collectionContains({ key: "2", value: "3" })).toBeTruthy()
+
+        expect(map.collectionRemove({ key: "2", value: "3" })).toBeTruthy()
+        expect(map.size()).toBe(1);
+        expect(map.collectionContains({ key: "2", value: "3" })).toBeFalsy()
+
+        map.collectionClear();
+        expect(map.size()).toBe(0);
+        expect(map.isEmpty()).toBeTruthy()
+    })
+
 
     it("growable", () => {
         const map: IMap<number, number> = new HashMap<number, number>();

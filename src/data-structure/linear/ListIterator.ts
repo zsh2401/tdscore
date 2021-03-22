@@ -9,13 +9,13 @@ export default class ListIterator<E> implements IListIterator<E>{
     constructor(list: IList<E>) {
         this.list = list
     }
-    
+
     reset(): void {
         this.position = -1;
     }
 
     hasPrevious(): boolean {
-        return this.position > 0;
+        return this.list.size() > 0 && this.position > 0;
     }
 
     previous(): E {

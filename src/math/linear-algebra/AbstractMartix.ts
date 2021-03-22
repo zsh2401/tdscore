@@ -1,5 +1,5 @@
 import IClonable from "../../data-structure/IClonable";
-import toDSArray from "../../data-structure/iterating/toDSArray";
+import toDSArray from "../../data-structure/iterating/toDSArrayForItertable";
 import DSObject from "../../DSObject";
 import IIterable from "../../data-structure/IIterable"
 import IIterator from "../../data-structure/IIterator"

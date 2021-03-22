@@ -48,15 +48,14 @@ import { IComparer } from "./IInternalSortAlgorithm";
 export default function <E>
     (a: IArrayLike<E>, comparer: IComparer<E>) {
 
-    const s = (a as E[]);
     for (let delta = 5; delta > 0; delta = Math.floor(delta / 2)) {
         for (let i = delta; i < a.length; i++) {
-            const tmp = s[i];
+            const tmp = a[i];
             let j: number;
-            for (j = i; j >= delta && comparer(s[j - delta], tmp) > 0; j -= delta) {
-                s[j] = s[j - delta]
+            for (j = i; j >= delta && comparer(a[j - delta], tmp) > 0; j -= delta) {
+                a[j] = a[j - delta]
             }
-            s[j] = tmp;
+            a[j] = tmp;
         }
     }
 

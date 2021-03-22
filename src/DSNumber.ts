@@ -1,6 +1,7 @@
 import BigNumber from "bignumber.js"
 import DSObject from "./DSObject";
 import dsHashCode from "./dsHashCode";
+import IArrayLike from "./IArrayLike";
 
 export type MixedNumber = DSNumber | number;
 
@@ -54,7 +55,7 @@ export default class DSNumber extends DSObject {
         }
     }
 
-    toBit(): ArrayLike<boolean> {
+    toBit(): IArrayLike<boolean> {
         return (this.toJSNumber() >>> 0).toString(2).split('').map((b) => {
             return b === "1" ? true : false;
         });
@@ -111,7 +112,7 @@ export default class DSNumber extends DSObject {
     }
 
     abs(): DSNumber {
-        return new DSNumber(this.value.absoluteValue());
+        return DSNumber.valueOf(this.value.absoluteValue());
     }
 
     hexString(): string {
@@ -130,25 +131,62 @@ export default class DSNumber extends DSObject {
         return this.value.toString(10);
     }
 
+    isInteger(): boolean {
+        return this.value.isInteger()
+    }
+
     toJSNumber(): number {
         return this.value.toNumber();
     }
 
     newHashCode(): number {
-        return dsHashCode(this.decString());
+        if (this.value.isInteger()) {
+            return dsHashCode(this.toJSNumber());
+        } else {
+            return dsHashCode(this.decString());
+        }
     }
 
-    static valueOf(data: number | string | DSNumber): DSNumber {
-        if (data instanceof DSNumber) {
-            return data;
+    static valueOf(data: number | string | DSNumber | BigNumber): DSNumber {
+
+        //初始化缓存
+        if (cache[0] === undefined) {
+            initCache((n) => new DSNumber(new BigNumber(n)));
         }
-        if (typeof data === "number" && data >= -128 && data <= 127 && Number.isInteger(data)) {
-            if (cache[0] === undefined) {
-                initCache((n) => new DSNumber(new BigNumber(n)));
+
+        //如果是DSNumber
+        if (data instanceof DSNumber) {
+
+            //判断是否在缓存范围内
+            if (data.isInteger() && data.lessThan(128) && data.greaterThanOrEqualsTo(-128)) {
+                //返回缓存
+                return cache[data.toJSNumber() + 128];
             }
+
+            return data;
+
+            //判断是否是BigNumber
+        } else if ((<BigNumber>data).isLessThan && (<BigNumber>data).isGreaterThanOrEqualTo && (<BigNumber>data).isInteger && (<BigNumber>data).toNumber) {
+
+            data = <BigNumber>data;
+            //尝试使用缓存
+            if (data.isLessThan(128) && data.isGreaterThanOrEqualTo(-128)) {
+                return cache[data.toNumber() + 128];
+            }
+
+            //返回包装
+            return new DSNumber(data);
+
+            //JS原生数字类型
+        } else if (typeof data === "number" && data >= -128 && data <= 127 && Number.isInteger(data)) {
+
+            //如果缓存不存在
             return cache[data + 128];
+
         } else {
+
             return new DSNumber(new BigNumber(data));
+
         }
     }
 

@@ -58,6 +58,12 @@ describe("Hash test", () => {
         expect(h !== i && (dsHashCode(h) !== dsHashCode(i))).toBeTruthy();
     })
 
+    it("Works with cycle dependency", () => {
+        const a: any = {}
+        a.a = a;
+        expect(()=>dsHashCode(a)).not.toThrow()
+    })
+    
     it("Always equal in whole lifecycle", () => {
         const a: any = {};
         const value1 = dsHashCode(a);

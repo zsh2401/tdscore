@@ -14,6 +14,15 @@ describe("DSObject", () => {
         expect(b.toString().endsWith("B@" + b.getHashCode())).toBeTruthy();
     });
 
+    it("Works when there is cycle dependency", () => {
+        class A extends DSObject {
+            self: A = null!;
+        }
+        const a = new A();
+        a.self = a;
+        expect(() => a.getHashCode()).not.toThrow()
+    })
+
     it("override newHashCode()", () => {
         class A extends DSObject {
             newHashCode(): number {

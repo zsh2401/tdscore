@@ -23,10 +23,10 @@ import LinkedList from "./data-structure/linear/LinkedList";
 import ICollection from "./data-structure/ICollection";
 import DSObject from "./DSObject";
 import sha256 from "./util/sha256"
-import { EventArgs, Handler } from "./DSEvent";
+import { EventArgs, EventHandler } from "./DSEvent";
 export default class DSProtectedEvent<A = EventArgs, R = void> extends DSObject {
 
-    private readonly listeners: ICollection<Handler<A, R>>;
+    private readonly listeners: ICollection<EventHandler<A>>;
     private readonly passwordSha256: string;
     private readonly throwError: boolean;
 
@@ -37,8 +37,8 @@ export default class DSProtectedEvent<A = EventArgs, R = void> extends DSObject 
         this.throwError = throwWhenPasswordIsntCorrect;
     }
 
-    protected createListenersCollection(): ICollection<Handler<A, R>> {
-        return new LinkedList<Handler<A, R>>();
+    protected createListenersCollection(): ICollection<EventHandler<A>> {
+        return new LinkedList<EventHandler<A>>();
     }
 
     private passwordIsCorrect(pwd?: string): boolean {
@@ -60,16 +60,18 @@ export default class DSProtectedEvent<A = EventArgs, R = void> extends DSObject 
                 return;
             }
         }
-        this.listeners.forEach((handler: Handler<A, R>) => {
-            handler(sender, args);
+        this.listeners.forEach((handler: EventHandler<A>) => {
+            try {
+                handler(sender, args);
+            } finally { }
         });
     }
 
-    add(handler: Handler<A, R>) {
+    add(handler: EventHandler<A>) {
         this.listeners.collectionAdd(handler);
     }
 
-    remove(handler: Handler<A, R>) {
+    remove(handler: EventHandler<A>) {
         this.listeners.collectionRemove(handler);
     }
 

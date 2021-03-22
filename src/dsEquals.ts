@@ -2,7 +2,7 @@ import DSObject from "./DSObject";
 import { hashCode } from "./util/hash";
 
 export default function dsEquals(left: any, right: any) {
-    //undefiend || null
+    
     if(typeof left !== typeof right){
         return false;
     }

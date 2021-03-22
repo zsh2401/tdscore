@@ -66,6 +66,5 @@ describe("DSObject", () => {
 
     it("isDSObject", () => {
         expect(DSObject.isDSObject(new Vector2(0, 0))).toBeTruthy()
-        
     })
 });

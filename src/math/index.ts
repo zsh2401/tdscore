@@ -13,8 +13,8 @@ export {
     DEGREE_120, DEGREE_135, DEGREE_150, DEGREE_180
 }
 export * from "./linear-algebra"
-export { default as sin } from "./sin"
-export { default as cos } from "./cos"
+// export { default as sin } from "./sin"
+// export { default as cos } from "./cos"
 export { default as Fun } from "./Fun"
 export { default as Complex } from "./Complex"
 export { default as Color } from "./Color"

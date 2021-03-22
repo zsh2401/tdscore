@@ -149,42 +149,17 @@ export default class DSNumber extends DSObject {
 
     static valueOf(data: number | string | DSNumber | BigNumber): DSNumber {
 
-        //初始化缓存
-        if (cache[0] === undefined) {
-            initCache((n) => new DSNumber(new BigNumber(n)));
-        }
-
         //如果是DSNumber
-        if (data instanceof DSNumber) {
-
-            //判断是否在缓存范围内
-            if (data.isInteger() && data.lessThan(128) && data.greaterThanOrEqualsTo(-128)) {
-                //返回缓存
-                return cache[data.toJSNumber() + 128];
+        const [isInCacheRange, indexInCache] = inCacheRange(data);
+        if (isInCacheRange) {
+            //初始化缓存
+            if (cache[0] === undefined) {
+                initCache((n) => new DSNumber(new BigNumber(n)));
             }
-
+            return cache[indexInCache]
+        } else if (data instanceof DSNumber) {
             return data;
-
-            //判断是否是BigNumber
-        } else if ((<BigNumber>data).isLessThan && (<BigNumber>data).isGreaterThanOrEqualTo && (<BigNumber>data).isInteger && (<BigNumber>data).toNumber) {
-
-            data = <BigNumber>data;
-            //尝试使用缓存
-            if (data.isLessThan(128) && data.isGreaterThanOrEqualTo(-128)) {
-                return cache[data.toNumber() + 128];
-            }
-
-            //返回包装
-            return new DSNumber(data);
-
-            //JS原生数字类型
-        } else if (typeof data === "number" && data >= -128 && data <= 127 && Number.isInteger(data)) {
-
-            //如果缓存不存在
-            return cache[data + 128];
-
         } else {
-
             return new DSNumber(new BigNumber(data));
 
         }
@@ -192,5 +167,31 @@ export default class DSNumber extends DSObject {
 
     static v(data: number | string | DSNumber): DSNumber {
         return DSNumber.valueOf(data);
+    }
+}
+
+
+function inCacheRange(data: number | string | DSNumber | BigNumber): [boolean, number] {
+    let n = 1000;
+    switch (typeof data) {
+        case "string":
+            n = Number.parseFloat(data)
+            break;
+        case "number":
+            n = data;
+            break;
+        case "object":
+            if (data instanceof DSNumber) {
+                n = data.toJSNumber()
+            } else {
+                n = data.toNumber()
+            }
+            break;
+    }
+
+    if (Number.isInteger(n) && n >= -128 && n <= 127) {
+        return [true, n + 128]
+    } else {
+        return [false, -1]
     }
 }

@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import "ts-jest"
 import { dsHashCode, toJSArray } from "../../src";
 import DSNumber from "../../src/DSNumber"
@@ -5,9 +6,15 @@ describe("DSNumber Test", () => {
 
     it("Use cache", () => {
         for (let i = -128; i < 128; i++) {
-            expect(DSNumber.valueOf(i).toJSNumber()).toBe(i);
-            const isSameObject = DSNumber.valueOf(i).referenceEquals(DSNumber.valueOf(i))
-            expect(isSameObject).toBeTruthy();
+            
+            const fromString = DSNumber.valueOf(i + "")
+            const fromNumber = DSNumber.valueOf(i)
+            const fromBigNumber = DSNumber.valueOf(new BigNumber(i))
+            const fromDSNumber = DSNumber.valueOf(fromNumber)
+
+            expect(fromString).toBe(fromNumber)
+            expect(fromNumber).toBe(fromBigNumber)
+            expect(fromBigNumber).toBe(fromDSNumber)
         }
     });
 
@@ -35,8 +42,6 @@ describe("DSNumber Test", () => {
         const y = DSNumber.valueOf(10)
         expect(y).toBe(DSNumber.valueOf(10))
         expect(DSNumber.valueOf(10)).toBe(y)
-        //TODO
-        // expect(DSNumber.valueOf(x)).toBe(x)
     })
 
     it("is",()=>{

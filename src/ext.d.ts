@@ -28,9 +28,5 @@ export declare global {
         dsHashCodeOf(o: any);
         dsEquals(a: any, b: any);
     }
-    
-    interface Object {
-        dsHashCode();
-        dsEquals(other: any);
-    }
+
 }

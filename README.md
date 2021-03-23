@@ -73,13 +73,46 @@ Try any Node.js package right in your browser.
 # Documents 🍕
 [View on website](http://tc.zsh2401.top/docs)
 
-<div align="center">
+# Join in development🤝
+## Clone and checkout to dev
+```sh
+git clone https://github.com/zsh2401/tdscore.git
+cd tdscore
+git fetch origin dev
+git checkout dev
+```
+## Install dependencies
+```sh
+yarn ci
+```
+## Build & Test
+```sh
+# Build bundle files in dist
+yarn build:dist 
+# Compiling target is ECMAScript6
+yarn build:es 
+# Compiling target is ES5 and CommonJS
+yarn build:lib 
+
+# Run all of above
+yarn build
+```
+### Unit Test
+```sh
+yarn test
+#or
+yarn test:coverage
+```
+Notice:
+* Please commit at dev branch.
+* Pull requrest are always welcomed.
+
+<!-- <div align="center"> -->
 
 # Contributors
-Please develop on the dev branch, and Pull Requests are always welcomed.
 
 <a href="https://github.com/zsh2401/tdscore/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
 </a>
 
-</div>
+<!-- </div> -->

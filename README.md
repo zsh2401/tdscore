@@ -6,6 +6,10 @@
 
 # 😊 [TDSCore](http://tc.zsh2401.top)
 
+```sh
+npm i tdscore
+```
+
 Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScript!✨ 
 
 
@@ -27,15 +31,19 @@ Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScri
 * Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
 * Smaller:  19.1kB minified and gzipped😍(v0.1.16).
 * A series of tools which can enhance the ability of ECMA Script🚀.
+* Can be compiled to binary. see [tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
 # Getting Started
 TDSCore is supporting AMD, CommonJS, ES Moudle and Global variable.
 
 ## Install
-### [Node.js💖](http://nodejs.org/)
-`npm install tdscore`
-
-### Browser👏
+NPM
+```sh
+npm i tdscore
+#or
+yarn add tdscore
+```
+Browser
 ```html
 <srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```

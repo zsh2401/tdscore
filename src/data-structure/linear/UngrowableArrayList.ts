@@ -61,7 +61,7 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
     }
     listSet(position: number, element: E): void {
         this.throwIfOutOfRange(position);
-        this.ensureCapcity();
+        // this.ensureCapcity();
         this.array.set(position, element);
     }
     listAdd(element: E): void {

@@ -19,139 +19,148 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import { ArrayList } from ".";
-import { IIterable, IIterator } from "..";
-import { DSObject } from "../..";
-import { Action1 } from "../../Action";
+import IIterable from "../IIterable";
+import IIterator from "../IIterator"
+import DSObject from "../../DSObject";
 import DSArray from "../../DSArray";
 import MixedNumber from "../../MixedNumber";
-import { Func1 } from "../../Func";
-import ICollection from "../ICollection";
-import { toDSArrayForItertable, toJSArrayForItertable } from "../iterating";
-
-type Data = boolean[] | MixedNumber[] | DSArray<boolean> | DSArray<MixedNumber>;
+import toJSArrayForItertable from "../iterating/toJSArrayForItertable";
+import IList from "./IList";
+import UngrowableArrayList from "./UngrowableArrayList";
 
 //TODO
-export default class BitSpan extends DSObject implements ICollection<boolean>, IIterable<boolean>{
+export default class BitSpan extends DSObject implements IIterable<boolean>{
 
-    private list: DSArray<boolean>;
+    private container: IList<boolean>;
+    private readonly len;
+
+    get length(): number {
+        return this.len;
+    }
 
     constructor(data: boolean[]) {
         super();
-        this.list = toDSArrayForItertable(data);
+        this.container = new UngrowableArrayList(data.length)
+        this.len = data.length;
+        data.forEach((d) => this.container.listAdd(d));
     }
-    collectionIsReadOnly(): boolean {
-        return true;
+
+    leftShift(count: number): BitSpan {
+        const result = [];
+        for (; result.length < this.container.size();) {
+            result.push(false)
+        }
+        for (let i = count; i < this.container.size(); i++) {
+            result[i - count] = this.container.listGet(i)
+        }
+        return new BitSpan(result);
     }
-    collectionAdd(e: boolean): void {
-        throw new Error("Method not implemented.");
+
+    rightShift(count: number) {
+        const result = [];
+        for (; result.length < this.container.size();) {
+            result.unshift(false)
+        }
+        for (let i = count; i < this.container.size(); i++) {
+            result[i] = this.container.listGet(i - count)
+        }
+        return new BitSpan(result);
     }
-    collectionRemove(e: boolean): boolean {
-        throw new Error("Method not implemented.");
-    }
-    collectionClear(): void {
-        throw new Error("Method not implemented.");
-    }
-    collectionAny(): boolean {
-        throw new Error("Method not implemented.");
-    }
-    collectionSize(): number {
-        throw new Error("Method not implemented.");
-    }
-    collectionIsEmpty(): boolean {
-        throw new Error("Method not implemented.");
-    }
-    collectionContains(e: boolean): boolean {
-        throw new Error("Method not implemented.");
-    }
-    collectionToArray(): DSArray<boolean> {
-        throw new Error("Method not implemented.");
-    }
-    collectionToJSArray(): boolean[] {
-        throw new Error("Method not implemented.");
-    }
-    forEach(consumer: Action1<boolean>): void {
-        throw new Error("Method not implemented.");
-    }
-    map<T>(consumer: Func1<boolean, T>): DSArray<T> {
-        throw new Error("Method not implemented.");
-    }
-    clear(): void {
-        throw new Error("Method not implemented.");
-    }
-    size(): number {
-        throw new Error("Method not implemented.");
-    }
-    isEmpty(): boolean {
-        throw new Error("Method not implemented.");
-    }
-    toArray(): DSArray<boolean> {
-        throw new Error("Method not implemented.");
-    }
+
     toJSArray(): boolean[] {
-        throw new Error("Method not implemented.");
+        return this.container.toJSArray()
     }
-    contains(o: boolean): boolean {
-        throw new Error("Method not implemented.");
+
+
+    or(other: BitSpan): BitSpan {
+        if (other.length !== this.length) {
+            throw new Error("Array lengths must be the same");
+        }
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result[i] = this.at(i) || other.at(i)
+        }
+        return new BitSpan(result);
+    }
+
+    and(other: BitSpan): BitSpan {
+        if (other.length !== this.length) {
+            throw new Error("Array lengths must be the same");
+        }
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result[i] = this.at(i) && other.at(i)
+        }
+        return new BitSpan(result);
+    }
+
+    nor(other: BitSpan): BitSpan {
+        if (other.length !== this.length) {
+            throw new Error("Array lengths must be the same");
+        }
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result[i] = !(this.at(i) || other.at(i))
+        }
+        return new BitSpan(result);
+    }
+
+    at(index: number, value?: boolean): boolean {
+        if (value !== undefined) {
+            this.container.listSet(index, value)
+            return value;
+        } else {
+            return this.container.listGet(index)
+        }
+    }
+
+    setAll(value: boolean): BitSpan {
+        const result = []
+        for (let i = 0; i < this.length; i++) {
+            result[i] = value
+        }
+        return new BitSpan(result)
+    }
+
+    not(): BitSpan {
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result[i] = !this.at(i)
+        }
+        return new BitSpan(result);
+    }
+
+    xor(other: BitSpan): BitSpan {
+        if (other.length !== this.length) {
+            throw new Error("Array lengths must be the same");
+        }
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result[i] = this.at(i) !== other.at(i)
+        }
+        return new BitSpan(result);
+    }
+
+    getIterator(): IIterator<boolean> {
+        return this.container.getIterator();
     }
 
     static of(...rest: (boolean | MixedNumber)[]): BitSpan {
-        const result = new ArrayList<boolean>(rest.length);
+        // throw new Error();
+        //TODO
+        const result = new UngrowableArrayList<boolean>(rest.length);
         rest.forEach(element => {
             if (typeof element === "boolean") {
                 result.listAdd(element);
             } else {
-
+                // const bitArray = Number.par
+                // result.listAddAll()
             }
         });
         return new BitSpan(result.toJSArray());
     }
+
     static ofDSA(data: DSArray<(boolean | MixedNumber)>) {
         BitSpan.of(...toJSArrayForItertable(data))
     }
-
-    moveRight(bit: number) {
-        throw new Error("Method not implemented.");
-    }
-
-    moveLeft(bit: number) {
-        throw new Error("Method not implemented.");
-    }
-
-    or(other: BitSpan): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    and(other: BitSpan): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    nor(other: BitSpan): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    set(index: number, value: boolean): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    setAll(value: boolean): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    not(): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    xor(other: BitSpan): BitSpan {
-        throw new Error("Method not implemented.");
-    }
-
-    // toArray(): DSArray<number> {
-    //     throw new Error("Method not implemented.");
-    // }
-
-    getIterator(): IIterator<boolean> {
-        return this.list.getIterator();
-    }
-
 }

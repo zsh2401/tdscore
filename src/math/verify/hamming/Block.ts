@@ -1,59 +1,25 @@
-import { toDSArrayForItertable } from "../../../data-structure/iterating";
-import DSArray from "../../../DSArray";
-
-/**
- * 2 ^ n bits data block.
- * 2 ^ n - n bits could use for store data.
+/*
+ * Block.ts
+ * Created on Tue Mar 23 2021 11:05:57
+ *
+ * Description: 
+ *   No description.
+ *
+ * Copyright (c) 2021 tdscore
+ * 
+ * Copyright (c) 2021 Seymour Zhang and all contributors of this project.
+ * tdscore is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *          http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+ * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+ * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
-//TODO waiting to be implemented
-export default class Block {
-    // private readonly block: DSArray<boolean>;
-    // readonly dataCapcity: number;
-    // readonly blockSize: number;
-    // readonly controlBitsCount: number;
-    // constructor(source: DSArray<boolean>) {
-    //     this.blockSize = this.roundUp2(source.length);
-    //     this.controlBitsCount = Math.log2(this.blockSize);
-    //     this.dataCapcity = this.blockSize - this.controlBitsCount;
-    // }
-    // private roundUp2(num: number) {
-    //     if (num % 2 === 0) {
-    //         return num;
-    //     } else {
-    //         const times = (Math.log2(num) + 1);
-    //         return Math.pow(2, times);
-    //     }
-    // }
-    // private updateControlBits() {
-    //     for (let i = 0; i < this.controlBitsCount; i++) {
-    //         const index = 2 ** i;
 
-    //     }
-    // }
-    // private realIndexFor(x: number): number {
-    //     if (x >= 248 || x < 0) {
-    //         throw new Error("Index out of range.");
-    //     }
-    //     if (x === 0) {
-    //         return 0;
-    //     }
-    //     const v = x + (Math.log2(x * 2) + 1);
-    //     return Math.floor(v);
-    // }
-    // toDSArray(): DSArray<boolean> {
-    //     return toDSArray(this.block);
-    // }
-    // toDSArray2(): DSArray<0 | 1> {
-    //     return toDSArray(this.block, (e) => e ? 1 : 0);
-    // }
-    // toDSArrayNumber(): DSArray<number> {
-    //     return this.toDSArray2();
-    // }
-    // set(index: number, data: boolean) {
-    //     this.block[this.realIndexFor(index)] = data;
-    //     this.updateControlBits();
-    // }
-    // get(index: number): boolean {
-    //     return this.block[this.realIndexFor(index)];
-    // }
+import DSObject from "../../../DSObject";
+
+class Block extends DSObject {
+
 }

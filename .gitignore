@@ -5,3 +5,4 @@ lib
 es
 coverage
 .VSCodeCounter
+package-lock.json

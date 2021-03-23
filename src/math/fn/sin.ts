@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { MixedNumber } from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
 import DSFun from "../DSFun";
 import DSNumber from "../../DSNumber"
 import factorial from "./factorial";

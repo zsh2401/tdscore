@@ -16,7 +16,9 @@ export { default as DSArray } from "./DSArray"
 export { default as DSObject } from "./DSObject"
 export { default as DSEvent } from "./DSEvent"
 export { default as dsEquals } from "./dsEquals"
+export { default as equals } from "./dsEquals"
 export { default as dsHashCode } from "./dsHashCode"
+export { default as hashcode } from "./dsHashCode"
 export { default as Lazy } from "./Lazy"
 export { default as INotifyCollectionChanged } from "./INotifyCollectionChanged"
 export { default as Ref } from "./Ref"
@@ -25,6 +27,9 @@ export { default as Optional } from "./Optional"
 export { default as DSObjectType } from "./DSObjectType"
 export { default as defaultOf } from './util/type/defaultOf'
 export { default as StopWatch } from "./StopWatch"
+export { default as MixedNumber } from "./MixedNumber"
+export { default as AsyncDSEvent } from "./AsyncDSEvent"
+export { default as ProtectedDSEvent } from "./ProtectedDSEvent"
 export {
     default as IArrayLike,
     toJSArray,

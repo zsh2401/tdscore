@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * RawMartix.ts
+ * Created on Sun Mar 14 2021 01:21:37
  *
  * Description: 
  *   No description.
@@ -16,10 +16,14 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
 
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+
+export type RawMartix<E> = E[][]
+export type RawVector<E> = ([E])[]
+export type RawVector2<E> = [[E], [E]]
+export type RawVector3<E> = [[E], [E], [E]]
+export type RawTransformation2<E> = [[E, E], [E, E]]
+export type RawTransformation3<E> = [[E, E, E], [E, E, E], [E, E, E]]
+
+export default RawMartix;

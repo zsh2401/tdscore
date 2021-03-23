@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * abs.ts
+ * Created on Tue Mar 23 2021 09:10:22
  *
  * Description: 
  *   No description.
@@ -16,10 +16,13 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
+import DSNumber from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
+import DSFun from "../DSFun";
 
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+const f: DSFun = (x: MixedNumber): DSNumber => {
+    return x.toDSNumber().abs()
+}
+f.fname = "absolute"
+export default f;

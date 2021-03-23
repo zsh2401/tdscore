@@ -1,6 +1,7 @@
+
 /*
- * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * rotation2.ts
+ * Created on Tue Mar 23 2021 09:26:06
  *
  * Description: 
  *   No description.
@@ -16,10 +17,17 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
-
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+import DSNumber from "../../../DSNumber";
+import MixedNumber from "../../../MixedNumber";
+import sin from "../../fn/sin"
+import cos from "../../fn/cos"
+import { RawTransformation2 } from "../RawMartix";
+import { ONE_DEGREE } from "../..";
+export default function (degree: MixedNumber): RawTransformation2<DSNumber> {
+    const theta = degree.toDSNumber().mul(ONE_DEGREE);
+    return [
+        [cos(theta), sin(theta).negated()],
+        [sin(theta), cos(theta)]
+    ]
+}

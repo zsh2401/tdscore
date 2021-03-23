@@ -19,7 +19,7 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import { MixedNumber } from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
 
 export function ascdeningComparer(a: MixedNumber, b: MixedNumber): number {
     const _a = a.toDSNumber();

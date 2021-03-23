@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * IElementOperator.ts
+ * Created on Tue Mar 23 2021 09:21:35
  *
  * Description: 
  *   No description.
@@ -16,10 +16,13 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
 
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+export default interface IElementOperator<E> {
+    add(a: E, b: E): E;
+    sub(a: E, b: E): E;
+    mul(a: E, b: E): E;
+    divBy(a: E, b: E): E;
+    nagated(x: E): E;
+    readonly defaultValue: E;
+}

@@ -30,7 +30,7 @@ export interface EventHandler<TArgs> {
      * @param sender 为事件发送者，可空
      * @param args 事件参数
      */
-    (sender: any, args: TArgs): void | Promise<void>;
+    (sender: any, args: TArgs): void;
 }
 
 /**

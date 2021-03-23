@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 import "ts-jest"
-import { martixMul, martixDet, NumberOperator } from "../../src/math"
+import { martixMul, martixDet, NumberOperator } from "../../src/math/martix"
 it("martix", () => {
     const r = martixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
     // expect()

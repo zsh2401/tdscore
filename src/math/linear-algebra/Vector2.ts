@@ -38,7 +38,7 @@ export default class Vector2
      * 计算向量长度
      */
     get length(): number {
-        return pow(pow(this.x, 2) + pow(this.y, 2), 0.5);
+        return pow(pow(this.x, 2).plus(pow(this.y, 2)), 0.5).toJSNumber()
     }
 
     /**
@@ -48,10 +48,10 @@ export default class Vector2
     rotateClockwisely(degree: number): Vector2 {
         const theta = ONE_DEGREE * degree;
         const t = new Transformation2(
-            cos(theta),
-            -sin(theta),
-            sin(theta),
-            cos(theta)
+            cos(theta).toJSNumber(),
+            -sin(theta).toJSNumber(),
+            sin(theta).toJSNumber(),
+            cos(theta).toJSNumber()
         );
         return this.transform(t);
     }

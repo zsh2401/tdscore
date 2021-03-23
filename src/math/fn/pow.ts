@@ -19,9 +19,15 @@
  */
 
 import DSNumber from "../../DSNumber";
-import { MixedNumber } from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
+/**
+ * 后期考虑使用牛顿迭代实现的幂函数
+ * @param x 
+ * @param n 
+ * @returns 
+ */
 const f = (x: MixedNumber, n: MixedNumber): DSNumber => {
-    return x.toDSNumber().pow(n);
+    return DSNumber.valueOf(x).pow(n);
 }
 f.fname = "pow"
 export default f;

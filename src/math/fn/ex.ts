@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * ex.ts
+ * Created on Mon Mar 22 2021 20:20:08
  *
  * Description: 
  *   No description.
@@ -16,10 +16,17 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
-
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+import DSNumber from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
+import DSFun from "../DSFun";
+import factorial from "./factorial";
+import pow from "./pow";
+const f: DSFun = (x: MixedNumber): DSNumber => {
+    let result = DSNumber.ZERO;
+    for (let n = 0; n < 10; n++) {
+        result = result.plus(pow(x, n).dividedBy(factorial(n)))
+    }
+    return result;
+}
+export default f;

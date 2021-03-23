@@ -6,6 +6,10 @@
 
 # 😊 [TDSCore](http://ds.zsh2401.top)
 
+```sh
+npm i tdscore
+```
+
 Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScript!✨ 
 
 
@@ -27,15 +31,19 @@ Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScri
 * Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
 * Smaller:  19.1kB minified and gzipped😍(v0.1.16).
 * A series of tools which can enhance the ability of ECMA Script🚀.
+* Can be compiled to binary. see [tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
 # Getting Started
 TDSCore is supporting AMD, CommonJS, ES Moudle and Global variable.
 
 ## Install
-### [Node.js💖](http://nodejs.org/)
-`npm install tdscore`
-
-### Browser👏
+NPM
+```sh
+npm i tdscore
+#or
+yarn add tdscore
+```
+Browser
 ```html
 <srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```
@@ -73,13 +81,46 @@ Try any Node.js package right in your browser.
 # Documents 🍕
 [View on website](http://ds.zsh2401.top)
 
-<div align="center">
+# Join in development🤝
+## Clone and checkout to dev
+```sh
+git clone https://github.com/zsh2401/tdscore.git
+cd tdscore
+git fetch origin dev
+git checkout dev
+```
+## Install dependencies
+```sh
+yarn ci
+```
+## Build & Test
+```sh
+# Build bundle files in dist
+yarn build:dist 
+# Compiling target is ECMAScript6
+yarn build:es 
+# Compiling target is ES5 and CommonJS
+yarn build:lib 
+
+# Run all of above
+yarn build
+```
+### Unit Test
+```sh
+yarn test
+#or
+yarn test:coverage
+```
+Notice:
+* Please commit at dev branch.
+* Pull requrest are always welcomed.
+
+<!-- <div align="center"> -->
 
 # Contributors
-Please develop on the dev branch, and Pull Requests are always welcomed.
 
 <a href="https://github.com/zsh2401/tdscore/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
 </a>
 
-</div>
+<!-- </div> -->

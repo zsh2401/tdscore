@@ -1,6 +1,7 @@
+
 /*
  * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * Created on Tue Mar 23 2021 09:21:39
  *
  * Description: 
  *   No description.
@@ -16,10 +17,13 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
-
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+export { default as IElementOperator } from "./IElementOperator"
+export { default as martixAdd } from "./add"
+export { default as martixDet } from "./det"
+export { default as martixMul } from "./mul"
+export { default as martixSub } from "./sub"
+export { default as martixSizeOf } from "./sizeof"
+export * from "./transformation"
+export * from "./RawMartix"
+export { default as NumberOperator } from "./NumberOperator"

@@ -19,5 +19,7 @@
  */
 
 export { default as sin } from "./sin"
+export { default as cos } from "./cos"
 export { default as pow } from "./pow"
+export { default as ex } from "./ex"
 export { default as factorial } from "./factorial"

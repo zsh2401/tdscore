@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Sat Mar 06 2021 21:39:22
+ * martixSizeOf.ts
+ * Created on Tue Mar 23 2021 09:21:56
  *
  * Description: 
  *   No description.
@@ -16,10 +16,11 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
 
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+import { RawMartix } from "./RawMartix";
+
+
+export default function martixSizeOf<E>(m: RawMartix<E>): [number, number] {
+    return [m.length, m.length > 0 ? m[0].length : 0];
+}

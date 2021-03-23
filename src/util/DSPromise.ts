@@ -20,7 +20,7 @@ export interface Executor<T> {
 }
 export type PromiseStatus = "pending" | "fullfilled" | "rejected";
 
-export default class MyPromise<T> extends DSObject{
+export default class DSPromise<T> extends DSObject{
 
     private status: PromiseStatus = "pending";
 

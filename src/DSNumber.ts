@@ -66,39 +66,44 @@ export default class DSNumber extends DSObject {
 
 
     pow(n: MixedNumber): DSNumber {
-        return new DSNumber(this.value.pow(n.toDSNumber().value));
+        // this.value.ex
+        if (!DSNumber.valueOf(n).isInteger()) {
+            const jv = typeof n === "number" ? Math.pow(this.value.toNumber(), n) : Math.pow(this.value.toNumber(), n.toJSNumber())
+            return DSNumber.valueOf(jv)
+        }
+        return new DSNumber(this.value.pow(DSNumber.valueOf(n).value));
     }
 
     lessThan(other: MixedNumber): boolean {
-        return this.value.isLessThan(other.toDSNumber().value);
+        return this.value.isLessThan(DSNumber.valueOf(other).value);
     }
 
     lessThanOrEqualsTo(other: MixedNumber): boolean {
-        return this.value.isLessThanOrEqualTo(other.toDSNumber().value);
+        return this.value.isLessThanOrEqualTo(DSNumber.valueOf(other).value);
     }
 
     greaterThan(other: MixedNumber): boolean {
-        return this.value.isGreaterThan(other.toDSNumber().value);
+        return this.value.isGreaterThan(DSNumber.valueOf(other).value);
     }
 
     greaterThanOrEqualsTo(other: MixedNumber): boolean {
-        return this.value.isGreaterThanOrEqualTo(other.toDSNumber().value);
+        return this.value.isGreaterThanOrEqualTo(DSNumber.valueOf(other).value);
     }
 
     plus(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.plus(other.toDSNumber().value));
+        return new DSNumber(this.value.plus(DSNumber.valueOf(other).value));
     }
 
     sub(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.minus(other.toDSNumber().value));
+        return new DSNumber(this.value.minus(DSNumber.valueOf(other).value));
     }
 
     mul(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.multipliedBy(other.toDSNumber().value));
+        return new DSNumber(this.value.multipliedBy(DSNumber.valueOf(other).value));
     }
 
     dividedBy(other: MixedNumber): DSNumber {
-        return new DSNumber(this.value.dividedBy(other.toDSNumber().value));
+        return new DSNumber(this.value.dividedBy(DSNumber.valueOf(other).value));
     }
 
 

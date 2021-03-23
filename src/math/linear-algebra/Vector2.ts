@@ -38,7 +38,7 @@ export default class Vector2
      * 计算向量长度
      */
     get length(): number {
-        return pow(pow(this.x, 2) + pow(this.y, 2), 0.5);
+        return pow(pow(this.x, 2).plus(pow(this.y, 2)), 0.5).toJSNumber()
     }
 
     /**

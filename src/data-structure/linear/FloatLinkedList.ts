@@ -1,4 +1,4 @@
-import abs from "../../math/abs";
+import abs from "../../math/fn/abs";
 import ListBase from "./ListBase";
 interface Node<E> {
     prev: Node<E> | null;
@@ -34,7 +34,7 @@ export default class FloatLinkedList<E> extends ListBase<E> {
     private autoMoveCursor(position: number): void {
         let distance = position - this.cursor.position;
         let direction: "left" | "right" = distance < 0 ? "left" : "right";
-        distance = abs(distance);
+        distance = abs(distance).toJSNumber();
         const shouldReset = distance > position;
 
         if (shouldReset) {
@@ -156,7 +156,7 @@ export default class FloatLinkedList<E> extends ListBase<E> {
     private moveCursorTo(position: number) {
         let distance = position - this.cursor.position;
         let direction: "left" | "right" = distance < 0 ? "left" : "right";
-        distance = abs(distance);
+        distance = abs(distance).toJSNumber();
         const shouldReset = distance > position;
 
         if (shouldReset) {

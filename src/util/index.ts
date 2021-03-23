@@ -1,3 +1,3 @@
 export { default as sleep } from "./sleep"
+export {default as DSPromise} from "./DSPromise"
 export * as hash from "./hash"
-export {default as MyPromise} from "./MyPromise"

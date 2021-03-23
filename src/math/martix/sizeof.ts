@@ -1,6 +1,6 @@
 /*
- * RawMartix.test.ts
- * Created on Fri Mar 19 2021 20:08:35
+ * martixSizeOf.ts
+ * Created on Tue Mar 23 2021 09:21:56
  *
  * Description: 
  *   No description.
@@ -17,17 +17,10 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import "ts-jest"
-import { martixMul, martixDet, NumberOperator } from "../../src/math/martix"
-it("martix", () => {
-    const r = martixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
-    // expect()
-})
 
-// it("det", () => {
-//     expect(martixDet([
-//         [0, 0, 3],
-//         [0, 5, 0],
-//         [8, 0, 0]
-//     ], NumberOperator)).toBe(0);
-// })
+import { RawMartix } from "./RawMartix";
+
+
+export default function martixSizeOf<E>(m: RawMartix<E>): [number, number] {
+    return [m.length, m.length > 0 ? m[0].length : 0];
+}

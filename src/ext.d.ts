@@ -16,6 +16,7 @@ export declare global {
     }
     interface Number extends IHashCodeGettable {
         toDSNumber(): DSNumber;
+        toJSNumber(): number;
     }
     interface String extends IHashCodeGettable {
         toDSNumber(): DSNumber;

@@ -1,6 +1,6 @@
 /*
- * RawMartix.test.ts
- * Created on Fri Mar 19 2021 20:08:35
+ * IElementOperator.ts
+ * Created on Tue Mar 23 2021 09:21:35
  *
  * Description: 
  *   No description.
@@ -17,17 +17,12 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import "ts-jest"
-import { martixMul, martixDet, NumberOperator } from "../../src/math/martix"
-it("martix", () => {
-    const r = martixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
-    // expect()
-})
 
-// it("det", () => {
-//     expect(martixDet([
-//         [0, 0, 3],
-//         [0, 5, 0],
-//         [8, 0, 0]
-//     ], NumberOperator)).toBe(0);
-// })
+export default interface IElementOperator<E> {
+    add(a: E, b: E): E;
+    sub(a: E, b: E): E;
+    mul(a: E, b: E): E;
+    divBy(a: E, b: E): E;
+    nagated(x: E): E;
+    readonly defaultValue: E;
+}

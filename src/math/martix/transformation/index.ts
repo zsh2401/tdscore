@@ -1,0 +1,1 @@
+export { default as rotation2 } from "./rotation2"

@@ -1,6 +1,7 @@
+
 /*
- * RawMartix.test.ts
- * Created on Fri Mar 19 2021 20:08:35
+ * index.ts
+ * Created on Tue Mar 23 2021 09:21:39
  *
  * Description: 
  *   No description.
@@ -17,17 +18,12 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import "ts-jest"
-import { martixMul, martixDet, NumberOperator } from "../../src/math/martix"
-it("martix", () => {
-    const r = martixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
-    // expect()
-})
-
-// it("det", () => {
-//     expect(martixDet([
-//         [0, 0, 3],
-//         [0, 5, 0],
-//         [8, 0, 0]
-//     ], NumberOperator)).toBe(0);
-// })
+export { default as IElementOperator } from "./IElementOperator"
+export { default as martixAdd } from "./add"
+export { default as martixDet } from "./det"
+export { default as martixMul } from "./mul"
+export { default as martixSub } from "./sub"
+export { default as martixSizeOf } from "./sizeof"
+export * from "./transformation"
+export * from "./RawMartix"
+export { default as NumberOperator } from "./NumberOperator"

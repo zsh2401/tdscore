@@ -1,4 +1,4 @@
-import { dsHashCode } from "../../src";
+import { dsHashCode, DSNumber } from "../../src";
 import dsEquals from "../../src/dsEquals"
 import DSObject from "../../src/DSObject";
 import { IHashCodeGettable } from "../../src/util/hash";
@@ -12,7 +12,7 @@ describe("dsEquals' test", () => {
         expect(dsEquals(undefined, null)).toBeFalsy();
     });
 
-    it("Does a DSObject equals to othe?", () => {
+    it("Does a DSObject equals to other?", () => {
         const a = new DSObject();
         expect(dsEquals(a, 1)).toBeFalsy()
         expect(dsEquals(1, a)).toBeFalsy()
@@ -24,6 +24,10 @@ describe("dsEquals' test", () => {
         }
         expect(dsEquals(1, new CustomEquals())).toBeTruthy()
         expect(dsEquals(new CustomEquals(), 1)).toBeTruthy()
+    })
+
+    it("abs", () => {
+        expect(DSNumber.valueOf(-1).abs().equals(1)).toBeTruthy()
     })
     it("undefiened related", () => {
         expect(dsEquals(undefined, undefined)).toBeTruthy();

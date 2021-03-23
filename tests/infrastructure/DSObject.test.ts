@@ -1,5 +1,6 @@
 import HashMap from "../../src/data-structure/map/HashMap";
 import DSObject from "../../src/DSObject";
+import { Vector2 } from "../../src/math"
 import "ts-jest"
 describe("DSObject", () => {
 
@@ -12,6 +13,15 @@ describe("DSObject", () => {
         let b = new B()
         expect(b.toString().endsWith("B@" + b.getHashCode())).toBeTruthy();
     });
+
+    it("Works when there is cycle dependency", () => {
+        class A extends DSObject {
+            self: A = null!;
+        }
+        const a = new A();
+        a.self = a;
+        expect(() => a.getHashCode()).not.toThrow()
+    })
 
     it("override newHashCode()", () => {
         class A extends DSObject {
@@ -61,5 +71,9 @@ describe("DSObject", () => {
 
     it("get get hashmap classname", () => {
         expect(new HashMap<string, number>().getClassName()).toBe("HashMap");
+    })
+
+    it("isDSObject", () => {
+        expect(DSObject.isDSObject(new Vector2(0, 0))).toBeTruthy()
     })
 });

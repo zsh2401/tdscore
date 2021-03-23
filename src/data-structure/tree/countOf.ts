@@ -18,10 +18,10 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { UTree } from "./ITree";
+import Tree from "./Tree";
 import forEachNode from "./treeForEachNode";
 
-export default function leafsOf<E>(tree: UTree<E>): number {
+export default function leafsOf<E>(tree: Tree<E>): number {
     let count = 0;
     forEachNode(tree, (node) => {
         count++

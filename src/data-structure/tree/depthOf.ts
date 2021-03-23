@@ -18,10 +18,10 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { UTree } from "./ITree";
+import Tree from "./Tree";
 import toTreeNode from "./toTreeNode";
 
-export default function depthOf<E>(tree: UTree<E>): number {
+export default function depthOf<E>(tree: Tree<E>): number {
     const node = toTreeNode(tree)
     if (node === null) {
         return 0;

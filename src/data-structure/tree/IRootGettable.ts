@@ -1,6 +1,6 @@
 /*
- * countOf.ts
- * Created on Tue Mar 16 2021 21:06:08
+ * ITree.ts
+ * Created on Mon Mar 15 2021 15:38:04
  *
  * Description: 
  *   No description.
@@ -18,16 +18,8 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IArrayLike from "../../IArrayLike";
-import Tree from "./Tree";
-import forEachNode from "./treeForEachNode";
+import ITreeNode from "./ITreeNode";
 
-export default function leafsOf<E>(tree: Tree<E>): IArrayLike<E> {
-    const result: E[] = [];
-    forEachNode(tree, (node) => {
-        if (node.children === null || node.children === undefined || node.children.size() === 0) {
-            result.push(node.data)
-        }
-    });
-    return result;
+export default interface IRootGettable<E> {
+    root: ITreeNode<E> | null;
 }

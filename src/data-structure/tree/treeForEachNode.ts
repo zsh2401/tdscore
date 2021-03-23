@@ -22,12 +22,12 @@ import { Action1 } from "../../Action";
 import { ArrayList } from "../linear";
 import IQueue from "../linear/IQueue";
 import LinkedList from "../linear/LinkedList"
-import ITree, { UTree } from "./ITree";
+import Tree from "./Tree";
 import ITreeNode from "./ITreeNode";
 import toTreeNode from "./toTreeNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
 
-export default function forEachNode<E>(tree: UTree<E>,
+export default function forEachNode<E>(tree: Tree<E>,
     consumer: Action1<ITreeNode<E>>,
     strategy: TreeTraversingStrategy = "pre-order"): void {
 
@@ -71,7 +71,7 @@ export default function forEachNode<E>(tree: UTree<E>,
         }
     }
 }
-function levelOrder<E>(_node: UTree<E>, visitor: Action1<ITreeNode<E>>) {
+function levelOrder<E>(_node: Tree<E>, visitor: Action1<ITreeNode<E>>) {
     const q: IQueue<[ITreeNode<E>, number]> = new LinkedList();
     const node = toTreeNode(_node)
     if (node === null) return;

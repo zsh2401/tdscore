@@ -19,13 +19,14 @@
  */
 
 import { Action1 } from "../../Action";
-import ITree from "./ITree";
-import ITreeNode from "./ITreeNode";
+
+import Tree from "./Tree";
 import forEachNode from "./treeForEachNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
 
-export default function forEach<E>(tree: ITree<E> | ITreeNode<E>, consumer: Action1<E>,
+export default function forEach<E>(tree: Tree<E>, consumer: Action1<E>,
     strategy: TreeTraversingStrategy = "pre-order"): void {
 
-    forEachNode(tree, (node) => consumer(node.data), strategy)
+    forEachNode<E>(tree, (node) => consumer(node.data), strategy)
+    
 }

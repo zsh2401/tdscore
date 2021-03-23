@@ -1,6 +1,6 @@
 /*
- * ITree.ts
- * Created on Mon Mar 15 2021 15:38:04
+ * Tree.ts
+ * Created on Tue Mar 23 2021 17:43:09
  *
  * Description: 
  *   No description.
@@ -19,26 +19,11 @@
  */
 
 import ITreeNode from "./ITreeNode";
+import IRootGettable from "./IRootGettable";
 
-export default interface ITree<E> {
-    root: ITreeNode<E> | null;
-}
-
-export type UTree<E> = ITree<E> | ITreeNode<E> | null | undefined;
-// export function leafsOf<E>(tree: ITree<E> | ITreeNode<E>): number {
-//     let count = 0;
-//     forEachNode(tree, (node) => {
-//         if (node.children.size() === 0) {
-//             count++;
-//         }
-//     });
-//     return count;
-// }
-// export function countOf<E>(tree: ITree<E> | ITreeNode<E>): number {
-//     let count = 0;
-//     forEach(tree, () => count++)
-//     return count;
-// }
-
-// export type TreeTraversingStrategies = "pre-order" | "post-order"
-
+/**
+ * 指示一棵树
+ * 为null或undefined时视为空树，否则视为非空树
+ */
+type Tree<E> = IRootGettable<E> | ITreeNode<E> | null | undefined;
+export default Tree;

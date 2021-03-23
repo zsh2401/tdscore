@@ -20,10 +20,10 @@ describe("DSEvent Test", () => {
     it("Method clear() has been protected by password", () => {
         const PWD = "abc";
         const event = new ProtectedDSEvent(PWD, true);
+        let calledTime = 0;
         event.add(() => calledTime++);
         event.add(() => calledTime++);
 
-        let calledTime = 0;
         expect(() => event.clear()).toThrow();
         event.raise(null, new EventArgs(), PWD);
         event.raise(null, new EventArgs(), PWD);

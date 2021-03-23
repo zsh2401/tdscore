@@ -1,7 +1,7 @@
 import Vector2 from "../../src/math/linear-algebra/Vector2"
 import Transformation2 from "../../src/math/linear-algebra/Transformation2"
 import { cos, sin, DEGREE_90, DEGREE_180 } from "../../src/math"
-
+import "ts-jest"
 describe("Vector Test", () => {
     it("add", () => {
         const a = new Vector2(1, 1);
@@ -38,10 +38,10 @@ describe("Vector Test", () => {
     it("2D transformation: rotation", () => {
         const transform = (vector: Vector2, theta: number): Vector2 => {
             const t = new Transformation2(
-                cos(theta),
-                -sin(theta),
-                sin(theta),
-                cos(theta)
+                cos(theta).toJSNumber(),
+                -sin(theta).toJSNumber(),
+                sin(theta).toJSNumber(),
+                cos(theta).toJSNumber()
             );
             return vector.transform(t);
         };

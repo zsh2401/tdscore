@@ -33,8 +33,8 @@ export default class DSNumber extends DSObject {
         return this;
     }
 
-    toString(): string {
-        return this.value.toString();
+    toString(radix:number=10): string {
+        return this.value.toString(radix);
     }
 
     isCloseTo(other: MixedNumber, p: number = 5): boolean {
@@ -119,22 +119,6 @@ export default class DSNumber extends DSObject {
         return DSNumber.valueOf(this.value.absoluteValue());
     }
 
-    hexString(): string {
-        return this.value.toString(16);
-    }
-
-    binString(): string {
-        return this.value.toString(2);
-    }
-
-    octString(): string {
-        return this.value.toString(8);
-    }
-
-    decString(): string {
-        return this.value.toString(10);
-    }
-
     isInteger(): boolean {
         return this.value.isInteger()
     }
@@ -147,7 +131,7 @@ export default class DSNumber extends DSObject {
         if (this.value.isInteger()) {
             return dsHashCode(this.toJSNumber());
         } else {
-            return dsHashCode(this.decString());
+            return dsHashCode(this.toString(10));
         }
     }
 

@@ -81,10 +81,10 @@ describe("DSNumber Test", () => {
 
     it("toString", () => {
         const n = DSNumber.valueOf(15);
-        expect(n.hexString()).toBe("f")
-        expect(n.decString()).toBe("15")
-        expect(n.binString()).toBe("1111")
-        expect(n.octString()).toBe("17")
+        expect(n.toString(16)).toBe("f")
+        expect(n.toString()).toBe("15")
+        expect(n.toString(2)).toBe("1111")
+        expect(n.toString(8)).toBe("17")
     })
 
     it("hashcode related works", () => {

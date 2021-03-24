@@ -21,6 +21,9 @@
 import IList from "../linear/IList";
 
 
+/**
+ * 树节点的数据结构表示
+ */
 export default interface ITreeNode<E> {
     parent?: ITreeNode<E> | null;
     data: E;

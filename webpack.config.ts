@@ -51,6 +51,7 @@ const config: webpack.Configuration = {
 
 	optimization: {
 		minimizer: [
+			//@ts-ignore
 			new TerserPlugin({
 				include: /\.min\.js$/,
 				// cache: true,

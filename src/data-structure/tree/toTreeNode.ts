@@ -18,10 +18,15 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import ITree from "./ITree";
+import Tree from "./Tree";
 import ITreeNode from "./ITreeNode";
 
-export default function <E>(tree: ITree<E> | ITreeNode<E> | null | undefined):
+/**
+ * 将多远的树定义转化为更易处理的根节点
+ * @param tree 
+ * @returns 
+ */
+export default function <E>(tree: Tree<E>):
     ITreeNode<E> | null {
     if (tree === null || tree === undefined) {
         return null;

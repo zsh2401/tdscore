@@ -1,6 +1,6 @@
 import "ts-jest"
-import { ArrayList, BTreeChildrenList, depthOf, ITreeNode, treeForEach, UngrowableArrayList } from "../../../src"
-import ITree from "../../../src/data-structure/tree/ITree"
+import { ArrayList, BTreeChildrenList, depthOf, ITreeNode } from "../../../src"
+import ITree from "../../../src/data-structure/tree/Tree"
 
 const treeForTraverse: ITreeNode<number> = {
     parent: null,

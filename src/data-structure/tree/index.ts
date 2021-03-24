@@ -19,7 +19,8 @@
  */
 
 export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./ITree"
+export { default as ITree } from "./IRootGettable"
+export { default as Tree } from "./Tree"
 export { default as ITreeNode } from "./ITreeNode"
 export { default as toTreeNode } from './toTreeNode'
 export { default as treeForEachNode } from "./treeForEachNode"

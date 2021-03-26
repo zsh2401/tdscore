@@ -18,16 +18,16 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import DSNumber from "../../../DSNumber";
+import { asNumber } from "../../../DSNumber";
 import MixedNumber from "../../../MixedNumber";
 import sin from "../../fn/sin"
 import cos from "../../fn/cos"
 import { RawTransformation2 } from "../RawMartix";
 import { ONE_DEGREE } from "../..";
-export default function (degree: MixedNumber): RawTransformation2<DSNumber> {
-    const theta = degree.toDSNumber().mul(ONE_DEGREE);
+export default function (degree: MixedNumber): RawTransformation2<number> {
+    const theta = asNumber(degree) * ONE_DEGREE;
     return [
-        [cos(theta), sin(theta).negated()],
+        [cos(theta), -sin(theta)],
         [sin(theta), cos(theta)]
     ]
 }

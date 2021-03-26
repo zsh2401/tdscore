@@ -1,8 +1,7 @@
-import Fun from "./Fun"
-export default function (f: Fun): Fun {
+export default function (f: (x: number) => number): (x: number) => number {
     return easy(f, .00000009);
 }
-function easy(f: Fun, dx: number): Fun {
+function easy(f: (x: number) => number, dx: number):  (x: number) => number {
     //@ts-expect-error
     if (f["___isDerivationFunction"]) {
         throw "目前对二阶以及以上的导数存在巨大误差";

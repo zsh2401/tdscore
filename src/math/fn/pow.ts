@@ -20,14 +20,21 @@
 
 import DSNumber from "../../DSNumber";
 import MixedNumber from "../../MixedNumber";
+import createMultiType from "./createMultiType";
+const f = createMultiType(
+    (x: number, n: number) => {
+        return Math.pow(x, n)
+    },
+    (x: DSNumber, n: DSNumber) => {
+        return x.pow(n)
+    }
+);
 /**
  * 后期考虑使用牛顿迭代实现的幂函数
  * @param x 
  * @param n 
  * @returns 
  */
-const f = (x: MixedNumber, n: MixedNumber): DSNumber => {
-    return DSNumber.valueOf(x).pow(n);
+export default function <N extends MixedNumber>(x: N, n: N): N {
+    return f(x, n)
 }
-f.fname = "pow"
-export default f;

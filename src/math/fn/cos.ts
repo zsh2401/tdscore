@@ -1,6 +1,6 @@
 /*
  * cos.ts
- * Created on Tue Mar 16 2021 22:15:08
+ * Created on Fri Mar 26 2021 16:17:29
  *
  * Description: 
  *   No description.
@@ -18,28 +18,57 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import DSNumber from "../../DSNumber";
+
 import MixedNumber from "../../MixedNumber";
-import DSFun from "../DSFun";
-import factorial from "./factorial"
-const TIMES = 15;
-const f: DSFun = (x: MixedNumber): DSNumber => {
-    x = DSNumber.valueOf(x)
-    let result: DSNumber = DSNumber.ZERO;
-    for (let i = 0; i < TIMES; i++) {
-        result = result.plus(term(x, i));
+import DSNumber from "../../DSNumber"
+import factorial from "./factorial";
+import { pow } from ".";
+import createMultiType from "./createMultiType";
+const ONE = DSNumber.valueOf(1);
+const TWO = DSNumber.valueOf(2);
+const ZERO = DSNumber.valueOf(0);
+const N_ONE = DSNumber.valueOf(-1);
+const LATEST_TERMS = DSNumber.valueOf(15);
+
+
+const f = createMultiType(
+    (x: number) => {
+        let result = 0
+        const terms = 15 + Math.abs(x / 2)
+        for (let i = 0; i < terms; i++) {
+            result += term(x, i)
+        }
+        return result;
+    },
+    (x: DSNumber) => {
+        let result = ZERO;
+
+        const terms = LATEST_TERMS.plus(x.dividedBy(2).abs());
+
+        for (let i = ZERO; i.lessThan(terms); i = i.plus(ONE)) {
+            result = result.plus(termDSNumber(x, i))
+        }
+        return result;
     }
-    return result;
+)
+export default function <N extends MixedNumber>(x: N): N {
+    return f(x)
 }
-function term(x: DSNumber, n: number): DSNumber {
-    const sign = (-1) ** n;
-    const s = (2 * n);
+export function term(x: number, n: number): number {
+    const sign: number = pow(-1, n)
+    const s = 2 * n
+
+    const numerator = pow(x, s)
+    const denominator = factorial(s);
+
+    return sign * (numerator / denominator)
+}
+function termDSNumber(x: DSNumber, n: DSNumber): DSNumber {
+    const sign = N_ONE.pow(n)
+    const s = TWO.mul(n)
 
     const numerator = x.pow(s);
     const denominator = factorial(s);
 
-    return (numerator.dividedBy(denominator)).mul(sign);
+    return sign.mul(numerator.dividedBy(denominator))
 }
-f.fname = "cosine"
-f.range = [0, Number.POSITIVE_INFINITY]
-export default f;

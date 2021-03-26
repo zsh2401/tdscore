@@ -17,19 +17,29 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-
 import DSNumber from "../../DSNumber";
 import MixedNumber from "../../MixedNumber";
-import DSFun from "../DSFun";
-
-const f: DSFun = (x: MixedNumber): DSNumber => {
-    x = DSNumber.valueOf(x);
-    if (x.lessThan(0)) {
-        throw new RangeError("negative number is meaningless.");
+import createMultiType from "./createMultiType";
+const f = createMultiType(
+    (x: number) => {
+        if (x < 0) {
+            throw new RangeError("negative number is meaningless.");
+        }
+        if (x === 0 || x === 1) {
+            return 1
+        }
+        return x * f(x - 1)
+    },
+    (x: DSNumber) => {
+        if (x.lessThan(0)) {
+            throw new RangeError("negative number is meaningless.");
+        }
+        if (x.equals(0) || x.equals(1)) {
+            return DSNumber.ONE
+        }
+        return x.mul(f(x.sub(1)))
     }
-    if (x.equals(0) || x.equals(1)) {
-        return DSNumber.valueOf(1)
-    }
-    return x.mul(f(x.sub(1)));
+)
+export default function <N extends MixedNumber>(x: N): N {
+    return f(x)
 }
-export default f;

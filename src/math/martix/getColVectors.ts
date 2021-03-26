@@ -1,7 +1,6 @@
-
 /*
- * index.ts
- * Created on Tue Mar 23 2021 09:21:39
+ * getColVectors.ts
+ * Created on Sat Mar 27 2021 01:56:40
  *
  * Description: 
  *   No description.
@@ -18,14 +17,18 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-export { default as IElementOperator } from "./IElementOperator"
-export { default as martixAdd } from "./add"
-export { default as martixDet } from "./det"
-export { default as martixMul } from "./mul"
-export { default as martixSub } from "./sub"
-export { default as martixSizeOf } from "./sizeof"
-export * from "./transformation"
-export * from "./RawMartix"
-export { default as getColVectors } from "./getColVectors"
-export { default as getRowVectors } from "./getRowVectors"
-export { default as NumberOperator } from "./NumberOperator"
+import RawMartix, { RawVector } from "./RawMartix";
+
+//TODO 
+export default function <E>(m: RawMartix<E>): RawVector<E>[] {
+    const vectors: RawVector<E>[] = []
+    m[0].forEach(e => {
+        vectors.push([[e]])
+    })
+    for (let i = 1; i < m.length; i++) {
+        for (let j = 0; j < m[0].length; j++) {
+            vectors[j].push([m[i][j]])
+        }
+    }
+    return vectors;
+}

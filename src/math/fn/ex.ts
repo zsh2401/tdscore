@@ -1,3 +1,4 @@
+
 /*
  * ex.ts
  * Created on Mon Mar 22 2021 20:20:08
@@ -17,16 +18,28 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import DSNumber from "../../DSNumber";
-import MixedNumber from "../../MixedNumber";
-import DSFun from "../DSFun";
-import factorial from "./factorial";
-import pow from "./pow";
-const f: DSFun = (x: MixedNumber): DSNumber => {
-    let result = DSNumber.ZERO;
-    for (let n = 0; n < 10; n++) {
-        result = result.plus(pow(x, n).dividedBy(factorial(n)))
+import factorial from "./factorial"
+import DSNumber from "../../DSNumber"
+import { asDSNumber } from "../../DSNumber"
+import createMultiType from "./createMultiType"
+import pow from "./pow"
+
+const f = createMultiType(
+    (x: number) => {
+        let result = 0
+        for (let n = 0; n < 10; n++) {
+            result += (pow(x, n) / factorial(n))
+        }
+        return result
+    },
+    (x: DSNumber) => {
+        let result = DSNumber.ZERO
+        for (let n = 0; n < 10; n++) {
+            result = result.plus(pow(x, asDSNumber(n)).dividedBy(factorial(n)))
+        }
+        return result
     }
-    return result;
+)
+export default function <N extends (number | DSNumber)>(x: N): N {
+    return f(x)
 }
-export default f;

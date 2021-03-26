@@ -3,10 +3,10 @@ import factorial from "../../src/math/fn/factorial"
 
 describe("basic math function test", () => {
     it("fac", () => {
-        expect(factorial(0).toJSNumber()).toBe(1);
-        expect(factorial(1).toJSNumber()).toBe(1);
-        expect(factorial(2).toJSNumber()).toBe(2);
-        expect(factorial(12).toJSNumber()).toBe(479_001_600);
+        expect(factorial(0)).toBe(1);
+        expect(factorial(1)).toBe(1);
+        expect(factorial(2)).toBe(2);
+        expect(factorial(12)).toBe(479_001_600);
     })
 
     // it("ignore diff",()=>{

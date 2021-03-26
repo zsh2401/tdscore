@@ -1,1 +1,1 @@
-export { default as rotation2 } from "./rotation2"
+export { default as getRotationTransformation } from "./getRotationTransformation"

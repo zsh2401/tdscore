@@ -19,10 +19,16 @@
  */
 import DSNumber from "../../DSNumber";
 import MixedNumber from "../../MixedNumber";
-import DSFun from "../DSFun";
+import createMultiType from "./createMultiType";
 
-const f: DSFun = (x: MixedNumber): DSNumber => {
-    return x.toDSNumber().abs()
+const f = createMultiType(
+    (x: number) => {
+        return x < 0 ? -x : x;
+    },
+    (x: DSNumber) => {
+        return x.abs()
+    }
+)
+export default function abs<N extends MixedNumber>(x: N): N {
+    return f<N>(x)
 }
-f.fname = "absolute"
-export default f;

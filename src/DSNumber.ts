@@ -33,7 +33,7 @@ export default class DSNumber extends DSObject {
         return this;
     }
 
-    toString(radix:number=10): string {
+    toString(radix: number = 10): string {
         return this.value.toString(radix);
     }
 
@@ -181,5 +181,20 @@ function inCacheRange(data: number | string | DSNumber | BigNumber): [boolean, n
         return [true, n + 128]
     } else {
         return [false, -1]
+    }
+}
+
+export function asNumber(x: MixedNumber): number {
+    if (typeof x === "number") {
+        return x
+    } else {
+        return x.toJSNumber()
+    }
+}
+export function asDSNumber(x: MixedNumber): DSNumber {
+    if (typeof x === "number") {
+        return DSNumber.valueOf(x)
+    } else {
+        return x
     }
 }

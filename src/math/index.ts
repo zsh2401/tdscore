@@ -12,15 +12,11 @@ export {
     ONE_DEGREE, DEGREE_30, DEGREE_45, DEGREE_90,
     DEGREE_120, DEGREE_135, DEGREE_150, DEGREE_180
 }
-export * from "./linear-algebra"
-// export { default as sin } from "./sin"
-// export { default as cos } from "./cos"
-export { default as Fun } from "./Fun"
 export { default as Complex } from "./Complex"
 export { default as Color } from "./Color"
 export { default as max } from "./max"
 export * as ramnujan from "./ramanujan"
 export { default as uuid } from "./uuid"
-export { default as DSFun } from "./DSFun"
 export * from "./fn"
 export * from "./martix"
+export * from "./linear-algebra"

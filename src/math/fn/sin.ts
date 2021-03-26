@@ -19,27 +19,50 @@
  */
 
 import MixedNumber from "../../MixedNumber";
-import DSFun from "../DSFun";
 import DSNumber from "../../DSNumber"
 import factorial from "./factorial";
+import pow from "./pow";
+import createMultiType from "./createMultiType";
 const ONE = DSNumber.valueOf(1);
 const TWO = DSNumber.valueOf(2);
 const ZERO = DSNumber.valueOf(0);
 const N_ONE = DSNumber.valueOf(-1);
 const LATEST_TERMS = DSNumber.valueOf(15);
 
-const f: DSFun = (x: MixedNumber): DSNumber => {
-    x = DSNumber.valueOf(x)
-    let result = ZERO;
 
-    const terms = LATEST_TERMS.plus(x.dividedBy(2).abs());
+const f = createMultiType(
+    (x: number) => {
+        let result = 0
+        const terms = 15 + Math.abs(x / 2)
+        for (let i = 0; i < terms; i++) {
+            result += term(x, i)
+        }
+        return result;
+    },
+    (x: DSNumber) => {
+        let result = ZERO;
 
-    for (let i = ZERO; i.lessThan(terms); i = i.plus(ONE)) {
-        result = result.plus(term(x, i))
+        const terms = LATEST_TERMS.plus(x.dividedBy(2).abs());
+
+        for (let i = ZERO; i.lessThan(terms); i = i.plus(ONE)) {
+            result = result.plus(termDSNumber(x, i))
+        }
+        return result;
     }
-    return result;
+)
+export default function <N extends MixedNumber>(x: N): N {
+    return f(x)
 }
-function term(x: DSNumber, n: DSNumber) {
+export function term(x: number, n: number): number {
+    const sign: number = pow(-1, n)
+    const s = 2 * n + 1
+
+    const numerator = pow(x, s)
+    const denominator = factorial(s);
+
+    return sign * (numerator / denominator)
+}
+function termDSNumber(x: DSNumber, n: DSNumber): DSNumber {
     const sign = N_ONE.pow(n)
     const s = TWO.mul(n).plus(DSNumber.ONE);
 
@@ -48,5 +71,3 @@ function term(x: DSNumber, n: DSNumber) {
 
     return sign.mul(numerator.dividedBy(denominator))
 }
-f.fname = "sine"
-export default f;

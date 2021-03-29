@@ -115,7 +115,7 @@ export default class DSObject implements IHashCodeGettable {
      * @param other 
      * @returns 
      */
-    referenceEquals(other: Nullable<DSObject>): boolean {
+    referenceEquals(other: DSObject | null | undefined): boolean {
         return other !== null && other !== undefined && this.__dsuuid === other.__dsuuid && this === other;
     }
 

@@ -26,51 +26,58 @@ import Tree from "./Tree";
 import ITreeNode from "./ITreeNode";
 import toTreeNode from "./toTreeNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
+import IBTreeNode from "./IBTreeNode";
 
 export default function forEachNode<E>(tree: Tree<E>,
     consumer: Action1<ITreeNode<E>>,
     strategy: TreeTraversingStrategy = "pre-order"): void {
 
     const node = toTreeNode(tree);
+    if (!node) return
 
-    if (node) {
-        const children = node.children ? node.children : new ArrayList<ITreeNode<E>>(0);
-        if (children.size() > 2 && strategy === "in-order") {
-            throw new Error("In order traversing do not supports non-BinTree!");
-        }
-        switch (strategy) {
+    switch (strategy) {
 
-            case "pre-order":
+        case "pre-order":
+            consumer(node);
+            node.children.forEach((child) => {
+                forEachNode(child, consumer, strategy);
+            });
+            break;
+
+        case "in-order":
+            if ((<IBTreeNode<E>>node).left !== void 0 &&
+                (<IBTreeNode<E>>node).right !== void 0) {
+                forEachNode((<IBTreeNode<E>>node).left, consumer, strategy)
+                consumer(node)
+                forEachNode((<IBTreeNode<E>>node).right, consumer, strategy)
+            } else if (node.children.size() > 1) {
+
+                const i = node.children.getIterator()
+
+                i.hasNext() && forEachNode(i.next(), consumer, strategy)
+                consumer(node)
+                i.hasNext() && forEachNode(i.next(), consumer, strategy)
+
+            } else {
                 consumer(node);
-                children.forEach((child) => {
-                    forEachNode(child, consumer, strategy);
-                });
-                break;
+            }
+            break;
 
-            case "in-order":
-                try {
-                    forEachNode(children.listGet(0), consumer, strategy) //Left
-                } finally { }
-                consumer(node);
-                try {
-                    forEachNode(children.listGet(1), consumer, strategy) //Right
-                } finally { }
-                break;
+        case "post-order":
+            node.children.forEach((child) => {
+                forEachNode(child, consumer, strategy);
+            });
+            consumer(node);
+            break;
 
-            case "post-order":
-                children.forEach((child) => {
-                    forEachNode(child, consumer, strategy);
-                });
-                consumer(node);
-                break;
-
-            case "level-order":
-            default:
-                levelOrder(node, consumer);
-                break;
-        }
+        case "level-order":
+        default:
+            levelOrder(node, consumer);
+            break;
     }
+
 }
+//TODO
 function levelOrder<E>(_node: Tree<E>, visitor: Action1<ITreeNode<E>>) {
     const q: IQueue<[ITreeNode<E>, number]> = new LinkedList();
     const node = toTreeNode(_node)

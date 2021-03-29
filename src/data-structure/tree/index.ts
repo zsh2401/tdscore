@@ -19,13 +19,19 @@
  */
 
 export { default as depthOf } from "./depthOf"
-export { default as ITree } from "./IRootGettable"
 export { default as Tree } from "./Tree"
-export { default as ITreeNode } from "./ITreeNode"
+export { default as ITree } from "./IRootGettable"
+
 export { default as toTreeNode } from './toTreeNode'
 export { default as treeForEachNode } from "./treeForEachNode"
 export { default as treeForEach } from "./treeForEach"
 export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
-export { default as BTreeChildrenList } from "./BTreeChildrenList"
+
+export { default as ITreeNode } from "./ITreeNode"
+export { default as IBTreeNode } from "./IBTreeNode"
+
+export { default as TreeNode } from "./TreeNode"
+export { default as BTreeNode } from "./BTreeNode"
+
 export { default as countOf } from "./countOf"
 export { default as leafsOf } from "./leafsOf"

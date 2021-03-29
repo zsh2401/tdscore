@@ -1,7 +1,4 @@
-import Fun from "../../src/math/Fun";
-import sin from "../../src/math/fn/sin"
 import derivation from "../../src/math/derivation"
-import cos from "../../src/math/fn/cos";
 describe("Derivative Test", () => {
 
     it("f(x) = C, f'(x) should be equals to zero", () => {

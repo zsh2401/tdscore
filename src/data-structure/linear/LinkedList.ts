@@ -1,5 +1,8 @@
 import ListBase from "./ListBase";
 import IList from "./IList";
+
+import IIterable from "../IIterable";
+import asIterable from "../iterating/asIterable";
 interface LinkedListNode<E> {
     data: E | null;
     next: LinkedListNode<E> | null;
@@ -25,7 +28,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
 
     private findNode(position: number): LinkedListNode<E> | null {
 
-        if (position === -1 ||this.isEmpty()) {
+        if (position === -1 || this.isEmpty()) {
             return this.headNode;
         } else {
             let current: LinkedListNode<E> | null = this.headNode;
@@ -77,6 +80,25 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         if (node) {
             node.data = element;
         }
+    }
+
+    listAppend(iterable: IIterable<E>) {
+        const i = iterable.getIterator()
+        while (i.hasNext()) {
+            this.listAdd(i.next())
+        }
+    }
+
+    static from<E>(e: ArrayLike<E>): LinkedList<E> {
+        const l = new LinkedList<E>()
+        l.listAppend(asIterable(e))
+        return l;
+    }
+
+    static fromR<E>(...e: E[]): LinkedList<E> {
+        const l = new LinkedList<E>()
+        l.listAppend(asIterable(e))
+        return l;
     }
 
     /**

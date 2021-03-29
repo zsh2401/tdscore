@@ -48,6 +48,13 @@ it("nor", () => {
     expect(() => a.nor(new BitSpan([]))).toThrow()
 })
 
+it("or", () => {
+    const a = new BitSpan([false, false, true, true])
+    const b = new BitSpan([false, true, false, true])
+    const c = a.or(b)
+    expect(c.toJSArray()).toStrictEqual([false, true, true, true])
+})
+
 it("and", () => {
     const a = new BitSpan([false, false, true, true])
     const b = new BitSpan([false, true, false, true])

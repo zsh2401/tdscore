@@ -48,10 +48,10 @@ export default class Vector2
     rotateClockwisely(degree: number): Vector2 {
         const theta = ONE_DEGREE * degree;
         const t = new Transformation2(
-            cos(theta).toJSNumber(),
-            -sin(theta).toJSNumber(),
-            sin(theta).toJSNumber(),
-            cos(theta).toJSNumber()
+            cos(theta),
+            -sin(theta),
+            sin(theta),
+            cos(theta)
         );
         return this.transform(t);
     }

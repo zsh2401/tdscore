@@ -18,23 +18,25 @@
  * See the Mulan PSL v2 for more details.
  */
 
+import DSNumber from "../../DSNumber";
+import MixedNumber from "../../MixedNumber";
 import IElementOperator from "./IElementOperator";
 
-const NumberOperator: IElementOperator<number> = {
-    add: (a: number, b: number): number => {
-        return a + b
+const NumberOperator: IElementOperator<MixedNumber> = {
+    add: (a: MixedNumber, b: MixedNumber): MixedNumber => {
+        return DSNumber.valueOf(a).plus(b);
     },
-    sub: (a: number, b: number): number => {
-        return a - b
+    sub: (a: MixedNumber, b: MixedNumber): MixedNumber => {
+        return DSNumber.valueOf(a).sub(b);
     },
-    mul: (a: number, b: number): number => {
-        return a * b
+    mul: (a: MixedNumber, b: MixedNumber): MixedNumber => {
+        return DSNumber.valueOf(a).mul(b);
     },
-    divBy: (a: number, b: number): number => {
-        return a / b
+    divBy: (a: MixedNumber, b: MixedNumber): MixedNumber => {
+        return DSNumber.valueOf(a).dividedBy(b);
     },
-    nagated: (x: number): number => {
-        return -x
+    nagated: (x: MixedNumber): MixedNumber => {
+        return x.toDSNumber().negated();
     },
     defaultValue: 0
 };

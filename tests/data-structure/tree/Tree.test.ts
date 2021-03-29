@@ -1,30 +1,15 @@
 import "ts-jest"
-import { ArrayList, BTreeChildrenList, depthOf, ITreeNode } from "../../../src"
+import { ArrayList, depthOf, ITreeNode, TreeNode } from "../../../src"
 import ITree from "../../../src/data-structure/tree/Tree"
-
-const treeForTraverse: ITreeNode<number> = {
-    parent: null,
-    data: 0,
-    children: new BTreeChildrenList()
-}
-treeForTraverse.children?.listAdd({ data: 1, children: new BTreeChildrenList() })
-treeForTraverse.children?.listAdd({ data: 2, children: new BTreeChildrenList() })
-treeForTraverse.children?.listGet(0).children?.listAdd({ data: 3, children: new BTreeChildrenList() });
 
 
 //TODO waiting to add more tests
 
 it("depth", () => {
-    const tree: ITree<number> = {
-        root: {
-            parent: null,
-            data: 10,
-            children: new ArrayList()
-        }
-    }
+    const tree: ITree<number> = new TreeNode(10)
     const a: ITreeNode<number> = {
         data: 20,
-        parent: tree.root,
+        parent: tree,
         children: new ArrayList()
     }
     const b: ITreeNode<number> = {
@@ -42,7 +27,7 @@ it("depth", () => {
         parent: c,
         children: new ArrayList()
     }
-    tree.root!.children?.listAdd(a);
+    tree.children?.listAdd(a);
     a.children?.listAdd(b)
     b.children?.listAdd(c)
     c.children?.listAdd(d)

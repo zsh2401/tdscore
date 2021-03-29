@@ -1,6 +1,6 @@
 /*
- * ITreeNode.ts
- * Created on Mon Mar 15 2021 15:37:25
+ * TreeNode.ts
+ * Created on Mon Mar 29 2021 19:45:16
  *
  * Description: 
  *   No description.
@@ -18,26 +18,31 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import Nullable from "../../Nullable";
+import ITreeNode from "./ITreeNode";
+import DSObject from "../../DSObject";
+import Lazy from "../../Lazy";
 import IList from "../linear/IList";
-
+import LinkedList from "../linear/LinkedList";
+import Nullable from "../../Nullable";
 
 /**
- * 树节点的数据结构表示
+ * 标准的树节点实现
  */
-export default interface ITreeNode<E> {
-    /**
-     * 父节点
-     */
-    parent: Nullable<ITreeNode<E>>
+export default class TreeNode<E> extends DSObject implements ITreeNode<E>{
 
-    /**
-     * 元素
-     */
+    parent: Nullable<ITreeNode<E>> = null
     data: E;
 
-    /**
-     * 有序的子节点集合
-     */
-    readonly children: IList<ITreeNode<E>>;
+    protected lchildren: Lazy<LinkedList<ITreeNode<E>>>;
+
+    get children(): IList<ITreeNode<E>> {
+        return this.lchildren.value
+    }
+
+    constructor(data: E) {
+        super()
+        this.data = data
+        this.lchildren = new Lazy(() => new LinkedList())
+    }
+
 }

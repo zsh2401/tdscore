@@ -1,2 +1,2 @@
-type Nullable<E> = E | null | undefined;
+type Nullable<E> = E | null;
 export default Nullable;

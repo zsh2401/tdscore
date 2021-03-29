@@ -39,7 +39,7 @@ export {
 export * from "./Func"
 export * from "./Action"
 
-export * as algorithm from "./algorithm"
+export * from "./algorithm"
 export * as math from "./math"
 /**
  * @deprecated

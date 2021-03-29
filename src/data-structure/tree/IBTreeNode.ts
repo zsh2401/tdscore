@@ -1,9 +1,9 @@
 /*
- * index.ts
- * Created on Tue Mar 23 2021 17:50:28
+ * IBTreeNode.ts
+ * Created on Mon Mar 29 2021 19:45:10
  *
  * Description: 
- *   特殊的，值得单独列出来的算法
+ *   No description.
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -18,5 +18,20 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export * from "./sort"
-export * from "./search"
+import Nullable from "../../Nullable";
+import ITreeNode from "./ITreeNode";
+
+/**
+ * 二叉树节点定义
+ */
+export default interface IBTreeNode<E> extends ITreeNode<E> {
+    /**
+     * 左孩子
+     */
+    left: Nullable<IBTreeNode<E>>
+
+    /**
+     * 右孩子
+     */
+    right: Nullable<IBTreeNode<E>>
+}

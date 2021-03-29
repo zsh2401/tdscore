@@ -1,9 +1,9 @@
 /*
- * index.ts
- * Created on Tue Mar 23 2021 17:50:28
+ * Search
+ * Created on Mon Mar 29 2021 08:50:11
  *
  * Description: 
- *   特殊的，值得单独列出来的算法
+ *   https://blog.csdn.net/chinabhlt/article/details/47420391
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -18,5 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export * from "./sort"
-export * from "./search"
+
+export { default as sequenceSearch } from "./sequenceSearch"
+export { default as binarySearch } from "./binarySearch"
+export { default as buildBinarySearchTree } from "./buildBinarySearchTree"

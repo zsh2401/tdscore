@@ -1,9 +1,9 @@
 /*
- * index.ts
- * Created on Tue Mar 23 2021 17:50:28
+ * PositionGuider.ts
+ * Created on Tue Mar 30 2021 16:55:10
  *
  * Description: 
- *   特殊的，值得单独列出来的算法
+ *   No description.
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -18,6 +18,9 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export * from "./sort"
-export * from "./search"
-export * from "./tree"
+export default interface PositionGuider<E> {
+    /**
+     * @returns positive number if e greater than the unknown number, zero if equals and negative number if e less than the unknownn umber.
+     */
+    (e: E): number;
+}

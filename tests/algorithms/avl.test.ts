@@ -1,6 +1,6 @@
 import "ts-jest"
 import { BTreeNode, IBTreeNode, toJSArrayForItertable, treeAsIterable } from "../../src"
-import { blanceFactorOf, avlInsert, avlRotateRight, avlRotateLeft } from "../../src/algorithm/avl"
+import { blanceFactorOf, avlInsert, createAvlInserter, avlRotateRight, avlRotateLeft, avlDelete } from "../../src/algorithm/tree/avl"
 it("blance factor to be zero", () => {
     expect(blanceFactorOf(null)).toBe(0)
     expect(blanceFactorOf(void 0)).toBe(0)
@@ -88,4 +88,81 @@ it("insert", () => {
         .toStrictEqual([9, 10, 11, 12, 13, 14])
     const bf = blanceFactorOf(tree)
     expect(bf >= -1 && bf <= 1).toBeTruthy()
+})
+
+it("delete the only one element of tree", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+
+    const r = avlDelete(tree, 10, (a, b) => {
+        return a - b
+    })
+    expect(r).toBeNull()
+})
+
+it("delete the element which had one right child", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    tree = avlInsert(tree, 11, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 9, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 12, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 13, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 14, (a, b) => {
+        return a - b
+    })
+    let result = avlDelete(tree, 13, (a, b) => {
+        return a - b
+    })
+    expect(result).not.toBeNull()
+    const bf = blanceFactorOf(result)
+    expect(bf >= -1 && bf <= 1).toBeTruthy()
+    expect(toJSArrayForItertable(treeAsIterable(result, "in-order")))
+        .toStrictEqual([9, 10, 11, 12, 14])
+})
+
+it("delete the element which had one left child", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    const insert = createAvlInserter(tree, (a: number, b: number) => {
+        return a - b
+    });
+    tree = insert(12) //Right
+    tree = insert(9) //Keep balance
+    tree = insert(11) //Right -> Left
+    expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
+        .toStrictEqual([9, 10, 11, 12])
+
+    let deletedTree = avlDelete(tree, 12, (a, b) => {
+        return a - b
+    })
+    expect(deletedTree).not.toBeNull()
+    const bf = blanceFactorOf(deletedTree)
+    expect(bf >= -1 && bf <= 1).toBeTruthy()
+    expect(toJSArrayForItertable(treeAsIterable(deletedTree, "in-order")))
+        .toStrictEqual([9, 10, 11])
+})
+it("delete the element which had one right child", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    const insert = createAvlInserter(tree, (a: number, b: number) => {
+        return a - b
+    });
+    tree = insert(9) //Left Keep balance
+    tree = insert(11) //Right
+    tree = insert(12) //Right -> Right
+    expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
+        .toStrictEqual([9, 10, 11, 12])
+
+    let deletedTree = avlDelete(tree, 11, (a, b) => {
+        return a - b
+    })
+    expect(deletedTree).not.toBeNull()
+    const bf = blanceFactorOf(deletedTree)
+    expect(bf >= -1 && bf <= 1).toBeTruthy()
+    expect(toJSArrayForItertable(treeAsIterable(deletedTree, "in-order")))
+        .toStrictEqual([9, 10, 12])
 })

@@ -11,7 +11,6 @@ function initCache(factory: (num: number) => DSNumber) {
     }
 }
 
-// type CoreNumber =
 /**
  * 支持任意精度计算的DSNumber包装类
  */
@@ -112,11 +111,11 @@ export default class DSNumber extends DSObject {
     }
 
     negated(): DSNumber {
-        return new DSNumber(this.value.negated());
+        return DSNumber.valueOf(this.value.negated())
     }
 
     abs(): DSNumber {
-        return DSNumber.valueOf(this.value.absoluteValue());
+        return DSNumber.valueOf(this.value.absoluteValue())
     }
 
     isInteger(): boolean {
@@ -124,37 +123,37 @@ export default class DSNumber extends DSObject {
     }
 
     toJSNumber(): number {
-        return this.value.toNumber();
+        return this.value.toNumber()
     }
 
     newHashCode(): number {
         if (this.value.isInteger()) {
-            return dsHashCode(this.toJSNumber());
+            return dsHashCode(this.toJSNumber())
         } else {
-            return dsHashCode(this.toString(10));
+            return dsHashCode(this.toString(10))
         }
     }
 
     static valueOf(data: number | string | DSNumber | BigNumber): DSNumber {
 
         //如果是DSNumber
-        const [isInCacheRange, indexInCache] = inCacheRange(data);
+        const [isInCacheRange, indexInCache] = inCacheRange(data)
         if (isInCacheRange) {
             //初始化缓存
             if (cache[0] === undefined) {
-                initCache((n) => new DSNumber(new BigNumber(n)));
+                initCache((n) => new DSNumber(new BigNumber(n)))
             }
             return cache[indexInCache]
         } else if (data instanceof DSNumber) {
-            return data;
+            return data
         } else {
-            return new DSNumber(new BigNumber(data));
+            return new DSNumber(new BigNumber(data))
 
         }
     }
 
     static v(data: number | string | DSNumber): DSNumber {
-        return DSNumber.valueOf(data);
+        return DSNumber.valueOf(data)
     }
 }
 

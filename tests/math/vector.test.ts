@@ -38,10 +38,10 @@ describe("Vector Test", () => {
     it("2D transformation: rotation", () => {
         const transform = (vector: Vector2, theta: number): Vector2 => {
             const t = new Transformation2(
-                cos(theta).toJSNumber(),
-                -sin(theta).toJSNumber(),
-                sin(theta).toJSNumber(),
-                cos(theta).toJSNumber()
+                cos(theta),
+                -sin(theta),
+                sin(theta),
+                cos(theta)
             );
             return vector.transform(t);
         };

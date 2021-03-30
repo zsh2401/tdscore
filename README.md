@@ -16,7 +16,8 @@ Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScri
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
 [![Publish](https://github.com/zsh2401/tdscore/actions/workflows/publish.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/publish.yml)
 ![](https://img.shields.io/github/languages/top/zsh2401/tdscore)
-![](https://img.shields.io/codecov/c/github/zsh2401/tdscore)
+[![](https://img.shields.io/codecov/c/github/zsh2401/tdscore)](https://app.codecov.io/gh/zsh2401/tdscore)
+[![dependencies Status](https://status.david-dm.org/gh/zsh2401/tdscore.svg)](https://david-dm.org/zsh2401/tdscore)
 
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscore)
 ![](https://badgen.net/npm/dy/tdscore)

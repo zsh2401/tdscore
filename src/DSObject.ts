@@ -30,6 +30,12 @@ import Nullable from "./Nullable";
  */
 export default class DSObject implements IHashCodeGettable {
 
+
+    /**
+     * 标记其实一个DSObject
+     */
+    private readonly __this_is_ds_object__ = true
+
     /**
      * 标记对象的不变的UUID
      */
@@ -96,7 +102,12 @@ export default class DSObject implements IHashCodeGettable {
      * @returns 
      */
     static isDSObject<T extends DSObject = DSObject>(e: any): e is T {
-        return e instanceof DSObject;
+        // return e instanceof DSObject;
+        if ((<DSObject>e).__this_is_ds_object__) {
+            return true
+        } else {
+            return false
+        }
     }
 
     /**

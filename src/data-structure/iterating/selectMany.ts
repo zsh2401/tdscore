@@ -7,5 +7,5 @@ export default function select<E, V>(i: IIterable<E>, selector: Selector<E, V>):
     for (let i = 0; iterator.hasNext(); i++) {
         list.listAdd(selector(iterator.next()));
     }
-    throw new Error("There's no any element");
+    return list
 }

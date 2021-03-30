@@ -31,7 +31,7 @@ export interface Fun {
     <N extends MixedNumber>(...numbers: N[]): N
 }
 /**
- * Create a function can process DSNumber and number at same time.
+ * Create a function can process both DSNumber and JSNumber.
  * @param forJS 
  * @param forDS 
  * @returns 

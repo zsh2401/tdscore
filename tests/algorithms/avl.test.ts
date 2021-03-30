@@ -67,26 +67,25 @@ it("rotate right", () => {
         .toStrictEqual([43, 55, 60, 65, 66, 77])
 })
 
-// it("insert", () => {
-//     let tree: IBTreeNode<number> = new BTreeNode(10)
-//     tree = avlInsert(tree, 11, (a, b) => {
-//         return a - b
-//     })
-//     tree = avlInsert(tree, 9, (a, b) => {
-//         return a - b
-//     })
-//     tree = avlInsert(tree, 12, (a, b) => {
-//         return a - b
-//     })
-//     tree = avlInsert(tree, 13, (a, b) => {
-//         return a - b
-//     })
-//     tree = avlInsert(tree, 14, (a, b) => {
-//         return a - b
-//     })
-//     expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
-//         .toStrictEqual([9, 10, 11, 12, 13, 14])
-//     const bf = blanceFactorOf(tree)
-//     console.log(bf)
-//     expect(bf >= -1 && bf <= 1).toBeTruthy()
-// })
+it("insert", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    tree = avlInsert(tree, 11, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 9, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 12, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 13, (a, b) => {
+        return a - b
+    })
+    tree = avlInsert(tree, 14, (a, b) => {
+        return a - b
+    })
+    expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
+        .toStrictEqual([9, 10, 11, 12, 13, 14])
+    const bf = blanceFactorOf(tree)
+    expect(bf >= -1 && bf <= 1).toBeTruthy()
+})

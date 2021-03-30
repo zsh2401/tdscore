@@ -19,9 +19,9 @@
  */
 import DSNumber from "../../DSNumber";
 import MixedNumber from "../../MixedNumber";
-import createMultiType from "./createMultiType";
+import createMFunction from "./createMFunction";
 
-const f = createMultiType(
+const f = createMFunction(
     (x: number) => {
         return x < 0 ? -x : x;
     },

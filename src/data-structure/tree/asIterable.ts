@@ -1,6 +1,6 @@
 /*
- * pow.ts
- * Created on Tue Mar 16 2021 21:59:04
+ * asIterable.ts
+ * Created on Tue Mar 30 2021 10:02:04
  *
  * Description: 
  *   No description.
@@ -18,23 +18,14 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import DSNumber from "../../DSNumber";
-import MixedNumber from "../../MixedNumber";
-import createMFunction from "./createMFunction";
-const f = createMFunction(
-    (x: number, n: number) => {
-        return Math.pow(x, n)
-    },
-    (x: DSNumber, n: DSNumber) => {
-        return x.pow(n)
-    }
-);
-/**
- * 后期考虑使用牛顿迭代实现的幂函数
- * @param x 
- * @param n 
- * @returns 
- */
-export default function <N extends MixedNumber>(x: N, n: N): N {
-    return f(x, n)
+import treeForEach from "./treeForEach";
+import IIterable from "../IIterable";
+import LinkedList from "../linear/LinkedList";
+import Tree from "./Tree";
+import TreeTraversingStrategy from "./TreeTraversingStrategy";
+
+export default function asIterable<E>(tree: Tree<E>, strategy: TreeTraversingStrategy): IIterable<E> {
+    const list = new LinkedList<E>()
+    treeForEach(tree, (e) => list.listAdd(e), "in-order")
+    return list
 }

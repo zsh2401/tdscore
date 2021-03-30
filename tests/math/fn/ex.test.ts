@@ -1,5 +1,5 @@
-import { math } from "../../../src"
+import { ex } from "../../../src"
 
 it("test", () => {
-    expect(math.ex(1).toJSNumber()).toBeCloseTo(Math.E)
+    expect(ex(1)).toBeCloseTo(Math.E)
 })

@@ -22,8 +22,7 @@
 import IHashCodeGettable from "./util/hash/IHashCodeGettable";
 import { getHashCodeString } from "./util/hash/hashCodeForPrimitiveType";
 import _uuid from "./math/uuid";
-import { hashCode } from "./util/hash";
-import Nullable from "./Nullable";
+import dsHashCode from "./dsHashCode";
 
 /**
  * 所有本库内类的基类，其类似于Java，C#的Object或Objective-C中的NSObject。
@@ -42,7 +41,7 @@ export default class DSObject implements IHashCodeGettable {
     protected readonly __dsuuid = _uuid();
 
     /**
-     * 哈希码
+     * 计算的哈希码
      */
     private __hashCode = 0;
 
@@ -59,7 +58,7 @@ export default class DSObject implements IHashCodeGettable {
         try {
             return getHashCodeString(JSON.stringify(this));
         } catch {
-            return hashCode(DSObject.HASHSEED + this.constructor.name + this.__dsuuid);
+            return dsHashCode(DSObject.HASHSEED + this.constructor.name + this.__dsuuid);
         }
     }
 
@@ -93,7 +92,7 @@ export default class DSObject implements IHashCodeGettable {
         if (DSObject.isDSObject(a) && DSObject.isDSObject(b)) {
             return a.getClassName() === b.getClassName();
         }
-        return false;
+        return typeof a === typeof b;
     }
 
     /**

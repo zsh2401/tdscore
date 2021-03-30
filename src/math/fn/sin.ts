@@ -22,7 +22,8 @@ import MixedNumber from "../../MixedNumber";
 import DSNumber from "../../DSNumber"
 import factorial from "./factorial";
 import pow from "./pow";
-import createMultiType from "./createMultiType";
+import createMFunction from "./createMFunction";
+
 const ONE = DSNumber.valueOf(1);
 const TWO = DSNumber.valueOf(2);
 const ZERO = DSNumber.valueOf(0);
@@ -30,7 +31,7 @@ const N_ONE = DSNumber.valueOf(-1);
 const LATEST_TERMS = DSNumber.valueOf(15);
 
 
-const f = createMultiType(
+const f = createMFunction(
     (x: number) => {
         let result = 0
         const terms = 15 + Math.abs(x / 2)
@@ -53,7 +54,7 @@ const f = createMultiType(
 export default function <N extends MixedNumber>(x: N): N {
     return f(x)
 }
-export function term(x: number, n: number): number {
+function term(x: number, n: number): number {
     const sign: number = pow(-1, n)
     const s = 2 * n + 1
 

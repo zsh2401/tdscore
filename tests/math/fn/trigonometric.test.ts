@@ -1,4 +1,4 @@
-import { DSNumber, math } from "../../../src"
+import { DSNumber } from "../../../src"
 import { PI, sin, cos } from "../../../src/math"
 
 const sqrt = Math.sqrt;
@@ -32,7 +32,7 @@ describe("Trigonometric function's test", () => {
         expect(sin(DSNumber.valueOf(3 * PI / 4)).toJSNumber()).toBeCloseTo(sqrt(2) / 2); // 135°
         expect(sin(DSNumber.valueOf(5 * PI / 6)).toJSNumber()).toBeCloseTo(1 / 2); // 150°
 
-        expect(sin(PI).toJSNumber()).toBeCloseTo(0); // 180°
+        expect(sin(PI)).toBeCloseTo(0); // 180°
     });
 
     it("cos", () => {

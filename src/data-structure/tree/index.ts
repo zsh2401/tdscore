@@ -26,6 +26,7 @@ export { default as toTreeNode } from './toTreeNode'
 export { default as treeForEachNode } from "./treeForEachNode"
 export { default as treeForEach } from "./treeForEach"
 export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
+export { default as treeAsIterable } from "./asIterable"
 
 export { default as ITreeNode } from "./ITreeNode"
 export { default as IBTreeNode } from "./IBTreeNode"

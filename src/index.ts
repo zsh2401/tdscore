@@ -11,6 +11,9 @@
  * Mulan Permissive Software License，Version 2
  */
 
+/**
+ * 基建
+ */
 export { default as DSNumber } from "./DSNumber"
 export { default as DSArray } from "./DSArray"
 export { default as DSObject } from "./DSObject"
@@ -39,14 +42,16 @@ export {
 export * from "./Func"
 export * from "./Action"
 
-export * from "./algorithm"
-export * as math from "./math"
+
 /**
- * @deprecated
+ * 可选模块
  */
-export * as DSMath from "./math"
-export * as util from "./util"
-
 export * from "./data-structure"
+export * from "./algorithm"
+export * from "./math"
+export * from "./util"
 
+/**
+ * ES拓展模块
+ */
 import "./ext"

@@ -21,10 +21,10 @@
 import factorial from "./factorial"
 import DSNumber from "../../DSNumber"
 import { asDSNumber } from "../../DSNumber"
-import createMultiType from "./createMultiType"
+import createMFunction from "./createMFunction"
 import pow from "./pow"
 
-const f = createMultiType(
+const f = createMFunction(
     (x: number) => {
         let result = 0
         for (let n = 0; n < 10; n++) {

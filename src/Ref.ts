@@ -18,6 +18,9 @@ export class SettingEventArgs<T> extends EventArgs {
         this.newValue = value;
     }
 }
+/**
+ * Primitive指针
+ */
 export default class Ref<T extends number | boolean | string> extends DSObject {
 
     readonly setting: DSEvent<SettingEventArgs<T>> = new DSEvent();

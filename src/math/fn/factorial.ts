@@ -19,8 +19,8 @@
  */
 import DSNumber from "../../DSNumber";
 import MixedNumber from "../../MixedNumber";
-import createMultiType from "./createMultiType";
-const f = createMultiType(
+import createMFunction from "./createMFunction";
+const f = createMFunction(
     (x: number) => {
         if (x < 0) {
             throw new RangeError("negative number is meaningless.");

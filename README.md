@@ -36,10 +36,10 @@ npm i tdscore
 * 一系列对ES的拓展
 * 能够被编译为二进制可执行程序。查看[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
-# Getting Started
+# 快速上手
 TDSCore支持AMD，CommonJS，ES Module以及全局变量等模块化方式。
 
-## Install
+## 安装
 NPM
 ```sh
 npm i tdscore

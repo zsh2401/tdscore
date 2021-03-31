@@ -1,6 +1,6 @@
 import "ts-jest"
 import { BTreeNode, IBTreeNode, toJSArrayForItertable, treeAsIterable } from "../../src"
-import { blanceFactorOf, avlInsert, createAvlInserter, avlRotateRight, avlRotateLeft, avlDelete } from "../../src/algorithm/tree/avl"
+import { blanceFactorOf, avlInsert, createAvlInserter, avlRotateRight, avlRotateLeft, avlDelete } from "../../src/algorithm/tree/avltree"
 it("blance factor to be zero", () => {
     expect(blanceFactorOf(null)).toBe(0)
     expect(blanceFactorOf(void 0)).toBe(0)
@@ -165,4 +165,72 @@ it("delete the element which had one right child", () => {
     expect(bf >= -1 && bf <= 1).toBeTruthy()
     expect(toJSArrayForItertable(treeAsIterable(deletedTree, "in-order")))
         .toStrictEqual([9, 10, 12])
+})
+
+it("delete with double child (bf: 0)", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    const insert = createAvlInserter(tree, (a: number, b: number) => {
+        return a - b
+    });
+    tree = insert(9)
+    tree = insert(11)
+    expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
+        .toStrictEqual([9, 10, 11])
+
+    const r = avlDelete(tree, 10, (a: number, b: number) => {
+        return a - b
+    })
+
+    expect(r).not.toBeNull()
+    expect(blanceFactorOf(r)).toBeLessThanOrEqual(1)
+    expect(blanceFactorOf(r)).toBeGreaterThanOrEqual(-1)
+    expect(toJSArrayForItertable(treeAsIterable(r, "in-order")))
+        .toStrictEqual([9, 11])
+})
+
+it("delete with double child (bf: 1)", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    const insert = createAvlInserter(tree, (a: number, b: number) => {
+        return a - b
+    });
+    tree = insert(8) //left
+    tree = insert(11) //right, keep balance
+    tree = insert(9) //left->right
+    expect(blanceFactorOf(tree)).toBe(1)
+    expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
+        .toStrictEqual([8, 9, 10, 11])
+
+    const r = avlDelete(tree, 10, (a: number, b: number) => {
+        return a - b
+    })
+
+    expect(r).not.toBeNull()
+    expect(blanceFactorOf(r)).toBeLessThanOrEqual(1)
+    expect(blanceFactorOf(r)).toBeGreaterThanOrEqual(-1)
+    expect(toJSArrayForItertable(treeAsIterable(r, "in-order")))
+        .toStrictEqual([8, 9, 11])
+})
+
+it("delete with double child (bf: -1)", () => {
+    let tree: IBTreeNode<number> = new BTreeNode(10)
+    const insert = createAvlInserter(tree, (a: number, b: number) => {
+        return a - b
+    });
+    tree = insert(8) //left, keep balance
+    tree = insert(12) //right
+    tree = insert(11) //left->right
+    expect(blanceFactorOf(tree)).toBe(-1)
+    expect(tree.data).toBe(10)
+    expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
+        .toStrictEqual([8, 10, 11, 12])
+
+    const r = avlDelete(tree, 10, (a: number, b: number) => {
+        return a - b
+    })
+
+    expect(r).not.toBeNull()
+    expect(blanceFactorOf(r)).toBeLessThanOrEqual(1)
+    expect(blanceFactorOf(r)).toBeGreaterThanOrEqual(-1)
+    expect(toJSArrayForItertable(treeAsIterable(r, "in-order")))
+        .toStrictEqual([8, 11, 12])
 })

@@ -3,7 +3,32 @@
  * Created on Tue Mar 30 2021 16:43:26
  *
  * Description: 
- *   Operations related to AVL Tree
+ *   Operations related to AVL Tree.
+ * 
+ *   AVL树（Adelson-Velsky and Landis Tree）是计算机科学中最早被发明的自平衡二叉查找树。
+ *   在AVL树中，任一节点对应的两棵子树的最大高度差为1，因此它也被称为高度平衡树。
+ *   查找、插入和删除在平均和最坏情况下的时间复杂度都是O(log n)。
+ *   增加和删除元素的操作则可能需要借由一次或多次树旋转，以实现树的重新平衡。
+ *   AVL树得名于它的发明者G. M. Adelson-Velsky和Evgenii Landis，他们在
+ *   1962年的论文《An algorithm for the organization of information》中
+ *   公开了这一数据结构。
+ * 
+ *   In computer science, an AVL tree (named after inventors 
+ *   Adelson-Velsky and Landis) is a self-balancing binary 
+ *   search tree. It was the first such data structure to be 
+ *   invented.[2] In an AVL tree, the heights of the two child 
+ *   subtrees of any node differ by at most one; if at any time 
+ *   they differ by more than one, rebalancing is done to restore 
+ *   this property. Lookup, insertion, and deletion all take O(log n) 
+ *   time in both the average and worst cases, where n is the number of 
+ *   nodes in the tree prior to the operation. Insertions and deletions
+ *   may require the tree to be rebalanced by one or more tree rotations.
+ *
+ *    The AVL tree is named after its two Soviet inventors, Georgy Adelson-Velsky 
+ *   and Evgenii Landis, who published it in their 1962 paper 
+ *   "An algorithm for the organization of information".
+ *   https://zh.wikipedia.org/zh-hans/AVL%E6%A0%91
+ *   https://en.wikipedia.org/wiki/AVL_tree
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -24,9 +49,12 @@ import IBTreeNode from "../../data-structure/tree/IBTreeNode"
 import BTreeNode from "../../data-structure/tree/BTreeNode";
 import Nullable from "../../Nullable";
 import PositionGuider from "./PositionGuider";
+import forEachNode from "../../data-structure/tree/treeForEachNode";
+import { HashSet } from "../../data-structure";
 
 /**
  * 计算二叉树的平衡因子
+ * 正数则左边较重，0则完全平衡，负数则右边较重
  * @param tree 
  * @returns 
  */
@@ -37,7 +65,7 @@ export function blanceFactorOf<E>(tree: IBTreeNode<E> | null | undefined): numbe
 
 /**
  * 
- * 平衡二叉树左旋
+ * AVL左旋
  * https://zhuanlan.zhihu.com/p/56066942
  * 
  * @param tree 
@@ -53,7 +81,7 @@ export function avlRotateLeft<E>(tree: IBTreeNode<E>): IBTreeNode<E> {
 
 /**
  * 
- * 平衡二叉树右旋
+ * AVL右旋
  * https://zhuanlan.zhihu.com/p/56066942
  * 
  * @param tree 
@@ -188,7 +216,6 @@ export function avlDelete<E>(tree: IBTreeNode<E>, e: E, c: IComparer<E>): Nullab
     //进行查找
     find(superRoot.left)
 
-    // console.log(`${nodeToBeDeleted!.data}\n${parent!.data}`)
 
     //fuck typescript
     targetNode = <IBTreeNode<E> | null>targetNode;
@@ -202,9 +229,11 @@ export function avlDelete<E>(tree: IBTreeNode<E>, e: E, c: IComparer<E>): Nullab
     if (targetNode.left && targetNode.right) {
         _deleteDoubleChildrenNode(parent, targetNode, c)
     }
-    // 独生子
-    else if (targetNode.left || targetNode.right) {
 
+    // 独生子或丁克
+    else {
+
+        //直接删除，然后把孩子接过来
         if (parent.left === targetNode) {
 
             parent.left = targetNode.left || targetNode.right
@@ -212,20 +241,6 @@ export function avlDelete<E>(tree: IBTreeNode<E>, e: E, c: IComparer<E>): Nullab
         } else {
 
             parent.right = targetNode.left || targetNode.right
-        }
-
-    }
-    // 丁克
-    else {
-
-        if (parent.left === targetNode) {
-
-            parent.left = null
-
-        } else {
-
-            parent.right = null
-
         }
 
     }
@@ -241,23 +256,68 @@ export function avlDelete<E>(tree: IBTreeNode<E>, e: E, c: IComparer<E>): Nullab
  */
 function _deleteDoubleChildrenNode<E>(parent: IBTreeNode<E>, target: IBTreeNode<E>, c: IComparer<E>): void {
 
-    //0 or 1
-    // if (blanceFactorOf(target) + 1 > 0) {
-    //     const max = findMax(target.left!)
-    //     if (parent.left === target) {
-    //         parent.left = max
-    //     } else {
-    //         parent.right = max
-    //     }
-    //     target.left!
-    // } else {
+    //删除右子树的最小关键字
+    if (blanceFactorOf(target) + 1 > 0) {
 
-    // }
+        const [maxParent, max] = findMax(target, target.left!)
 
+        if (maxParent.right === max) {
+            maxParent.right = max.left
+        } else {
+            maxParent.left = max.left
+        }
+        if (parent.right === target) {
+            parent.right = max
+        } else {
+            parent.left = max
+        }
+
+        max.left = target.left
+        max.right = target.right
+    } else {
+        const [minParent, min] = findMin(target, target.right!)
+
+        if (minParent.right === min) {
+            minParent.right = min.right
+        } else {
+            minParent.left = min.left
+        }
+        if (parent.right === target) {
+            parent.right = min
+        } else {
+            parent.left = min
+        }
+
+        min.left = target.left
+        min.right = target.right
+    }
 }
-// function findMax(target: IBTreeNode<E>): IBTreeNode<E> {
 
-// }
+/**
+ * 找出最大的节点
+ * 
+ * @param tree 
+ * @returns parent and it's selft
+ */
+function findMax<E>(parent: IBTreeNode<E>, tree: IBTreeNode<E>): [IBTreeNode<E>, IBTreeNode<E>] {
+    if (tree.right === null) {
+        return [parent, tree]
+    }
+    return findMax(tree, tree.right)
+}
+
+/**
+ * 找出最小的节点
+ * 
+ * @param tree 
+ * @returns 
+ */
+function findMin<E>(parent: IBTreeNode<E>, tree: IBTreeNode<E>): [IBTreeNode<E>, IBTreeNode<E>] {
+    if (tree.left === null) {
+        return [parent, tree]
+    }
+    return findMax(tree, tree.left)
+}
 
 /**
  * 

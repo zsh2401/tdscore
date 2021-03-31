@@ -22,13 +22,13 @@ import Tree from "./Tree";
 import ITreeNode from "./ITreeNode";
 
 /**
- * 将多远的树定义转化为更易处理的根节点
+ * 将多重定义的树定义转化为更易处理的根节点
  * @param tree 
  * @returns 
  */
 export default function <E>(tree: Tree<E>):
     ITreeNode<E> | null {
-    if (tree === null || tree === undefined) {
+    if (tree === null || tree === void 0) {
         return null;
     } else {
         //@ts-ignore

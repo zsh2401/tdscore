@@ -1,3 +1,3 @@
-export * from "./avl"
+export * from "./avltree"
 export * from "./rbtree"
 export { default as PositionGuider } from "./PositionGuider"

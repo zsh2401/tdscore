@@ -64,7 +64,7 @@ export type AvlBiTreeNode<E> = IBiTreeNode<E>
  * @param tree 
  * @returns 
  */
-export function blanceFactorOf<E>(tree: IBiTreeNode<E> | null | undefined): number {
+export function blanceFactorOf<E>(tree: AvlBiTreeNode<E> | null | undefined): number {
     if (!tree) return 0
     return depthOf(tree.left) - depthOf(tree.right)
 }

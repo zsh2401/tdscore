@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IBTreeNode from "../../data-structure/tree/IBTreeNode";
+import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 import Nullable from "../../Nullable";
 import PositionGuider from "./PositionGuider";
 import IComparer from "../sort/IInternalSortAlgorithm";
@@ -30,8 +30,8 @@ import IComparer from "../sort/IInternalSortAlgorithm";
  * @param newElement 
  * @param comparer 
  */
-export function rbtreeInsert<E>(tree: IBTreeNode<E>, newElement: E, comparer: IComparer<E>):
-    IBTreeNode<E> {
+export function rbtreeInsert<E>(tree: IBiTreeNode<E>, newElement: E, comparer: IComparer<E>):
+    IBiTreeNode<E> {
     throw new Error("Method has not been implemented.")
 }
 
@@ -42,8 +42,8 @@ export function rbtreeInsert<E>(tree: IBTreeNode<E>, newElement: E, comparer: IC
  * @param target 
  * @param comparer 
  */
-export function rbtreeDelete<E>(tree: IBTreeNode<E>, target: E, comparer: IComparer<E>):
-    Nullable<IBTreeNode<E>> {
+export function rbtreeDelete<E>(tree: IBiTreeNode<E>, target: E, comparer: IComparer<E>):
+    Nullable<IBiTreeNode<E>> {
     throw new Error("Method has not been implemented.")
 }
 
@@ -55,8 +55,8 @@ export function rbtreeDelete<E>(tree: IBTreeNode<E>, target: E, comparer: ICompa
  * @param guider 
  * @returns 
  */
-export function rbtreeSearch<E>(tree: IBTreeNode<E>, guider: PositionGuider<E>):
-    Nullable<IBTreeNode<E>> {
+export function rbtreeSearch<E>(tree: IBiTreeNode<E>, guider: PositionGuider<E>):
+    Nullable<IBiTreeNode<E>> {
 
     const cr = guider(tree.data)
     if (cr === 0) {

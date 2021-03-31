@@ -24,14 +24,14 @@ import ITreeNode from "./ITreeNode";
 /**
  * 二叉树节点定义
  */
-export default interface IBTreeNode<E> extends ITreeNode<E> {
+export default interface IBiTreeNode<E> extends ITreeNode<E> {
     /**
      * 左孩子
      */
-    left: Nullable<IBTreeNode<E>>
+    left: Nullable<IBiTreeNode<E>>
 
     /**
      * 右孩子
      */
-    right: Nullable<IBTreeNode<E>>
+    right: Nullable<IBiTreeNode<E>>
 }

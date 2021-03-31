@@ -29,10 +29,10 @@ export { default as TreeTraversingStrategy } from "./TreeTraversingStrategy"
 export { default as treeAsIterable } from "./asIterable"
 
 export { default as ITreeNode } from "./ITreeNode"
-export { default as IBTreeNode } from "./IBTreeNode"
+export { default as IBTreeNode } from "./IBiTreeNode"
 
 export { default as TreeNode } from "./TreeNode"
-export { default as BTreeNode } from "./BTreeNode"
+export { default as BTreeNode } from "./BiTreeNode"
 
 export { default as countOf } from "./countOf"
 export { default as leafsOf } from "./leafsOf"

@@ -19,14 +19,13 @@
  */
 
 import { Action1 } from "../../Action";
-import { ArrayList } from "../linear";
 import IQueue from "../linear/IQueue";
 import LinkedList from "../linear/LinkedList"
 import Tree from "./Tree";
 import ITreeNode from "./ITreeNode";
 import toTreeNode from "./toTreeNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
-import IBTreeNode from "./IBTreeNode";
+import IBiTreeNode from "./IBiTreeNode";
 
 export default function forEachNode<E>(tree: Tree<E>,
     consumer: Action1<ITreeNode<E>>,
@@ -45,11 +44,11 @@ export default function forEachNode<E>(tree: Tree<E>,
             break;
 
         case "in-order":
-            if ((<IBTreeNode<E>>node).left !== void 0 &&
-                (<IBTreeNode<E>>node).right !== void 0) {
-                forEachNode((<IBTreeNode<E>>node).left, consumer, strategy)
+            if ((<IBiTreeNode<E>>node).left !== void 0 &&
+                (<IBiTreeNode<E>>node).right !== void 0) {
+                forEachNode((<IBiTreeNode<E>>node).left, consumer, strategy)
                 consumer(node)
-                forEachNode((<IBTreeNode<E>>node).right, consumer, strategy)
+                forEachNode((<IBiTreeNode<E>>node).right, consumer, strategy)
             } else if (node.children.size() > 1) {
 
                 const i = node.children.getIterator()

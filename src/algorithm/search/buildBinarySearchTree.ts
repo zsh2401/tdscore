@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 import { BTreeNode } from "../../data-structure";
-import IBTreeNode from "../../data-structure/tree/IBTreeNode";
+import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 import dsHashCode from "../../dsHashCode";
 import IArrayLike from "../../IArrayLike";
 
@@ -45,13 +45,13 @@ import IArrayLike from "../../IArrayLike";
  * 
  */
 export default function <E>(a: IArrayLike<E>):
-    IBTreeNode<E> {
+    IBiTreeNode<E> {
     //无效的树
     if (a.length < 1) {
         throw new Error("There's nothing to be used for building binary search tree.")
     }
     //创建根节点
-    let root: IBTreeNode<E> = new BTreeNode(a[0])
+    let root: IBiTreeNode<E> = new BTreeNode(a[0])
 
     //将所有元素插入到根节点中
     for (let i = 1; i < a.length; i++) {
@@ -67,7 +67,7 @@ export default function <E>(a: IArrayLike<E>):
  * @param tHash 根节点数据的哈希值
  * @param eHash 元素的哈希值
  */
-function insertInto<E>(tree: IBTreeNode<E>, e: E, tHash: number, eHash: number): void {
+function insertInto<E>(tree: IBiTreeNode<E>, e: E, tHash: number, eHash: number): void {
     //当根大于元素，元素要到左边去
     if (tHash >= eHash) {
         //左节点是空的，直接插入

@@ -19,36 +19,36 @@
  */
 
 import Nullable from "../../Nullable";
-import IBTreeNode from "./IBTreeNode";
+import IBiTreeNode from "./IBiTreeNode";
 import TreeNode from "./TreeNode";
 
 /**
  * 标准的二叉树节点实现
  */
-export default class BTreeNode<E> extends TreeNode<E> implements IBTreeNode<E>{
+export default class BTreeNode<E> extends TreeNode<E> implements IBiTreeNode<E>{
     
-    private _left: Nullable<IBTreeNode<E>> = null
-    private _right: Nullable<IBTreeNode<E>> = null
+    private _left: Nullable<IBiTreeNode<E>> = null
+    private _right: Nullable<IBiTreeNode<E>> = null
 
-    get left(): Nullable<IBTreeNode<E>> {
+    get left(): Nullable<IBiTreeNode<E>> {
         return this._left
     }
 
-    set left(v: Nullable<IBTreeNode<E>>) {
+    set left(v: Nullable<IBiTreeNode<E>>) {
         this.applyLeft(v)
         this._left = v
     }
 
-    get right(): Nullable<IBTreeNode<E>> {
+    get right(): Nullable<IBiTreeNode<E>> {
         return this._right
     }
 
-    set right(v: Nullable<IBTreeNode<E>>) {
+    set right(v: Nullable<IBiTreeNode<E>>) {
         this.applyRight(v)
         this._right = v
     }
 
-    applyLeft(v: Nullable<IBTreeNode<E>>) {
+    applyLeft(v: Nullable<IBiTreeNode<E>>) {
         if (this._left) {
             this.children.collectionRemove(this._left)
         }
@@ -57,7 +57,7 @@ export default class BTreeNode<E> extends TreeNode<E> implements IBTreeNode<E>{
         }
 
     }
-    applyRight(v: Nullable<IBTreeNode<E>>) {
+    applyRight(v: Nullable<IBiTreeNode<E>>) {
         if (this._right) {
             this.children.collectionRemove(this._right)
         }

@@ -1,5 +1,5 @@
 import "ts-jest"
-import { CollectionBase, LinkedList, util } from "../../src"
+import { LinkedList } from "../../src"
 import ICollection from "../../src/data-structure/ICollection";
 it("add collection", () => {
     const collection: ICollection<number> = new LinkedList<number>();

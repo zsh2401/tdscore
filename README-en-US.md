@@ -1,4 +1,4 @@
-# 警告: 此库仍在开发中，请勿用于生产环境
+# WARNING: This library is still developing, do not use this under production environment.
 
 <div align="center">
 
@@ -6,13 +6,13 @@
 
 # 😊 [TDSCore](http://ds.zsh2401.top)
 
-中文 | [English](./README-en-US.md)
+[中文](./README.md) | English
 
 ```sh
 npm i tdscore
 ```
 
-几乎使用纯TypeScript实现的数据结构，算法，数学程式，以及对ECMA Script的拓展。✨
+Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScript!✨ 
 
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
@@ -29,15 +29,15 @@ npm i tdscore
    
 
 
-# 特性
-* 可读性高: 开发的首要目标为研习🌌
-* 到处运行: 编译产物仅使用ES5语法特性。
-* 麻雀虽小：压缩传输仅19.1KiB（v0.1.16)。
-* 一系列对ES的拓展
-* 能够被编译为二进制可执行程序。查看[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
+# Features
+* Readable: Designed for study at first🌌.
+* Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
+* Smaller:  19.1kB minified and gzipped😍(v0.1.16).
+* A series of tools which can enhance the ability of ECMA Script🚀.
+* Can be compiled to binary. see [tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
 # Getting Started
-TDSCore支持AMD，CommonJS，ES Module以及全局变量等模块化方式。
+TDSCore is supporting AMD, CommonJS, ES Moudle and Global variable.
 
 ## Install
 NPM
@@ -46,14 +46,14 @@ npm i tdscore
 #or
 yarn add tdscore
 ```
-浏览器
+Browser
 ```html
 <srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```
 
-### 引入🎉
+### Import🎉
 ```typescript
-//浏览器🌐
+//Browser🌐
 const HashMap = tdscore.HashMap;
 
 //ES Module🍪
@@ -67,7 +67,7 @@ const HashMap = tdscore.HashMap;
 import HashMap from "tdscore/lib/data-structure/map/HashMap"
 
 ```
-### 使用示例
+### Example of usage
 ```typescript
 //TypeScript
 let hashMap = new HashMap<string,number>();
@@ -77,51 +77,53 @@ var hashMap = new HashMap();
 hashMap.mapPut("a",1);
 console.log(hashMap.mapGet("a")); // 1
 ```
-# 在RunKit上尝试
-T您不需要配置任何开发环境。 
+# Try on RunKit
+Try any Node.js package right in your browser.   
 [RunKit for TDSCore](https://npm.runkit.com/tdscore)
 
-# 文档 🍕
-[查看官网](http://ds.zsh2401.top)
+# Documents 🍕
+[View on website](http://ds.zsh2401.top)
 
-# 加入开发🤝
-## 克隆并且切换到dev分支
+# Join in development🤝
+## Clone and checkout to dev
 ```sh
 git clone https://github.com/zsh2401/tdscore.git
 cd tdscore
 git fetch origin dev
 git checkout dev
 ```
-## 安装依赖
+## Install dependencies
 ```sh
-yarn
+yarn ci
 ```
-## 构建与测试
+## Build & Test
 ```sh
-# 打包为umd单文件模块，输出产物位于dist文件夹
+# Build bundle files in dist
 yarn build:dist 
-
-# 编译为es6代码，输出产物位于es文件夹
+# Compiling target is ECMAScript6
 yarn build:es 
-
-# 编译为ES5代码，输出产物位于lib文件夹
+# Compiling target is ES5 and CommonJS
 yarn build:lib 
 
-# 执行上面全部s
+# Run all of above
 yarn build
 ```
-### 单元测试
+### Unit Test
 ```sh
 yarn test
+#or
+yarn test:coverage
 ```
+Notice:
+* Please commit at dev branch.
+* Pull requrest are always welcomed.
 
-注意：
-* 请在dev分支上进行开发
-* 欢迎PR
+<!-- <div align="center"> -->
 
-# 贡献者
+# Contributors
 
 <a href="https://github.com/zsh2401/tdscore/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
 </a>
 
+<!-- </div> -->

@@ -46,7 +46,7 @@
 import depthOf from "../../data-structure/tree/depthOf"
 import { IComparer } from "../sort/IInternalSortAlgorithm";
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode"
-import BTreeNode from "../../data-structure/tree/BiTreeNode";
+import BiTreeNode from "../../data-structure/tree/BiTreeNode";
 import Nullable from "../../Nullable";
 import PositionGuider from "./PositionGuider";
 
@@ -110,13 +110,17 @@ export function avlRotateRight<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
  * @param c 
  * @returns 
  */
-export function avlInsert<E>(tree: AvlBiTreeNode<E>, e: E, c: IComparer<E>): AvlBiTreeNode<E> {
+export function avlInsert<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E>): AvlBiTreeNode<E> {
+
+    if (tree === null) {
+        return new BiTreeNode(e)
+    }
 
     //以二叉查找树的方式插入
     _insert(tree, e, c)
 
     //调整二叉平衡树
-    return adjustAvl(tree)
+    return _adjustAvl(tree)
 
 }
 
@@ -143,7 +147,7 @@ export function createAvlInserter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E>):
  * @param tree 
  * @returns 
  */
-function adjustAvl<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
+function _adjustAvl<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
 
     //计算平衡因子
     const bf = blanceFactorOf(tree)
@@ -183,10 +187,12 @@ function adjustAvl<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
  * @param e 
  * @param c 
  */
-export function avlDelete<E>(tree: AvlBiTreeNode<E>, e: E, c: IComparer<E>): Nullable<AvlBiTreeNode<E>> {
+export function avlDelete<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E>): Nullable<AvlBiTreeNode<E>> {
+
+    if (tree === null) return null
 
     //使用一个超级根节点，使代码无需多余的NULL判断
-    const superRoot = new BTreeNode<E>(undefined!)
+    const superRoot = new BiTreeNode<E>(undefined!)
     superRoot.left = tree
 
     //父节点
@@ -251,7 +257,7 @@ export function avlDelete<E>(tree: AvlBiTreeNode<E>, e: E, c: IComparer<E>): Nul
 
     }
 
-    return superRoot.left === null ? null : adjustAvl(superRoot.left);
+    return superRoot.left === null ? null : _adjustAvl(superRoot.left);
 }
 
 /**
@@ -265,7 +271,7 @@ function _deleteDoubleChildrenNode<E>(parent: AvlBiTreeNode<E>, target: AvlBiTre
     //删除右子树的最小关键字
     if (blanceFactorOf(target) + 1 > 0) {
 
-        const [maxParent, max] = findMax(target, target.left!)
+        const [maxParent, max] = _findMax(target, target.left!)
 
         if (maxParent.right === max) {
             maxParent.right = max.left
@@ -281,7 +287,7 @@ function _deleteDoubleChildrenNode<E>(parent: AvlBiTreeNode<E>, target: AvlBiTre
         max.left = target.left
         max.right = target.right
     } else {
-        const [minParent, min] = findMin(target, target.right!)
+        const [minParent, min] = _findMin(target, target.right!)
 
         if (minParent.right === min) {
             minParent.right = min.right
@@ -305,11 +311,11 @@ function _deleteDoubleChildrenNode<E>(parent: AvlBiTreeNode<E>, target: AvlBiTre
  * @param tree 
  * @returns parent and it's selft
  */
-function findMax<E>(parent: AvlBiTreeNode<E>, tree: AvlBiTreeNode<E>): [AvlBiTreeNode<E>, AvlBiTreeNode<E>] {
+function _findMax<E>(parent: AvlBiTreeNode<E>, tree: AvlBiTreeNode<E>): [AvlBiTreeNode<E>, AvlBiTreeNode<E>] {
     if (tree.right === null) {
         return [parent, tree]
     }
-    return findMax(tree, tree.right)
+    return _findMax(tree, tree.right)
 }
 
 /**
@@ -318,11 +324,11 @@ function findMax<E>(parent: AvlBiTreeNode<E>, tree: AvlBiTreeNode<E>): [AvlBiTre
  * @param tree 
  * @returns 
  */
-function findMin<E>(parent: AvlBiTreeNode<E>, tree: AvlBiTreeNode<E>): [AvlBiTreeNode<E>, AvlBiTreeNode<E>] {
+function _findMin<E>(parent: AvlBiTreeNode<E>, tree: AvlBiTreeNode<E>): [AvlBiTreeNode<E>, AvlBiTreeNode<E>] {
     if (tree.left === null) {
         return [parent, tree]
     }
-    return findMax(tree, tree.left)
+    return _findMin(tree, tree.left)
 }
 
 /**
@@ -347,9 +353,11 @@ export function createAvlDeleter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E>): (e
  * @param guider 
  * @returns 
  */
-export function avlSearch<E>(tree: AvlBiTreeNode<E>, guider: PositionGuider<E>)
+export function avlSearch<E>(tree: AvlBiTreeNode<E> | null, guider: PositionGuider<E>)
     : Nullable<AvlBiTreeNode<E>> {
 
+    if (tree === null) return null
+    
     const cr = guider(tree.data)
     if (cr === 0) {
         return tree
@@ -405,13 +413,13 @@ function _insert<E>(tree: AvlBiTreeNode<E>, e: E, c: IComparer<E>): void {
     const result = c(tree.data, e);
     if (result <= 0) {
         if (tree.right === null) {
-            tree.right = new BTreeNode(e)
+            tree.right = new BiTreeNode(e)
         } else {
             return _insert(tree.right, e, c)
         }
     } else {
         if (tree.left === null) {
-            tree.left = new BTreeNode(e)
+            tree.left = new BiTreeNode(e)
         } else {
             return _insert(tree.left, e, c)
         }

@@ -25,7 +25,7 @@ import TreeNode from "./TreeNode";
 /**
  * 标准的二叉树节点实现
  */
-export default class BTreeNode<E> extends TreeNode<E> implements IBiTreeNode<E>{
+export default class BiTreeNode<E> extends TreeNode<E> implements IBiTreeNode<E>{
     
     private _left: Nullable<IBiTreeNode<E>> = null
     private _right: Nullable<IBiTreeNode<E>> = null

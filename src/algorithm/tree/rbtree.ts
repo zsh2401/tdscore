@@ -22,6 +22,21 @@ import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 import Nullable from "../../Nullable";
 import PositionGuider from "./PositionGuider";
 import IComparer from "../sort/IInternalSortAlgorithm";
+import BiTreeNode from "../../data-structure/tree/BiTreeNode";
+
+/**
+ * 红黑树属性定义，套了一层壳，带上了颜色属性
+ */
+export interface RedBlackTreeNodeProperties<E> {
+    data: E
+    nil: boolean
+    color: "red" | "black"
+}
+
+/**
+ * 红黑树节点定义，在二叉树节点之上进行拓展
+ */
+export type RedBlackTreeNode<E> = IBiTreeNode<RedBlackTreeNodeProperties<E>>
 
 /**
  * 红黑树插入
@@ -30,8 +45,17 @@ import IComparer from "../sort/IInternalSortAlgorithm";
  * @param newElement 
  * @param comparer 
  */
-export function rbtreeInsert<E>(tree: IBiTreeNode<E>, newElement: E, comparer: IComparer<E>):
-    IBiTreeNode<E> {
+export function rbtreeInsert<E>(tree: RedBlackTreeNode<E> | null, newElement: E, comparer: IComparer<E>):
+    RedBlackTreeNode<E> {
+    if (tree) {
+
+    } else {
+        return new BiTreeNode({
+            data: newElement,
+            color: "black",
+            nil: false
+        });
+    }
     throw new Error("Method has not been implemented.")
 }
 
@@ -42,8 +66,8 @@ export function rbtreeInsert<E>(tree: IBiTreeNode<E>, newElement: E, comparer: I
  * @param target 
  * @param comparer 
  */
-export function rbtreeDelete<E>(tree: IBiTreeNode<E>, target: E, comparer: IComparer<E>):
-    Nullable<IBiTreeNode<E>> {
+export function rbtreeDelete<E>(tree: RedBlackTreeNode<E>, target: E, comparer: IComparer<E>):
+    Nullable<RedBlackTreeNode<E>> {
     throw new Error("Method has not been implemented.")
 }
 
@@ -55,10 +79,10 @@ export function rbtreeDelete<E>(tree: IBiTreeNode<E>, target: E, comparer: IComp
  * @param guider 
  * @returns 
  */
-export function rbtreeSearch<E>(tree: IBiTreeNode<E>, guider: PositionGuider<E>):
-    Nullable<IBiTreeNode<E>> {
+export function rbtreeSearch<E>(tree: RedBlackTreeNode<E>, guider: PositionGuider<E>):
+    Nullable<RedBlackTreeNode<E>> {
 
-    const cr = guider(tree.data)
+    const cr = guider(tree.data.data)
     if (cr === 0) {
         return tree
     } else if (cr > 0) {

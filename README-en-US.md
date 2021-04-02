@@ -1,18 +1,20 @@
-# WARNING: This library is still developing, do not use this under production environment.
+
 
 <div align="center">
+
+# Warning: this library is stll developing, do not use this under production env.
 
 ![](./icon.png)
 
 # 😊 [TDSCore](http://ds.zsh2401.top)
 
-[中文](./README.md) | English
+English | [中文](./README.md)
 
 ```sh
 npm i tdscore
 ```
 
-Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScript!✨ 
+Data Structure, Algorithms, Mathmatics code, and extension to ECMA Script written by almost pure TypeScript✨
 
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
@@ -26,66 +28,45 @@ Data Structure, Algorithms, Mathmatic codes implements with almost pure TypeScri
 ![](https://img.shields.io/bundlephobia/minzip/tdscore)
 </div>
 
-   
-
-
 # Features
-* Readable: Designed for study at first🌌.
-* Run on EVERYWHERE: Using only ECMAScript 5 features🚄.
-* Smaller:  19.1kB minified and gzipped😍(v0.1.16).
-* A series of tools which can enhance the ability of ECMA Script🚀.
-* Can be compiled to binary. see [tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
+* Readable: Designed for learning.🌌
+* Run everywhere: using only ES5 syntaxes.
+* Small: Minified and gzipped only 22.4KiB（v0.1.26)。
+* Can be compiled to binary.see [tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
-# Getting Started
-TDSCore is supporting AMD, CommonJS, ES Moudle and Global variable.
-
-## Install
-NPM
+# Install
 ```sh
-npm i tdscore
-#or
-yarn add tdscore
+npm install tdscore --save
 ```
 Browser
 ```html
 <srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```
 
-### Import🎉
+# Usage🎉
 ```typescript
-//Browser🌐
-const HashMap = tdscore.HashMap;
-
-//ES Module🍪
 import { HashMap } from "tdscore"
 
-//Common JS🛵
-const tdscore = require("tdscore");
-const HashMap = tdscore.HashMap;
-
-//Tree Shaking🛸
-import HashMap from "tdscore/lib/data-structure/map/HashMap"
-
-```
-### Example of usage
-```typescript
-//TypeScript
 let hashMap = new HashMap<string,number>();
-//ECMAScript 5
-var hashMap = new HashMap();
 
 hashMap.mapPut("a",1);
 console.log(hashMap.mapGet("a")); // 1
 ```
-# Try on RunKit
-Try any Node.js package right in your browser.   
+TDSCore can be also imported with following ways：
+* Global Variable `window.tdscore`
+* CommonJS `require("tdscore")`
+
+BTW, you can try TDSCore without configure any thing on RunKit.
+
 [RunKit for TDSCore](https://npm.runkit.com/tdscore)
 
-# Documents 🍕
-[View on website](http://ds.zsh2401.top)
+# Document 🍕
+[**View online document in official website**](http://ds.zsh2401.top)
 
-# Join in development🤝
-## Clone and checkout to dev
+# Join development🤝
+您可以[使用Github1s在线浏览代码](https://github1s.com/zsh2401/tdscore/)，也可以直接将代码克隆到本地。
+
+## Clone & Checkout
 ```sh
 git clone https://github.com/zsh2401/tdscore.git
 cd tdscore
@@ -94,31 +75,30 @@ git checkout dev
 ```
 ## Install dependencies
 ```sh
-yarn ci
+yarn
 ```
 ## Build & Test
 ```sh
-# Build bundle files in dist
+# UMD Bundle file.
 yarn build:dist 
-# Compiling target is ECMAScript6
+
+# ES6
 yarn build:es 
-# Compiling target is ES5 and CommonJS
+
+# ES5
 yarn build:lib 
 
-# Run all of above
+# All above
 yarn build
 ```
 ### Unit Test
 ```sh
 yarn test
-#or
-yarn test:coverage
 ```
-Notice:
-* Please commit at dev branch.
-* Pull requrest are always welcomed.
 
-<!-- <div align="center"> -->
+Notice:
+* Please write your code at dev branch.
+* Pull requests are always welcomed.
 
 # Contributors
 
@@ -126,4 +106,5 @@ Notice:
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
 </a>
 
-<!-- </div> -->
+# License
+TDSCore is licensed under [Mulan PSL v2](http://license.coscl.org.cn/MulanPSL2).

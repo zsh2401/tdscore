@@ -1,6 +1,8 @@
-# 警告: 此库仍在开发中，请勿用于生产环境
+
 
 <div align="center">
+
+# 警告: 此库仍在开发中，请勿用于生产环境
 
 ![](./icon.png)
 
@@ -26,65 +28,44 @@ npm i tdscore
 ![](https://img.shields.io/bundlephobia/minzip/tdscore)
 </div>
 
-   
-
-
 # 特性
-* 可读性高: 开发的首要目标为研习🌌
-* 到处运行: 编译产物仅使用ES5语法特性。
-* 麻雀虽小：压缩传输仅19.1KiB（v0.1.16)。
-* 一系列对ES的拓展
+* 可读性高：开发的首要目标为研习🌌
+* 到处运行：编译产物仅使用ES5语法特性。
+* 麻雀虽小：压缩传输仅22.4KiB（v0.1.26)。
 * 能够被编译为二进制可执行程序。查看[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
-# 快速上手
-TDSCore支持AMD，CommonJS，ES Module以及全局变量等模块化方式。
-
-## 安装
-NPM
+# 安装
 ```sh
-npm i tdscore
-#or
-yarn add tdscore
+npm install tdscore --save
 ```
 浏览器
 ```html
 <srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```
 
-### 引入🎉
+# 使用🎉
 ```typescript
-//浏览器🌐
-const HashMap = tdscore.HashMap;
-
-//ES Module🍪
 import { HashMap } from "tdscore"
 
-//Common JS🛵
-const tdscore = require("tdscore");
-const HashMap = tdscore.HashMap;
-
-//Tree Shaking🛸
-import HashMap from "tdscore/lib/data-structure/map/HashMap"
-
-```
-### 使用示例
-```typescript
-//TypeScript
 let hashMap = new HashMap<string,number>();
-//ECMAScript 5
-var hashMap = new HashMap();
 
 hashMap.mapPut("a",1);
 console.log(hashMap.mapGet("a")); // 1
 ```
-# 在RunKit上尝试
-T您不需要配置任何开发环境。 
+TDSCore同时支持通过以下方式引入：
+* 浏览器全局变量 `window.tdscore`
+* CommonJS `require("tdscore")`
+
+另外，在RunKit上在线试用，您不需要配置任何开发环境。
+
 [RunKit for TDSCore](https://npm.runkit.com/tdscore)
 
 # 文档 🍕
-[查看官网](http://ds.zsh2401.top)
+[**查看在线文档**](http://ds.zsh2401.top)
 
 # 加入开发🤝
+您可以[使用Github1s在线浏览代码](https://github1s.com/zsh2401/tdscore/)，也可以直接将代码克隆到本地。
+
 ## 克隆并且切换到dev分支
 ```sh
 git clone https://github.com/zsh2401/tdscore.git
@@ -107,7 +88,7 @@ yarn build:es
 # 编译为ES5代码，输出产物位于lib文件夹
 yarn build:lib 
 
-# 执行上面全部s
+# 执行上面全部任务
 yarn build
 ```
 ### 单元测试
@@ -125,3 +106,5 @@ yarn test
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
 </a>
 
+# 协议
+TDSCore is licensed under [Mulan PSL v2](http://license.coscl.org.cn/MulanPSL2).

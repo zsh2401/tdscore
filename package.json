@@ -31,10 +31,12 @@
     "test"
   ],
   "dependencies": {
-    "bignumber.js": "^9.0.1"
+    "bignumber.js": "^9.0.1",
+    "sha256": "^0.2.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
+    "@types/sha256": "^0.2.0",
     "@types/terser-webpack-plugin": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",

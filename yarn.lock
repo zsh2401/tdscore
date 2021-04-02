@@ -1035,6 +1035,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/sha256@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/@types/sha256/download/@types/sha256-0.2.0.tgz#e91194d70f4eb67f08812e847feecf5146f4afdd"
+  integrity sha1-6RGU1w9Otn8IgS6Ef+7PUUb0r90=
+  dependencies:
+    "@types/node" "*"
+
 "@types/stack-utils@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/@types/stack-utils/download/@types/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
@@ -2082,12 +2089,22 @@ concat-stream@^1.4.7:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
+convert-hex@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/convert-hex/download/convert-hex-0.1.0.tgz#08c04568922c27776b8a2e81a95d393362ea0b65"
+  integrity sha1-CMBFaJIsJ3drii6BqV05M2LqC2U=
+
 convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   version "1.7.0"
   resolved "https://registry.npm.taobao.org/convert-source-map/download/convert-source-map-1.7.0.tgz#17a2cb882d7f77d3490585e2ce6c524424a3a442"
   integrity sha1-F6LLiC1/d9NJBYXizmxSRCSjpEI=
   dependencies:
     safe-buffer "~5.1.1"
+
+convert-string@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/convert-string/download/convert-string-0.1.0.tgz#79ce41a9bb0d03bcf72cdc6a8f3c56fbbc64410a"
+  integrity sha1-ec5BqbsNA7z3LNxqjzxW+7xkQQo=
 
 copy-descriptor@^0.1.0:
   version "0.1.1"
@@ -5645,6 +5662,14 @@ set-value@^2.0.0, set-value@^2.0.1:
     is-extendable "^0.1.1"
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
+
+sha256@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/sha256/download/sha256-0.2.0.tgz#73a0b418daab7035bff86e8491e363412fc2ab05"
+  integrity sha1-c6C0GNqrcDW/+G6EkeNjQS/CqwU=
+  dependencies:
+    convert-hex "~0.1.0"
+    convert-string "~0.1.0"
 
 shallow-clone@^3.0.0:
   version "3.0.1"

@@ -22,7 +22,7 @@
 import LinkedList from "./data-structure/linear/LinkedList";
 import ICollection from "./data-structure/ICollection";
 import DSObject from "./DSObject";
-import sha256 from "./util/sha256"
+import sha256 from "sha256"
 import { EventArgs, EventHandler } from "./DSEvent";
 export default class DSProtectedEvent<A = EventArgs, R = void> extends DSObject {
 

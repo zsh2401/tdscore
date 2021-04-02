@@ -19,7 +19,8 @@
  */
 
 import { Action1 } from "../../Action";
-import { HashSet, ISet } from "../../data-structure";
+import HashSet from "../../data-structure/set/HashSet";
+import ISet from "../../data-structure/set/ISet"
 import IGraphNode from "../../data-structure/graph/IGraphNode";
 
 /**

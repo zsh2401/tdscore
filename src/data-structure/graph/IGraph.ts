@@ -1,4 +1,4 @@
-import dsHashCode from "../../dsHashCode";
+import dsHashCode from "../../hash";
 import { IHashCodeGettable } from "../../util/hash";
 import ICollection from "../ICollection";
 import Edge from "./Edge";

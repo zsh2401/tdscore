@@ -25,7 +25,7 @@
  */
 
 import IArrayLike from "../../IArrayLike";
-import { IComparer } from "./IInternalSortAlgorithm";
+import IComparer  from "../IComparer";
 
 export default function <E>
     (a: IArrayLike<E>, comparer: IComparer<E>) {

@@ -1,4 +1,4 @@
-import hashcode from "../util/hash/hashCode";
+import hashcode from "../util/hash/hash";
 
 String.prototype.toDSNumber = function () {
     //@ts-expect-error

@@ -1,6 +1,6 @@
 import BigNumber from "bignumber.js"
 import DSObject from "./DSObject";
-import dsHashCode from "./dsHashCode";
+import dsHashCode from "./hash";
 import IArrayLike from "./IArrayLike";
 import MixedNumber from "./MixedNumber";
 

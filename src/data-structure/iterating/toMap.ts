@@ -1,6 +1,6 @@
 import IIterable from "../IIterable"
 import HashMap from "../map/HashMap";
-import IMap from "../IMap";
+import IMap from "../map/IMap";
 
 export type Covertor<K, V> = (v: V) => K;
 export default function toMap<K, E>(i: IIterable<E>, covertor: Covertor<K, E>): IMap<K, E> {

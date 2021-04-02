@@ -1,6 +1,6 @@
 /*
- * IInternalSortAlgorithm.ts
- * Created on Wed Mar 03 2021 22:32:35
+ * PositionGuider.ts
+ * Created on Tue Mar 30 2021 16:55:10
  *
  * Description: 
  *   No description.
@@ -16,18 +16,19 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
 
-import IArrayLike from "../../IArrayLike";
+/**
+ * DirectionIndicator
+ * 方向指示器
+ */
+export default interface IDirectionIndicator<E> {
 
-export default interface ISortAlgorithm<E> {
-    (target: IArrayLike<E>, comparer: IComparer<E>): void;
-}
-export interface IComparer<E> {
     /**
-     * Compare the a and b
-     * @returns nagative number if a less than b, zero if a equals b, positive number if a greater than b.
+     * 
+     * 返回正数，表示当前值大于查找目标，负数表示当前值小于查找目标，等于则表示找到该目标。
+     * 
+     * @returns positive number if e greater than the unknown number, zero if equals and negative number if e less than the unknownn umber.
      */
-    (a: E, b: E): number;
+    (e: E): number;
 }

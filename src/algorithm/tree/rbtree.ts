@@ -20,8 +20,8 @@
 
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 import Nullable from "../../Nullable";
-import PositionGuider from "./PositionGuider";
-import IComparer from "../sort/IInternalSortAlgorithm";
+import IDirectionIndicator from "../IDirectionIndicator";
+import IComparer from "../IComparer";
 import BiTreeNode from "../../data-structure/tree/BiTreeNode";
 
 /**
@@ -79,7 +79,7 @@ export function rbtreeDelete<E>(tree: RedBlackTreeNode<E>, target: E, comparer: 
  * @param guider 
  * @returns 
  */
-export function rbtreeSearch<E>(tree: RedBlackTreeNode<E>, guider: PositionGuider<E>):
+export function rbtreeSearch<E>(tree: RedBlackTreeNode<E>, guider: IDirectionIndicator<E>):
     Nullable<RedBlackTreeNode<E>> {
 
     const cr = guider(tree.data.data)

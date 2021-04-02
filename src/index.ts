@@ -18,10 +18,18 @@ export { default as DSNumber } from "./DSNumber"
 export { default as DSArray } from "./DSArray"
 export { default as DSObject } from "./DSObject"
 export { default as DSEvent } from "./DSEvent"
-export { default as dsEquals } from "./dsEquals"
-export { default as equals } from "./dsEquals"
-export { default as dsHashCode } from "./dsHashCode"
-export { default as hashcode } from "./dsHashCode"
+export { default as equals } from "./equals"
+
+/**
+ * @deprecated
+ */
+export { default as dsEquals } from "./equals"
+/**
+ * @deprecated
+ */
+export { default as dsHashCode } from "./hash"
+
+export { default as hash } from "./hash"
 export { default as Lazy } from "./Lazy"
 export { default as INotifyCollectionChanged } from "./INotifyCollectionChanged"
 export { default as Ref } from "./Ref"

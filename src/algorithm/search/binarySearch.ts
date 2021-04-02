@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import dsHashCode from "../../dsHashCode";
+import IDirectionIndicator from "../IDirectionIndicator";
 
 /**
  * 
@@ -43,15 +43,16 @@ import dsHashCode from "../../dsHashCode";
  * @param a The target to be searched. Must be sorted with hashCode
  * @key the key for searching
  */
-export default function <E>(a: ArrayLike<E>, hashCode: number): number {
+export default function <E>(a: ArrayLike<E>, indicator: IDirectionIndicator<E>): number {
     let low = 0, high = a.length - 1, mid;
     while (low !== high) {
         mid = Math.floor((low + high) / 2)
-        if (dsHashCode(a[mid]) === hashCode) {
+        const cr = indicator(a[mid])
+        if (cr === 0) {
             return mid
-        } else if (dsHashCode(a[mid]) > hashCode) {
+        } else if (cr > 0) {
             high = mid - 1
-        } else if (dsHashCode(a[mid]) < hashCode) {
+        } else if (cr < 0) {
             low = mid + 1
         }
     }

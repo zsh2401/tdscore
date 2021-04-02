@@ -1,9 +1,8 @@
 import IQueue from "../../../src/data-structure/linear/IQueue";
-import LinkedList from "../../../src/data-structure/linear/LinkedList"
 
-describe("Queue Test",()=>{
+export default function (factory: <E>() => IQueue<E>) {
     it("Should en & de",()=>{
-        const q:IQueue<number> = new LinkedList<number>();
+        const q:IQueue<number> = factory()
         q.queueEn(1);
         q.queueEn(2);
         q.queueEn(3);
@@ -15,7 +14,7 @@ describe("Queue Test",()=>{
     });
 
     it("Reusable",()=>{
-        const q:IQueue<number> = new LinkedList<number>();
+        const q:IQueue<number> = factory()
         q.queueEn(1);
         q.queueEn(2);
         q.queueEn(3);
@@ -26,4 +25,4 @@ describe("Queue Test",()=>{
         expect(q.size()).toBe(1);
         expect(q.isEmpty()).toBeFalsy();
     });
-})
+}

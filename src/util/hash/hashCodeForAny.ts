@@ -3,7 +3,7 @@ import { getHashCodeString } from "./hashCodeForPrimitiveType";
 
 export const WEEK_HASHCODE_GETTER_NAME = "___ds_getHashCode";
 
-const SEED: string = "I know, I know I’ve let you down.I've been fool to myself.";
+const SEED: string = "I know, I know I’ve let you down. I've been fool to myself.";
 
 export default function (obj: any): number {
 

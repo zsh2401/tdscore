@@ -1,6 +1,6 @@
 /*
- * IBinarySearchTree.ts
- * Created on Fri Apr 02 2021 10:10:55
+ * dsHashCode.ts
+ * Created on Tue Mar 30 2021 08:43:21
  *
  * Description: 
  *   No description.
@@ -18,29 +18,14 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IBTreeNode from "./IBiTreeNode";
-import DirectionIndicator from "../../algorithm/IDirectionIndicator"
+import hashcode from "./util/hash/hash";
 
 /**
- * 二叉查找树定义
+ * tdscore内部以及公开对外的哈希函数。
+ * 可对任意值计算哈希值，并在其整个生命周期不变。
+ * @param v 
+ * @returns 
  */
-export default interface IBinarySearchTree<E> {
-    readonly root: IBTreeNode<E>
-    /**
-     * 插入
-     * @param e 
-     */
-    insert(e: E): void
-
-    /**
-     * 删除节点
-     * @param e 
-     */
-    delete(e: E): void
-
-    /**
-     * 搜索
-     * @param guider 
-     */
-    search(guider: DirectionIndicator<E>): E | null;
+export default function (v: any): number {
+    return hashcode(v);
 }

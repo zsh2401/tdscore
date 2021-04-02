@@ -22,28 +22,27 @@
 import IHashCodeGettable from "./util/hash/IHashCodeGettable";
 import { getHashCodeString } from "./util/hash/hashCodeForPrimitiveType";
 import _uuid from "./math/uuid";
-import dsHashCode from "./dsHashCode";
+import dsHashCode from "./hash";
 
 /**
  * 所有本库内类的基类，其类似于Java，C#的Object或Objective-C中的NSObject。
  */
 export default class DSObject implements IHashCodeGettable {
 
-
     /**
      * 标记其实一个DSObject
      */
-    private readonly __this_is_ds_object__ = true
+    private readonly ______ds_this_ds_object = true
 
     /**
      * 标记对象的不变的UUID
      */
-    protected readonly __dsuuid = _uuid();
+    protected readonly ______ds_uuid = _uuid();
 
     /**
      * 计算的哈希码
      */
-    private __hashCode = 0;
+    private ______ds_hash_code = 0;
 
     /**
      * 哈希种子，将来可能会变更
@@ -58,7 +57,7 @@ export default class DSObject implements IHashCodeGettable {
         try {
             return getHashCodeString(JSON.stringify(this));
         } catch {
-            return dsHashCode(DSObject.HASHSEED + this.constructor.name + this.__dsuuid);
+            return dsHashCode(DSObject.HASHSEED + this.constructor.name + this.______ds_uuid);
         }
     }
 
@@ -76,10 +75,10 @@ export default class DSObject implements IHashCodeGettable {
      * @returns 
      */
     getHashCode(): number {
-        if (this.__hashCode === 0) {
-            this.__hashCode = this.newHashCode();
+        if (this.______ds_hash_code === 0) {
+            this.______ds_hash_code = this.newHashCode();
         }
-        return this.__hashCode;
+        return this.______ds_hash_code;
     }
 
     /**
@@ -102,7 +101,7 @@ export default class DSObject implements IHashCodeGettable {
      */
     static isDSObject<T extends DSObject = DSObject>(e: any): e is T {
         // return e instanceof DSObject;
-        if ((<DSObject>e).__this_is_ds_object__) {
+        if ((<DSObject>e).______ds_this_ds_object) {
             return true
         } else {
             return false
@@ -115,7 +114,7 @@ export default class DSObject implements IHashCodeGettable {
      * @returns 
      */
     referenceEquals(other: DSObject | null | undefined): boolean {
-        return other !== null && other !== undefined && this.__dsuuid === other.__dsuuid && this === other;
+        return this === other;
     }
 
     /**

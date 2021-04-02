@@ -1,6 +1,6 @@
 import IIterable from "../IIterable";
-import HashSet from "../HashSet";
-import ISet from "../ISet";
+import HashSet from "../set/HashSet";
+import ISet from "../set/ISet";
 
 export default function toSet<E>(i:IIterable<E>):ISet<E>{
     const set = new HashSet<E>();

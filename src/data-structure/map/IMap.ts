@@ -1,5 +1,5 @@
-import DSArray from "../DSArray";
-import ICollection from "./ICollection";
+import DSArray from "../../DSArray";
+import ICollection from "../ICollection";
 
 export interface KeyValuePair<K, V> {
     key: K;

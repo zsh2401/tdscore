@@ -1,5 +1,5 @@
 import DSObject from "../../DSObject";
-import HashSet from "../HashSet";
+import HashSet from "../set/HashSet";
 import ICollection from "../ICollection";
 import IGraphNode, { IGraphNodeEdge } from "./IGraphNode";
 

@@ -1,5 +1,9 @@
 import "ts-jest"
 import { HashSet } from "../../src"
+import { doCollectionTest } from "./util/doCollectionTest";
+
+doCollectionTest(() => new HashSet())
+
 it("add repeated", () => {
     const set = new HashSet<string>();
     set.add("A");

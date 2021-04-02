@@ -1,8 +1,9 @@
 import HashMap from "../../src/data-structure/map/HashMap";
-import IMap, { ReadonlyKeyValuePair } from "../../src/data-structure/IMap";
+import IMap, { ReadonlyKeyValuePair } from "../../src/data-structure/map/IMap";
 import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
-import dsEquals from "../../src/dsEquals";
+import dsEquals from "../../src/equals";
 import ICollection from "../../src/data-structure/ICollection";
+import { doCollectionTest } from "./util/doCollectionTest";
 // import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
 
 describe("HashMap test", () => {

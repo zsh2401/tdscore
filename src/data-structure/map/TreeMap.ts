@@ -2,7 +2,7 @@ import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
 import Ref from "../../Ref";
 import hashCode from "../../util/hash";
-import { ReadonlyKeyValuePair } from "../IMap";
+import { ReadonlyKeyValuePair } from "./IMap";
 import { toDSArrayForItertable } from "../iterating";
 import IList from "../linear/IList";
 import LinkedList from "../linear/LinkedList";

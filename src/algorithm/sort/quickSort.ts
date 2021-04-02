@@ -23,7 +23,7 @@
  */
 
 import IArrayLike from "../../IArrayLike";
-import { IComparer } from "./IInternalSortAlgorithm";
+import IComparer  from "../IComparer";
 
  /**
  * 

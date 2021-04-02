@@ -1,6 +1,6 @@
 import "ts-jest"
 import DSObject from "../../src/DSObject";
-import dsEquals from "../../src/dsEquals";
+import equals from "../../src/equals";
 
 import DSEvent, { EventArgs } from "../../src/DSEvent"
 describe("DSEvent Test", () => {
@@ -41,8 +41,8 @@ describe("DSEvent Test", () => {
         });
         event.raise(sender, _e);
 
-        expect(dsEquals(_e, receivedEventArgs)).toBeTruthy();
-        expect(dsEquals(sender, receivedSender)).toBeTruthy();
+        expect(equals(_e, receivedEventArgs)).toBeTruthy();
+        expect(equals(sender, receivedSender)).toBeTruthy();
     })
 
     it("Remove handler", () => {

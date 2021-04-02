@@ -21,6 +21,11 @@
 import Tree from "./Tree";
 import forEachNode from "./treeForEachNode";
 
+/**
+ * 计算结点的个数
+ * @param tree 
+ * @returns 
+ */
 export default function leafsOf<E>(tree: Tree<E>): number {
     let count = 0;
     forEachNode(tree, (node) => {

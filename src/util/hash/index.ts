@@ -1,5 +1,5 @@
-import hashCode from "./hashCode"
+import hashCode from "./hash"
 export default hashCode;
-export { default as hashCode } from "./hashCode"
-export { default as hashCodeForAny } from "./hashCodeForAny"
+export { default as hash } from "./hash"
+export { default as hashForAny } from "./hashCodeForAny"
 export { default as IHashCodeGettable } from "./IHashCodeGettable"

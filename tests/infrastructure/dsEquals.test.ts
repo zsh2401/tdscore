@@ -1,39 +1,39 @@
 import { dsHashCode, DSNumber } from "../../src";
-import dsEquals from "../../src/dsEquals"
+import equals from "../../src/equals"
 import DSObject from "../../src/DSObject";
 import { IHashCodeGettable } from "../../src/util/hash";
 
 describe("dsEquals' test", () => {
     it("null related", () => {
-        expect(dsEquals(null, null)).toBeTruthy();
-        expect(dsEquals("", null)).toBeFalsy();
-        expect(dsEquals(null, "null")).toBeFalsy();
-        expect(dsEquals(null, undefined)).toBeFalsy();
-        expect(dsEquals(undefined, null)).toBeFalsy();
+        expect(equals(null, null)).toBeTruthy();
+        expect(equals("", null)).toBeFalsy();
+        expect(equals(null, "null")).toBeFalsy();
+        expect(equals(null, undefined)).toBeFalsy();
+        expect(equals(undefined, null)).toBeFalsy();
     });
 
     it("Does a DSObject equals to other?", () => {
         const a = new DSObject();
-        expect(dsEquals(a, 1)).toBeFalsy()
-        expect(dsEquals(1, a)).toBeFalsy()
+        expect(equals(a, 1)).toBeFalsy()
+        expect(equals(1, a)).toBeFalsy()
 
         class CustomEquals extends DSObject {
             equals(other: any) {
                 return other === 1;
             }
         }
-        expect(dsEquals(1, new CustomEquals())).toBeTruthy()
-        expect(dsEquals(new CustomEquals(), 1)).toBeTruthy()
+        expect(equals(1, new CustomEquals())).toBeTruthy()
+        expect(equals(new CustomEquals(), 1)).toBeTruthy()
     })
 
     it("abs", () => {
         expect(DSNumber.valueOf(-1).abs().equals(1)).toBeTruthy()
     })
     it("undefiened related", () => {
-        expect(dsEquals(undefined, undefined)).toBeTruthy();
-        expect(dsEquals("", undefined)).toBeFalsy();
-        expect(dsEquals(undefined, "null")).toBeFalsy();
-        expect(dsEquals(undefined, null)).toBeFalsy();
+        expect(equals(undefined, undefined)).toBeTruthy();
+        expect(equals("", undefined)).toBeFalsy();
+        expect(equals(undefined, "null")).toBeFalsy();
+        expect(equals(undefined, null)).toBeFalsy();
     });
     it("call equals method", () => {
         let times = 0;
@@ -43,9 +43,9 @@ describe("dsEquals' test", () => {
                 return other instanceof Test;
             }
         }
-        expect(dsEquals(new Test(), new Test())).toBeTruthy();
-        expect(dsEquals(new Test(), null)).toBeFalsy();
-        expect(dsEquals(null, new Test())).toBeFalsy();
+        expect(equals(new Test(), new Test())).toBeTruthy();
+        expect(equals(new Test(), null)).toBeFalsy();
+        expect(equals(null, new Test())).toBeFalsy();
         expect(times).toBe(3);
     });
 
@@ -63,14 +63,14 @@ describe("dsEquals' test", () => {
                 return 0;
             }
         }
-        expect(dsEquals(new Test(), new Test())).toBeTruthy();
-        expect(dsEquals(new Test(), new TestB())).toBeTruthy();
+        expect(equals(new Test(), new Test())).toBeTruthy();
+        expect(equals(new Test(), new TestB())).toBeTruthy();
         expect(times).toBe(4);
     })
 
     it("same hashscode", () => {
-        expect(dsHashCode("A") === dsHashCode(65) && dsEquals("A", 65)).toBeFalsy()
-        expect(dsHashCode("a") === dsHashCode(97) && dsEquals("a", 97)).toBeFalsy()
+        expect(dsHashCode("A") === dsHashCode(65) && equals("A", 65)).toBeFalsy()
+        expect(dsHashCode("a") === dsHashCode(97) && equals("a", 97)).toBeFalsy()
     });
 });
 

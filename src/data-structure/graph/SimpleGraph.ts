@@ -1,4 +1,4 @@
-import HashSet from "../HashSet";
+import HashSet from "../set/HashSet";
 import DSObject from "../../DSObject";
 import ICollection from "../ICollection";
 import Edge from "./Edge";

@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { hashCode } from "./util/hash";
+import { hash } from "./util/hash";
 
 /**
  * 万能的比较函数。
@@ -29,7 +29,7 @@ import { hashCode } from "./util/hash";
  * @param right 
  * @returns 
  */
-export default function dsEquals(left: any, right: any): boolean {
+export default function equals(left: any, right: any): boolean {
 
     //任意值具有equals函数，则使用其equals函数与其他值对比
     if (typeof left?.equals === "function") {
@@ -48,8 +48,8 @@ export default function dsEquals(left: any, right: any): boolean {
         return true;
     } else {
         //最差的情况，对比其哈希值 *实验性
-        const lHash = hashCode(left);
-        const rHash = hashCode(right);
+        const lHash = hash(left);
+        const rHash = hash(right);
         return lHash === rHash;
     }
 

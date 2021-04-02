@@ -1,6 +1,6 @@
 /*
- * PositionGuider.ts
- * Created on Tue Mar 30 2021 16:55:10
+ * IComparer.ts
+ * Created on Fri Apr 02 2021 19:43:06
  *
  * Description: 
  *   No description.
@@ -18,9 +18,13 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export default interface PositionGuider<E> {
+/**
+ *比较器
+ */
+export default interface IComparer<E> {
     /**
-     * @returns positive number if e greater than the unknown number, zero if equals and negative number if e less than the unknownn umber.
+     * Compare the a and b，将A与B进行比较
+     * @returns nagative number if a less than b, zero if a equals b, positive number if a greater than b.
      */
-    (e: E): number;
+    (a: E, b: E): number;
 }

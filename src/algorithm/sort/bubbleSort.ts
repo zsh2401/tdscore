@@ -23,7 +23,7 @@ Mulan Permissive Software License，Version 2
  * 冒泡排序
  */
 import IArrayLike from "../../IArrayLike";
-import { IComparer } from "./IInternalSortAlgorithm";
+import IComparer  from "../IComparer";
 
 /**
  * 

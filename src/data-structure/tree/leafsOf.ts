@@ -22,6 +22,11 @@ import IArrayLike from "../../IArrayLike";
 import Tree from "./Tree";
 import forEachNode from "./treeForEachNode";
 
+/**
+ * 计算树的叶子结点个数
+ * @param tree 
+ * @returns 
+ */
 export default function leafsOf<E>(tree: Tree<E>): IArrayLike<E> {
     const result: E[] = [];
     forEachNode(tree, (node) => {

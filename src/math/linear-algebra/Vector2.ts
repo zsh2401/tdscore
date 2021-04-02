@@ -1,6 +1,6 @@
 import { cos, ONE_DEGREE, pow, sin } from "..";
 import DSObject from "../../DSObject";
-import dsHashCode from "../../dsHashCode";
+import dsHashCode from "../../hash";
 import Transformation2 from "./Transformation2";
 import Vector from "./Vector";
 

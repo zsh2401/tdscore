@@ -18,8 +18,8 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import dsHashCode from "../../dsHashCode";
 import IArrayLike from "../../IArrayLike";
+import IDirectionIndicator from "../IDirectionIndicator";
 
 /**
  * 
@@ -37,9 +37,9 @@ import IArrayLike from "../../IArrayLike";
  * @param a The target to be searched
  * @key the key for searching
  */
-export default function <E>(a: IArrayLike<E>, hashCode: number): number {
+export default function <E>(a: IArrayLike<E>, indicator: IDirectionIndicator<E>): number {
     for (let i = 0; i < a.length; i++) {
-        if (dsHashCode(a[i]) === hashCode) {
+        if (indicator(a[i]) === 0) {
             return i
         }
     }

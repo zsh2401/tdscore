@@ -18,7 +18,10 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { HashSet, IQueue, ISet, LinkedList } from "../../data-structure";
+import HashSet from "../../data-structure/set/HashSet"
+import IQueue from "../../data-structure/linear/IQueue"
+import ISet from "../../data-structure/set/ISet"
+import LinkedList from "../../data-structure/linear/LinkedList"
 import IGraphNode from "../../data-structure/graph/IGraphNode";
 import { Func1 } from "../../Func";
 

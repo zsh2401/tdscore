@@ -2,8 +2,8 @@ import IIterable from "../IIterable";
 import DSObject from "../../DSObject";
 import { Func1 } from "../../Func";
 import IList from "../linear/IList";
-import ISet from "../ISet";
-import IMap from "../IMap";
+import ISet from "../set/ISet";
+import IMap from "../map/IMap";
 import where from "./where";
 import toList from "./toList";
 import DSArray from "../../DSArray";
@@ -13,7 +13,7 @@ import toMap from "./toMap";
 import toJSArray from "./toJSArrayForItertable";
 import select from "./selectMany";
 import defaultOrFirst from "./defaultOrFirst";
-import { IComparer } from "../../algorithm/sort/IInternalSortAlgorithm";
+import IComparer from "../../algorithm/IComparer";
 import qucikSort from "../../algorithm/sort/quickSort";
 
 /**

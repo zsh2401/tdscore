@@ -44,11 +44,11 @@
  */
 
 import depthOf from "../../data-structure/tree/depthOf"
-import { IComparer } from "../sort/IInternalSortAlgorithm";
+import IComparer  from "../IComparer";
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode"
 import BiTreeNode from "../../data-structure/tree/BiTreeNode";
 import Nullable from "../../Nullable";
-import PositionGuider from "./PositionGuider";
+import IDirectionIndicator from "../IDirectionIndicator";
 
 
 export interface AvlBiTreeNodeData<E> {
@@ -353,7 +353,7 @@ export function createAvlDeleter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E>): (e
  * @param guider 
  * @returns 
  */
-export function avlSearch<E>(tree: AvlBiTreeNode<E> | null, guider: PositionGuider<E>)
+export function avlSearch<E>(tree: AvlBiTreeNode<E> | null, guider: IDirectionIndicator<E>)
     : Nullable<AvlBiTreeNode<E>> {
 
     if (tree === null) return null

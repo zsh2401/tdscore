@@ -19,10 +19,10 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import DSObject from "../DSObject";
-import CollectionBase from "./CollectionBase";
-import HashMap from "./map/HashMap";
-import ICollection from "./ICollection";
+import DSObject from "../../DSObject";
+import CollectionBase from "../CollectionBase";
+import HashMap from "../map/HashMap";
+import ICollection from "../ICollection";
 import ISet from "./ISet";
 
 const PRESENT = new DSObject();

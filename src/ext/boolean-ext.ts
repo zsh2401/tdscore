@@ -1,5 +1,5 @@
 import DSNumber from "../DSNumber";
-import hashcode from "../util/hash/hashCode";
+import hashcode from "../util/hash/hash";
 
 Boolean.prototype.getHashCode = function () {
     return hashcode(this);

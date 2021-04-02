@@ -9,7 +9,7 @@ import { Action1 } from "../Action"
 import toDSArray from "./iterating/toDSArrayForItertable"
 import forEach from "./iterating/forEach"
 import { Func1 } from "../Func"
-import dsEquals from "../dsEquals"
+import equals from "../equals"
 
 export default abstract class CollectionBase<E>
     extends DSObject implements ICollection<E>, IClonable<ICollection<E>>{
@@ -47,7 +47,7 @@ export default abstract class CollectionBase<E>
     collectionContains(e: E): boolean {
         const i = this.getIterator();
         while (i.hasNext()) {
-            if (dsEquals(i.next(), e)) {
+            if (equals(i.next(), e)) {
                 return true;
             }
         }

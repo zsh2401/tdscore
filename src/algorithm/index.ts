@@ -21,3 +21,4 @@
 export * from "./sort"
 export * from "./search"
 export * from "./tree"
+export { default as IDirectionIndicator } from "./IDirectionIndicator"

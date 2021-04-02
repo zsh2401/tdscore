@@ -19,7 +19,7 @@
  */
 import { BTreeNode } from "../../data-structure";
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
-import dsHashCode from "../../dsHashCode";
+import dsHashCode from "../../hash";
 import IArrayLike from "../../IArrayLike";
 
 /**

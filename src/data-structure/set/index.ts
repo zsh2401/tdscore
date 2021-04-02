@@ -1,6 +1,6 @@
 /*
- * dsHashCode.ts
- * Created on Tue Mar 30 2021 08:43:21
+ * index.ts
+ * Created on Fri Apr 02 2021 13:28:44
  *
  * Description: 
  *   No description.
@@ -18,14 +18,5 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import hashcode from "./util/hash/hashCode";
-
-/**
- * tdscore内部以及公开对外的哈希函数。
- * 可对任意值计算哈希值，并在其整个生命周期不变。
- * @param v 
- * @returns 
- */
-export default function (v: any): number {
-    return hashcode(v);
-}
+export { default as HashSet } from "./HashSet"
+export { default as ISet } from "./ISet"

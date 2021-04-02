@@ -12,7 +12,7 @@ import IStack from "./IStack";
 import IQueue from "./IQueue";
 import CollectionBase from "../CollectionBase";
 import IListIterator from "./IListIterator";
-import dsEquals from "../../dsEquals";
+import equals from "../../equals";
 
 export default abstract class ListBase<E> extends CollectionBase<E>
     implements IStack<E>, IQueue<E>, IList<E>, IReadonlyList<E>{
@@ -99,7 +99,7 @@ export default abstract class ListBase<E> extends CollectionBase<E>
     listIndexOf(element: E): number {
         const iterator = this.getIterator();
         for (let i = 0; iterator.hasNext(); i++) {
-            if (dsEquals(element, iterator.next())) {
+            if (equals(element, iterator.next())) {
                 return i;
             }
         }

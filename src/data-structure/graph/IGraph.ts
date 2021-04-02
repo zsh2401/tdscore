@@ -5,6 +5,7 @@ import Edge from "./Edge";
 
 export const DEFAULT_WEIGHT = 0;
 export const INF_WEIGHT = Number.POSITIVE_INFINITY;
+
 /**
  * The hash code of edge should always be edgeHashCodeOf(edge) 
  * otherwise some of algorithms won't work stably
@@ -14,6 +15,7 @@ export interface IEdge<E> extends IHashCodeGettable {
     readonly to: E;
     weigth?: number;
 }
+
 /**
  * The universal hashcode function of all objects implemented IEdge<E> .
  * @param edge 
@@ -22,6 +24,7 @@ export interface IEdge<E> extends IHashCodeGettable {
 export function edgeHashCodeOf<E>(edge: IEdge<E>): number {
     return dsHashCode(edge.from) ^ dsHashCode(edge.to) ^ dsHashCode(edge.weigth);
 }
+
 /**
  * G = (V,E)
  */

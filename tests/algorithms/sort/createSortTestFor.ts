@@ -1,11 +1,12 @@
-import IInternalSortAlgorithm from "../../../src/algorithm/sort/IInternalSortAlgorithm"
 import { ascdeningComparer, descdeningComparer } from "../../../src/algorithm/sort/comparers"
 import "ts-jest"
 import "../../../src/ext"
+import { IArrayLike } from "../../../src";
+import IComparer from "../../../src/algorithm/IComparer";
 export interface Option {
     descend?: boolean;
 }
-export default function (name: string, iternalSortAlgorithm: IInternalSortAlgorithm<number>, option?: Option):
+export default function (name: string, iternalSortAlgorithm: (a: IArrayLike<number>, comparer: IComparer<number>) => void, option?: Option):
     () => void {
     return () => {
         it(`Ascending Sort for ${name}`, () => {

@@ -1,5 +1,5 @@
 import "ts-jest"
-import { binarySearch, sequenceSearch } from "../../../src"
+import { binarySearch, sequenceSearch } from "../../../src/algorithm"
 const a: number[] = [];
 for (let i = 0; i < 1000000; i++) {
     a[i] = i

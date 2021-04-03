@@ -19,13 +19,12 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import DSObject from "../../DSObject";
 import CollectionBase from "../CollectionBase";
 import HashMap from "../map/HashMap";
 import ICollection from "../ICollection";
 import ISet from "./ISet";
 
-const PRESENT = new DSObject();
+const PRESENT = true
 export default class HashSet<E>
     extends CollectionBase<E>
     implements ISet<E>, ICollection<E>{

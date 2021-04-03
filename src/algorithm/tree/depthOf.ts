@@ -1,6 +1,6 @@
 /*
- * countOf.ts
- * Created on Tue Mar 16 2021 21:06:08
+ * depthOf.ts
+ * Created on Mon Mar 15 2021 15:32:08
  *
  * Description: 
  *   No description.
@@ -18,21 +18,20 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IArrayLike from "../../IArrayLike";
-import Tree from "./Tree";
-import forEachNode from "./treeForEachNode";
+import Tree from "../../data-structure/tree/Tree";
+import toTreeNode from "../../data-structure/tree/toTreeNode";
 
-/**
- * 计算树的叶子结点个数
- * @param tree 
- * @returns 
- */
-export default function leafsOf<E>(tree: Tree<E>): IArrayLike<E> {
-    const result: E[] = [];
-    forEachNode(tree, (node) => {
-        if (node.children === null || node.children === undefined || node.children.size() === 0) {
-            result.push(node.data)
+export default function depthOf<E>(tree: Tree<E>): number {
+    const node = toTreeNode(tree)
+    if (node === null) {
+        return 0;
+    }
+    let max = 0;
+    for (let i = 0; i < (node.children?.size() ?? 0); i++) {
+        const d = depthOf(node.children?.listGet(i));
+        if (d > max) {
+            max = d;
         }
-    });
-    return result;
+    }
+    return max + 1;
 }

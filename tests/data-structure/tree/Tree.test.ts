@@ -1,8 +1,7 @@
 import "ts-jest"
-import { ArrayList, depthOf, ITreeNode, TreeNode } from "../../../src"
+import { ArrayList, ITreeNode, TreeNode } from "../../../src"
+import { depthOf } from "../../../src/algorithm"
 import ITree from "../../../src/data-structure/tree/Tree"
-
-
 //TODO waiting to add more tests
 
 it("depth", () => {

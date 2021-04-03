@@ -43,12 +43,12 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import depthOf from "../../data-structure/tree/depthOf"
-import IComparer  from "../IComparer";
+import IComparer from "../IComparer";
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode"
 import BiTreeNode from "../../data-structure/tree/BiTreeNode";
 import Nullable from "../../Nullable";
-import IDirectionIndicator from "../IDirectionIndicator";
+import { hash as hashComparer } from "../comparers";
+import blanceFactorOf from "./blanceFactorOf";
 
 
 export interface AvlBiTreeNodeData<E> {
@@ -57,17 +57,6 @@ export interface AvlBiTreeNodeData<E> {
 }
 
 export type AvlBiTreeNode<E> = IBiTreeNode<E>
-
-/**
- * 计算二叉树的平衡因子
- * 正数则左边较重，0则完全平衡，负数则右边较重
- * @param tree 
- * @returns 
- */
-export function blanceFactorOf<E>(tree: AvlBiTreeNode<E> | null | undefined): number {
-    if (!tree) return 0
-    return depthOf(tree.left) - depthOf(tree.right)
-}
 
 /**
  * 
@@ -110,7 +99,7 @@ export function avlRotateRight<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
  * @param c 
  * @returns 
  */
-export function avlInsert<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E>): AvlBiTreeNode<E> {
+export function avlInsert<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E> = hashComparer): AvlBiTreeNode<E> {
 
     if (tree === null) {
         return new BiTreeNode(e)
@@ -132,7 +121,7 @@ export function avlInsert<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E
  * @param c 
  * @returns 
  */
-export function createAvlInserter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E>):
+export function createAvlInserter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E> = hashComparer):
     (node: E) => AvlBiTreeNode<E> {
 
     return (node: E) => {
@@ -187,7 +176,7 @@ function _adjustAvl<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
  * @param e 
  * @param c 
  */
-export function avlDelete<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E>): Nullable<AvlBiTreeNode<E>> {
+export function avlDelete<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E> = hashComparer): Nullable<AvlBiTreeNode<E>> {
 
     if (tree === null) return null
 
@@ -339,7 +328,7 @@ function _findMin<E>(parent: AvlBiTreeNode<E>, tree: AvlBiTreeNode<E>): [AvlBiTr
  * @param c 
  * @returns 
  */
-export function createAvlDeleter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E>): (e: E) => Nullable<AvlBiTreeNode<E>> {
+export function createAvlDeleter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E> = hashComparer): (e: E) => Nullable<AvlBiTreeNode<E>> {
     let mTree: Nullable<AvlBiTreeNode<E>> = tree
     return (e: E) => {
         mTree = avlDelete(tree, e, c)
@@ -348,27 +337,6 @@ export function createAvlDeleter<E>(tree: AvlBiTreeNode<E>, c: IComparer<E>): (e
 }
 
 /**
- * AVL树搜索
- * @param tree 
- * @param guider 
- * @returns 
- */
-export function avlSearch<E>(tree: AvlBiTreeNode<E> | null, guider: IDirectionIndicator<E>)
-    : Nullable<AvlBiTreeNode<E>> {
-
-    if (tree === null) return null
-    
-    const cr = guider(tree.data)
-    if (cr === 0) {
-        return tree
-    } else if (cr > 0) {
-        return tree.left ? avlSearch(tree.left, guider) : null;
-    } else {
-        return tree.right ? avlSearch(tree.right, guider) : null;
-    }
-
-}
-/**
  * LL型调整
  * @param tree 
  * @returns 
@@ -376,6 +344,7 @@ export function avlSearch<E>(tree: AvlBiTreeNode<E> | null, guider: IDirectionIn
 function _ll<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
     return avlRotateRight(tree)
 }
+
 /**
  * LR型调整
  * @param tree 
@@ -385,6 +354,7 @@ function _lr<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
     tree.left = tree.left && avlRotateLeft(tree.left)
     return avlRotateRight(tree)
 }
+
 /**
  * RR型调整
  * @param tree 
@@ -393,6 +363,7 @@ function _lr<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
 function _rr<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
     return avlRotateLeft(tree)
 }
+
 /**
  * RL型调整
  * @param tree 
@@ -402,6 +373,7 @@ function _rl<E>(tree: AvlBiTreeNode<E>): AvlBiTreeNode<E> {
     tree.right = tree.right && avlRotateRight(tree.right)
     return avlRotateLeft(tree)
 }
+
 /**
  * 以二查查找树的方式插入
  * @param tree 

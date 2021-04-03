@@ -23,11 +23,12 @@ Mulan Permissive Software License，Version 2
  * 冒泡排序
  */
 import IArrayLike from "../../IArrayLike";
-import IComparer  from "../IComparer";
+import comparers from "../comparers";
+import IComparer from "../IComparer";
 
 /**
  * 
- * Bubble Sort
+ * Bubble Sort 冒泡排序算法
  * 
  * @Stability Stable
  * @BestTimeComplexity O(n)
@@ -39,7 +40,7 @@ import IComparer  from "../IComparer";
  * @param comparer The comparer used to compare elements.
  */
 export default function bubbleSort<E>
-    (a: IArrayLike<E>, comparer: IComparer<E>) {
+    (a: IArrayLike<E>, comparer: IComparer<E> = comparers.hash) {
 
     let exchangedLastTime = true;
     for (let i = 0; (i < a.length - 1 && exchangedLastTime); i++) {

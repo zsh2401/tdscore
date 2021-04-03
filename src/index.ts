@@ -24,6 +24,7 @@ export { default as equals } from "./equals"
  * @deprecated
  */
 export { default as dsEquals } from "./equals"
+
 /**
  * @deprecated
  */
@@ -52,14 +53,26 @@ export * from "./Action"
 
 
 /**
- * 可选模块
+ * 数据结构模块
  */
 export * from "./data-structure"
-export * from "./algorithm"
-export * from "./math"
-export * from "./util"
 
 /**
- * ES拓展模块
+ * 算法模块
+ */
+export * as algorithm from "./algorithm"
+
+/**
+ * 数学模块
+ */
+export * as math from "./math"
+
+/**
+ * 小工具
+ */
+export * as util from "./util"
+
+/**
+ * 具有副作用的ES拓展
  */
 import "./ext"

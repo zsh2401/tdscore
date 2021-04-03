@@ -1,5 +1,6 @@
 import "ts-jest"
-import { HashSet, ITreeNode, LinkedList, treeForEach, treeForEachNode, TreeNode } from "../../../src"
+import { LinkedList, TreeNode } from "../../../src"
+import { treeForEach } from "../../../src/algorithm"
 it("travel", () => {
     const node = new TreeNode(0)
     node.children!.listAddAll(

@@ -1,6 +1,7 @@
 
 import "ts-jest"
-import { BTreeNode, ITreeNode, LinkedList, treeForEach, TreeNode, UngrowableArrayList } from "../../../src"
+import { BTreeNode, ITreeNode, LinkedList,UngrowableArrayList } from "../../../src"
+import { treeForEach } from "../../../src/algorithm"
 
 const treeForTraverse: ITreeNode<number> = {
     parent: null,

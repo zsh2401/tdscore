@@ -19,13 +19,13 @@
  */
 
 import { Action1 } from "../../Action";
-import IQueue from "../linear/IQueue";
-import LinkedList from "../linear/LinkedList"
-import Tree from "./Tree";
-import ITreeNode from "./ITreeNode";
-import toTreeNode from "./toTreeNode";
+import IQueue from "../../data-structure/linear/IQueue";
+import LinkedList from "../../data-structure/linear/LinkedList"
+import Tree from "../../data-structure/tree/Tree";
+import ITreeNode from "../../data-structure/tree/ITreeNode";
+import toTreeNode from "../../data-structure/tree/toTreeNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
-import IBiTreeNode from "./IBiTreeNode";
+import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 
 export default function forEachNode<E>(tree: Tree<E>,
     consumer: Action1<ITreeNode<E>>,

@@ -1,6 +1,6 @@
 /*
- * binSort.ts
- * Created on Wed Mar 03 2021 22:32:14
+ * countOf.ts
+ * Created on Tue Mar 16 2021 21:08:40
  *
  * Description: 
  *   No description.
@@ -16,19 +16,20 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
- */
-/*
- * Created on Wed Mar 03 2021
- *
- * Copyright (c) 2021 Your Company
  */
 
-import IArrayLike from "../../IArrayLike";
-import IComparer  from "../IComparer";
+import Tree from "../../data-structure/tree/Tree";
+import forEachNode from "./treeForEachNode";
 
-export default function <E>
-    (a: IArrayLike<E>, comparer: IComparer<E>) {
-
-    throw new Error("Method not implemented");
+/**
+ * 计算结点的个数
+ * @param tree 
+ * @returns 
+ */
+export default function leafsOf<E>(tree: Tree<E>): number {
+    let count = 0;
+    forEachNode(tree, (node) => {
+        count++
+    });
+    return count;
 }

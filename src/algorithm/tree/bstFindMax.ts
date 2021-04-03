@@ -1,6 +1,9 @@
+import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
+import Nullable from "../../Nullable";
+
 /*
- * asIterable.ts
- * Created on Tue Mar 30 2021 10:02:04
+ * bstFindMax.ts
+ * Created on Sat Apr 03 2021 16:09:29
  *
  * Description: 
  *   No description.
@@ -17,15 +20,13 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-
-import treeForEach from "../../algorithm/tree/treeForEach";
-import IIterable from "../IIterable";
-import LinkedList from "../linear/LinkedList";
-import Tree from "./Tree";
-import TreeTraversingStrategy from "../../algorithm/tree/TreeTraversingStrategy";
-
-export default function asIterable<E>(tree: Tree<E>, strategy: TreeTraversingStrategy = "in-order"): IIterable<E> {
-    const list = new LinkedList<E>()
-    treeForEach(tree, (e) => list.listAdd(e), strategy)
-    return list
+/**
+ * 在二叉查找树中搜索最大值
+ * @param bst 
+ */
+export default function findMax<E>(bst: IBiTreeNode<E>): Nullable<IBiTreeNode<E>> {
+    if (bst.right === null) {
+        return bst
+    }
+    return findMax(bst.right)
 }

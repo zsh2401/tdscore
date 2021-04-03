@@ -20,7 +20,7 @@
 
 import { Action1 } from "../../Action";
 
-import Tree from "./Tree";
+import Tree from "../../data-structure/tree/Tree";
 import forEachNode from "./treeForEachNode";
 import TreeTraversingStrategy from "./TreeTraversingStrategy";
 

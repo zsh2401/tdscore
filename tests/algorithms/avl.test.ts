@@ -1,6 +1,7 @@
 import "ts-jest"
 import { BTreeNode, IBTreeNode, toJSArrayForItertable, treeAsIterable } from "../../src"
-import { blanceFactorOf, avlInsert, createAvlInserter, avlRotateRight, avlRotateLeft, avlDelete } from "../../src/algorithm/tree/avltree"
+import { blanceFactorOf, avlInsert, createAvlInserter, avlRotateRight, avlRotateLeft, avlDelete } from "../../src/algorithm/tree/"
+
 it("blance factor to be zero", () => {
     expect(blanceFactorOf(null)).toBe(0)
     expect(blanceFactorOf(void 0)).toBe(0)

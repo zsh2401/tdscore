@@ -45,7 +45,7 @@ export interface RadixSortElementWithData<E> {
 * @param comparer ignored
 */
 export default function <E>
-    (a: IArrayLike<RadixSortElement<E>>, comparer: IComparer<number>): void {
+    (a: IArrayLike<RadixSortElement<E>>): void {
 
     const buckets: IList<IQueue<RadixSortElement<E>>> = new UngrowableArrayList(10);
     for (let i = 0; i < 10; i++) {

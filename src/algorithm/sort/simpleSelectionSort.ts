@@ -20,6 +20,7 @@
  */
 
 import IArrayLike from "../../IArrayLike";
+import comparers from "../comparers";
 import IComparer  from "../IComparer";
 
 /**
@@ -37,7 +38,7 @@ import IComparer  from "../IComparer";
 * @param comparer The comparer used to compare elements.
 */
 export default function <E>
-    (array: IArrayLike<E>, comparer: IComparer<E>) {
+    (array: IArrayLike<E>, comparer: IComparer<E>=comparers.hash) {
     for (let i = 0; i < array.length; i++) {
         const min = findMin(array, comparer, i, array.length - 1);
         const tmp = array[min];

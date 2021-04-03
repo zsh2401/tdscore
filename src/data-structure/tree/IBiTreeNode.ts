@@ -25,6 +25,7 @@ import ITreeNode from "./ITreeNode";
  * 二叉树节点定义
  */
 export default interface IBiTreeNode<E> extends ITreeNode<E> {
+
     /**
      * 左孩子
      */
@@ -34,4 +35,5 @@ export default interface IBiTreeNode<E> extends ITreeNode<E> {
      * 右孩子
      */
     right: Nullable<IBiTreeNode<E>>
+
 }

@@ -20,7 +20,8 @@
  */
 
 import IArrayLike from "../../IArrayLike";
-import IComparer  from "../IComparer";
+import comparers from "../comparers";
+import IComparer from "../IComparer";
 
 /**
 * 
@@ -46,7 +47,7 @@ import IComparer  from "../IComparer";
 * @param comparer The comparer used to compare elements.
 */
 export default function <E>
-    (a: IArrayLike<E>, comparer: IComparer<E>) {
+    (a: IArrayLike<E>, comparer: IComparer<E> = comparers.hash) {
 
     for (let delta = 5; delta > 0; delta = Math.floor(delta / 2)) {
         for (let i = delta; i < a.length; i++) {

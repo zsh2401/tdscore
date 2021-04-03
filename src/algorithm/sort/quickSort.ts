@@ -23,23 +23,24 @@
  */
 
 import IArrayLike from "../../IArrayLike";
-import IComparer  from "../IComparer";
+import comparers from "../comparers";
+import IComparer from "../IComparer";
 
- /**
- * 
- * Quick Sort
- * 
- * @SortType Exchange Sort
- * @Stability Unstable
- * @BestTimeComplexity O(n log2 n)
- * @WorstTimeComplexity O(n ^ 2)
- * @TimeComplexity O(n log2 n)
- * @SpaceComplexity O(1)
- * 
- * @param a The target array which is being sorted.
- * @param comparer The comparer used to compare elements.
- */
-export default function <E>(array: IArrayLike<E>, comparer: IComparer<E>) {
+/**
+* 
+* Quick Sort
+* 
+* @SortType Exchange Sort
+* @Stability Unstable
+* @BestTimeComplexity O(n log2 n)
+* @WorstTimeComplexity O(n ^ 2)
+* @TimeComplexity O(n log2 n)
+* @SpaceComplexity O(1)
+* 
+* @param a The target array which is being sorted.
+* @param comparer The comparer used to compare elements.
+*/
+export default function <E>(array: IArrayLike<E>, comparer: IComparer<E> = comparers.hash) {
     quickSortInner(array, comparer, 0, array.length - 1);
 }
 function quickSortInner<E>(array: IArrayLike<E>, comparer: IComparer<E>,

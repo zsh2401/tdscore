@@ -1,6 +1,6 @@
 /*
  * countOf.ts
- * Created on Tue Mar 16 2021 21:08:40
+ * Created on Tue Mar 16 2021 21:06:08
  *
  * Description: 
  *   No description.
@@ -18,18 +18,21 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import Tree from "./Tree";
+import IArrayLike from "../../IArrayLike";
+import Tree from "../../data-structure/tree/Tree";
 import forEachNode from "./treeForEachNode";
 
 /**
- * 计算结点的个数
+ * 计算树的叶子结点个数
  * @param tree 
  * @returns 
  */
-export default function leafsOf<E>(tree: Tree<E>): number {
-    let count = 0;
+export default function leafsOf<E>(tree: Tree<E>): IArrayLike<E> {
+    const result: E[] = [];
     forEachNode(tree, (node) => {
-        count++
+        if (node.children === null || node.children === undefined || node.children.size() === 0) {
+            result.push(node.data)
+        }
     });
-    return count;
+    return result;
 }

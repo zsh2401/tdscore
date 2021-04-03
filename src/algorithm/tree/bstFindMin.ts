@@ -1,6 +1,6 @@
 /*
- * depthOf.ts
- * Created on Mon Mar 15 2021 15:32:08
+ * bstFindMin.ts
+ * Created on Sat Apr 03 2021 16:12:32
  *
  * Description: 
  *   No description.
@@ -18,20 +18,18 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import Tree from "./Tree";
-import toTreeNode from "./toTreeNode";
+import IBiTreeNode from "../../data-structure/tree/IBiTreeNode"
+import Nullable from "../../Nullable"
 
-export default function depthOf<E>(tree: Tree<E>): number {
-    const node = toTreeNode(tree)
-    if (node === null) {
-        return 0;
+/**
+ * 找出最小的节点
+ * 
+ * @param tree 
+ * @returns 
+ */
+export default function findMin<E>(bst: IBiTreeNode<E>): Nullable<IBiTreeNode<E>> {
+    if (bst.left === null) {
+        return bst
     }
-    let max = 0;
-    for (let i = 0; i < (node.children?.size() ?? 0); i++) {
-        const d = depthOf(node.children?.listGet(i));
-        if (d > max) {
-            max = d;
-        }
-    }
-    return max + 1;
+    return findMin(bst.left)
 }

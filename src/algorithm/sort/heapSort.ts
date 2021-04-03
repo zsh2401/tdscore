@@ -20,7 +20,8 @@
  */
 
 import IArrayLike from "../../IArrayLike";
-import IComparer  from "../IComparer";
+import comparers from "../comparers";
+import IComparer from "../IComparer";
 
 /**
  * 
@@ -57,7 +58,7 @@ import IComparer  from "../IComparer";
  * @param comparer The comparer used to compare elements.
  */
 export default function <E>
-    (a: IArrayLike<E>, comparer: IComparer<E>) {
+    (a: IArrayLike<E>, comparer: IComparer<E> = comparers.hash) {
     let len = a.length;
 
     buildMaxHeap(a, len, comparer);

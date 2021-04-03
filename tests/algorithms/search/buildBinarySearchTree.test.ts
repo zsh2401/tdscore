@@ -1,5 +1,5 @@
 import "ts-jest"
-import { buildBinarySearchTree, treeForEach } from "../../../src"
+import { buildBinarySearchTree, treeForEach } from "../../../src/algorithm"
 
 it("can build", () => {
     const a: number[] = [10, 104, -45, 36, 7, 9, -165]

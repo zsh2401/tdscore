@@ -1,5 +1,5 @@
 import "ts-jest"
-import { sequenceSearch } from "../../../src"
+import { sequenceSearch } from "../../../src/algorithm"
 it("can find", () => {
     const a = [12, 1, 2, 12, 21, 5, 686534, 529, 121, 12312, -1, -12, 321, -12, -312, 213];
     const index = sequenceSearch(a, (e) => e - 686534)

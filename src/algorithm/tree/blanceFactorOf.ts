@@ -1,6 +1,6 @@
 /*
- * asIterable.ts
- * Created on Tue Mar 30 2021 10:02:04
+ * blanceFactorOf.ts
+ * Created on Sat Apr 03 2021 16:00:49
  *
  * Description: 
  *   No description.
@@ -18,14 +18,19 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import treeForEach from "../../algorithm/tree/treeForEach";
-import IIterable from "../IIterable";
-import LinkedList from "../linear/LinkedList";
-import Tree from "./Tree";
-import TreeTraversingStrategy from "../../algorithm/tree/TreeTraversingStrategy";
+import depthOf from "./depthOf";
+import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
+;
 
-export default function asIterable<E>(tree: Tree<E>, strategy: TreeTraversingStrategy = "in-order"): IIterable<E> {
-    const list = new LinkedList<E>()
-    treeForEach(tree, (e) => list.listAdd(e), strategy)
-    return list
+/**
+ * 计算二叉树的平衡因子
+ * 正数则左边较重，0则完全平衡，负数则右边较重
+ * 
+ * @param tree
+ * @returns
+ */
+export default function blanceFactorOf<E>(tree: IBiTreeNode<E> | null | undefined): number {
+    if (!tree)
+        return 0;
+    return depthOf(tree.left) - depthOf(tree.right);
 }

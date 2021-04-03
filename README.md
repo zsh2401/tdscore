@@ -26,6 +26,9 @@ npm i tdscore
 [![NPM version](https://img.shields.io/npm/v/tdscore.svg)](https://www.npmjs.com/package/tdscore)
 ![](https://badgen.net/npm/dy/tdscore)
 ![](https://img.shields.io/bundlephobia/minzip/tdscore)
+
+[![](https://img.shields.io/badge/QQ%E7%BE%A4-181583086-blue)](https://qm.qq.com/cgi-bin/qm/qr?k=nKqxAm6bD7ty6ieZKA31dQrxboBMZmGT&jump_from=webapi)
+
 </div>
 
 # 特性

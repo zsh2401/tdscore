@@ -1,7 +1,7 @@
 import DSObject from "../../DSObject";
 import { edgeHashCodeOf, IEdge } from "./IGraph";
 
-export default class Edge<E> extends DSObject
+export default class SimpleEdge<E> extends DSObject
     implements IEdge<E>{
         
     readonly from: E;

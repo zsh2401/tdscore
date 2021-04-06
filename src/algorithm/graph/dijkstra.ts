@@ -1,9 +1,9 @@
 /*
- * IGraphNode.ts
- * Created on Tue Apr 06 2021 08:57:54
+ * dijkstra.ts
+ * Created on Tue Apr 06 2021 10:29:37
  *
  * Description: 
- *   The design of graph based on linked graph
+ *   No description.
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -17,16 +17,9 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+import IGraph from "../../data-structure/graph/IGraph";
 
-import ICollection from "../ICollection";
-
-export interface IGraphNodeEdge<E> {
-    node: IGraphNode<E>
-    weight: number;
-}
-
-export default interface IGraphNode<E> {
-    readonly in: ICollection<IGraphNodeEdge<E>>
-    readonly out: ICollection<IGraphNodeEdge<E>>
-    data: E
+export default function <E>(g: IGraph<E>): ArrayLike<E> {
+    //TODO
+    throw new Error("This method has not been implemented.")
 }

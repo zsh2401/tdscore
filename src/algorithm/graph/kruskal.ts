@@ -1,9 +1,9 @@
 /*
- * IGraphNode.ts
- * Created on Tue Apr 06 2021 08:57:54
+ * kruskal.ts
+ * Created on Tue Apr 06 2021 10:27:38
  *
  * Description: 
- *   The design of graph based on linked graph
+ *   No description.
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -18,15 +18,10 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import ICollection from "../ICollection";
+import ITreeNode from "../../data-structure/tree/ITreeNode";
+import IGraph from "../../data-structure/graph/IGraph";
 
-export interface IGraphNodeEdge<E> {
-    node: IGraphNode<E>
-    weight: number;
-}
-
-export default interface IGraphNode<E> {
-    readonly in: ICollection<IGraphNodeEdge<E>>
-    readonly out: ICollection<IGraphNodeEdge<E>>
-    data: E
+export default function <E>(g: IGraph<E>): ITreeNode<E> {
+    //TODO
+    throw new Error("This method has not been implemented.")
 }

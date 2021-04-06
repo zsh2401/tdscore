@@ -29,30 +29,35 @@ export default class HashSet<E>
     extends CollectionBase<E>
     implements ISet<E>, ICollection<E>{
     private innerMap: HashMap<E, any>;
+
     constructor() {
         super();
         this.innerMap = new HashMap();
     }
 
+    setClear() {
+        this.innerMap.clear()
+    }
+
     setAdd(e: E): HashSet<E> {
-        this.add(e);
+        this.innerMap.mapPut(e, PRESENT)
         return this;
     }
 
     setRemove(e: E): boolean {
-        return this.remove(e);
+        return this.innerMap.mapRemove(e)
     }
 
     collectionClear(): void {
-        this.innerMap.collectionClear();
+        this.setClear()
     }
 
     collectionAdd(e: E): void {
-        this.add(e);
+        this.setAdd(e)
     }
 
     collectionRemove(e: E): boolean {
-        return this.remove(e)
+        return this.setRemove(e)
     }
 
     toArray() {
@@ -75,11 +80,11 @@ export default class HashSet<E>
     }
 
     add(e: E) {
-        this.innerMap.mapPut(e, PRESENT);
+        this.setAdd(e)
     }
 
     remove(e: E): boolean {
-        return this.innerMap.mapRemove(e);
+        return this.setRemove(e)
     }
 
     toString(): string {

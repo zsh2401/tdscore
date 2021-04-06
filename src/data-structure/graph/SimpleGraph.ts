@@ -1,15 +1,20 @@
 import HashSet from "../set/HashSet";
 import DSObject from "../../DSObject";
-import ICollection from "../ICollection";
-import Edge from "./Edge";
-import IGraph, { DEFAULT_WEIGHT, IEdge } from "./IGraph";
+import SimpleEdge from "./SimpleEdge";
+import IGraph, { IEdge } from "./IGraph";
+import ISet from "../set/ISet";
+import { IIterator } from "..";
 
 export default class SimpleGraph
-    <TElement, TEdge extends IEdge<TElement> = Edge<TElement>>
+    <TElement, TEdge extends IEdge<TElement> = SimpleEdge<TElement>>
     extends DSObject
     implements IGraph<TElement, TEdge>{
 
-    readonly vertices: ICollection<TElement> = new HashSet();
-    readonly edges: ICollection<TEdge> = new HashSet();
+    getIterator(): IIterator<TElement> {
+        return this.vertices.getIterator()
+    }
+
+    readonly vertices: ISet<TElement> = new HashSet();
+    readonly edges: ISet<TEdge> = new HashSet();
 
 }

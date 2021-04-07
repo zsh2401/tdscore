@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import RawMartix from "./RawMartix";
+import RawMartix from "./MartixTypes";
 import martixSizeOf from "./sizeof";
 import IElementOperator from "./IElementOperator";
 

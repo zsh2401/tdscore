@@ -19,7 +19,7 @@
  */
 
 import IElementOperator from "./IElementOperator";
-import RawMartix from "./RawMartix";
+import RawMartix from "./MartixTypes";
 
 //TODO
 

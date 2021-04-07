@@ -4,10 +4,14 @@ import DSObject from "../../DSObject";
 import IIterable from "../../data-structure/IIterable"
 import IIterator from "../../data-structure/IIterator"
 import defaultValue from "../../util/type/defaultOf";
+import IElementOperator from "./raw/IElementOperator"
+import martixAdd from "./raw/add"
+import martixSub from "./raw/sub"
+import martixMul from "./raw/mul"
+import RawMartix from "./raw/MartixTypes";
 
 export type RowIndex = number;
 export type ColIndex = number;
-export type RawMartix<E> = E[][];
 //TODO waiting for more test cases.
 export default abstract class
     AbstractMartix<E, M extends AbstractMartix<E, M>>
@@ -18,11 +22,13 @@ export default abstract class
     protected readonly data: RawMartix<E>;
     readonly row: number;
     readonly col: number;
+    private readonly elementOperator: IElementOperator<E>;
 
-    protected constructor(data: RawMartix<E>, sign: boolean = true) {
+    protected constructor(data: RawMartix<E>, elementOperator: IElementOperator<E>, sign: boolean = true) {
         super();
         [this.data, this.row, this.col] = AbstractMartix.complete(data);
         this.sign = sign;
+        this.elementOperator = elementOperator
     }
 
     /**
@@ -143,122 +149,55 @@ export default abstract class
 
     innerColPlus(target: ColIndex, value: ColIndex): M {
         return this.innerColOperate(
-            target, value, this.elementPlus.bind(this));
+            target, value, this.elementOperator.add.bind(this.elementOperator));
     }
     innerColSub(target: ColIndex, value: ColIndex): M {
         return this.innerColOperate(
-            target, value, this.elementSub.bind(this));
+            target, value, this.elementOperator.sub.bind(this.elementOperator));
     }
     innerColDiv(target: ColIndex, value: ColIndex): M {
         return this.innerColOperate(
-            target, value, this.elementDiv.bind(this));
+            target, value, this.elementOperator.divBy.bind(this.elementOperator));
     }
     innerColMul(target: ColIndex, value: ColIndex): M {
         return this.innerColOperate(
-            target, value, this.elementMul.bind(this));
+            target, value, this.elementOperator.mul.bind(this.elementOperator));
     }
 
     innerRowPlus(targetRow: RowIndex, valueRow: RowIndex): M {
         return this.innerRowOperate(
-            targetRow, valueRow, this.elementPlus.bind(this));
+            targetRow, valueRow, this.elementOperator.add.bind(this.elementOperator));
     }
     innerRowSub(targetRow: RowIndex, valueRow: RowIndex): M {
         return this.innerRowOperate(
-            targetRow, valueRow, this.elementSub.bind(this));
+            targetRow, valueRow, this.elementOperator.sub.bind(this.elementOperator));
     }
     innerRowDiv(targetRow: RowIndex, valueRow: RowIndex): M {
         return this.innerRowOperate(
-            targetRow, valueRow, this.elementDiv.bind(this));
+            targetRow, valueRow, this.elementOperator.divBy.bind(this.elementOperator));
     }
     innerRowMul(targetRow: RowIndex, valueRow: RowIndex): M {
         return this.innerRowOperate(
-            targetRow, valueRow, this.elementMul.bind(this));
+            targetRow, valueRow, this.elementOperator.mul.bind(this.elementOperator));
     }
 
-    plus(other: E | M): M {
-        const newData = this.data.map((row, rowIndex) => {
-            return row.map((current, colIndex) => {
-
-                const o = other instanceof AbstractMartix
-                    ? other.data[rowIndex][colIndex] : other;
-
-                return this.elementPlus(current, o);
-            })
-        });
+    plus(other: M): M {
+        const newData = martixAdd(this.data, other.data, this.elementOperator)
         return this.newInstanceOf(newData, this.sign);
     }
 
-    sub(other: E | M): M {
-        const newData = this.data.map((row, rowIndex) => {
-            return row.map((current, colIndex) => {
-
-                const o = other instanceof AbstractMartix
-                    ? other.data[rowIndex][colIndex] : other;
-
-                return this.elementSub(current, o);
-            })
-        });
+    sub(other: M): M {
+        const newData = martixSub(this.data, other.data, this.elementOperator)
         return this.newInstanceOf(newData, this.sign);
     }
 
     mul(other: E | M): M {
-        let newData: E[][];
-        if (other instanceof AbstractMartix) {
-            if (this.col !== other.row) {
-                throw new Error("A's number of columns must be equals to B's number of rows")
-            }
-            newData = [];
-            for (let i = 0; i < this.row; i++) {
-                newData[i] = [];
-                for (let j = 0; j < other.col; j++) {
-                    for (let k = 0; k < this.col; k++) {
-                        newData[i][j] =
-                            this.elementPlus(newData[i][j],
-                                this.elementMul(this.data[i][k], other.data[k][j]));
-                    }
-                }
-            }
-        } else {
-            newData = this.data.map((row, rowIndex) => {
-                return row.map((current, colIndex) => {
-
-                    const o = other instanceof AbstractMartix
-                        ? other.data[rowIndex][colIndex] : other;
-
-                    return this.elementMul(current, o);
-                })
-            });
-        }
-        return this.newInstanceOf(newData, this.sign);
-    }
-
-    div(other: E | M): M {
-        const newData = this.data.map((row, rowIndex) => {
-            return row.map((current, colIndex) => {
-
-                const o = other instanceof AbstractMartix
-                    ? other.data[rowIndex][colIndex] : other;
-
-                return this.elementDiv(current, o);
-            })
-        });
+        const newData = martixMul<E>(this.data, other instanceof AbstractMartix ? other.data : other,
+            this.elementOperator)
         return this.newInstanceOf(newData, this.sign);
     }
 
     protected abstract newInstanceOf(data: E[][], sign: boolean): M;
-
-    protected elementPlus(a: E, b: E): E {
-        return a;
-    }
-    protected elementSub(a: E, b: E): E {
-        return a;
-    }
-    protected elementDiv(a: E, b: E): E {
-        return a;
-    }
-    protected elementMul(a: E, b: E): E {
-        return a;
-    }
 }
 
 function reduceDimension<E>(data: E[][]): E[] {
@@ -266,17 +205,3 @@ function reduceDimension<E>(data: E[][]): E[] {
     data.forEach(row => row.forEach(v => r.push(v)));
     return r;
 }
-// function mul<E>(a: E[][], b: E[][],
-//     operator: (a0: E, a1: E) => E,
-//     r1: number, c1: number, c2: number): E[][] {
-//     const product: E[][] = [];
-//     for (let i = 0; i < r1; i++) {
-//         for (let j = 0; j < c2; j++) {
-//             for (let k = 0; k < c1; k++) {
-//                 product[i][j] += operator(a[i][k] * b[k][j]);
-//             }
-//         }
-//     }
-
-//     return product;
-// }

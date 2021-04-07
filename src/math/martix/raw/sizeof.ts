@@ -1,6 +1,6 @@
 /*
- * RawMartix.ts
- * Created on Sun Mar 14 2021 01:21:37
+ * martixSizeOf.ts
+ * Created on Tue Mar 23 2021 09:21:56
  *
  * Description: 
  *   No description.
@@ -18,12 +18,9 @@
  * See the Mulan PSL v2 for more details.
  */
 
+import { RawMartix } from "./MartixTypes";
 
-export type RawMartix<E> = E[][]
-export type RawVector<E> = ([E])[]
-export type RawVector2<E> = [[E], [E]]
-export type RawVector3<E> = [[E], [E], [E]]
-export type RawTransformation2<E> = [[E, E], [E, E]]
-export type RawTransformation3<E> = [[E, E, E], [E, E, E], [E, E, E]]
 
-export default RawMartix;
+export default function martixSizeOf<E>(m: RawMartix<E>): [number, number] {
+    return [m.length, m.length > 0 ? m[0].length : 0];
+}

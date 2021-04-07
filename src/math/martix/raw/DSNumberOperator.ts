@@ -18,8 +18,8 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import DSNumber from "../../DSNumber";
-import MixedNumber from "../../MixedNumber";
+import DSNumber from "../../../DSNumber";
+import MixedNumber from "../../../MixedNumber";
 import IElementOperator from "./IElementOperator";
 
 const NumberOperator: IElementOperator<MixedNumber> = {

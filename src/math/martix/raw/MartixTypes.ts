@@ -1,6 +1,6 @@
 /*
- * getRowVectors.ts
- * Created on Sat Mar 27 2021 01:56:37
+ * RawMartix.ts
+ * Created on Sun Mar 14 2021 01:21:37
  *
  * Description: 
  *   No description.
@@ -18,13 +18,11 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import RawMartix, { RawVector } from "./RawMartix";
+export type RawMartix<E> = E[][]
+export type RawVector<E> = ([E])[]
+export type RawVector2<E> = [[E], [E]]
+export type RawVector3<E> = [[E], [E], [E]]
+export type RawTransformation2<E> = [[E, E], [E, E]]
+export type RawTransformation3<E> = [[E, E, E], [E, E, E], [E, E, E]]
 
-//TODO
-export default function <E>(m: RawMartix<E>): RawVector<E>[] {
-    return m.map(row => {
-        const v: RawVector<E> = []
-        row.forEach(e => v.push([e]))
-        return v;
-    })
-}
+export default RawMartix;

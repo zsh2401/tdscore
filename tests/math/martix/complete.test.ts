@@ -1,6 +1,6 @@
 import "ts-jest"
 import { RawMartix } from "../../../src/math"
-import complete from "../../../src/math/martix/complete"
+import complete from "../../../src/math/martix/raw/complete"
 it("should auto complete", () => {
     const m: RawMartix<number> = [
         [1, 2, 3, 1],

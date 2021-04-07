@@ -1,6 +1,7 @@
+
 /*
- * martixSizeOf.ts
- * Created on Tue Mar 23 2021 09:21:56
+ * rotation2.ts
+ * Created on Tue Mar 23 2021 09:26:06
  *
  * Description: 
  *   No description.
@@ -17,10 +18,16 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-
-import { RawMartix } from "./RawMartix";
-
-
-export default function martixSizeOf<E>(m: RawMartix<E>): [number, number] {
-    return [m.length, m.length > 0 ? m[0].length : 0];
+import { asNumber } from "../../../../DSNumber";
+import MixedNumber from "../../../../MixedNumber";
+import sin from "../../../fn/sin"
+import cos from "../../../fn/cos"
+import { RawTransformation2 } from "../MartixTypes";
+import { ONE_DEGREE } from "../../../";
+export default function (degree: MixedNumber): RawTransformation2<number> {
+    const theta = asNumber(degree) * ONE_DEGREE;
+    return [
+        [cos(theta), -sin(theta)],
+        [sin(theta), cos(theta)]
+    ]
 }

@@ -1,4 +1,4 @@
-import RawMartix from "./RawMartix";
+import RawMartix from "./MartixTypes";
 
 export type ValueProvider<E> = E | ((row: number, col: number) => E)
 export default function <E>(martix: RawMartix<E>, value: ValueProvider<E>) {

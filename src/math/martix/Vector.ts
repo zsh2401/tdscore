@@ -18,9 +18,6 @@ export default class Vector
     }
 
     transform(t: Transformation): Vector {
-        // if (t.baseVectors.size() !== this.data.length) {
-        //     throw new Error("Deminsion not match");
-        // }
         const m = this.mul(t);
         const jsm = m.toArray();
         const a = jsm.map(e => e[0]);

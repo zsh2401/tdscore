@@ -1,7 +1,6 @@
-
 /*
- * rotation2.ts
- * Created on Tue Mar 23 2021 09:26:06
+ * getColVectors.ts
+ * Created on Sat Mar 27 2021 01:56:40
  *
  * Description: 
  *   No description.
@@ -18,16 +17,18 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import { asNumber } from "../../../DSNumber";
-import MixedNumber from "../../../MixedNumber";
-import sin from "../../fn/sin"
-import cos from "../../fn/cos"
-import { RawTransformation2 } from "../RawMartix";
-import { ONE_DEGREE } from "../..";
-export default function (degree: MixedNumber): RawTransformation2<number> {
-    const theta = asNumber(degree) * ONE_DEGREE;
-    return [
-        [cos(theta), -sin(theta)],
-        [sin(theta), cos(theta)]
-    ]
+import RawMartix, { RawVector } from "./MartixTypes";
+
+//TODO 
+export default function <E>(m: RawMartix<E>): RawVector<E>[] {
+    const vectors: RawVector<E>[] = []
+    m[0].forEach(e => {
+        vectors.push([[e]])
+    })
+    for (let i = 1; i < m.length; i++) {
+        for (let j = 0; j < m[0].length; j++) {
+            vectors[j].push([m[i][j]])
+        }
+    }
+    return vectors;
 }

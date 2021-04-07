@@ -1,4 +1,4 @@
-import Martix from "../../src/math/linear-algebra/Martix";
+import Martix from "../../src/math/martix/Martix";
 
 describe("Martix", () => {
 

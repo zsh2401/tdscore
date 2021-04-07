@@ -1,11 +1,9 @@
 import "ts-jest"
 import { } from "../../../src/data-structure/graph"
-import { bfs, toGraphNode } from "../../../src/algorithm/graph"
+import { bfs } from "../../../src/algorithm/graph"
 
-import IGraph from "../../../src/data-structure/graph/IGraph"
 import SetGraph from '../../../src/data-structure/graph/SetGraph'
 import { IList, LinkedList } from "../../../src";
-import Edge from "../../../src/data-structure/graph/SimpleEdge";
 describe("BFS", () => {
 
     it("No edges", () => {

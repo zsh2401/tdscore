@@ -1,11 +1,8 @@
 import "ts-jest"
 import { } from "../../../src/data-structure/graph"
-import { dfs, toGraphNode } from "../../../src/algorithm/graph"
+import { dfs } from "../../../src/algorithm/graph"
 
-import IGraph from "../../../src/data-structure/graph/IGraph"
-import SimpleGraph from '../../../src/data-structure/graph/SimpleGraph'
-import { find, forEach, IList, LinkedList } from "../../../src";
-import Edge from "../../../src/data-structure/graph/SimpleEdge";
+import { IList, LinkedList } from "../../../src";
 import SetGraph from "../../../src/data-structure/graph/SetGraph"
 describe("DFS", () => {
 

@@ -19,10 +19,22 @@
  */
 
 /**
- * 标准的图边
+ * 图中的边
  */
 export default interface IGraphEdge<E> {
+
+    /**
+     * 起点
+     */
     from: E;
+
+    /**
+     * 终点
+     */
     to: E;
+
+    /**
+     * 权重/消耗
+     */
     weight: number;
 }

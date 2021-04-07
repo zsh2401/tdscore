@@ -31,13 +31,14 @@ import IGraph from "./IGraph";
 import IGraphEdge from "./IGraphEdge";
 
 /**
- * 基于HashSet存储的图
+ * 基于HashSet存储的图，时间效率较高，但空间消耗较大
  */
 export default class SetGraph<E> extends DSObject
     implements IGraph<E> {
 
     private readonly _vertices: ISet<E> = new HashSet()
     private readonly _edges: ISet<Edge<E>> = new HashSet()
+
     constructor() {
         super()
     }

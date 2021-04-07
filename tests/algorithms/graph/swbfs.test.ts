@@ -1,0 +1,21 @@
+import "ts-jest"
+import { SetGraph, algorithm } from "../../../src"
+it("find way", () => {
+    const g = new SetGraph<string>()
+    g.addVertix("A")
+    g.addVertix("B")
+    g.addVertix("C")
+    g.addVertix("D")
+    g.addVertix("E")
+    g.addVertix("F")
+    g.addEdge("A", "B")
+    g.addEdge("B", "C")
+    g.addEdge("C", "D")
+    g.addEdge("C", "E")
+    g.addEdge("B", "F")
+    const noteMap = algorithm.swbfs(g, "A")
+    expect(noteMap.mapGet("E")?.prev).toBe("C")
+    expect(noteMap.mapGet("E")?.cost).toBe(3)
+    expect(noteMap.mapGet("C")?.prev).toBe("B")
+    expect(noteMap.mapGet("B")?.prev).toBe("A")
+})

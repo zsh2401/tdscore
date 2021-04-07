@@ -21,3 +21,4 @@
 export { default as IGraphEdge } from "./IGraphEdge"
 export { default as IGraph } from "./IGraph"
 export { default as hashForEdge } from "./hashForEdge"
+export { default as SetGraph } from "./SetGraph"

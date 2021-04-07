@@ -13,7 +13,7 @@ it("find way", () => {
     g.addEdge("C", "D")
     g.addEdge("C", "E")
     g.addEdge("B", "F")
-    const noteMap = algorithm.swbfs(g, "A")
+    const noteMap = algorithm.wbfs(g, "A")
     expect(noteMap.mapGet("E")?.prev).toBe("C")
     expect(noteMap.mapGet("E")?.cost).toBe(3)
     expect(noteMap.mapGet("C")?.prev).toBe("B")

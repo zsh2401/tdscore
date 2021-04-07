@@ -21,7 +21,8 @@
 import { Action1 } from "../../Action";
 import HashSet from "../../data-structure/set/HashSet";
 import ISet from "../../data-structure/set/ISet"
-import IGraphNode from "../../data-structure/graph/IGraphNode";
+import IGraph from "../../data-structure/graph/IGraph";
+import { defaultOrFirst } from "../../data-structure";
 
 /**
  * 深度优先搜索算法
@@ -30,21 +31,21 @@ import IGraphNode from "../../data-structure/graph/IGraphNode";
  * @param consumer 
  */
 export default function <E>
-    (start: IGraphNode<E>, consumer: Action1<E>) {
-    _dfs(start, consumer, new HashSet())
+    (g: IGraph<E>, consumer: Action1<E>, start?: E) {
+    _dfs(g, start ?? defaultOrFirst(g.vertices)!, consumer, new HashSet())
 }
-function _dfs<E>(node: IGraphNode<E>,
+function _dfs<E>(g: IGraph<E>, e: E,
     consumer: Action1<E>,
-    viewed: ISet<IGraphNode<E>>) {
+    viewed: ISet<E>) {
 
-    consumer(node.data)
-    viewed.collectionAdd(node)
+    consumer(e)
+    viewed.collectionAdd(e)
 
-    const iterator = node.out.getIterator()
+    const iterator = g.outOf(e).getIterator()
     while (iterator.hasNext()) {
         const _crt = iterator.next()
-        if (!viewed.contains(_crt.node)) {
-            _dfs(_crt.node, consumer, viewed)
+        if (!viewed.contains(_crt)) {
+            _dfs(g, _crt, consumer, viewed)
         }
     }
 }

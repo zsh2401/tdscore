@@ -1,6 +1,6 @@
 /*
  * IGraph.ts
- * Created on Tue Apr 06 2021 08:57:32
+ * Created on Wed Apr 07 2021 19:19:29
  *
  * Description: 
  *   No description.
@@ -18,43 +18,22 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import dsHashCode from "../../hash";
-import { IHashCodeGettable } from "../../util/hash";
 import IIterable from "../IIterable";
-import ISet from "../set/ISet";
+import IGraphEdge from "./IGraphEdge";
 
-export const DEFAULT_WEIGHT = 0;
-export const INF_WEIGHT = Number.POSITIVE_INFINITY;
+export default interface IGraph<E> {
 
-/**
- * The hash code of edge should always be edgeHashCodeOf(edge) 
- * otherwise some of algorithms won't work stably
- */
-export interface IEdge<E>
-    extends IHashCodeGettable {
+    readonly vertices: IIterable<E>
+    readonly edges: IIterable<IGraphEdge<E>>
 
-    readonly from: E;
-    readonly to: E;
-    weigth?: number;
+    addVertix(e: E): void
+    removeVertix(e: E): void
 
-}
+    addEdge(from: E, to: E, weight?: number): void
+    removeEdge(from: E, to: E): void
 
-/**
- * The universal hashcode function of all objects implemented IEdge<E> .
- * @param edge 
- * @returns 
- */
-export function edgeHashCodeOf<E>(edge: IEdge<E>): number {
-    return dsHashCode(edge.from) ^ dsHashCode(edge.to) ^ dsHashCode(edge.weigth);
-}
+    inOf(e: E): IIterable<E>
+    outOf(e: E): IIterable<E>
 
-/**
- * G = (V,E)
- */
-export default interface IGraph
-    <TElement, TEdge extends IEdge<TElement> = IEdge<TElement>>
-    extends IIterable<TElement> {
-
-    readonly vertices: ISet<TElement>
-    readonly edges: ISet<TEdge>
+    weightOf(from: E, to: E): number
 }

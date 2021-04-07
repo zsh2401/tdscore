@@ -1,9 +1,9 @@
 /*
- * IGraphNode.ts
- * Created on Tue Apr 06 2021 08:57:54
+ * IGraphEdge.ts
+ * Created on Wed Apr 07 2021 19:19:22
  *
  * Description: 
- *   The design of graph based on linked graph
+ *   No description.
  *
  * Copyright (c) 2021 tdscore
  * 
@@ -18,15 +18,11 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import ICollection from "../ICollection";
-
-export interface IGraphNodeEdge<E> {
-    node: IGraphNode<E>
+/**
+ * 标准的图边
+ */
+export default interface IGraphEdge<E> {
+    from: E;
+    to: E;
     weight: number;
-}
-
-export default interface IGraphNode<E> {
-    readonly in: ICollection<IGraphNodeEdge<E>>
-    readonly out: ICollection<IGraphNodeEdge<E>>
-    data: E
 }

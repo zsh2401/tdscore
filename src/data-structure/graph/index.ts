@@ -18,8 +18,6 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as IGraphNode, IGraphNodeEdge } from "./IGraphNode"
-export { default as SimpleGraphNode } from "./SimpleGraphNode"
-export { default as SimpleEdge } from "./SimpleEdge"
-export { default as SimpleGraph } from "./SimpleGraph"
+export { default as IGraphEdge } from "./IGraphEdge"
 export { default as IGraph } from "./IGraph"
+export { default as hashForEdge } from "./hashForEdge"

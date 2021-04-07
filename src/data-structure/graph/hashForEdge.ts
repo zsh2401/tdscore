@@ -1,6 +1,6 @@
 /*
- * connectNodes.ts
- * Created on Fri Apr 02 2021 11:29:16
+ * hashForEdge.ts
+ * Created on Wed Apr 07 2021 19:20:54
  *
  * Description: 
  *   No description.
@@ -18,34 +18,14 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IGraphNode from "../../data-structure/graph/IGraphNode";
+import hash from "../../util/hash";
+import IGraphEdge from "./IGraphEdge";
 
 /**
- * 
- * 将两个节点进行连接
- * 
- * @param from 
- * @param to 
- * @param weight 
- * @param doubleLinked 
+ * Hash function designed for graph edges.
+ * @param edge 
+ * @returns 
  */
-export default function <E>
-    (
-        from: IGraphNode<E>,
-        to: IGraphNode<E>,
-        weight: number = 0,
-        doubleLinked: boolean = true
-    ) {
-
-    from.out.collectionAdd({
-        node: to,
-        weight
-    })
-
-    if (doubleLinked) {
-        to.in.collectionAdd({
-            node: from,
-            weight
-        })
-    }
+export default function hashForEdge<E>(edge: IGraphEdge<E>) {
+    return hash(edge.from) ^ hash(edge.to)
 }

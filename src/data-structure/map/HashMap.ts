@@ -25,6 +25,7 @@ import IIterator from "../IIterator";
 import HashMapEntry from "./HashMapEntry";
 import MapBase from "./MapBase";
 import { Func1 } from "../../Func";
+import equals from "../../equals";
 
 const DEFAULT_INITIAL_CAPCITY: number = 16;
 const DEFAULT_LOAD_FACTOR = 0.75;
@@ -119,7 +120,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         const bucket = this.table[i];
 
         if (bucket) {
-            if (bucket.key === key) {
+            if (equals(bucket.key, key)) {
                 this.table[i] = bucket.next;
             } else {
                 const prevFinder = (it: HashMapEntry<K, V>) => {
@@ -151,7 +152,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         const bucket = this.table[this.indexFor(hash, this.table.length)];
         const nodeFinder = (it: HashMapEntry<K, V>) => {
             const foundNullNode = key === null && it.key === null;
-            const foundHashNode = key !== null && it.key !== null && it.hash === hash;
+            const foundHashNode = key !== null && it.key !== null && it.hash === hash && equals(it.key, key);
             return foundNullNode || foundHashNode;
         };
         const node = this.findNodeInBucket(bucket, nodeFinder);

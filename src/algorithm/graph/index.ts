@@ -18,11 +18,8 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as connectNodes } from "./connectNodes"
 export { default as bfs } from "./bfs"
 export { default as dfs } from "./dfs"
-export { default as toGraph } from "./toGraph"
-export { default as toGraphNode } from "./toGraphNode"
 export { default as kruskal } from "./kruskal"
 export { default as prim } from "./prim"
 export { default as floyd } from "./floyd"

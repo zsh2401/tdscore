@@ -1,6 +1,6 @@
 import "ts-jest"
-import { HashSet } from "../../src"
-import { doCollectionTest } from "./util/doCollectionTest";
+import { HashSet } from "../../../src"
+import { doCollectionTest } from "../util/doCollectionTest";
 
 doCollectionTest(() => new HashSet())
 

@@ -22,8 +22,9 @@ import HashSet from "../../data-structure/set/HashSet"
 import IQueue from "../../data-structure/linear/IQueue"
 import ISet from "../../data-structure/set/ISet"
 import LinkedList from "../../data-structure/linear/LinkedList"
-import IGraphNode from "../../data-structure/graph/IGraphNode";
 import { Func1 } from "../../Func";
+import IGraph from "../../data-structure/graph/IGraph";
+import { defaultOrFirst } from "../../data-structure";
 
 /**
  * BFS 广度优先搜索算法
@@ -33,21 +34,24 @@ import { Func1 } from "../../Func";
  * @returns 
  */
 export default function <E>
-    (start: IGraphNode<E>, consumer: Func1<E, boolean | void>) {
-    const viewed: ISet<IGraphNode<E>> = new HashSet()
-    const queue: IQueue<IGraphNode<E>> = new LinkedList()
+    (g: IGraph<E>, consumer: Func1<E, boolean | void>, start: (E | null) = defaultOrFirst(g.vertices)) {
+    const viewed: ISet<E> = new HashSet()
+    const queue: IQueue<E> = new LinkedList()
+    if (start === null) {
+        return;
+    }
     queue.queueEn(start)
     while (!queue.isEmpty()) {
         const current = queue.queueDe()
-        if (consumer(current.data) === false) {
+        if (consumer(current) === false) {
             return
         }
         viewed.setAdd(current)
-        const iterator = current.out.getIterator()
+        const iterator = g.outOf(current).getIterator()
         while (iterator.hasNext()) {
             const _crt = iterator.next()
-            if (!viewed.contains(_crt.node)) {
-                queue.queueEn(_crt.node)
+            if (!viewed.contains(_crt)) {
+                queue.queueEn(_crt)
             }
         }
     }

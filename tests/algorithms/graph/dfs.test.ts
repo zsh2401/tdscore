@@ -6,25 +6,26 @@ import IGraph from "../../../src/data-structure/graph/IGraph"
 import SimpleGraph from '../../../src/data-structure/graph/SimpleGraph'
 import { find, forEach, IList, LinkedList } from "../../../src";
 import Edge from "../../../src/data-structure/graph/SimpleEdge";
+import SetGraph from "../../../src/data-structure/graph/SetGraph"
 describe("DFS", () => {
 
     it("No edges", () => {
-        const g: IGraph<number> = new SimpleGraph();
+        const g = new SetGraph<number>()
         for (let i = 0; i < 1000; i++) {
-            g.vertices.collectionAdd(i);
+            g.addVertix(i);
         }
         const viewed: IList<number> = new LinkedList<number>();
-        dfs<number>(toGraphNode(g).getIterator().next(), (node) => viewed.collectionAdd(node));
+        dfs<number>(g, (node) => viewed.collectionAdd(node));
         expect(viewed.size()).toBe(1);
     })
 
     it("Won't back", () => {
-        const g: IGraph<string> = new SimpleGraph();
-        g.vertices.collectionAdd("A");
-        g.vertices.collectionAdd("B");
-        g.edges.collectionAdd(new Edge("B", "A"));
+        const g = new SetGraph<string>()
+        g.addVertix("A");
+        g.addVertix("B");
+        g.addEdge("B", "A");
         const viewed: IList<string> = new LinkedList<string>();
-        dfs<string>(toGraphNode(g).getIterator().next(), (node) => viewed.collectionAdd(node));
+        dfs<string>(g, (node) => viewed.collectionAdd(node));
         expect(viewed.size()).toBe(1);
         expect(viewed.contains("B")).toBeFalsy();
         expect(viewed.contains("A")).toBeTruthy();
@@ -32,18 +33,18 @@ describe("DFS", () => {
 
     it("IS DFS", () => {
         type T = string;
-        const graph: IGraph<T, Edge<T>> = new SimpleGraph();
-        graph.vertices.collectionAdd("A")
-        graph.vertices.collectionAdd("B")
-        graph.vertices.collectionAdd("C")
-        graph.vertices.collectionAdd("D")
+        const graph = new SetGraph<T>()
+        graph.addVertix("A")
+        graph.addVertix("B")
+        graph.addVertix("C")
+        graph.addVertix("D")
 
-        graph.edges.collectionAdd(new Edge("A", "B"));
-        graph.edges.collectionAdd(new Edge("B", "C"));
-        graph.edges.collectionAdd(new Edge("A", "D"))
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        graph.addEdge("A", "D")
 
         const viewed: IList<T> = new LinkedList<T>();
-        dfs(find(toGraphNode(graph), (n) => n.data === "A")!, (node) => viewed.collectionAdd(node));
+        dfs(graph, (node) => viewed.collectionAdd(node));
         expect(viewed.size()).toBe(4);
         expect(viewed.listGet(0)).toBe("A")
         if (viewed.listGet(1) === "B") {
@@ -59,13 +60,13 @@ describe("DFS", () => {
 
     it("Work correctly", () => {
         type T = string;
-        const graph: IGraph<T> = new SimpleGraph<T>();
-        graph.vertices.collectionAdd("A");
-        graph.vertices.collectionAdd("B");
-        graph.edges.collectionAdd(new Edge("A", "B"));
+        const graph = new SetGraph<string>()
+        graph.addVertix("A");
+        graph.addVertix("B");
+        graph.addEdge("A", "B");
 
         const viewed: IList<T> = new LinkedList<T>();
-        dfs(toGraphNode(graph).getIterator().next(), (node) => viewed.collectionAdd(node));
+        dfs(graph, (node) => viewed.collectionAdd(node));
         expect(viewed.size()).toBe(2);
         expect(viewed.contains("A")).toBeTruthy()
         expect(viewed.contains("B")).toBeTruthy()
@@ -73,19 +74,19 @@ describe("DFS", () => {
 
     it("No cycle and repeat", () => {
         type T = string;
-        const graph: IGraph<T> = new SimpleGraph<T>();
-        graph.vertices.collectionAdd("A");
-        graph.vertices.collectionAdd("B");
-        graph.vertices.collectionAdd("C");
-        graph.edges.collectionAdd(new Edge("A", "B"));
-        graph.edges.collectionAdd(new Edge("B", "A"));
-        graph.edges.collectionAdd(new Edge("B", "C"));
-        graph.edges.collectionAdd(new Edge("C", "B"));
-        graph.edges.collectionAdd(new Edge("C", "A"));
-        graph.edges.collectionAdd(new Edge("A", "C"));
+        const graph = new SetGraph<T>()
+        graph.addVertix("A");
+        graph.addVertix("B");
+        graph.addVertix("C");
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "A");
+        graph.addEdge("B", "C");
+        graph.addEdge("C", "B");
+        graph.addEdge("C", "A");
+        graph.addEdge("A", "C");
 
         const viewed: IList<T> = new LinkedList<T>();
-        dfs(toGraphNode(graph).getIterator().next(), (node) => viewed.collectionAdd(node));
+        dfs(graph, (node) => viewed.collectionAdd(node));
         expect(viewed.size()).toBe(3);
         expect(viewed.contains("A")).toBeTruthy()
         expect(viewed.contains("B")).toBeTruthy()

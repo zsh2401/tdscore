@@ -24,7 +24,7 @@ import LinkedList from "../linear/LinkedList";
 import Tree from "./Tree";
 import TreeTraversingStrategy from "../../algorithm/tree/TreeTraversingStrategy";
 
-export default function asIterable<E>(tree: Tree<E>, strategy: TreeTraversingStrategy = "in-order"): IIterable<E> {
+export default function treeAsIterable<E>(tree: Tree<E>, strategy: TreeTraversingStrategy = "in-order"): IIterable<E> {
     const list = new LinkedList<E>()
     treeForEach(tree, (e) => list.listAdd(e), strategy)
     return list

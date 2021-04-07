@@ -1,9 +1,10 @@
-import HashMap from "../../src/data-structure/map/HashMap";
-import IMap, { ReadonlyKeyValuePair } from "../../src/data-structure/map/IMap";
-import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
-import dsEquals from "../../src/equals";
-import ICollection from "../../src/data-structure/ICollection";
-import { doCollectionTest } from "./util/doCollectionTest";
+import HashMap from "../../../src/data-structure/map/HashMap";
+import IMap, { ReadonlyKeyValuePair } from "../../../src/data-structure/map/IMap";
+import { WEEK_HASHCODE_GETTER_NAME } from "../../../src/util/hash/hashCodeForAny";
+import dsEquals from "../../../src/equals";
+import ICollection from "../../../src/data-structure/ICollection";
+import { doCollectionTest } from "../util/doCollectionTest";
+import { DSObject } from "../../../src";
 // import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
 
 describe("HashMap test", () => {
@@ -58,6 +59,36 @@ describe("HashMap test", () => {
             map.mapPut(Math.random() * 1000, i);
         };
         // console.log(map.toString());
+    })
+
+    it("remove same hashcode and customed equals object", () => {
+        const map = new HashMap<A, boolean>()
+        class A extends DSObject {
+            value: number = 15;
+            constructor(value: number) {
+                super()
+                this.value = value
+            }
+            equals(other: any) {
+                if (other instanceof A) {
+                    return this.value === other.value
+                } else {
+                    return super.equals(other)
+                }
+            }
+            getHashCode() {
+                return this.value ^ 2401
+            }
+        }
+        map.mapPut(new A(20), true)
+        map.mapPut(new A(30), true)
+        map.mapPut(new A(20), false)
+        expect(map.size()).toBe(2)
+        expect(map.mapGet(new A(20))).toBeFalsy()
+        expect(map.mapGet(new A(30))).toBeTruthy()
+
+        map.mapRemove(new A(20))
+        expect(map.size()).toBe(1)
     })
 
     it("contains", () => {

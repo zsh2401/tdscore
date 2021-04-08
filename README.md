@@ -54,7 +54,7 @@ npm i tdscore
 | | | heapSort | |reverse |
 | | | seqSearch | |selectMany |
 | | | binarySearch ||  size |
-| | |  | |toList/Map/Set |
+| | | prim | |toList/Map/Set |
 | | | | |where |
 # 安装 
 ```sh

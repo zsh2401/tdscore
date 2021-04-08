@@ -31,5 +31,6 @@
             "${commentend}"
         ]
     },
-    "GitCommitPlugin.MaxSubjectWords": 200
+    "GitCommitPlugin.MaxSubjectWords": 200,
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }

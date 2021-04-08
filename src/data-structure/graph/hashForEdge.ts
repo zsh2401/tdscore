@@ -27,5 +27,5 @@ import IGraphEdge from "./IGraphEdge";
  * @returns 
  */
 export default function hashForEdge<E>(edge: IGraphEdge<E>) {
-    return hash(edge.from) ^ hash(edge.to)
+    return (hash(edge.from) << 16) ^ hash(edge.to)
 }

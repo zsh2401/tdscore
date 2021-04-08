@@ -91,6 +91,37 @@ describe("HashMap test", () => {
         expect(map.size()).toBe(1)
     })
 
+    it("same hash code but not equals", () => {
+
+        let equalsCalled = 0
+        class A extends DSObject {
+            readonly v: number
+            constructor(v: number) {
+                super()
+                this.v = v
+            }
+            override equals(other: any) {
+                equalsCalled++
+                if (other instanceof A) {
+                    return this.v === other.v
+                } else {
+                    return super.equals(other)
+                }
+            }
+            override getHashCode() {
+                return 2401
+            }
+        }
+
+        const map = new HashMap()
+        map.mapPut(new A(2401), 2401)
+        map.mapPut(new A(2402), 2402)
+        expect(map.size()).toBe(2)
+        expect(map.mapGet(new A(2401))).toBe(2401)
+        expect(map.mapGet(new A(2402))).toBe(2402)
+        expect(equalsCalled).toBeGreaterThanOrEqual(2)
+    })
+
     it("contains", () => {
         const map = new HashMap();
         map.mapPut("a", 1);
@@ -188,6 +219,18 @@ describe("HashMap test", () => {
         expect(map.mapGet(null)).toBe(2401);
         expect(map.mapGet(0)).toBe(2402);
     });
+
+    it("resize won't lost any data", () => {
+        const m = new HashMap()
+        const TEST_SIZE = 1000;
+        for (let i = 0; i < TEST_SIZE; i++) {
+            m.mapPut(i, i)
+        }
+        expect(m.size()).toBe(TEST_SIZE)
+        for (let i = 0; i < TEST_SIZE; i++) {
+            expect(m.mapGet(i)).toBe(i)
+        }
+    })
 
     it("extreme collision test", () => {
         const map = new HashMap<number | null, number>();

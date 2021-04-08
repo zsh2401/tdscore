@@ -1,6 +1,6 @@
 /*
- * index.ts
- * Created on Fri Apr 02 2021 11:29:22
+ * MSTreeNode.ts
+ * Created on Thu Apr 08 2021 02:25:58
  *
  * Description: 
  *   No description.
@@ -18,11 +18,12 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export { default as bfs } from "./bfs"
-export { default as dfs } from "./dfs"
-export { default as kruskal } from "./kruskal"
-export { default as prim } from "./prim"
-export { default as floyd } from "./floyd"
-export { default as dijkstra } from "./dijkstra"
-export { default as wbfs } from "./wbfs"
-export { default as MSTreeNode } from "./MSTreeNode"
+import ITreeNode from "../../data-structure/tree/ITreeNode";
+
+
+export interface MSTreeNodeElement<E> {
+    data: E;
+    cost: number;
+}
+type MSTreeNode<E> = ITreeNode<MSTreeNodeElement<E>>;
+export default MSTreeNode;

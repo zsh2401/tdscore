@@ -33,9 +33,16 @@ export default function equals(left: any, right: any): boolean {
 
     //任意值具有equals函数，则使用其equals函数与其他值对比
     if (typeof left?.equals === "function") {
-        return left.equals(right);
-    } else if (typeof right?.equals === "function") {
-        return right.equals(left);
+        const r = left.equals(right);
+        if (typeof r === "boolean") {
+            return r
+        }
+    }
+    if (typeof right?.equals === "function") {
+        const r = right.equals(left);
+        if (typeof r === "boolean") {
+            return r
+        }
     }
 
     //如果类型不同，则必定不同

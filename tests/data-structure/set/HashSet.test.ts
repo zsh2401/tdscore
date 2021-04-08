@@ -1,5 +1,5 @@
 import "ts-jest"
-import { HashSet } from "../../../src"
+import { HashSet, DSObject } from "../../../src"
 import { doCollectionTest } from "../util/doCollectionTest";
 
 doCollectionTest(() => new HashSet())
@@ -39,4 +39,29 @@ it("clear", () => {
     set.add("B")
     set.clear()
     expect(set.isEmpty()).toBeTruthy()
+})
+
+it("same hash", () => {
+    const set = new HashSet<any>()
+    set.setAdd(65)
+    set.setAdd("A")
+    expect(set.size()).toBe(2)
+    expect(set.contains("A")).toBeTruthy()
+    expect(set.contains(65)).toBeTruthy()
+})
+
+it("same hash and equals", () => {
+    class A extends DSObject {
+        override getHashCode() {
+            return 2401
+        }
+        equals() {
+            return true
+        }
+    }
+    const set = new HashSet()
+    set.add(new A())
+    set.add(new A())
+    expect(set.size()).toBe(1)
+    expect(set.contains(new A())).toBeTruthy()
 })

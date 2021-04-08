@@ -22,13 +22,12 @@ import IIterable from "../IIterable";
 import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
 import equals from "../../equals";
-import { IHashCodeGettable } from "../../util/hash";
 import find from "../iterating/find";
 import HashSet from "../set/HashSet";
 import ISet from "../set/ISet"
-import hashForEdge from "./hashForEdge";
 import IGraph from "./IGraph";
 import IGraphEdge from "./IGraphEdge";
+import Edge from "./Edge";
 
 /**
  * 基于HashSet存储的图，时间效率较高，但空间消耗较大
@@ -106,16 +105,3 @@ export default class SetGraph<E> extends DSObject
     }
 }
 
-class Edge<E> implements IHashCodeGettable, IGraphEdge<E> {
-    readonly from: E;
-    readonly to: E;
-    weight: number;
-    constructor(from: E, to: E, weight: number) {
-        this.from = from
-        this.to = to
-        this.weight = weight
-    }
-    getHashCode(): number {
-        return hashForEdge(this)
-    }
-}

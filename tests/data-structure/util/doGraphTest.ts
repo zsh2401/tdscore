@@ -50,6 +50,48 @@ export default function (factory: <E>() => IGraph<E>) {
         })).not.toBe(-1)
     })
 
+    it("no direction", () => {
+        const g = factory<number>()
+        g.addVertix(1)
+        g.addVertix(2)
+        g.addVertix(3)
+
+        g.addEdge(1, 2)
+        g.addEdge(2, 1)
+
+        g.addEdge(2, 3)
+        g.addEdge(3, 2)
+
+        g.addEdge(1, 3)
+        g.addEdge(3, 1)
+
+        expect(size(g.edges)).toBe(6)
+
+        expect(size(g.outOf(1))).toBe(2)
+        expect(size(g.outOf(2))).toBe(2)
+        expect(size(g.outOf(3))).toBe(2)
+
+        expect(contains(g.outOf(1), 2)).toBeTruthy()
+        expect(contains(g.outOf(1), 3)).toBeTruthy()
+
+        expect(contains(g.outOf(2), 1)).toBeTruthy()
+        expect(contains(g.outOf(2), 3)).toBeTruthy()
+
+        expect(contains(g.outOf(3), 1)).toBeTruthy()
+        expect(contains(g.outOf(3), 2)).toBeTruthy()
+
+        
+
+        expect(contains(g.inOf(1), 2)).toBeTruthy()
+        expect(contains(g.inOf(1), 3)).toBeTruthy()
+
+        expect(contains(g.inOf(2), 1)).toBeTruthy()
+        expect(contains(g.inOf(2), 3)).toBeTruthy()
+
+        expect(contains(g.inOf(3), 1)).toBeTruthy()
+        expect(contains(g.inOf(3), 2)).toBeTruthy()
+    })
+
     it("in of", () => {
         const g = factory<string>()
         g.addVertix("A")

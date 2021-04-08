@@ -123,15 +123,15 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
             if (equals(bucket.key, key)) {
                 this.table[i] = bucket.next;
             } else {
-                const prevFinder = (it: HashMapEntry<K, V>) => {
-                    if (key === null && it.next && it.next.key === null) {
-                        return true;
-                    } else if (key !== null && it.next && it.next.hash === h) {
-                        return true;
-                    }
-                    return false;
-                };
-                const prevNode = this.findNodeInBucket(bucket, prevFinder);
+                // const prevFinder = (it: HashMapEntry<K, V>) => {
+                //     if (key === null && it.next && it.next.key === null) {
+                //         return true;
+                //     } else if (key !== null && it.next && it.next.hash === h && equals(it.next.key, key)) {
+                //         return true;
+                //     }
+                //     return false;
+                // };
+                const [prevNode,] = this.findNodeInBucketByKey(bucket, h, key);
                 prevNode!.next = prevNode?.next?.next ?? null;
             }
             this.version++;
@@ -143,29 +143,45 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
 
     mapPut(key: K, value: V): V | null {
+
         //@ts-ignore
         if (EMPTY_TABLE.referenceEquals(this.table)) {
-            this.inflateTable(this.threshold);
+            this.inflateTable(this.threshold)
         }
 
-        const hash = this.hash(key);
-        const bucket = this.table[this.indexFor(hash, this.table.length)];
-        const nodeFinder = (it: HashMapEntry<K, V>) => {
-            const foundNullNode = key === null && it.key === null;
-            const foundHashNode = key !== null && it.key !== null && it.hash === hash && equals(it.key, key);
-            return foundNullNode || foundHashNode;
-        };
-        const node = this.findNodeInBucket(bucket, nodeFinder);
+        const hash = this.hash(key)
+        const bucket = this.table[this.indexFor(hash, this.table.length)]
+        const [, node] = this.findNodeInBucketByKey(bucket, hash, key)
 
         if (node) {
-            const oldValue = node.value;
-            node.key = key;
-            node.value = value;
-            return oldValue;
+            const oldValue = node.value
+            node.key = key
+            node.hash = hash
+            node.value = value
+            return oldValue
         } else {
             this.addNode(hash, bucket, key, value);
             return null;
         }
+    }
+
+    private findNodeInBucketByKey(bucket: HashMapEntry<K, V> | null, hash: number, key: K):
+        [HashMapEntry<K, V> | null, HashMapEntry<K, V> | null] {
+        let parent: HashMapEntry<K, V> | null = null
+        let e: HashMapEntry<K, V> | null = null
+        for (e = bucket; e !== null; e = e.next) {
+            if (key && e.key) {
+                if (hash === e.hash && equals(key, e.key)) {
+                    return [parent, e]
+                }
+            } else {
+                if (equals(key, e.key)) {
+                    return [parent, e]
+                }
+            }
+            parent = e
+        }
+        return [parent, e]
     }
 
     mapGet(key: K): V | null {
@@ -175,13 +191,8 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         }
         const hash = this.hash(key);
         const bucket = this.findBucket(hash);
-        return this.findNodeInBucket(bucket, (it: HashMapEntry<K, V>) => {
-
-            const foundNullKey = (key === null && it.key === null);
-            const hashOK = (key !== null && it.key !== null && hash === it.hash);
-            // console.log(`Finding: ${key}  Current:${it.key} foundNullKey:${foundNullKey} hashOK:${hashOK}`);
-            return foundNullKey || hashOK;
-        })?.value ?? null;
+        const [, node] = this.findNodeInBucketByKey(bucket, hash, key)
+        return node?.value ?? null
     }
 
     size(): number {
@@ -265,7 +276,6 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
     private addNode(hash: number, bucket: HashMapEntry<K, V> | null, key: K, value: V) {
         if (this.reachResizeThreshold()) {
             this.resize(this.table.length * 2);
-            hash = this.hash(key);
             const i = this.indexFor(hash, this.table.length);
             bucket = this.table[i];
         }
@@ -322,42 +332,26 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         return new DSArray<HashMapEntry<K, V> | null>(newSize, null);
     }
 
-    private findNodeInBucket(bucket: HashMapEntry<K, V> | null,
-        finder: Func1<HashMapEntry<K, V>, boolean>): HashMapEntry<K, V> | null {
-
-        while (bucket !== null) {
-            if (finder(bucket)) {
-                return bucket;
-            }
-            bucket = bucket.next;
-        }
-        return null;
-
-    }
-
-    timeUsedForTransfering = 0;
-
     /**
      * Transfer elements in current buckets into new buckets.
      * @param dest 
      * @param rehash 
      */
     private transfer(dest: DSArray<HashMapEntry<K, V> | null>, rehash: boolean = false) {
-        const start = new Date();
         for (let i = 0; i < this.table.length; i++) {
-            let current: HashMapEntry<K, V> | null = this.table[i];
+            let current: HashMapEntry<K, V> | null = this.table[i]
             while (current !== null) {
-                current.hash = rehash ? this.hash(current.key) : current.hash;
-                const i = this.indexFor(current.hash, dest.length);
-                if (dest[i] !== null) {
-                    dest[i]!.next = current;
-                } else {
-                    dest[i] = current;
+                current.hash = rehash ? this.hash(current.key) : current.hash
+                const i = this.indexFor(current.hash, dest.length)
+                const bucket = dest[i]
+                const newNode = new HashMapEntry(current.hash, current.key, current.value)
+                if (bucket) {
+                    newNode.next = bucket
                 }
+                dest[i] = newNode
                 current = current.next;
             }
         }
-        this.timeUsedForTransfering += (new Date().getTime() - start.getTime());
     }
 
     toString() {

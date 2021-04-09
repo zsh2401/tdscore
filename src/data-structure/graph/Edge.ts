@@ -22,9 +22,7 @@ export default class Edge<E> extends DSObject implements IHashCodeGettable, IGra
     }
 
     equals(other: any) {
-        console.log("equals")
         if (other instanceof Edge) {
-            console.log(other);
             return equals(other.from, this.from) && equals(this.to, other.to);
         } else {
             return super.equals(other);

@@ -100,7 +100,7 @@ describe("HashMap test", () => {
                 super()
                 this.v = v
             }
-            override equals(other: any) {
+            equals(other: any) {
                 equalsCalled++
                 if (other instanceof A) {
                     return this.v === other.v
@@ -108,7 +108,7 @@ describe("HashMap test", () => {
                     return super.equals(other)
                 }
             }
-            override getHashCode() {
+            getHashCode() {
                 return 2401
             }
         }

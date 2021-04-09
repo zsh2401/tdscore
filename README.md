@@ -55,7 +55,7 @@ npm i tdscore
 | | | seqSearch | |selectMany |
 | | | binarySearch ||  size |
 | | | prim | |toList/Map/Set |
-| | | | |where |
+| | | kruskal| |where |
 # 安装 
 ```sh
 npm install tdscore --save

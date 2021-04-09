@@ -1,7 +1,6 @@
 import "ts-jest"
-import { forEach, IGraph, SetGraph, size } from "../../../src";
-import { MSTreeNode, prim, treeForEach } from "../../../src/algorithm";
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable";
+import { HashSet, IGraph, SetGraph, size } from "../../../src";
+import { MSTreeNode, treeForEach } from "../../../src/algorithm";
 export default function (f: <E>(g: IGraph<E>, start: E) => MSTreeNode<E>) {
     it("contains all linked element", () => {
         const g = new SetGraph<number>()
@@ -22,7 +21,7 @@ export default function (f: <E>(g: IGraph<E>, start: E) => MSTreeNode<E>) {
         addDBEdge(4, 5, 2)
         addDBEdge(9, 10, 0)
 
-        const tree = prim(g, 1)
+        const tree = f(g, 1)
         const nodes: number[] = []
 
         treeForEach(tree, (n) => nodes.push(n.data))
@@ -53,14 +52,46 @@ export default function (f: <E>(g: IGraph<E>, start: E) => MSTreeNode<E>) {
         addDBEdge(2, 5, 50)
         addDBEdge(4, 2, 13)
         addDBEdge(4, 5, 2)
-        const outOf4 = g.outOf(4)
-        expect(size(outOf4)).toBe(3)
-        const tree = prim(g, 1)
+
+        const tree = f(g, 1)
         let cost = 0
+
         treeForEach(tree, (n) => {
             // console.log(n.cost)
             cost += n.cost
         })
+        expect(cost).toBe(9 + 8 + 2 + 13 + 3)
+    })
+
+    it("no cycle", () => {
+        const g = new SetGraph<number>()
+        const addDBEdge = (from: number, to: number, weight: number) => {
+            g.addVertix(from)
+            g.addVertix(to)
+            g.addEdge(from, to, weight)
+            g.addEdge(to, from, weight)
+        }
+        addDBEdge(1, 3, 9)
+        addDBEdge(1, 4, 8)
+        addDBEdge(1, 6, 60)
+        addDBEdge(6, 2, 3)
+        addDBEdge(2, 5, 50)
+        addDBEdge(4, 2, 13)
+        addDBEdge(4, 5, 2)
+        const tree = f(g, 1)
+        const viewed = new HashSet<number>()
+        let cost = 0
+        expect(() => {
+            treeForEach(tree, (n) => {
+                if (viewed.contains(n.data)) {
+                    throw new Error("Cycle found!")
+                } else {
+                    cost += n.cost
+                    viewed.add(n.data)
+                }
+            })
+        }).not.toThrow()
+
         expect(cost).toBe(9 + 8 + 2 + 13 + 3)
     })
 }

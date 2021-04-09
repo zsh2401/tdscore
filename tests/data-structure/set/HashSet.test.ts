@@ -52,7 +52,7 @@ it("same hash", () => {
 
 it("same hash and equals", () => {
     class A extends DSObject {
-        override getHashCode() {
+        getHashCode() {
             return 2401
         }
         equals() {

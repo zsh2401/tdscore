@@ -10,8 +10,8 @@ const config: webpack.Configuration = {
 	entry: {
 		"tdscore": path.resolve(__dirname, "./src/index.ts"),
 		"tdscore.min": path.resolve(__dirname, "./src/index.ts"),
-		"tdscore-hash": path.resolve(__dirname, "./src/util/hash/index.ts"),
-		"tdscore-hash.min": path.resolve(__dirname, "./src/util/hash/index.ts")
+		"tdscore-hash": path.resolve(__dirname, "./src/util/hashing/index.ts"),
+		"tdscore-hash.min": path.resolve(__dirname, "./src/util/hashing/index.ts")
 	},
 
 	output: {

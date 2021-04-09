@@ -20,7 +20,7 @@
 
 import DSArray from "../../DSArray";
 import IMap, { KeyValuePair, ReadonlyKeyValuePair } from "./IMap";
-import _hashCode from "../../util/hash/hash"
+import _hashCode from "../../util/hashing/hash"
 import IIterator from "../IIterator";
 import HashMapEntry from "./HashMapEntry";
 import MapBase from "./MapBase";

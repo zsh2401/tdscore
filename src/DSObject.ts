@@ -19,8 +19,8 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import IHashCodeGettable from "./util/hash/IHashCodeGettable";
-import { getHashCodeString } from "./util/hash/hashCodeForPrimitiveType";
+import IHashCodeGettable from "./util/hashing/IHashCodeGettable";
+import { getHashCodeString } from "./util/hashing/hashCodeForPrimitiveType";
 import _uuid from "./math/uuid";
 import dsHashCode from "./hash";
 

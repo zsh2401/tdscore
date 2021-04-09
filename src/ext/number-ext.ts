@@ -1,5 +1,5 @@
 import DSNumber from "../DSNumber";
-import hashcode from "../util/hash/hash";
+import hashcode from "../util/hashing/hash";
 
 Number.prototype.toDSNumber = function () {
     //@ts-ignore

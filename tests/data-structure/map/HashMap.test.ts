@@ -1,6 +1,6 @@
 import HashMap from "../../../src/data-structure/map/HashMap";
 import IMap, { ReadonlyKeyValuePair } from "../../../src/data-structure/map/IMap";
-import { WEEK_HASHCODE_GETTER_NAME } from "../../../src/util/hash/hashCodeForAny";
+import { WEEK_HASHCODE_GETTER_NAME } from "../../../src/util/hashing/hashCodeForAny";
 import dsEquals from "../../../src/equals";
 import ICollection from "../../../src/data-structure/ICollection";
 import { doCollectionTest } from "../util/doCollectionTest";

@@ -2,7 +2,7 @@ import IIterable from "../IIterable";
 import DSObject from "../../DSObject";
 import { Func1 } from "../../Func";
 import IIterator from "../IIterator";
-import hashCode from "../../util/hash";
+import hashCode from "../../util/hashing";
 export default function where<E>(i: IIterable<E>, predicate: Func1<E, boolean>) {
     return new WhereIterable(i, predicate);
 }

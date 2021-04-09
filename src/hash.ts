@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import hashcode from "./util/hash/hash";
+import hashf from "./util/hashing/hash";
 
 /**
  * tdscore内部以及公开对外的哈希函数。
@@ -27,5 +27,5 @@ import hashcode from "./util/hash/hash";
  * @returns 
  */
 export default function (v: any): number {
-    return hashcode(v);
+    return hashf(v);
 }

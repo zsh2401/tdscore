@@ -7,7 +7,7 @@ import ListIterator from "./ListIterator";
 import { Action1 } from "../../Action";
 import IReadonlyList from "./IReadonlyList";
 import DSArray from "../../DSArray";
-import hashCode from "../../util/hash";
+import hashCode from "../../util/hashing";
 import IStack from "./IStack";
 import IQueue from "./IQueue";
 import CollectionBase from "../CollectionBase";

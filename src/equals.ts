@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { hash } from "./util/hash";
+import { hash } from "./util/hashing";
 
 /**
  * 万能的比较函数。

@@ -1,8 +1,8 @@
-import { IHashCodeGettable } from "../../src/util/hash";
+import { IHashCodeGettable } from "../../src/util/hashing";
 import dsHashCode from "../../src/hash"
 import DSObject from "../../src/DSObject"
-import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/hashCodeForAny";
-import { HASHCODE_FOR_TRUE, HASHCODE_FOR_FALSE } from "../../src/util/hash/hashCodeForPrimitiveType"
+import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hashing/hashCodeForAny";
+import { HASHCODE_FOR_TRUE, HASHCODE_FOR_FALSE } from "../../src/util/hashing/hashCodeForPrimitiveType"
 describe("Hash test", () => {
     it("For function", () => {
         let flag = false;

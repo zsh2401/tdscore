@@ -24,9 +24,8 @@ import IIterable from "./data-structure/IIterable";
 import IIterator from "./data-structure/IIterator";
 import find from "./data-structure/iterating/find"
 import toJSArray from "./data-structure/iterating/toJSArrayForItertable";
-import hashCode from "./util/hash";
+import hashCode from "./util/hashing";
 import IArrayLike from "./IArrayLike";
-import seal from "./util/type/seal";
 /**
  * 默认数据提供器
  * --

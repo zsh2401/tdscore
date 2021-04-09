@@ -1,5 +1,5 @@
 import DSObject from "../DSObject"
-import hashCode from "../util/hash";
+import hashCode from "../util/hashing";
 
 //TODO wait to be tested.
 export default class Color extends DSObject {

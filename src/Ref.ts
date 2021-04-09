@@ -1,6 +1,6 @@
 import DSEvent, { EventArgs } from "./DSEvent";
 import DSObject from "./DSObject";
-import { hash } from "./util/hash";
+import { hash } from "./util/hashing";
 
 export class GettingEventArgs<T> extends EventArgs {
     prevent: boolean = false;

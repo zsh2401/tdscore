@@ -1,5 +1,5 @@
 import DSObject from "../../DSObject";
-import _hashCode from "../../util/hash"
+import _hashCode from "../../util/hashing"
 export default class HashMapEntry<K, V> extends DSObject {
     
     hash: number;

@@ -4,7 +4,6 @@ import { WEEK_HASHCODE_GETTER_NAME } from "../../../src/util/hashing/hashCodeFor
 import dsEquals from "../../../src/equals";
 import ICollection from "../../../src/data-structure/ICollection";
 import { DSObject } from "../../../src";
-// import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
 
 describe("HashMap test", () => {
     it("basic put and get", () => {
@@ -176,6 +175,7 @@ describe("HashMap test", () => {
         const bucket2: number = map.indexFor(1 + 16);
         expect(bucket1).toEqual(bucket2);
     })
+
     it("function as key", () => {
         const map = new HashMap<() => void, () => void>();
         let flag = false;
@@ -186,6 +186,7 @@ describe("HashMap test", () => {
         map.mapGet(fKey)!();
         expect(flag).toBeTruthy();
     });
+
     it("handle null key", () => {
         const map = new HashMap<number | null, number>();
 

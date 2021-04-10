@@ -10,7 +10,7 @@ import IDirectionIndicator from "../IDirectionIndicator";
  */
 
 export default function bstSearch
-    <N extends IBiTreeNode<E>, E>
+    <E, N extends IBiTreeNode<E> = IBiTreeNode<E>>
     (tree: N | null, guider: IDirectionIndicator<E>): Nullable<IBiTreeNode<E>> {
 
     if (tree === null)

@@ -1,7 +1,7 @@
 import { dsHashCode, DSNumber } from "../../src";
 import equals from "../../src/equals"
 import DSObject from "../../src/DSObject";
-import { IHashCodeGettable } from "../../src/util/hash";
+import { IHashCodeGettable } from "../../src/util/hashing";
 
 describe("dsEquals' test", () => {
     it("null related", () => {

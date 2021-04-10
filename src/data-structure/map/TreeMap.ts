@@ -1,123 +1,89 @@
-import DSArray from "../../DSArray";
-import DSObject from "../../DSObject";
-import Ref from "../../Ref";
-import hashCode from "../../util/hashing";
-import { IReadonlyKeyValuePair } from "./IMap";
-import { toDSArrayForItertable } from "../iterating";
-import IList from "../linear/IList";
-import LinkedList from "../linear/LinkedList";
+import { DSArray } from "../..";
+import { bstSearch, treeForEach } from "../../algorithm";
+import IComparer from "../../algorithm/IComparer";
+import { AvlBiTreeNode, avlDelete, avlInsert } from "../../algorithm/tree/avltree";
+import { toDSArray } from "../../IArrayLike";
+import Nullable from "../../Nullable";
+import { hash } from "../../util/hashing";
+import { IReadonlyKeyValuePair, IKeyValuePair } from "./IMap";
 import MapBase from "./MapBase";
 
-//TODO waiting to be implemented.
+/**
+ * TreeMap<K,V> is based on AVL Tree
+ */
 export default class TreeMap<K, V> extends MapBase<K, V>{
-    private root: Entry<K, V> | null = null;
-    private _size: number = 0;
-    private version: Ref<number> = new Ref<number>(0);
-    private lastUpdatedVersion: number = 0;
-    private cachedEntries: DSArray<Entry<K, V>> = new DSArray(0);
-    constructor() {
-        super();
+
+    private root: Nullable<AvlBiTreeNode<IKeyValuePair<K, V>>> = null
+    private readonly comparer: IComparer<K>
+    private _size = 0;
+
+    constructor(comparer: IComparer<K> = (a, b) => hash(a) - hash(b)) {
+        super()
+        this.comparer = comparer
     }
+
     mapGetKeys(): DSArray<K> {
-        this.updateCacheIfNeed();
-        return toDSArrayForItertable(this.cachedEntries, (entry) => {
-            return entry.getKey()
-        });
+        const r: K[] = []
+        treeForEach(this.root, (kvp) => r.push(kvp.key))
+        return toDSArray(r)
     }
+
     mapGetValues(): DSArray<V> {
-        this.updateCacheIfNeed();
-        return toDSArrayForItertable(this.cachedEntries, (entry) => {
-            return entry.getValue()
-        });
+        const r: V[] = []
+        treeForEach(this.root, (kvp) => r.push(kvp.value))
+        return toDSArray(r)
     }
+
     mapGetPairs(): DSArray<IReadonlyKeyValuePair<K, V>> {
-        this.updateCacheIfNeed();
-        return this.cachedEntries;
+
+        const r: IReadonlyKeyValuePair<K, V>[] = []
+        treeForEach(this.root, (kvp) => r.push(kvp))
+        return toDSArray(r)
+
     }
-    private updateCacheIfNeed() {
-        if (this.lastUpdatedVersion !== this.version.value) {
-            const entries = new LinkedList<Entry<K, V>>();
-            this.preOrder(this.root, entries);
-            this.cachedEntries = toDSArrayForItertable(entries);
-            this.lastUpdatedVersion = this.version.value;
-        }
-    }
-    private preOrder(root: Entry<K, V> | null, builder: IList<Entry<K, V>>) {
-        if (root) {
-            builder.listAdd(root);
-            this.preOrder(root.lchild, builder);
-            this.preOrder(root.rchild, builder);
-        }
-    }
-    private fixAfterInsertion(x: Entry<K, V>) { }
-    private rotateLeft(x: Entry<K, V>) { }
-    private rotateRight(x: Entry<K, V>) { }
-    private getEntry(key: K): Entry<K, V> | null {
-        return null;
-    }
-    private deleteEntry(x: Entry<K, V>) { }
+
     mapPut(key: K, value: V): V | null {
-        if (this.root === null) {
-            this.root = new Entry(key, value, null!);
-            this._size = 1;
-            this.version.value++;
-            return null;
+
+        const sameKeyNode = bstSearch<IKeyValuePair<K, V>>(this.root, (e) => {
+            return this.comparer(e.key,key)
+        })
+
+        if (sameKeyNode) {
+            const oldValue = sameKeyNode.data.value
+            sameKeyNode.data.value = value
+            return oldValue
+        } else {
+            this.root = avlInsert(this.root, { key, value }, (a, b) => this.comparer(a.key, b.key))
+            this._size++
+            return value
         }
-        throw new Error("Method not implemented.");
     }
+
     mapGet(key: K): V | null {
-        const e = this.getEntry(key);
-        return e === null ? null : e.getValue();
+
+        const r = bstSearch<IKeyValuePair<K, V>>(this.root, (e) => {
+            return this.comparer(e.key, key)
+        })
+        return r?.data?.value ?? null
+
     }
+
     mapRemove(key: K): void {
-        const e = this.getEntry(key);
-        if (e !== null) {
-            this.deleteEntry(e);
+        try {
+            this.root = avlDelete(this.root, { key, value: null! }, (a, b) => this.comparer(a.key, b.key))
+            this._size--
+        } catch (e) {
+
         }
     }
+
     size(): number {
         return this._size;
     }
+
     collectionClear(): void {
-        this.root = null;
-        this._size = 0;
-        this.version.value++;
-        this.cachedEntries = new DSArray(0);
-        this.lastUpdatedVersion = this.version.value;
+        this.root = null
+        this._size = 0
     }
 
-}
-class Entry<K, V> extends DSObject {
-    key: K;
-    value: V;
-    lchild: Entry<K, V> | null = null;
-    rchild: Entry<K, V> | null = null;
-    parent: Entry<K, V>;
-    color: "red" | "black" = "black";
-    constructor(key: K, value: V, parent: Entry<K, V>) {
-        super();
-        this.key = key;
-        this.value = value;
-        this.parent = parent;
-    }
-    getKey() {
-        return this.key;
-    }
-    setKey(key: K) {
-        this.key = key;
-    }
-    setValue(value: V): V {
-        const oldValue = this.value;
-        this.value = value;
-        return oldValue;
-    }
-    getValue(): V {
-        return this.value;
-    }
-    getHashCode() {
-        return hashCode(this.key) ^ hashCode(this.value);
-    }
-    toString() {
-        return `${this.key}=${this.value}`
-    }
 }

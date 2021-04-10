@@ -223,7 +223,7 @@ export function avlDelete<E>(tree: AvlBiTreeNode<E> | null, e: E, c: IComparer<E
 
     //Can not find the target
     if (targetNode === null) {
-        return superRoot.left
+        throw new Error("Target not found.")
     }
 
     //左右子树都有

@@ -1,7 +1,8 @@
+import IIterable from "../IIterable";
 
 /*
- * reverse.ts
- * Created on Sat Apr 10 2021 00:20:47
+ * sum.ts
+ * Created on Sat Apr 10 2021 12:23:45
  *
  * Description: 
  *   No description.
@@ -19,14 +20,22 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IIterable from "../IIterable";
-import toList from "./toList";
-
 /**
- * Reverse the linear arrange mode of iterable object.
+ * 
+ * Get the summation of all elements in collection.
+ * 
  * @param i 
+ * @param adder 
  * @returns 
  */
-export default function reverse<E>(i: IIterable<E>): IIterable<E> {
-    return toList(i, true);
-};
+export default function sum<E>(i: IIterable<E>, adder: (a: E, b: E) => E): E {
+    const iterator = i.getIterator()
+    if (iterator.hasNext() === false) {
+        throw new Error("There's no any element")
+    }
+    let result = iterator.next()
+    while (iterator.hasNext()) {
+        result = adder(result, iterator.next())
+    }
+    return result;
+}

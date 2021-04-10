@@ -22,7 +22,7 @@ import { Action1 } from "../../Action";
 import HashSet from "../../data-structure/set/HashSet";
 import ISet from "../../data-structure/set/ISet"
 import IGraph from "../../data-structure/graph/IGraph";
-import { defaultOrFirst } from "../../data-structure";
+import defaultOrFirst  from "../../data-structure/iterating/defaultOrFirst";
 
 /**
  * 深度优先搜索算法

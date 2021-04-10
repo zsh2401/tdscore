@@ -34,6 +34,9 @@ class ArrayLikeIterator<E>
         return this.position + 1 < this.target.length;
     }
     next(): E {
+        if(this.position + 1 >= this.target.length){
+            throw new Error("There's no element!")
+        }
         return this.target[++this.position];
     }
     current(): E {

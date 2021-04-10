@@ -1,9 +1,8 @@
 import HashMap from "../../../src/data-structure/map/HashMap";
-import IMap, { ReadonlyKeyValuePair } from "../../../src/data-structure/map/IMap";
+import IMap, { IReadonlyKeyValuePair } from "../../../src/data-structure/map/IMap";
 import { WEEK_HASHCODE_GETTER_NAME } from "../../../src/util/hashing/hashCodeForAny";
 import dsEquals from "../../../src/equals";
 import ICollection from "../../../src/data-structure/ICollection";
-import { doCollectionTest } from "../util/doCollectionTest";
 import { DSObject } from "../../../src";
 // import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hash/weekhash";
 
@@ -130,7 +129,7 @@ describe("HashMap test", () => {
     })
 
     it("collection test", () => {
-        const map: ICollection<ReadonlyKeyValuePair<string, string>> = new HashMap();
+        const map: ICollection<IReadonlyKeyValuePair<string, string>> = new HashMap();
         map.collectionAdd({ key: "1", value: "1" });
         map.collectionAdd({ key: "2", value: "2" })
         map.collectionAdd({ key: "2", value: "3" })

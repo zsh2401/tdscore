@@ -28,7 +28,7 @@ import equals from "../../equals";
 import HashMap from "../../data-structure/map/HashMap"
 import HashSet from "../../data-structure/set/HashSet"
 import ISet from "../../data-structure/set/ISet"
-import IteratingStream from "../../data-structure/iterating/IteratingStream"
+import Chain from "../../data-structure/iterating/Chain"
 import TreeNode from "../../data-structure/tree/TreeNode"
 
 /**
@@ -144,7 +144,7 @@ function asTree<E>(edges: ISet<IGraphEdge<E>>, _root: E): MSTreeNode<E> {
 
     //获取某个节点的邻边
     const findRelatedEdges = (e: E): IGraphEdge<E>[] => {
-        return new IteratingStream(edges)
+        return new Chain(edges)
             .where(edge => equals(edge.from, e) || equals(edge.to, e))
             .asJSArray()
     }

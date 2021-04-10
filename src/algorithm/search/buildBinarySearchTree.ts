@@ -17,7 +17,7 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import { BTreeNode } from "../../data-structure";
+import BiTreeNode  from "../../data-structure/tree/BiTreeNode";
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 import dsHashCode from "../../hash";
 import IArrayLike from "../../IArrayLike";
@@ -51,7 +51,7 @@ export default function <E>(a: IArrayLike<E>):
         throw new Error("There's nothing to be used for building binary search tree.")
     }
     //创建根节点
-    let root: IBiTreeNode<E> = new BTreeNode(a[0])
+    let root: IBiTreeNode<E> = new BiTreeNode(a[0])
 
     //将所有元素插入到根节点中
     for (let i = 1; i < a.length; i++) {
@@ -73,7 +73,7 @@ function insertInto<E>(tree: IBiTreeNode<E>, e: E, tHash: number, eHash: number)
         //左节点是空的，直接插入
         if (tree.left === null) {
             // console.log(`set ${e}#${eHash} as ${tree.data}#${tHash}'s left child`)
-            const newNode = new BTreeNode(e)
+            const newNode = new BiTreeNode(e)
             newNode.parent = tree
             tree.left = newNode
         } else {//继续查找
@@ -82,7 +82,7 @@ function insertInto<E>(tree: IBiTreeNode<E>, e: E, tHash: number, eHash: number)
     } else {//当根小于元素，元素要到右边去
         if (tree.right === null) {
             // console.log(`set ${e} as ${tree.data}'s right child`)
-            const newNode = new BTreeNode(e)
+            const newNode = new BiTreeNode(e)
             newNode.parent = tree
             tree.right = newNode
         } else {//继续查找

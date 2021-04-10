@@ -23,7 +23,7 @@
  * Exchange sort.
  */
 export { default as bubbleSort } from "./bubbleSort"
-export { default as qucikSort } from "./quickSort"
+export { default as quickSort } from "./quickSort"
 
 /**
  * Insertion sort.

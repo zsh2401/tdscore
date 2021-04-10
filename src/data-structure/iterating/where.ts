@@ -3,9 +3,21 @@ import DSObject from "../../DSObject";
 import { Func1 } from "../../Func";
 import IIterator from "../IIterator";
 import hashCode from "../../util/hashing";
-export default function where<E>(i: IIterable<E>, predicate: Func1<E, boolean>) {
+
+/**
+ * 
+ * You can understand this function as Array.filter with lazy load.
+ * 
+ * THIS IS ANOTHER LAZY LOAD ITERATING FUNCTION
+ * 
+ * @param i 
+ * @param predicate 
+ * @returns 
+ */
+export default function where<E>(i: IIterable<E>, predicate: Func1<E, boolean>): IIterable<E> {
     return new WhereIterable(i, predicate);
 }
+
 class WhereIterable<E> extends DSObject implements IIterable<E> {
     private readonly predicate: Func1<E, boolean>;
     private readonly source: IIterable<E>;
@@ -18,6 +30,7 @@ class WhereIterable<E> extends DSObject implements IIterable<E> {
         return new WhereIterator(this.source.getIterator(), this.predicate);
     }
 }
+
 class WhereIterator<E> extends DSObject implements IIterator<E>{
     private readonly source: IIterator<E>;
     private readonly predicate: Func1<E, boolean>;

@@ -1,7 +1,6 @@
-
 /*
- * reverse.ts
- * Created on Sat Apr 10 2021 00:20:47
+ * max.ts
+ * Created on Sat Apr 10 2021 00:16:28
  *
  * Description: 
  *   No description.
@@ -19,14 +18,26 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IIterable from "../IIterable";
-import toList from "./toList";
+import IComparer from "../../algorithm/IComparer"
+import IIterable from "../IIterable"
 
 /**
- * Reverse the linear arrange mode of iterable object.
- * @param i 
+ * Find the max element in a iterable object.
+ * @param iterable 
+ * @param comparaer 
  * @returns 
  */
-export default function reverse<E>(i: IIterable<E>): IIterable<E> {
-    return toList(i, true);
-};
+export default function <E>(iterable: IIterable<E>, comparaer: IComparer<E>): E {
+    const iterator = iterable.getIterator()
+    if (iterator.hasNext()) {
+        throw new Error("No elemnt")
+    }
+    let max: E = iterator.next()
+    while (iterator.hasNext()) {
+        const current = iterator.next()
+        if (comparaer(current, max) > 0) {
+            max = current
+        }
+    }
+    return max
+}

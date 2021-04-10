@@ -24,7 +24,7 @@ import ISet from "../../data-structure/set/ISet"
 import LinkedList from "../../data-structure/linear/LinkedList"
 import { Func1 } from "../../Func";
 import IGraph from "../../data-structure/graph/IGraph";
-import { defaultOrFirst } from "../../data-structure";
+import defaultOrFirst from "../../data-structure/iterating/defaultOrFirst";
 
 /**
  * BFS 广度优先搜索算法

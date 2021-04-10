@@ -19,12 +19,10 @@
  */
 
 import DSArray from "../../DSArray";
-import IMap, { KeyValuePair, ReadonlyKeyValuePair } from "./IMap";
+import IMap, { IReadonlyKeyValuePair } from "./IMap";
 import _hashCode from "../../util/hashing/hash"
-import IIterator from "../IIterator";
 import HashMapEntry from "./HashMapEntry";
 import MapBase from "./MapBase";
-import { Func1 } from "../../Func";
 import equals from "../../equals";
 
 const DEFAULT_INITIAL_CAPCITY: number = 16;
@@ -44,7 +42,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
     private keys: DSArray<K>;
     private values: DSArray<V>;
-    private kvs: DSArray<ReadonlyKeyValuePair<K, V>>;
+    private kvs: DSArray<IReadonlyKeyValuePair<K, V>>;
 
     constructor(initialCapcity = DEFAULT_INITIAL_CAPCITY, loadFactor = DEFAULT_LOAD_FACTOR) {
         super();
@@ -66,7 +64,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         }
         this._size = 0;
     }
-    collectionAny(): ReadonlyKeyValuePair<K, V> {
+    collectionAny(): IReadonlyKeyValuePair<K, V> {
         if (this.size() === 0) {
             throw new Error("There's no element");
         }
@@ -104,7 +102,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         this.refreshCacheIfNeed();
         return this.values;
     }
-    mapGetPairs(): DSArray<ReadonlyKeyValuePair<K, V>> {
+    mapGetPairs(): DSArray<IReadonlyKeyValuePair<K, V>> {
         this.refreshCacheIfNeed();
         return this.kvs;
     }

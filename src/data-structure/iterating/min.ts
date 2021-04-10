@@ -1,7 +1,6 @@
-
 /*
- * reverse.ts
- * Created on Sat Apr 10 2021 00:20:47
+ * min.ts
+ * Created on Sat Apr 10 2021 00:11:47
  *
  * Description: 
  *   No description.
@@ -19,14 +18,27 @@
  * See the Mulan PSL v2 for more details.
  */
 
+import IComparer from "../../algorithm/IComparer";
 import IIterable from "../IIterable";
-import toList from "./toList";
+
 
 /**
- * Reverse the linear arrange mode of iterable object.
- * @param i 
+ * Find the min element in a iterable object.
+ * @param iterable 
+ * @param comparaer 
  * @returns 
  */
-export default function reverse<E>(i: IIterable<E>): IIterable<E> {
-    return toList(i, true);
-};
+export default function <E>(iterable: IIterable<E>, comparaer: IComparer<E>): E {
+    const iterator = iterable.getIterator()
+    if (iterator.hasNext()) {
+        throw new Error("No elemnt")
+    }
+    let min: E = iterator.next()
+    while (iterator.hasNext()) {
+        const current = iterator.next()
+        if (comparaer(current, min) < 0) {
+            min = current
+        }
+    }
+    return min
+}

@@ -14,7 +14,7 @@
 npm i tdscore
 ```
 
-几乎使用纯TypeScript实现的数据结构，算法，数学程式，以及对ECMA Script的拓展。✨
+纯`TypeScript`实现的数据结构，算法，数学程式✨
 
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
@@ -31,31 +31,40 @@ npm i tdscore
 
 </div>
 
-# 特性
+# 介绍
+## 特性
 * 可读性高：开发的首要目标为研习🌌
-* 到处运行：编译产物仅使用ES5语法特性。
-* 麻雀虽小：压缩传输仅22.4KiB（v0.1.26)。
+* 到处运行：编译产物仅使用ES5语法特性
+* 麻雀虽小：压缩传输仅22.4KiB（v0.1.27)
 * 能够被编译为二进制可执行程序。查看[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 * 迭代器（灵感来自于`C# Linq`）
 
-# 已经实现
+## 已经实现
 | 线性结构 | 非线性结构 | 算法 | 数学 | 迭代|
 | ---- | ---- | ---- | ---- | ---- | 
-| CQueue| HashMap |hash|sin | Stream |
-| 顺序表 | 图接口 | BFS | cos | append |
-| 链表  |AVL |DFS | Martix(OOP) |contains |
-| BitSpan| 树接口 | BST | Martix(Classic) | filter|
+|**DSArray** | **HashMap** |**hash(∀)** |Trigonometric | **Chain** |
+| ArrayList | 图结构定义 | BFS | cos | append |
+| **LinkedList**  |树结构定义|DFS | **Martix(OOP)** |contains |
+| BitSpan| **AVL**  | BST | Martix(Classic) | filter|
 |Queue |BiTreeNode |bubbleSort | 无限精度(DSNumber) | defaultOrFirst|
-| Glist |HashSet | qucikSort | Linear transformation | filter |
-| Stack |SetGraph | shellSort | Complex | forEach|
-|  |  | radixSort | Hamming Code | indexOf|
+| **GList** |HashSet | **quickSort** | Linear transformation | filter |
+| Stack |**SetGraph** | shellSort | Complex | forEach|
+| CQueue |  | radixSort | Hamming Code | indexOf|
 | | | insertionSort | Color | isEmpty |
 | | | selectionSort | fab | last |
 | | | heapSort | |reverse |
 | | | seqSearch | |selectMany |
 | | | binarySearch ||  size |
 | | | prim | |toList/Map/Set |
-| | | kruskal| |where |
+| | | **kruskal**| | where | |
+| | | **treeForEach** | |  min/max|
+## 设计理念
+* 避免使用`undefined`
+* 尽可能使用异常而不是空返回值
+* 函数与面向对象API同步推进
+* 力求API高度抽象与推广
+* 系统自洽
+
 # 安装 
 ```sh
 npm install tdscore --save
@@ -86,7 +95,7 @@ TDSCore同时支持通过以下方式引入：
 [**查看在线文档**](http://ds.zsh2401.top)
 
 # 加入开发🤝
-您可以[使用Github1s在线浏览代码](https://github1s.com/zsh2401/tdscore/)，也可以直接将代码克隆到本地。
+您可以先[使用Github1s在线浏览代码](https://github1s.com/zsh2401/tdscore/)。
 
 ## 克隆并且切换到dev分支
 ```sh

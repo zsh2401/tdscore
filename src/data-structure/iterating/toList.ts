@@ -3,14 +3,17 @@ import IList from "../linear/IList";
 import LinkedList from "../linear/LinkedList";
 
 export default function toList<E>(i: IIterable<E>, reverse: boolean = false): IList<E> {
+    
     const list = new LinkedList<E>();
     const iterator = i.getIterator();
+
     while (iterator.hasNext()) {
         if (reverse) {
-            list.listInsert(0, iterator.next());
+            list.queueEn(iterator.next());
         } else {
-            list.listAdd(iterator.next());
+            list.stackPush(iterator.next());
         }
     }
+
     return list;
 }

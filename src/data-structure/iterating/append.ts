@@ -1,62 +1,70 @@
 import IIterable from "../IIterable";
 import IIterator from "../IIterator"
 import DSObject from "../../DSObject";
+import IArrayLike from "../../IArrayLike";
+import getIterator from "./getIterator";
+import { isArrayLike } from "../../util/type/determine-type";
 
 /**
  * Append element to a new Iterable object.
+ * 
+ * THIS IS ANOTHER LAZY LOAD ITERATING FUNCTION
+ * 
  * @param i iterable object.
  * @param e new element.
  * @returns new iterable object which element has been append to it.
  */
-export default function append<E>(i: IIterable<E>, e: E): IIterable<E> {
-    return new AppendIterable(i, e);
+export default function append<E>(i: IIterable<E>, e: E | IArrayLike<E>): IIterable<E> {
+    return new AppendIterable(i, isArrayLike(e) ? e : [e]);
 }
+
 class AppendIterable<E> extends DSObject implements IIterable<E>{
     private readonly source;
     private readonly newEle;
-    constructor(iterable: IIterable<E>, newEle: E) {
+    constructor(iterable: IIterable<E>, newElements: IArrayLike<E>) {
         super();
         this.source = iterable;
-        this.newEle = newEle;
+        this.newEle = newElements;
     }
 
     getIterator(): IIterator<E> {
-        return new AppendIterator(this.source.getIterator(), this.newEle);
+        return new AppendIterator(this.source.getIterator(), getIterator(this.newEle));
     }
 }
 class AppendIterator<E> extends DSObject implements IIterator<E>{
-    private readonly source;
-    private readonly newEle;
-    private newElementTook = false;
-    constructor(source: IIterator<E>, newEle: E) {
+
+    private readonly source: IIterator<E>;
+    private readonly newElements: IIterator<E>;
+    private stage: "source" | "new" = "source"
+
+    constructor(source: IIterator<E>, newElements: IIterator<E>) {
         super();
+        this.stage = source.hasNext() ? "source" : "new"
         this.source = source;
-        this.newEle = newEle;
+        this.newElements = newElements
     }
+
     reset() {
         this.source.reset();
-        this.newElementTook = false;
+        this.newElements.reset()
+        this.stage = this.source.hasNext() ? "source" : "new"
     }
+
     hasNext() {
-        if (this.source.hasNext() || !this.newElementTook) {
-            return true;
-        }
-        return false;
+        return this.source.hasNext() || this.newElements.hasNext();
     }
+
     next() {
-        if (this.source.hasNext()) {
+        if (this.stage === "source" && this.source.hasNext()) {
             return this.source.next();
-        } else if (!this.newElementTook) {
-            this.newElementTook = true;
-            return this.newEle;
-        }
-        throw new Error("No element.");
-    }
-    current() {
-        if (this.newElementTook) {
-            return this.newEle;
         } else {
-            return this.source.current()
+            this.stage = "new"
+            return this.newElements.next()
         }
+    }
+
+    current() {
+        return this.stage === "source" ?
+            this.source.current() : this.newElements.current()
     }
 }

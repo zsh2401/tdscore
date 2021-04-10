@@ -2,11 +2,12 @@ import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
 import Ref from "../../Ref";
 import hashCode from "../../util/hashing";
-import { ReadonlyKeyValuePair } from "./IMap";
+import { IReadonlyKeyValuePair } from "./IMap";
 import { toDSArrayForItertable } from "../iterating";
 import IList from "../linear/IList";
 import LinkedList from "../linear/LinkedList";
 import MapBase from "./MapBase";
+
 //TODO waiting to be implemented.
 export default class TreeMap<K, V> extends MapBase<K, V>{
     private root: Entry<K, V> | null = null;
@@ -29,7 +30,7 @@ export default class TreeMap<K, V> extends MapBase<K, V>{
             return entry.getValue()
         });
     }
-    mapGetPairs(): DSArray<ReadonlyKeyValuePair<K, V>> {
+    mapGetPairs(): DSArray<IReadonlyKeyValuePair<K, V>> {
         this.updateCacheIfNeed();
         return this.cachedEntries;
     }

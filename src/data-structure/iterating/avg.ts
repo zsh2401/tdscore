@@ -1,7 +1,6 @@
-
 /*
- * reverse.ts
- * Created on Sat Apr 10 2021 00:20:47
+ * avg.ts
+ * Created on Sat Apr 10 2021 12:27:09
  *
  * Description: 
  *   No description.
@@ -20,13 +19,27 @@
  */
 
 import IIterable from "../IIterable";
-import toList from "./toList";
 
 /**
- * Reverse the linear arrange mode of iterable object.
+ * Get average result of all elements in collection.
  * @param i 
+ * @param add 
+ * @param divByNumber 
  * @returns 
  */
-export default function reverse<E>(i: IIterable<E>): IIterable<E> {
-    return toList(i, true);
-};
+export default function avg<E>(i: IIterable<E>,
+    add: (a: E, b: E) => E,
+    divByNumber: (a: E, b: number) => E) {
+
+    const iterator = i.getIterator()
+    if (iterator.hasNext() === false) {
+        throw new Error("There's no any element")
+    }
+    let result = iterator.next()
+    let len = 1;
+    while (iterator.hasNext()) {
+        result = add(result, iterator.next())
+        len++
+    }
+    return divByNumber(result, len);
+}

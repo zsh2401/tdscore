@@ -24,9 +24,9 @@ import IList from "../../data-structure/linear/IList"
 import IQueue from "../../data-structure/linear/IQueue"
 import UngrowableArrayList from "../../data-structure/linear/UngrowableArrayList"
 import IArrayLike from "../../IArrayLike";
-import IComparer from "../IComparer";
 
 type RadixSortElement<E> = number | RadixSortElementWithData<E>;
+
 export interface RadixSortElementWithData<E> {
     number: number;
     data: E;

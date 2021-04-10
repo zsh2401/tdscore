@@ -1,5 +1,5 @@
 import IIterable from "../IIterable";
-export default function last<E>(i: IIterable<E>): E {
+export default function last<E>(i: IIterable<E>): E | null {
     const iterator = i.getIterator();
     while (iterator.hasNext()) {
         const v = iterator.next();
@@ -7,5 +7,5 @@ export default function last<E>(i: IIterable<E>): E {
             return v;
         }
     }
-    throw new Error("There's no any element");
+    return null;
 }

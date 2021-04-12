@@ -1,4 +1,4 @@
-import { IMap, size } from "../../../src";
+import { IMap, size, TreeMap } from "../../../src";
 
 export default function (factory: <K, V>() => IMap<K, V>) {
     it("put & get", () => {
@@ -30,9 +30,9 @@ export default function (factory: <K, V>() => IMap<K, V>) {
 
     it("get pairs", () => {
         const map = factory()
-        expect(size( map.mapGetPairs())).toBe(0);
+        expect(size(map.mapGetPairs())).toBe(0);
         map.mapPut(1, 1);
-        expect(size( map.mapGetPairs())).toBe(1);
+        expect(size(map.mapGetPairs())).toBe(1);
     })
 
     it("same key", () => {
@@ -78,4 +78,16 @@ export default function (factory: <K, V>() => IMap<K, V>) {
         expect(valueList.findIndex(it => it === "b")).not.toBe(-1);
     });
 
+    it("performance test: 10_000 random get & put", () => {
+        const map = factory<number, number>()
+        if (map instanceof TreeMap) {
+            return;//skip Tree Map
+        }
+        for (let i = 0; i < 10_000; i++) {
+            map.mapPut(i, i)
+            map.mapGet(i)
+            // expect().toBe(i)
+        }
+
+    })
 }

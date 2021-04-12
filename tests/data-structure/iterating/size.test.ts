@@ -19,7 +19,8 @@
  */
 
 import "ts-jest"
-import { HashMap, HashSet, size } from "../../../src"
+import { fromESIterator, HashMap, HashSet, IIterable, IIterator, size } from "../../../src"
+import { optimizedSizeGetter } from "../../../src/data-structure/iterating/size"
 it("to be zero", () => {
     expect(size(new HashMap())).toBe(0)
 })
@@ -31,4 +32,20 @@ it("to be i", () => {
         set.add(i);
     }
     expect(size(set)).toBe(len)
+})
+
+it("use optimized hidden api", () => {
+    let optimizedSizeGetterHasBeenCalled = false
+    class A implements IIterable<string>{
+        getIterator(): IIterator<string> {
+            return fromESIterator("")
+        }
+
+        [optimizedSizeGetter]() {
+            optimizedSizeGetterHasBeenCalled = true
+            return 0
+        }
+    }
+    expect(size(new A())).toBe(0)
+    expect(optimizedSizeGetterHasBeenCalled).toBeTruthy()
 })

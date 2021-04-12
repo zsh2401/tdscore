@@ -11,7 +11,7 @@ import toDSArrayForItertable from "./toDSArrayForItertable";
 import toSet from "./toSet";
 import toMap from "./toMap";
 import toJSArray from "./toJSArrayForItertable";
-import select from "./selectMany";
+import select from "./select";
 import defaultOrFirst from "./defaultOrFirst";
 import IComparer from "../../algorithm/IComparer";
 import quickSort from "../../algorithm/sort/quickSort";
@@ -28,7 +28,8 @@ import max from "./max";
 import min from "./min";
 import IIterator from "../IIterator";
 import { Action1 } from "../../Action";
-import { forEach, indexOf } from ".";
+import forEach from "./forEach";
+import indexOf from "./indexOf"
 
 /**
  * 流式操作对象，是对Iterating方法的封装，方便链式调用
@@ -111,6 +112,10 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
         const a = toDSArrayForItertable(this.iterable);
         quickSort(a, comparer)
         return new Chain(a);
+    }
+
+    sort(comparer: IComparer<E>): Chain<E> {
+        return this.orderBy(comparer)
     }
 
     asList(): IList<E> {

@@ -1,7 +1,7 @@
 import DSArray from "../DSArray"
 import DSObject from "../DSObject"
 import contains from "./iterating/contains"
-import size from "./iterating/size"
+import size, { IOptionalSizeMethodOptimized, optimizedSizeGetter } from "./iterating/size"
 import IIterator from "./IIterator"
 import ICollection from "./ICollection"
 import IClonable from "./IClonable"
@@ -10,9 +10,12 @@ import toDSArray from "./iterating/toDSArrayForItertable"
 import forEach from "./iterating/forEach"
 import { Func1 } from "../Func"
 import equals from "../equals"
-
+import toESIterator from "./iterating/toESIterator"
 export default abstract class CollectionBase<E>
-    extends DSObject implements ICollection<E>, IClonable<ICollection<E>>{
+    extends DSObject implements
+    ICollection<E>,
+    IClonable<ICollection<E>>,
+    IOptionalSizeMethodOptimized {
 
     constructor() {
         super();
@@ -23,7 +26,7 @@ export default abstract class CollectionBase<E>
     abstract collectionClear(): void;
 
     forEach(consumer: Action1<E>) {
-        forEach(this, consumer);
+        forEach(this, consumer)
     }
 
     map<T>(mapper: Func1<E, T>): DSArray<T> {
@@ -112,5 +115,13 @@ export default abstract class CollectionBase<E>
 
     toArray(): DSArray<E> {
         return this.collectionToArray()
+    }
+
+    [Symbol.iterator]() {
+        return toESIterator(this)
+    }
+
+    [optimizedSizeGetter]() {
+        return this.size()
     }
 }

@@ -24,14 +24,19 @@ import fromESIterator from "../iterating/fromESIterator";
 import { IReadonlyKeyValuePair } from "./IMap";
 import MapBase from "./MapBase";
 
-export default class ES6Map<K, V> extends MapBase<K, V> {
-    private readonly es6map = new Map<K, V>()
+/**
+ * 映射数据结构，基于ECMAScript原生Map，性能极高。
+ */
+export default class ESMap<K, V> extends MapBase<K, V> {
+
+    private readonly esmap = new Map<K, V>()
+
     mapGetKeys(): IIterable<K> {
-        return fromESIterator(this.es6map.keys())
+        return fromESIterator(this.esmap.keys())
     }
 
     mapGetValues(): IIterable<V> {
-        return fromESIterator(this.es6map.values())
+        return fromESIterator(this.esmap.values())
     }
 
     mapGetPairs(): IIterable<IReadonlyKeyValuePair<K, V>> {
@@ -43,24 +48,24 @@ export default class ES6Map<K, V> extends MapBase<K, V> {
     }
 
     mapPut(key: K, value: V): V | null {
-        const oldValue = this.es6map.get(key) ?? null
-        this.es6map.set(key, value)
+        const oldValue = this.esmap.get(key) ?? null
+        this.esmap.set(key, value)
         return oldValue;
     }
 
     mapGet(key: K): V | null {
-        return this.es6map.get(key) ?? null;
+        return this.esmap.get(key) ?? null;
     }
 
-    mapRemove(key: K): void {
-        this.es6map.delete(key)
+    mapRemove(key: K): boolean {
+        return this.esmap.delete(key)
     }
 
     size(): number {
-        return this.es6map.size
+        return this.esmap.size
     }
     collectionClear(): void {
-        this.es6map.clear()
+        this.esmap.clear()
     }
 
 }

@@ -38,7 +38,7 @@ it("use optimized hidden api", () => {
     let optimizedSizeGetterHasBeenCalled = false
     class A implements IIterable<string>{
         getIterator(): IIterator<string> {
-            return fromESIterator("")
+            return fromESIterator("").getIterator()
         }
 
         [optimizedSizeGetter]() {

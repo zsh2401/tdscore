@@ -41,7 +41,7 @@ export default abstract class MapBase<K, V>
     abstract mapGetPairs(): IIterable<IReadonlyKeyValuePair<K, V>>;
     abstract mapPut(key: K, value: V): V | null;
     abstract mapGet(key: K): V | null;
-    abstract mapRemove(key: K): void;
+    abstract mapRemove(key: K): boolean;
     abstract size(): number;
 
     isEmpty(): boolean {

@@ -1,4 +1,5 @@
 export { default as MapBase } from "./MapBase"
 export { default as HashMap } from "./HashMap"
 export { default as IMap } from "./IMap"
+export { default as ESMap } from "./ESMap"
 // export { default as TreeMap } from "./TreeMap"

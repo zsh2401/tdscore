@@ -4,6 +4,9 @@
     "./tests",
     "./src",
   ],
+  "compilerOptions": {
+    "outDir": "tests-output"
+  },
   "exclude": [
     "./node_modules",
   ]

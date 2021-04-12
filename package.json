@@ -27,10 +27,6 @@
     "ci": "yarn install --frozen-lockfile",
     "prepare": "husky install"
   },
-  "pre-commit": [
-    "build",
-    "test"
-  ],
   "dependencies": {
     "bignumber.js": "^9.0.1",
     "sha256": "^0.2.0"

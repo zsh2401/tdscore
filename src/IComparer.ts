@@ -22,9 +22,11 @@
  *比较器
  */
 export default interface IComparer<E> {
+
     /**
      * Compare the a and b，将A与B进行比较
      * @returns nagative number if a less than b, zero if a equals b, positive number if a greater than b.
      */
     (a: E, b: E): number;
+    
 }

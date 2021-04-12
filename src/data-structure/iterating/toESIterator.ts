@@ -1,6 +1,6 @@
 /*
- * min.ts
- * Created on Sat Apr 10 2021 00:11:47
+ * toESIterator.ts
+ * Created on Mon Apr 12 2021 09:23:23
  *
  * Description: 
  *   No description.
@@ -18,27 +18,31 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IComparer from "../../IComparer";
 import IIterable from "../IIterable";
 
+export default function <E>(i: IIterable<E>): Iterator<E> {
+    const iterator = i.getIterator()
+    return {
+        next() {
+            let value = undefined;
+            let done: boolean = false
 
-/**
- * Find the min element in a iterable object.
- * @param iterable 
- * @param comparaer 
- * @returns 
- */
-export default function <E>(iterable: IIterable<E>, comparaer: IComparer<E>): E {
-    const iterator = iterable.getIterator()
-    if (iterator.hasNext()) {
-        throw new Error("No elemnt")
-    }
-    let min: E = iterator.next()
-    while (iterator.hasNext()) {
-        const current = iterator.next()
-        if (comparaer(current, min) < 0) {
-            min = current
+            try {
+                if (iterator.hasNext()) {
+                    value = iterator.next()
+                } else {
+                    done = true
+                }
+            } catch {
+                done = true
+            }
+
+            //@ts-ignore
+            const r: IteratorResult<E> = {
+                value,
+                done
+            }
+            return r;
         }
     }
-    return min
 }

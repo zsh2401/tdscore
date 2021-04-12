@@ -24,7 +24,7 @@ Mulan Permissive Software License，Version 2
  */
 import IArrayLike from "../../IArrayLike";
 import comparers from "../comparers";
-import IComparer from "../IComparer";
+import IComparer from "../../IComparer";
 
 /**
  * 

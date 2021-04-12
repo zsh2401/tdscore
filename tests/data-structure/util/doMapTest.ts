@@ -1,4 +1,4 @@
-import { IMap } from "../../../src";
+import { IMap, size } from "../../../src";
 
 export default function (factory: <K, V>() => IMap<K, V>) {
     it("put & get", () => {
@@ -30,9 +30,9 @@ export default function (factory: <K, V>() => IMap<K, V>) {
 
     it("get pairs", () => {
         const map = factory()
-        expect(map.mapGetPairs().length).toBe(0);
+        expect(size( map.mapGetPairs())).toBe(0);
         map.mapPut(1, 1);
-        expect(map.mapGetPairs().length).toBe(1);
+        expect(size( map.mapGetPairs())).toBe(1);
     })
 
     it("same key", () => {

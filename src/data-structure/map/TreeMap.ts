@@ -1,6 +1,6 @@
 import { DSArray } from "../..";
 import { bstSearch, treeForEach } from "../../algorithm";
-import IComparer from "../../algorithm/IComparer";
+import IComparer from "../../IComparer";
 import { AvlBiTreeNode, avlDelete, avlInsert } from "../../algorithm/tree/avltree";
 import { toDSArray } from "../../IArrayLike";
 import Nullable from "../../Nullable";
@@ -45,7 +45,7 @@ export default class TreeMap<K, V> extends MapBase<K, V>{
     mapPut(key: K, value: V): V | null {
 
         const sameKeyNode = bstSearch<IKeyValuePair<K, V>>(this.root, (e) => {
-            return this.comparer(e.key,key)
+            return this.comparer(e.key, key)
         })
 
         if (sameKeyNode) {
@@ -68,12 +68,13 @@ export default class TreeMap<K, V> extends MapBase<K, V>{
 
     }
 
-    mapRemove(key: K): void {
+    mapRemove(key: K): boolean {
         try {
             this.root = avlDelete(this.root, { key, value: null! }, (a, b) => this.comparer(a.key, b.key))
             this._size--
+            return true
         } catch (e) {
-
+            return false
         }
     }
 

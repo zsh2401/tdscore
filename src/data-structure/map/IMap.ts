@@ -1,5 +1,5 @@
-import DSArray from "../../DSArray";
 import ICollection from "../ICollection";
+import IIterable from "../IIterable";
 
 export interface IKeyValuePair<K, V> {
     key: K;
@@ -9,11 +9,14 @@ export interface IReadonlyKeyValuePair<K, V> {
     readonly key: K;
     readonly value: V;
 }
-export default interface IMap<K, V> extends ICollection<IReadonlyKeyValuePair<K, V>> {
-    mapPut(key: K, value: V): V | null;
-    mapGet(key: K): V | null;
-    mapRemove(key: K): void;
-    mapGetKeys(): DSArray<K>;
-    mapGetValues(): DSArray<V>;
-    mapGetPairs(): DSArray<IReadonlyKeyValuePair<K, V>>;
+export default interface IMap<K, V>
+    extends ICollection<IReadonlyKeyValuePair<K, V>> {
+
+    mapPut(key: K, value: V): V | null
+    mapGet(key: K): V | null
+    mapRemove(key: K): boolean
+    mapGetKeys(): IIterable<K>
+    mapGetValues(): IIterable<V>
+    mapGetPairs(): IIterable<IReadonlyKeyValuePair<K, V>>
+
 }

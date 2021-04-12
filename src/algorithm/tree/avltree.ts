@@ -43,7 +43,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IComparer from "../IComparer";
+import IComparer from "../../IComparer";
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode"
 import BiTreeNode from "../../data-structure/tree/BiTreeNode";
 import Nullable from "../../Nullable";

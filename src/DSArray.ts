@@ -26,6 +26,8 @@ import find from "./data-structure/iterating/find"
 import toJSArray from "./data-structure/iterating/toJSArrayForItertable";
 import hashCode from "./util/hashing";
 import IArrayLike from "./IArrayLike";
+import { optimizedSizeGetter, IOptionalSizeMethodOptimized } from "./data-structure/iterating/size";
+import toESIterator from "./data-structure/iterating/toESIterator";
 
 /**
  * 默认数据提供器
@@ -47,7 +49,9 @@ type DefaultValue<E> = ((i: number) => E) | E;
  */
 //@ts-expect-error
 @dsarry
-export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIterable<E>{
+export default class DSArray<E> extends DSObject
+    implements IArrayLike<E>, IIterable<E>,
+    IOptionalSizeMethodOptimized {
 
     readonly length: number;
 
@@ -105,6 +109,14 @@ export default class DSArray<E> extends DSObject implements IArrayLike<E>, IIter
         for (let i = start; i < start + length && i < dest.length; i++) {
             dest[i - start] = this[i];
         }
+    }
+
+    [Symbol.iterator]() {
+        return toESIterator(this)
+    }
+
+    [optimizedSizeGetter]() {
+        return this.length
     }
 
     contains(v: E): boolean {

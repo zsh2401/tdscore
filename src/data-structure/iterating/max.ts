@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IComparer from "../../algorithm/IComparer"
+import IComparer from "../../IComparer"
 import IIterable from "../IIterable"
 
 /**

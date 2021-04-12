@@ -21,7 +21,7 @@
 import IBiTreeNode from "../../data-structure/tree/IBiTreeNode";
 import Nullable from "../../Nullable";
 import IDirectionIndicator from "../IDirectionIndicator";
-import IComparer from "../IComparer";
+import IComparer from "../../IComparer";
 import BiTreeNode from "../../data-structure/tree/BiTreeNode";
 
 /**

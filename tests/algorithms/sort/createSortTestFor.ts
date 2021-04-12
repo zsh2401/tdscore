@@ -2,7 +2,7 @@ import { ascdeningComparer, descdeningComparer } from "../../../src/algorithm/so
 import "ts-jest"
 import "../../../src/ext"
 import { IArrayLike } from "../../../src";
-import IComparer from "../../../src/algorithm/IComparer";
+import IComparer from "../../../src/IComparer";
 export interface Option {
     descend?: boolean;
 }

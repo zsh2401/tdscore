@@ -1,6 +1,6 @@
 import "ts-jest"
 import LinkedList from "../../../src/data-structure/linear/LinkedList"
-import { IteratingStream } from "../../../src"
+import { Chain } from "../../../src"
 it("basic usage", () => {
     const list = new LinkedList<number>();
     list.listAdd(1)
@@ -8,7 +8,7 @@ it("basic usage", () => {
     list.listAdd(3)
     list.listAdd(4)
 
-    const r = new IteratingStream(list)
+    const r = new Chain(list)
         .where((e) => e > 2)
         .select((e) => e.toString())
         .asJSArray()

@@ -1,5 +1,5 @@
 import { dsHashCode } from "..";
-import IComparer from "./IComparer";
+import IComparer from "../IComparer";
 
 /**
  * 哈希码比较器

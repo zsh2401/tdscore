@@ -44,7 +44,7 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
     }
 
     getIterator(): IIterator<E> {
-        return this.iterable.getIterator()
+        return getIterator(this.iterable)
     }
 
     select<R>(selector: Func1<E, R>): Chain<R> {

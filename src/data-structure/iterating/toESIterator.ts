@@ -19,9 +19,10 @@
  */
 
 import IIterable from "../IIterable";
+import getIterator from "./getIterator";
 
 export default function <E>(i: IIterable<E>): Iterator<E> {
-    const iterator = i.getIterator()
+    const iterator = getIterator<E>(i)
     return {
         next() {
             let value = undefined;

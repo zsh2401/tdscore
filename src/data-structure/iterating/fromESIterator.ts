@@ -1,5 +1,3 @@
-import IIterable from "../IIterable";
-import IIterator from "../IIterator";
 
 /*
  * fromESIterator.ts
@@ -20,6 +18,8 @@ import IIterator from "../IIterator";
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+import IIterable from "../IIterable";
+
 export default function fromESIterator<E>
     (iterable: { [Symbol.iterator](): Iterator<E> }): IIterable<E> {
 

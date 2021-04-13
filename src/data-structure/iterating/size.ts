@@ -1,4 +1,5 @@
 import IIterable from "../IIterable";
+import getIterator from "./getIterator";
 export const optimizedSizeGetter = Symbol("hidden optimized symbol")
 export interface IOptionalSizeMethodOptimized {
     [optimizedSizeGetter]?: () => number
@@ -9,7 +10,7 @@ export default function size<E>(i: (IIterable<E> & IOptionalSizeMethodOptimized)
         return i[optimizedSizeGetter]?.() ?? 0
     }
     
-    const iterator = i.getIterator();
+    const iterator = getIterator(i);
     let _size = 0;
     while (iterator.hasNext()) {
         _size++;

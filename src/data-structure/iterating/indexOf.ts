@@ -1,5 +1,6 @@
 import IIterable from "../IIterable";
 import equals from "../../equals";
+import getIterator from "./getIterator";
 
 /**
  * get the index of spcified element in a iterable object.
@@ -10,7 +11,7 @@ import equals from "../../equals";
  * @returns index number if found or -1 if not found.
  */
 export default function indexOf<E>(i: IIterable<E>, e: E): number {
-    const iterator = i.getIterator()
+    const iterator = getIterator<E>(i)
     for (let i = 0; iterator.hasNext(); i++) {
         const current = iterator.next();
         if (equals(e, current)) {

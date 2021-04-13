@@ -1,4 +1,5 @@
 import IIterable from "../IIterable";
+import getIterator from "./getIterator";
 
 /**
  * Check the collection in the iterable object is empty.
@@ -7,5 +8,5 @@ import IIterable from "../IIterable";
  * @returns 
  */
 export default function isEmpty<E>(i: IIterable<E>): boolean {
-    return !i.getIterator().hasNext();
+    return !getIterator<E>(i).hasNext();
 }

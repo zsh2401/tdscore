@@ -1,7 +1,7 @@
 import { IHashCodeGettable } from "../../src/util/hashing";
 import dsHashCode from "../../src/hash"
 import DSObject from "../../src/DSObject"
-import { WEEK_HASHCODE_GETTER_NAME } from "../../src/util/hashing/hashCodeForAny";
+import { CACHED_HASHCODE_GETTER } from "../../src/util/hashing/hashCodeForAny";
 import { HASHCODE_FOR_TRUE, HASHCODE_FOR_FALSE } from "../../src/util/hashing/hashCodeForPrimitiveType"
 describe("Hash test", () => {
     it("For function", () => {
@@ -76,7 +76,7 @@ describe("Hash test", () => {
         const a: any = {};
         dsHashCode(a);
         for (const key in a) {
-            expect(key).not.toBe(WEEK_HASHCODE_GETTER_NAME);
+            expect(key).not.toBe(CACHED_HASHCODE_GETTER);
         }
     });
 
@@ -88,6 +88,6 @@ describe("Hash test", () => {
         }
         const a: any = new A()
         dsHashCode(a);
-        expect(a[WEEK_HASHCODE_GETTER_NAME]).toBeUndefined();
+        expect(a[CACHED_HASHCODE_GETTER]).toBeUndefined();
     })
 })

@@ -24,10 +24,12 @@ export default function fromESIterator<E>
     (iterable: { [Symbol.iterator](): Iterator<E> }): IIterable<E> {
 
     function getIterator() {
-        let iterator = iterable[Symbol.iterator]();
+
+        let iterator = iterable[Symbol.iterator]()
 
         let fakeCurrent = iterator.next()
         let realCurrent: IteratorResult<E> | null = null
+
         return {
 
             reset() {
@@ -37,7 +39,7 @@ export default function fromESIterator<E>
             },
 
             hasNext() {
-                return (fakeCurrent.done ?? true) === false
+                return fakeCurrent.done === false
             },
 
             next() {

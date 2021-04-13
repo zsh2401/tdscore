@@ -6,15 +6,16 @@ export interface IOptionalSizeMethodOptimized {
 }
 export default function size<E>(i: (IIterable<E> & IOptionalSizeMethodOptimized)) {
     const hidden = i[optimizedSizeGetter]
+
     if (hidden && typeof hidden === "function") {
         return i[optimizedSizeGetter]?.() ?? 0
     }
-    
-    const iterator = getIterator(i);
+
+    const iterator = getIterator(i)
     let _size = 0;
     while (iterator.hasNext()) {
         _size++;
-        iterator.next();
+        iterator.next()
     }
     return _size;
 }

@@ -5,6 +5,7 @@ import { isDSArray, isIterable, isJSArray } from "../../util/type/determine-type
 import IIterator from "../IIterator";
 
 export default function <E>(e: IIterable<E> | E[] | any): IIterator<E> {
+
     if (isJSArray<E>(e)) {
         return new ArrayLikeIterator(e);
     } else if (isDSArray<E>(e)) {
@@ -12,8 +13,10 @@ export default function <E>(e: IIterable<E> | E[] | any): IIterator<E> {
     } else if (isIterable<E>(e)) {
         return e.getIterator();
     } else {
+        console.log("use any iterator")
         return new ArrayLikeIterator([e])
     }
+
 }
 class ArrayLikeIterator<E>
     extends DSObject

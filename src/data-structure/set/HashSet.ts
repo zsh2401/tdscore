@@ -20,20 +20,23 @@
  */
 
 import CollectionBase from "../CollectionBase";
-import HashMap from "../map/HashMap";
 import ICollection from "../ICollection";
 import ISet from "./ISet";
+import ESHashMap from "../map/ESHashMap";
+import IMap from "../map/IMap"
+import toDSArray from "../iterating/toDSArrayForItertable";
+import contains from "../iterating/contains";
+import { HashMap } from "../map";
 
 const PRESENT = true
 export default class HashSet<E>
     extends CollectionBase<E>
-    implements ISet<E>, ICollection<E>{
-    private innerMap: HashMap<E, any>;
+    implements ISet<E>, ICollection<E>
 
-    constructor() {
-        super();
-        this.innerMap = new HashMap();
-    }
+{
+
+    private innerMap: IMap<E, any> = new ESHashMap();
+
 
     setClear() {
         this.innerMap.clear()
@@ -61,8 +64,9 @@ export default class HashSet<E>
     }
 
     toArray() {
-        return this.innerMap.mapGetKeys();
+        return toDSArray(this.innerMap.mapGetKeys())
     }
+
     getIterator() {
         return this.innerMap.mapGetKeys().getIterator();
     }
@@ -72,7 +76,7 @@ export default class HashSet<E>
     }
 
     contains(e: E) {
-        return this.innerMap.mapGetKeys().contains(e);
+        return contains(this.innerMap.mapGetKeys(), e);
     }
 
     isEmpty() {
@@ -91,8 +95,8 @@ export default class HashSet<E>
         let str = "";
         const iterator = this.getIterator();
         while (iterator.hasNext()) {
-            str += iterator.next() + " ";
+            str += iterator.next() + ",";
         }
-        return str;
+        return `HashSet{ ${str} }`;
     }
 }

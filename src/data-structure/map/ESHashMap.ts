@@ -22,11 +22,19 @@ export default class ESHashMap<K, V>
 
     mapGetKeys(): IIterable<K> {
         const result = new UngrowableArrayList<K>(this.size())
+        let i = 0
         for (const hashValue of this.idmap.keys()) {
             let idnode: IDNode<K> | null = this.idmap.get(hashValue) ?? null;
             while (idnode !== null) {
-                result.listAdd(idnode.key)
-                idnode = idnode.next
+                try {
+                    i++
+                    result.listAdd(idnode.key)
+                    idnode = idnode.next
+                } catch (err) {
+                    // console.log()
+                    throw `${this.size()}-${i}`
+                }
+
             }
         }
         return result

@@ -1,4 +1,5 @@
-import { IMap, size, TreeMap } from "../../../src";
+import { forEach, fromESIterator, IMap, LinkedList, size, toESIterable, toESIterator, TreeMap } from "../../../src";
+import { hash } from "../../../src/util/hashing";
 
 export default function (factory: <K, V>() => IMap<K, V>) {
     it("put & get", () => {
@@ -6,6 +7,7 @@ export default function (factory: <K, V>() => IMap<K, V>) {
         expect(() => map.mapPut("a", 1)).not.toThrow()
         expect(map.mapGet("a")).toBe(1)
     })
+
     it("remove", () => {
         const map = factory()
         map.mapPut("a", 1);
@@ -43,6 +45,12 @@ export default function (factory: <K, V>() => IMap<K, V>) {
         expect(map.mapGet("a")).toBe("b")
     })
 
+    it("return expected old value", () => {
+        const map = factory<string, string>()
+        expect(map.mapPut("a", "2401")).toBeNull()
+        expect(map.mapPut("a", "2402")).toBe("2401")
+    })
+
     it("contains", () => {
         const map = factory()
         map.mapPut("a", "b")
@@ -60,6 +68,32 @@ export default function (factory: <K, V>() => IMap<K, V>) {
         expect(() => map.clear()).not.toThrow()
         expect(() => map.clear()).not.toThrow()
         expect(map.size()).toBe(0)
+    })
+
+    it("get keys", () => {
+        const map = factory<number, number>()
+        const MAX_SIZE = 100;
+        for (let i = 0; i < MAX_SIZE; i++) {
+            expect(map.mapPut(i, i)).toBeNull()
+        }
+        const keys = map.mapGetKeys();
+        // console.log(toESIterable(keys)[Symbol.iterator]().next())
+
+        // expect(keys.getIterator().hasNext()).toBeTruthy()
+        // console.log(hash(keys.getIterator()))
+
+        expect(size(keys)).toBe(MAX_SIZE)
+
+
+        let realSize = 0;
+
+        expect(toESIterable<number>(keys) === toESIterable<number>(keys)).toBeFalsy()
+        for (const key of (toESIterable<number>(keys))) {
+            realSize++
+            expect(map.mapGet(key)).toBe(key)
+        }
+
+        expect(realSize).toBe(MAX_SIZE)
     })
 
     it("iterator works", () => {

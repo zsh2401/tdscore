@@ -3,7 +3,7 @@ const config: Config.InitialOptions = {
     verbose: true,
     preset: "ts-jest",
     testEnvironment: "node",
-    maxConcurrency: 10,
+    maxConcurrency: 5,
     globals: {
         'ts-jest': {
             tsconfig: 'tsconfig.test.json'

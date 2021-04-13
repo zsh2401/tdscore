@@ -1,3 +1,23 @@
+/*
+ * Chain.ts
+ * Created on Tue Apr 13 2021 22:25:23
+ *
+ * Description: 
+ *   No description.
+ *
+ * Copyright (c) 2021 tdscore
+ * 
+ * Copyright (c) 2021 Seymour Zhang and all contributors of this project.
+ * tdscore is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *          http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+ * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+ * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
+ */
+
 import IIterable from "../IIterable";
 import DSObject from "../../DSObject";
 import { Func1 } from "../../Func";
@@ -30,6 +50,8 @@ import IIterator from "../IIterator";
 import { Action1 } from "../../Action";
 import forEach from "./forEach";
 import indexOf from "./indexOf"
+import fromESIterator from "./fromESIterator";
+import { isIterable } from "../../util/type/determine-type";
 
 /**
  * 流式操作对象，是对Iterating方法的封装，方便链式调用
@@ -38,9 +60,13 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
 
     private readonly iterable: IIterable<E>;
 
-    constructor(iterable: IIterable<E> = new DSArray(0)) {
+    constructor(iterable: (IIterable<E> | Iterable<E>) = new DSArray(0)) {
         super()
-        this.iterable = iterable;
+        if (isIterable(iterable)) {
+            this.iterable = iterable;
+        } else {
+            this.iterable = fromESIterator<E>(iterable)
+        }
     }
 
     getIterator(): IIterator<E> {

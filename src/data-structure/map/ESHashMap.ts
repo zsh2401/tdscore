@@ -41,7 +41,6 @@ export default class ESHashMap<K, V>
             .select(key => {
                 return { key, value: this.mapGet(key)! }
             })
-            .asDSArray()
     }
 
     mapPut(key: K, value: V): V | null {
@@ -135,7 +134,8 @@ export default class ESHashMap<K, V>
     }
 
     private getIdByKey(key: K): ID | null {
-        let idnode: IDNode<K> | null = this.idmap.get(this.hash(key)) ?? null
+        const hkey = this.hash(key);
+        let idnode: IDNode<K> | null = this.idmap.get(hkey) ?? null
         while (idnode !== null) {
             if (dsEquals(idnode.key, key)) {
                 return idnode.id;

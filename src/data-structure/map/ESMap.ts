@@ -32,7 +32,8 @@ export default class ESMap<K, V> extends MapBase<K, V> {
     private readonly esmap = new Map<K, V>()
 
     mapGetKeys(): IIterable<K> {
-        return fromESIterator(this.esmap.keys())
+        const keys = this.esmap.keys()
+        return fromESIterator(keys)
     }
 
     mapGetValues(): IIterable<V> {
@@ -44,7 +45,6 @@ export default class ESMap<K, V> extends MapBase<K, V> {
             .select<IReadonlyKeyValuePair<K, V>>((key: K) => {
                 return { key, value: this.mapGet(key)! }
             })
-            .asLinkedList()
     }
 
     mapPut(key: K, value: V): V | null {
@@ -64,6 +64,7 @@ export default class ESMap<K, V> extends MapBase<K, V> {
     size(): number {
         return this.esmap.size
     }
+    
     collectionClear(): void {
         this.esmap.clear()
     }

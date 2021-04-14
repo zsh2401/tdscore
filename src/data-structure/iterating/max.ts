@@ -20,6 +20,7 @@
 
 import IComparer from "../../IComparer"
 import IIterable from "../IIterable"
+import getIterator from "./getIterator"
 
 /**
  * Find the max element in a iterable object.
@@ -28,7 +29,7 @@ import IIterable from "../IIterable"
  * @returns 
  */
 export default function <E>(iterable: IIterable<E>, comparaer: IComparer<E>): E {
-    const iterator = iterable.getIterator()
+    const iterator = getIterator<E>(iterable)
     if (iterator.hasNext()) {
         throw new Error("No elemnt")
     }

@@ -55,7 +55,7 @@ export default class TreeMap<K, V> extends MapBase<K, V>{
         } else {
             this.root = avlInsert(this.root, { key, value }, (a, b) => this.comparer(a.key, b.key))
             this._size++
-            return value
+            return null
         }
     }
 

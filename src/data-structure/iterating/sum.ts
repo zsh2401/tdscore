@@ -1,4 +1,5 @@
 import IIterable from "../IIterable";
+import getIterator from "./getIterator";
 
 /*
  * sum.ts
@@ -29,7 +30,7 @@ import IIterable from "../IIterable";
  * @returns 
  */
 export default function sum<E>(i: IIterable<E>, adder: (a: E, b: E) => E): E {
-    const iterator = i.getIterator()
+    const iterator = getIterator<E>(i)
     if (iterator.hasNext() === false) {
         throw new Error("There's no any element")
     }

@@ -1,6 +1,6 @@
 import HashMap from "../../../src/data-structure/map/HashMap";
 import IMap, { IReadonlyKeyValuePair } from "../../../src/data-structure/map/IMap";
-import { WEEK_HASHCODE_GETTER_NAME } from "../../../src/util/hashing/hashCodeForAny";
+import { CACHED_HASHCODE_GETTER } from "../../../src/util/hashing/hashCodeForAny";
 import dsEquals from "../../../src/equals";
 import ICollection from "../../../src/data-structure/ICollection";
 import { DSObject } from "../../../src";
@@ -303,7 +303,7 @@ describe("HashMap test", () => {
 
         expect(map.mapGet(keyOne)).toEqual(map.mapGet(keyTwo));
         //@ts-ignore
-        expect(keyOne[WEEK_HASHCODE_GETTER_NAME]).toBeDefined();
+        expect(keyOne[CACHED_HASHCODE_GETTER]).toBeDefined();
 
         expect(map.mapGet(keyThree)).toBeNull();
         map.mapPut(keyThree, "b");

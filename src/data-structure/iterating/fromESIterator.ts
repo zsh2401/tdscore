@@ -1,5 +1,3 @@
-import IIterable from "../IIterable";
-import IIterator from "../IIterator";
 
 /*
  * fromESIterator.ts
@@ -20,14 +18,18 @@ import IIterator from "../IIterator";
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+import IIterable from "../IIterable";
+
 export default function fromESIterator<E>
     (iterable: { [Symbol.iterator](): Iterator<E> }): IIterable<E> {
 
     function getIterator() {
-        let iterator = iterable[Symbol.iterator]();
+
+        let iterator = iterable[Symbol.iterator]()
 
         let fakeCurrent = iterator.next()
         let realCurrent: IteratorResult<E> | null = null
+
         return {
 
             reset() {
@@ -37,7 +39,7 @@ export default function fromESIterator<E>
             },
 
             hasNext() {
-                return (fakeCurrent.done ?? true) === false
+                return fakeCurrent.done === false
             },
 
             next() {

@@ -28,7 +28,7 @@ class AppendIterable<E> extends DSObject implements IIterable<E>{
     }
 
     getIterator(): IIterator<E> {
-        return new AppendIterator(this.source.getIterator(), getIterator(this.newEle));
+        return new AppendIterator(getIterator(this.source), getIterator(this.newEle));
     }
 }
 class AppendIterator<E> extends DSObject implements IIterator<E>{

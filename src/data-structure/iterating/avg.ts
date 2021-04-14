@@ -19,6 +19,7 @@
  */
 
 import IIterable from "../IIterable";
+import getIterator from "./getIterator";
 
 /**
  * Get average result of all elements in collection.
@@ -31,7 +32,7 @@ export default function avg<E>(i: IIterable<E>,
     add: (a: E, b: E) => E,
     divByNumber: (a: E, b: number) => E) {
 
-    const iterator = i.getIterator()
+    const iterator = getIterator<E>(i)
     if (iterator.hasNext() === false) {
         throw new Error("There's no any element")
     }

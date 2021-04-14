@@ -3,6 +3,7 @@ import DSObject from "../../DSObject";
 import { Func1 } from "../../Func";
 import IIterator from "../IIterator";
 import hashCode from "../../util/hashing";
+import getIterator from "./getIterator";
 
 /**
  * 
@@ -27,7 +28,7 @@ class WhereIterable<E> extends DSObject implements IIterable<E> {
         this.source = source;
     }
     getIterator(): IIterator<E> {
-        return new WhereIterator(this.source.getIterator(), this.predicate);
+        return new WhereIterator(getIterator<E>(this.source), this.predicate);
     }
 }
 

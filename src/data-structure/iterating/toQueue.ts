@@ -22,10 +22,11 @@
 import IIterable from "../IIterable";
 import IQueue  from "../linear/IQueue";
 import LinkedList from "../linear/LinkedList";
+import getIterator from "./getIterator";
 
 export default function <E>(i: IIterable<E>, reverse: boolean = false): IQueue<E> {
-    const list = new LinkedList<E>();
-    const iterator = i.getIterator();
+    const list = new LinkedList<E>()
+    const iterator = getIterator<E>(i)
     while (iterator.hasNext()) {
         if (reverse) {
             list.listInsert(0, iterator.next());

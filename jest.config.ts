@@ -8,6 +8,9 @@ const config: Config.InitialOptions = {
         'ts-jest': {
             tsconfig: 'tsconfig.test.json'
         }
+    },
+    transform: {
+        '^.+\\.ts?$': 'ts-jest',
     }
 }
 export default config

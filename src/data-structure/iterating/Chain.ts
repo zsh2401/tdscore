@@ -60,13 +60,9 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
 
     private readonly iterable: IIterable<E>;
 
-    constructor(iterable: (IIterable<E> | Iterable<E>) = new DSArray(0)) {
+    constructor(iterable: (IIterable<E> | Iterable<E>)) {
         super()
-        if (isIterable(iterable)) {
-            this.iterable = iterable;
-        } else {
-            this.iterable = fromESIterator<E>(iterable)
-        }
+        this.iterable = { getIterator: () => getIterator(iterable) }
     }
 
     getIterator(): IIterator<E> {
@@ -110,12 +106,7 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
     }
 
     appendAll(elements: IArrayLike<E>): Chain<E> {
-        let r: Chain<E> = this;
-        const iterator = getIterator<E>(elements)
-        while (iterator.hasNext()) {
-            r = r.append(iterator.next())
-        }
-        return r;
+        return new Chain(append(this.iterable, elements))
     }
 
     max(comparer: IComparer<E>): E {

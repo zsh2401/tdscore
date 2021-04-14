@@ -2,6 +2,7 @@ import { append, defaultOrFirst, size, last } from "../../../src/data-structure/
 import IIterable from "../../../src/data-structure/IIterable"
 // import last from "../../src/data-structure/iterating/last";
 import DSArray from "../../../src/DSArray"
+import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable";
 
 describe("append test", () => {
     it("could append", () => {
@@ -34,5 +35,10 @@ describe("append test", () => {
         expect(iterator.next()).toBe(2)
         expect(iterator.current()).toBe(2)
         expect(iterator.hasNext()).toBeFalsy()
+    })
+
+    it("append more element", () => {
+        expect(toJSArray(append([1, 2, 3], [4, 5, 6])))
+            .toStrictEqual([1, 2, 3, 4, 5, 6])
     })
 });

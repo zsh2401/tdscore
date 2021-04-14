@@ -33,49 +33,56 @@ class WhereIterable<E> extends DSObject implements IIterable<E> {
 }
 
 class WhereIterator<E> extends DSObject implements IIterator<E>{
+
     private readonly source: IIterator<E>;
     private readonly predicate: Func1<E, boolean>;
+
     constructor(source: IIterator<E>, predicate: Func1<E, boolean>) {
         super();
         this.source = source;
         this.predicate = predicate;
     }
-    getHashCode() {
-        return super.getHashCode() ^ hashCode(this.source) ^ hashCode(this.predicate);
-    }
-    private shouldTakeFromCurrent = false;
-    hasNext() {
+
+    private available: boolean = false;
+    private moveToNextAvailable(): boolean {
         while (this.source.hasNext()) {
-            const next = this.source.next();
-            if (this.predicate(next)) {
-                this.shouldTakeFromCurrent = true;
-                return true;
+            const element = this.source.next()
+            if (this.predicate(element)) {
+                this.available = true
+                return true
             }
         }
-        return false;
+        return false
     }
+
+    hasNext() {
+        if (this.available === false) {
+            this.available = this.moveToNextAvailable()
+        }
+        return this.available
+    }
+
     reset() {
-        this.shouldTakeFromCurrent = false;
+        this.available = false
         this.source.reset();
     }
+
     current() {
-        return this.source.current();
-    }
-    next() {
-        let v;
-        if (this.shouldTakeFromCurrent) {
-            this.shouldTakeFromCurrent = false;
-            v = this.source.current();
+        if (this.available) {
+            return this.source.current();
         } else {
-            if (this.hasNext()) {
-                this.shouldTakeFromCurrent = false;
-                const v = this.source.next();
-                if (this.predicate(v)) {
-                    return v;
-                }
-            }
-            throw new Error();
+            throw new Error("There's no current element.")
         }
-        return v;
+    }
+
+    next(): E {
+        if (this.available === false) {
+            this.available = this.moveToNextAvailable()
+        }
+        if (this.available === false) {
+            throw new Error("There's no more element!")
+        }
+        this.available = false;
+        return this.source.current()
     }
 }

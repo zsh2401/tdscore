@@ -1,20 +1,27 @@
 import IIterable from "../IIterable";
 import DSObject from "../../DSObject";
 import IArrayLike from "../../IArrayLike";
-import { isDSArray, isIterable, isJSArray } from "../../util/type/determine-type";
+import { isArrayLike, isDSArray, isESIterable, isIterable } from "../../util/type/determine-type";
 import IIterator from "../IIterator";
+import fromESIterator from "./fromESIterator";
 
-export default function <E>(e: IIterable<E> | E[] | any): IIterator<E> {
+/**
+ * Get iterator for anything!
+ * @param e 
+ * @returns 
+ */
+export default function <E>(e: IIterable<E> | Iterable<E> | IArrayLike<E> | E): IIterator<E> {
 
-    if (isJSArray<E>(e)) {
-        return new ArrayLikeIterator(e);
-    } else if (isDSArray<E>(e)) {
+    if (isIterable<E>(e) || isDSArray<E>(e)) {
         return e.getIterator();
-    } else if (isIterable<E>(e)) {
-        return e.getIterator();
+    }
+    else if (isArrayLike<E>(e)) {
+        return new ArrayLikeIterator(e)
+    }
+    else if (isESIterable<E>(e)) {
+        return fromESIterator(e).getIterator()
     } else {
-        console.log("use any iterator")
-        return new ArrayLikeIterator([e])
+        return fromESIterator([e]).getIterator()
     }
 
 }

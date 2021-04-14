@@ -2,8 +2,9 @@ import toDSArray from "../data-structure/iterating/toDSArrayForItertable";
 import getIterator from "../data-structure/iterating/getIterator"
 import getHashCodeAny from "../util/hashing/hashCodeForAny";
 import dsHashCode from "../hash";
+import { fromESIterator } from "../data-structure";
 Array.prototype.getIterator = function () {
-    return getIterator(this);
+    return fromESIterator(this).getIterator()
 }
 Array.prototype.toDSArray = function () {
     return toDSArray(this);

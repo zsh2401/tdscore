@@ -32,7 +32,8 @@ export default class ESMap<K, V> extends MapBase<K, V> {
     private readonly esmap = new Map<K, V>()
 
     mapGetKeys(): IIterable<K> {
-        return fromESIterator(this.esmap.keys())
+        const keys = this.esmap.keys()
+        return fromESIterator(keys)
     }
 
     mapGetValues(): IIterable<V> {

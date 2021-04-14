@@ -76,3 +76,6 @@ export function isJSArray<E>(e: any): e is E[] {
 export function isIterable<E>(e: any): e is IIterable<E> {
     return typeof (<IIterable<E>>e).getIterator === "function";
 }
+export function isESIterable<E>(e: any): e is Iterable<E> {
+    return typeof e[Symbol.iterator] === "function";
+}

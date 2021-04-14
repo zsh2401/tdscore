@@ -1,5 +1,5 @@
-import { forEach, fromESIterator, IMap, LinkedList, size, toESIterable, toESIterator, TreeMap } from "../../../src";
-import { hash } from "../../../src/util/hashing";
+import { ESMap, IMap, size, toESIterable, TreeMap } from "../../../src";
+import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable";
 
 export default function (factory: <K, V>() => IMap<K, V>) {
     it("put & get", () => {
@@ -77,6 +77,7 @@ export default function (factory: <K, V>() => IMap<K, V>) {
             expect(map.mapPut(i, i)).toBeNull()
         }
         const keys = map.mapGetKeys();
+        expect(keys).not.toBe(map.mapGetKeys())
         // console.log(toESIterable(keys)[Symbol.iterator]().next())
 
         // expect(keys.getIterator().hasNext()).toBeTruthy()
@@ -86,9 +87,13 @@ export default function (factory: <K, V>() => IMap<K, V>) {
 
 
         let realSize = 0;
+        // toJSArray(keys)
+        // expect(toESIterable<number>(keys) === toESIterable<number>(keys)).toBeFalsy()
+        const keysi = (toESIterable<number>(keys))
+        // expect(keysi[Symbol.iterator]().next().done).toBeFalsy()
 
-        expect(toESIterable<number>(keys) === toESIterable<number>(keys)).toBeFalsy()
-        for (const key of (toESIterable<number>(keys))) {
+        //@ts-expect-error
+        for (const key of (map instanceof ESMap ? map.esmap.keys() : keysi)) {
             realSize++
             expect(map.mapGet(key)).toBe(key)
         }

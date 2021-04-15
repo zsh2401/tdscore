@@ -22,7 +22,7 @@ import { Action1 } from "../../Action";
 import HashSet from "../../data-structure/set/HashSet";
 import ISet from "../../data-structure/set/ISet"
 import IGraph from "../../data-structure/graph/IGraph";
-import defaultOrFirst  from "../../data-structure/iterating/defaultOrFirst";
+import firstOrDefault from "../../data-structure/iterating/firstOrDefault";
 
 /**
  * 深度优先搜索算法
@@ -32,7 +32,7 @@ import defaultOrFirst  from "../../data-structure/iterating/defaultOrFirst";
  */
 export default function <E>
     (g: IGraph<E>, consumer: Action1<E>, start?: E) {
-    _dfs(g, start ?? defaultOrFirst(g.vertices)!, consumer, new HashSet())
+    _dfs(g, start ?? firstOrDefault(g.vertices, null)!, consumer, new HashSet())
 }
 function _dfs<E>(g: IGraph<E>, e: E,
     consumer: Action1<E>,

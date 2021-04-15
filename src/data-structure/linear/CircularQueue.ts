@@ -1,12 +1,12 @@
 import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
-import defaultOrFirst from "../iterating/defaultOrFirst"
 import toDSArray from "../iterating/toDSArrayForItertable"
 import toJSArray from "../iterating/toJSArrayForItertable"
 import IIterator from "../IIterator";
 import IQueue from "./IQueue";
 import { Action1 } from "../../Action";
 import { Func1 } from "../../Func";
+import first from "../iterating/first";
 
 export default class CircularQueue<E> extends DSObject
 
@@ -38,7 +38,7 @@ export default class CircularQueue<E> extends DSObject
         this.clear();
     }
     collectionAny(): E {
-        return defaultOrFirst(this)!;
+        return first(this);
     }
     collectionSize(): number {
         return this.size();

@@ -24,7 +24,7 @@ import ISet from "../../data-structure/set/ISet"
 import LinkedList from "../../data-structure/linear/LinkedList"
 import { Func1 } from "../../Func";
 import IGraph from "../../data-structure/graph/IGraph";
-import defaultOrFirst from "../../data-structure/iterating/defaultOrFirst";
+import firstOrDefault from "../../data-structure/iterating/firstOrDefault";
 
 /**
  * BFS 广度优先搜索算法
@@ -34,7 +34,7 @@ import defaultOrFirst from "../../data-structure/iterating/defaultOrFirst";
  * @returns 
  */
 export default function <E>
-    (g: IGraph<E>, consumer: Func1<E, boolean | void>, start: (E | null) = defaultOrFirst(g.vertices)) {
+    (g: IGraph<E>, consumer: Func1<E, boolean | void>, start: (E | null) = firstOrDefault(g.vertices, null)) {
     const viewed: ISet<E> = new HashSet()
     const queue: IQueue<E> = new LinkedList()
     if (start === null) {

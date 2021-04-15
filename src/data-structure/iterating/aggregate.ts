@@ -29,12 +29,12 @@ import getIterator from "./getIterator";
  * @param adder 
  * @returns 
  */
-export default function sum<E>(i: IIterable<E>, adder: (a: E, b: E) => E): E {
+export default function <E>(i: IIterable<E>, adder: (a: E, b: E) => E, initialValue?: E): E {
     const iterator = getIterator<E>(i)
-    if (iterator.hasNext() === false) {
+    if (initialValue === undefined && iterator.hasNext() === false) {
         throw new Error("There's no any element")
     }
-    let result = iterator.next()
+    let result = initialValue ?? iterator.next()
     while (iterator.hasNext()) {
         result = adder(result, iterator.next())
     }

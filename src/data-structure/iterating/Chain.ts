@@ -32,7 +32,6 @@ import toSet from "./toSet";
 import toMap from "./toMap";
 import toJSArray from "./toJSArrayForItertable";
 import select from "./select";
-import defaultOrFirst from "./defaultOrFirst";
 import IComparer from "../../IComparer";
 import quickSort from "../../algorithm/sort/quickSort";
 import size from "./size";
@@ -50,8 +49,11 @@ import IIterator from "../IIterator";
 import { Action1 } from "../../Action";
 import forEach from "./forEach";
 import indexOf from "./indexOf"
-import fromESIterator from "./fromESIterator";
-import { isIterable } from "../../util/type/determine-type";
+import take from "./take";
+import skip from "./skip";
+import { firstOrDefault, lastOrDefault } from ".";
+import first from "./first";
+import aggregate from "./aggregate";
 
 /**
  * 流式操作对象，是对Iterating方法的封装，方便链式调用
@@ -77,12 +79,28 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
         return new Chain(where(this.iterable, predicate))
     }
 
+    take(count: number): Chain<E> {
+        return new Chain(take(this.iterable, count))
+    }
+
+    skip(count: number): Chain<E> {
+        return new Chain(skip(this.iterable, count))
+    }
+
     size(): number {
         return size(this.iterable)
     }
 
-    defaultOrFirst(): E | null {
-        return defaultOrFirst(this.iterable)
+    firstOrDefault(defaultValue: E): E | null {
+        return firstOrDefault(this.iterable, defaultValue)
+    }
+
+    lastOrDefault(defaultValue: E): E {
+        return lastOrDefault(this.iterable, defaultValue)
+    }
+
+    first(): E {
+        return first(this.iterable)
     }
 
     last(): E | null {
@@ -115,6 +133,10 @@ export default class Chain<E> extends DSObject implements IIterable<E> {
 
     min(comparer: IComparer<E>): E {
         return min(this.iterable, comparer)
+    }
+
+    aggregate(a: (a: E, b: E) => E, initialValue: E): E {
+        return aggregate(this.iterable, a, initialValue)
     }
 
     forEach(consumer: Action1<E>): void {

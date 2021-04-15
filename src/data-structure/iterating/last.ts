@@ -1,12 +1,22 @@
+import { Func1 } from "../../Func";
 import IIterable from "../IIterable";
 import getIterator from "./getIterator";
-export default function last<E>(i: IIterable<E>): E | null {
+export default function last<E>(i: IIterable<E>, predicate?: Func1<E, boolean>): E {
     const iterator = getIterator<E>(i)
+    let last: E | null = null
     while (iterator.hasNext()) {
         const v = iterator.next();
-        if (!iterator.hasNext()) {
-            return v;
+        if (predicate) {
+            if (predicate(v)) {
+                last = v
+            }
+        } else {
+            last = v
         }
     }
-    return null;
+    if (last) {
+        return last
+    } else {
+        throw new Error("Last element not found")
+    }
 }

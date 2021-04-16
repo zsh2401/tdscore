@@ -35,7 +35,7 @@ export default class HashSet<E>
 
 {
 
-    private innerMap: IMap<E, any> = new HashMap();
+    private innerMap: IMap<E, any> = new ESHashMap();
 
 
     setClear() {

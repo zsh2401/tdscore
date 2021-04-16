@@ -1,6 +1,3 @@
-import IIterable from "../IIterable";
-import getIterator from "./getIterator";
-
 /*
  * sum.ts
  * Created on Sat Apr 10 2021 12:23:45
@@ -20,6 +17,9 @@ import getIterator from "./getIterator";
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+
+import IIterable from "../IIterable";
+import getIterator from "./getIterator";
 
 /**
  * 

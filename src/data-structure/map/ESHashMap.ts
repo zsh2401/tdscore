@@ -1,10 +1,10 @@
-import { IIterable } from "..";
-import { dsEquals } from "../..";
-import DSArray from "../../DSArray";
-import { uuid } from "../../math";
+import IIterable from "../IIterable";
+import dsEquals from "../../equals";
+import uuid from "../../math/uuid";
 import dsHashCode from "../../util/hashing";
-import { Chain, fromESIterator } from "../iterating";
-import { UngrowableArrayList } from "../linear";
+import Chain from "../iterating/Chain";
+import fromESIterator from "../iterating/fromESIterator"
+import UngrowableArrayList from "../linear/UngrowableArrayList";
 import { IReadonlyKeyValuePair } from "./IMap";
 import MapBase from "./MapBase";
 
@@ -31,7 +31,6 @@ export default class ESHashMap<K, V>
                     result.listAdd(idnode.key)
                     idnode = idnode.next
                 } catch (err) {
-                    // console.log()
                     throw `${this.size()}-${i}`
                 }
 

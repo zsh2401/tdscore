@@ -30,7 +30,7 @@ export default function <E>(iterable: IIterable<E>, predicate?: Func1<E, boolean
                 return iterator.current()
             }
         } else {
-            return iterator.next()
+            return iterator.current()
         }
     }
     throw new Error("Element not found.")

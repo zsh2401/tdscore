@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { IIterable } from "..";
+import IIterable from "../IIterable";
 import { Func1 } from "../../Func";
 import getIterator from "./getIterator";
 

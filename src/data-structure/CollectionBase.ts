@@ -11,6 +11,7 @@ import forEach from "./iterating/forEach"
 import { Func1 } from "../Func"
 import equals from "../equals"
 import toESIterator from "./iterating/toESIterator"
+
 export default abstract class CollectionBase<E>
     extends DSObject implements
     ICollection<E>,

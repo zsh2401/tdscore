@@ -1,8 +1,28 @@
+/*
+ * LinkedList.ts
+ * Created on Unknown
+ *
+ * Description: 
+ *   No description.
+ *
+ * Copyright (c) 2021 tdscore
+ * 
+ * Copyright (c) 2021 Seymour Zhang and all contributors of this project.
+ * tdscore is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *          http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+ * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+ * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
+ */
+
 import ListBase from "./ListBase";
 import IList from "./IList";
-
 import IIterable from "../IIterable";
 import asIterable from "../iterating/asIterable";
+
 interface LinkedListNode<E> {
     data: E | null;
     next: LinkedListNode<E> | null;
@@ -16,14 +36,16 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
 
     private lastNode: LinkedListNode<E> = this.headNode;
 
+    private _size = 0;
     size(): number {
-        let current = this.headNode;
-        let _size = 0;
-        while (current.next) {
-            current = current.next;
-            _size++;
-        }
-        return _size;
+        return this._size;
+        // let current = this.headNode;
+        // let _size = 0;
+        // while (current.next) {
+        //     current = current.next;
+        //     _size++;
+        // }
+        // return _size;
     }
 
     private findNode(position: number): LinkedListNode<E> | null {
@@ -50,6 +72,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
             this.lastNode = prev;
             const next = prev.next?.next;
             prev.next = next ?? null;
+            this._size--
         } else {
             throw new RangeError("Node not found.");
         }
@@ -63,6 +86,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
             data: element,
         };
         prev.next = newNode;
+        this._size++
     }
 
     isEmpty(): boolean {
@@ -112,6 +136,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
 
         this.lastNode.next = newNode;
         this.lastNode = newNode;
+        this._size++
     }
 
     /**
@@ -120,5 +145,6 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     listClear(): void {
         this.lastNode = this.headNode;
         this.lastNode.next = null;
+        this._size = 0
     }
 }

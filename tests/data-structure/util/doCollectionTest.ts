@@ -1,7 +1,7 @@
 import ICollection from "../../../src/data-structure/ICollection"
 import "ts-jest"
 export function doCollectionTest(factory: <E>() => ICollection<E>) {
-    describe("Collection Test", () => {
+    describe("Standard Collection Test", () => {
         it("size", () => {
             const collection: ICollection<number> = factory<number>();
             collection.collectionAdd(1);

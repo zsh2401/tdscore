@@ -1,43 +1,43 @@
 import "ts-jest"
-import { BTreeNode, IBTreeNode, toJSArrayForItertable, treeAsIterable } from "../../src"
+import { BiTreeNode, IBiTreeNode, toJSArrayForItertable, treeAsIterable } from "../../src"
 import { blanceFactorOf, avlInsert, createAvlInserter, avlRotateRight, avlRotateLeft, avlDelete } from "../../src/algorithm/tree/"
 
 it("blance factor to be zero", () => {
     expect(blanceFactorOf(null)).toBe(0)
     expect(blanceFactorOf(void 0)).toBe(0)
-    const tree = new BTreeNode(0)
-    tree.left = new BTreeNode(1)
-    tree.right = new BTreeNode(2)
+    const tree = new BiTreeNode(0)
+    tree.left = new BiTreeNode(1)
+    tree.right = new BiTreeNode(2)
     expect(blanceFactorOf(tree)).toBe(0)
-    tree.left.right = new BTreeNode(1)
+    tree.left.right = new BiTreeNode(1)
     expect(blanceFactorOf(tree)).toBe(1)
 
-    tree.left.right.left = new BTreeNode(10)
+    tree.left.right.left = new BiTreeNode(10)
     expect(blanceFactorOf(tree)).toBe(2)
 })
 it("normal value", () => {
-    const tree = new BTreeNode(0)
-    tree.left = new BTreeNode(1)
-    tree.right = new BTreeNode(2)
-    tree.left.right = new BTreeNode(1)
+    const tree = new BiTreeNode(0)
+    tree.left = new BiTreeNode(1)
+    tree.right = new BiTreeNode(2)
+    tree.left.right = new BiTreeNode(1)
 
     expect(blanceFactorOf(tree)).toBe(1)
 
-    tree.left.right.left = new BTreeNode(10)
+    tree.left.right.left = new BiTreeNode(10)
     expect(blanceFactorOf(tree)).toBe(2)
 
-    tree.right.right = new BTreeNode(12)
-    tree.right.right.right = new BTreeNode(13)
-    tree.right.right.right.right = new BTreeNode(1231)
+    tree.right.right = new BiTreeNode(12)
+    tree.right.right.right = new BiTreeNode(13)
+    tree.right.right.right.right = new BiTreeNode(1231)
     expect(blanceFactorOf(tree)).toBe(-1)
 })
 it("rotate left", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(66)
-    tree.left = new BTreeNode(60)
-    tree.right = new BTreeNode(77)
-    tree.right.left = new BTreeNode(75)
-    tree.right.right = new BTreeNode(88)
-    tree.right.right.right = new BTreeNode(99)
+    let tree: IBiTreeNode<number> = new BiTreeNode(66)
+    tree.left = new BiTreeNode(60)
+    tree.right = new BiTreeNode(77)
+    tree.right.left = new BiTreeNode(75)
+    tree.right.right = new BiTreeNode(88)
+    tree.right.right.right = new BiTreeNode(99)
 
     expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
         .toStrictEqual([60, 66, 75, 77, 88, 99])
@@ -51,12 +51,12 @@ it("rotate left", () => {
 })
 
 it("rotate right", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(66)
-    tree.left = new BTreeNode(60)
-    tree.right = new BTreeNode(77)
-    tree.left.left = new BTreeNode(55)
-    tree.left.right = new BTreeNode(65)
-    tree.left.left.left = new BTreeNode(43)
+    let tree: IBiTreeNode<number> = new BiTreeNode(66)
+    tree.left = new BiTreeNode(60)
+    tree.right = new BiTreeNode(77)
+    tree.left.left = new BiTreeNode(55)
+    tree.left.right = new BiTreeNode(65)
+    tree.left.left.left = new BiTreeNode(43)
 
     expect(toJSArrayForItertable(treeAsIterable(tree, "in-order")))
         .toStrictEqual([43, 55, 60, 65, 66, 77])
@@ -69,7 +69,7 @@ it("rotate right", () => {
 })
 
 it("insert", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     tree = avlInsert(tree, 11, (a, b) => {
         return a - b
     })
@@ -92,7 +92,7 @@ it("insert", () => {
 })
 
 it("delete the only one element of tree", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
 
     const r = avlDelete(tree, 10, (a, b) => {
         return a - b
@@ -101,7 +101,7 @@ it("delete the only one element of tree", () => {
 })
 
 it("delete the element which had one right child", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     tree = avlInsert(tree, 11, (a, b) => {
         return a - b
     })
@@ -128,7 +128,7 @@ it("delete the element which had one right child", () => {
 })
 
 it("delete the element which had one left child", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     const insert = createAvlInserter(tree, (a: number, b: number) => {
         return a - b
     });
@@ -148,7 +148,7 @@ it("delete the element which had one left child", () => {
         .toStrictEqual([9, 10, 11])
 })
 it("delete the element which had one right child", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     const insert = createAvlInserter(tree, (a: number, b: number) => {
         return a - b
     });
@@ -169,7 +169,7 @@ it("delete the element which had one right child", () => {
 })
 
 it("delete with double child (bf: 0)", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     const insert = createAvlInserter(tree, (a: number, b: number) => {
         return a - b
     });
@@ -190,7 +190,7 @@ it("delete with double child (bf: 0)", () => {
 })
 
 it("delete with double child (bf: 1)", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     const insert = createAvlInserter(tree, (a: number, b: number) => {
         return a - b
     });
@@ -213,7 +213,7 @@ it("delete with double child (bf: 1)", () => {
 })
 
 it("delete with double child (bf: -1)", () => {
-    let tree: IBTreeNode<number> = new BTreeNode(10)
+    let tree: IBiTreeNode<number> = new BiTreeNode(10)
     const insert = createAvlInserter(tree, (a: number, b: number) => {
         return a - b
     });

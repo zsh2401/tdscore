@@ -65,10 +65,13 @@ describe("BFS", () => {
         graph.addVertix("A");
         graph.addVertix("B");
         graph.addVertix("C");
+        
         graph.addEdge("A", "B");
         graph.addEdge("B", "A");
+
         graph.addEdge("B", "C");
         graph.addEdge("C", "B");
+
         graph.addEdge("C", "A");
         graph.addEdge("A", "C");
 

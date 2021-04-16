@@ -35,9 +35,13 @@ export default class HashSet<E>
 
 {
 
-    private innerMap: IMap<E, any> = new ESHashMap();
+    private readonly innerMap: IMap<E, any>;
 
-
+    constructor() {
+        super()
+        this.innerMap = new HashMap()
+    }
+    
     setClear() {
         this.innerMap.clear()
     }

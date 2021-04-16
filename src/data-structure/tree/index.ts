@@ -25,7 +25,7 @@ export { default as toTreeNode } from './toTreeNode'
 export { default as treeAsIterable } from "./asIterable"
 
 export { default as ITreeNode } from "./ITreeNode"
-export { default as IBTreeNode } from "./IBiTreeNode"
+export { default as IBiTreeNode } from "./IBiTreeNode"
 
 export { default as TreeNode } from "./TreeNode"
-export { default as BTreeNode } from "./BiTreeNode"
+export { default as BiTreeNode } from "./BiTreeNode"

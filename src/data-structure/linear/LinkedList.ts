@@ -38,15 +38,9 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     private lastNode: LinkedListNode<E> = this.headNode;
 
     private _size = 0;
+
     size(): number {
         return this._size;
-        // let current = this.headNode;
-        // let _size = 0;
-        // while (current.next) {
-        //     current = current.next;
-        //     _size++;
-        // }
-        // return _size;
     }
 
     private findNode(position: number): LinkedListNode<E> {
@@ -57,15 +51,11 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         if (position < -1) {
             throw new ArgumentError("position")
         }
-        let current: LinkedListNode<E> = this.headNode;
-        for (let i = 0; i <= position; i++) {
-            if (current.next) {
-                current = current.next;
-            } else {
-                throw new ElementNotFoundError()
-            }
+        let current: LinkedListNode<E> | null = this.headNode;
+        for (let i = 0; i <= position && current; i++) {
+            current = current.next;
         }
-        if (current === this.headNode) {
+        if (current === this.headNode || current === null) {
             throw new ElementNotFoundError()
         }
         return current;
@@ -76,25 +66,30 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
      * @param position O
      */
     listDelete(position: number): void {
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         this.throwIfIndexOutOfBound(position);
         const prev = this.findNode(position - 1);
-        if (prev) {
+        if (this.lastNode === prev.next) {
             this.lastNode = prev;
-            const next = prev.next?.next;
-            prev.next = next ?? null;
-            this._size--
-        } else {
-            throw new RangeError("Node not found.");
         }
+        prev.next = prev.next?.next ?? null
+        this._size--
     }
 
     listInsert(position: number, element: E): void {
-        // this.throwIfIndexOutOfBound(position);
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         const prev = this.findNode(position - 1)!;
         const newNode: LinkedListNode<E> = {
             next: prev.next ?? null,
             data: element,
         };
+        if (newNode.next === null) {
+            this.lastNode = newNode
+        }
         prev.next = newNode;
         this._size++
     }
@@ -104,6 +99,9 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     }
 
     listGet(position: number): E {
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         if (position < 0) {
             throw new ArgumentError("position")
         }
@@ -111,6 +109,9 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     }
 
     listSet(position: number, element: E): void {
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         this.throwIfIndexOutOfBound(position);
         const node = this.findNode(position);
         if (node) {

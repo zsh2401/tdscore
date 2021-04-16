@@ -1,3 +1,4 @@
+import ArgumentError from "../../ArgumentError";
 import DSArray from "../../DSArray";
 import ListBase from "./ListBase";
 /**
@@ -27,15 +28,22 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
     size(): number {
         return this.length;
     }
+
     listDelete(position: number): void {
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         this.throwIfOutOfRange(position);
         for (let i = position; i < this.size() - 1; i++) {
             this.array.set(i, this.array.get(i + 1)!);
         }
         this.length--;
     }
+
     listInsert(position: number, element: E): void {
-        this.throwIfOutOfRange(position);
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         this.ensureCapcity();
         for (let i = this.size(); i > position; i--) {
             this.array.set(i, this.array.get(i - 1));
@@ -45,25 +53,31 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
     }
 
     listGet(position: number): E {
+        if (!Number.isInteger(position)) {
+            throw new ArgumentError("the argument position should be integer")
+        }
         this.throwIfOutOfRange(position);
         return this.array[position];
     }
 
     protected throwIfOutOfRange(position: number) {
         if (position < 0 || position >= this.size()) {
-            throw new Error("Index out of bound!");
+            throw new Error("Index out of bound!" + position);
         }
     }
+
     protected ensureCapcity() {
         if (this.size() + 1 > this.capcity) {
             throw new Error("No more space");
         }
     }
+
     listSet(position: number, element: E): void {
         this.throwIfOutOfRange(position);
         // this.ensureCapcity();
         this.array.set(position, element);
     }
+
     listAdd(element: E): void {
         this.ensureCapcity();
         this.array.set(this.size(), element);

@@ -24,6 +24,7 @@ import Lazy from "../../Lazy";
 import IList from "../linear/IList";
 import LinkedList from "../linear/LinkedList";
 import Nullable from "../../Nullable";
+import { ArrayList } from "../linear";
 
 /**
  * 标准的树节点实现
@@ -33,7 +34,7 @@ export default class TreeNode<E> extends DSObject implements ITreeNode<E>{
     parent: Nullable<ITreeNode<E>> = null
     data: E;
 
-    protected lchildren: Lazy<LinkedList<ITreeNode<E>>>;
+    protected lchildren: Lazy<IList<ITreeNode<E>>>;
 
     get children(): IList<ITreeNode<E>> {
         return this.lchildren.value

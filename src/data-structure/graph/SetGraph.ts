@@ -28,6 +28,7 @@ import ISet from "../set/ISet"
 import IGraph from "./IGraph";
 import IGraphEdge from "./IGraphEdge";
 import Edge from "./Edge";
+import { LinkedList } from "../linear";
 
 /**
  * 基于HashSet存储的图，时间效率较高，但空间消耗较大
@@ -87,10 +88,10 @@ export default class SetGraph<E> extends DSObject
         if (!this._vertices.contains(e)) {
             return new DSArray<E>(0)
         }
-        const r: E[] = []
+        const r = new LinkedList<E>()
         this._edges.forEach(_edge => {
             if (equals(e, _edge.from)) {
-                r.push(_edge.to)
+                r.stackPush(_edge.to)
             }
         })
         return r

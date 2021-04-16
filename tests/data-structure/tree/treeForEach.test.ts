@@ -1,6 +1,6 @@
 
 import "ts-jest"
-import { BTreeNode, ITreeNode, LinkedList,UngrowableArrayList } from "../../../src"
+import { BiTreeNode, ITreeNode, LinkedList,UngrowableArrayList } from "../../../src"
 import { treeForEach } from "../../../src/algorithm"
 
 const treeForTraverse: ITreeNode<number> = {
@@ -20,10 +20,10 @@ it("pre order", () => {
 
 it("in-order with binary tree", () => {
     const result: number[] = [];
-    const tree = new BTreeNode(0)
-    tree.left = new BTreeNode(1)
-    tree.right = new BTreeNode(2)
-    tree.left.right = new BTreeNode(3)
+    const tree = new BiTreeNode(0)
+    tree.left = new BiTreeNode(1)
+    tree.right = new BiTreeNode(2)
+    tree.left.right = new BiTreeNode(3)
     treeForEach(treeForTraverse, (d) => result.push(d), "in-order");
     expect(result).not.toStrictEqual([3, 1, 0, 2]);
 })

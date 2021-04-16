@@ -1,5 +1,6 @@
 import ICollection from "../../../src/data-structure/ICollection"
 import "ts-jest"
+import { first, firstOrDefault } from "../../../src";
 export function doCollectionTest(factory: <E>() => ICollection<E>) {
     describe("Standard Collection Test", () => {
         it("size", () => {
@@ -25,6 +26,17 @@ export function doCollectionTest(factory: <E>() => ICollection<E>) {
             collection.collectionAdd(1);
             collection.collectionAdd(2);
             expect(collection.size()).toBe(2)
+        })
+
+        it("remove", () => {
+            const c = factory<number>()
+            c.collectionAdd(1)
+            c.collectionAdd(2)
+            expect(c.size()).toBe(2)
+            expect(c.collectionRemove(1)).toBeTruthy()
+            expect(c.collectionRemove(3)).toBeFalsy()
+            expect(c.size()).toBe(1)
+            expect(first(c)).toBe(2)
         })
 
         it("toJSArray", () => {

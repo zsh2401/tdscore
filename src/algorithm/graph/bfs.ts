@@ -40,18 +40,19 @@ export default function <E>
     if (start === null) {
         return;
     }
+    viewed.setAdd(start)
     queue.queueEn(start)
     while (!queue.isEmpty()) {
         const current = queue.queueDe()
         if (consumer(current) === false) {
             return
         }
-        viewed.setAdd(current)
         const iterator = g.outOf(current).getIterator()
         while (iterator.hasNext()) {
             const _crt = iterator.next()
             if (!viewed.contains(_crt)) {
                 queue.queueEn(_crt)
+                viewed.setAdd(_crt)
             }
         }
     }

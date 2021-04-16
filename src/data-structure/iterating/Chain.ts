@@ -51,7 +51,8 @@ import forEach from "./forEach";
 import indexOf from "./indexOf"
 import take from "./take";
 import skip from "./skip";
-import { firstOrDefault, lastOrDefault } from ".";
+import lastOrDefault from "./lastOrDefault";
+import firstOrDefault from "./firstOrDefault"
 import first from "./first";
 import aggregate from "./aggregate";
 

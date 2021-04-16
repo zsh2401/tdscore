@@ -36,16 +36,16 @@ class Ranger implements IIterator<number>{
         this.value = from - 1
     }
     reset(): void {
-        this.value = 0
+        this.value = this.from
     }
 
     hasNext(): boolean {
-        return this.value <= this.to
+        return this.value < this.to
     }
 
     next(): number {
         if (this.value < this.to) {
-            return this.value++
+            return ++this.value
         } else {
             throw new NoMoreElementError()
         }

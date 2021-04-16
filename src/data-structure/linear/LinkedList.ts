@@ -3,6 +3,9 @@ import IList from "./IList";
 
 import IIterable from "../IIterable";
 import asIterable from "../iterating/asIterable";
+import NoMoreElementError from "../NoMoreElementError";
+import ElementNotFoundError from "../ElementNotFoundError";
+import ArgumentError from "../../ArgumentError";
 interface LinkedListNode<E> {
     data: E | null;
     next: LinkedListNode<E> | null;
@@ -26,17 +29,26 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         return _size;
     }
 
-    private findNode(position: number): LinkedListNode<E> | null {
+    private findNode(position: number): LinkedListNode<E> {
 
-        if (position === -1 || this.isEmpty()) {
+        if (position === -1) {
             return this.headNode;
-        } else {
-            let current: LinkedListNode<E> | null = this.headNode;
-            for (let i = 0; i <= position && current; i++) {
-                current = current.next;
-            }
-            return current;
         }
+        if (position < -1) {
+            throw new ArgumentError("position")
+        }
+        let current: LinkedListNode<E> = this.headNode;
+        for (let i = 0; i <= position; i++) {
+            if (current.next) {
+                current = current.next;
+            } else {
+                throw new ElementNotFoundError()
+            }
+        }
+        if (current === this.headNode) {
+            throw new ElementNotFoundError()
+        }
+        return current;
     }
 
     /**
@@ -56,10 +68,10 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     }
 
     listInsert(position: number, element: E): void {
-        this.throwIfIndexOutOfBound(position);
+        // this.throwIfIndexOutOfBound(position);
         const prev = this.findNode(position - 1)!;
         const newNode: LinkedListNode<E> = {
-            next: prev.next?.next ?? null,
+            next: prev.next ?? null,
             data: element,
         };
         prev.next = newNode;
@@ -70,7 +82,9 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     }
 
     listGet(position: number): E {
-        this.throwIfIndexOutOfBound(position);
+        if (position < 0) {
+            throw new ArgumentError("position")
+        }
         return this.findNode(position)?.data!;
     }
 

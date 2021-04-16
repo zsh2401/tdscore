@@ -19,11 +19,10 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import IIterable from "./data-structure/IIterable";
 import DSArray from "./DSArray";
-import { isJSArray } from "./util/type";
+import { isJSArray } from "./util/type/determine-type";
 
-export default interface IArrayLike<T> extends IIterable<T> {
+export default interface IArrayLike<T> {
     length: number;
     [index: number]: T;
 }

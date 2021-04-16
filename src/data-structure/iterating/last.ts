@@ -14,7 +14,7 @@ export default function last<E>(i: IIterable<E>, predicate?: Func1<E, boolean>):
             last = v
         }
     }
-    if (last) {
+    if (last !== null) {
         return last
     } else {
         throw new Error("Last element not found")

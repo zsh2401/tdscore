@@ -10,7 +10,7 @@ import fromESIterator from "./fromESIterator";
  * @param e 
  * @returns 
  */
-export default function <E>(e: IIterable<E> | Iterable<E> | IArrayLike<E> | E): IIterator<E> {
+export default function <E>(e: IIterable<E> | Iterable<E> | IArrayLike<E> | ArrayLike<E> | E): IIterator<E> {
 
     if (isIterable<E>(e) || isDSArray<E>(e)) {
         return e.getIterator();

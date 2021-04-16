@@ -18,6 +18,7 @@
     "build:dist": "cross-env TS_NODE_PROJECT=\"./tsconfig.webpack.json\" webpack --config ./webpack.config.ts",
     "build:qjs": "cross-env TS_NODE_PROJECT=\"./tsconfig.webpack.json\" webpack --config ./webpack.config.qjs.ts",
     "build:lib": "tsc",
+    "build:test": "tsc --project tsconfig.test.json",
     "build:es": "tsc --project tsconfig.es.json",
     "build": "npm run build:es && npm run build:dist && npm run build:lib && npm run build:qjs",
     "lint": "eslint src/",

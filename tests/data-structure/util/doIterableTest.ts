@@ -11,6 +11,5 @@ export default function (factory: <E>() => IIterable<E>) {
             expect(iterable.getIterator() === iterable.getIterator()).toBeFalsy()
         })
 
-        it()
     })
 }

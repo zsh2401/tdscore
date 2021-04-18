@@ -20,45 +20,28 @@
  */
 
 import IHashCodeGettable from "./util/hashing/IHashCodeGettable";
-import { getHashCodeString } from "./util/hashing/hashCodeForPrimitiveType";
 import _uuid from "./math/uuid";
 import dsHashCode from "./hash";
+import uuid from "./math/uuid";
+
+const DSObjectHiddenDataKey = Symbol()
 
 /**
  * 所有本库内类的基类，其类似于Java，C#的Object或Objective-C中的NSObject。
  */
 export default class DSObject implements IHashCodeGettable {
 
-    /**
-     * 标记其为一个DSObject
-     */
-    private readonly ______ds_this_ds_object = true
+    declare readonly [DSObjectHiddenDataKey]: DSObjectMetadata
 
-    /**
-     * 标记对象的不变的UUID
-     */
-    protected readonly ______ds_uuid = _uuid();
-
-    /**
-     * 计算的哈希码
-     */
-    private ______ds_hash_code = 0;
-
-    /**
-     * 哈希种子，将来可能会变更
-     */
-    static readonly HASHSEED = "Burning Bright@-*&";
-
+    constructor() {
+        initHiddenData(this)
+    }
     /**
      * 计算新的哈希码
      * @returns 
      */
     protected newHashCode(): number {
-        try {
-            return getHashCodeString(JSON.stringify(this));
-        } catch {
-            return dsHashCode(DSObject.HASHSEED + this.constructor.name + this.______ds_uuid);
-        }
+        return dsHashCode(this.constructor.name + this[DSObjectHiddenDataKey].uuid);
     }
 
     /**
@@ -75,10 +58,11 @@ export default class DSObject implements IHashCodeGettable {
      * @returns 
      */
     getHashCode(): number {
-        if (this.______ds_hash_code === 0) {
-            this.______ds_hash_code = this.newHashCode();
+        const hdata = this[DSObjectHiddenDataKey]
+        if (hdata.cachedHashCode === 0) {
+            hdata.cachedHashCode = this.newHashCode();
         }
-        return this.______ds_hash_code;
+        return hdata.cachedHashCode;
     }
 
     /**
@@ -101,7 +85,7 @@ export default class DSObject implements IHashCodeGettable {
      */
     static isDSObject<T extends DSObject = DSObject>(e: any): e is T {
         // return e instanceof DSObject;
-        if ((<DSObject>e).______ds_this_ds_object) {
+        if ((<DSObject>e)[DSObjectHiddenDataKey] !== undefined) {
             return true
         } else {
             return false
@@ -134,4 +118,24 @@ export default class DSObject implements IHashCodeGettable {
         return `${__dirname}::${this.getClassName()}@${this.getHashCode()}`;
     }
 
+}
+
+interface DSObjectMetadata {
+    cachedHashCode: number
+    uuid: string;
+}
+function getHiddenData(obj: any): DSObjectMetadata | null {
+    return obj[DSObjectHiddenDataKey]
+}
+function initHiddenData(target: DSObject) {
+    const value: DSObjectMetadata = {
+        cachedHashCode: 0,
+        uuid: uuid()
+    }
+    Object.defineProperty(target, DSObjectHiddenDataKey, {
+        value,
+        writable: false,
+        enumerable: false,
+        configurable: false
+    })
 }

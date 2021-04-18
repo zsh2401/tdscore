@@ -14,7 +14,7 @@ English | [中文](./README.md)
 npm i tdscore
 ```
 
-Data Structure, Algorithms, Mathmatics code, and extension to ECMA Script written by almost pure TypeScript✨
+Data Structure, Algorithms and Mathmatics code written by 100% TypeScript✨
 
 
 [![Test](https://github.com/zsh2401/tdscore/actions/workflows/test.yml/badge.svg)](https://github.com/zsh2401/tdscore/actions/workflows/test.yml)
@@ -56,7 +56,7 @@ TDSCore can be also imported with following ways：
 * Global Variable `window.tdscore`
 * CommonJS `require("tdscore")`
 
-BTW, you can try TDSCore without configure any thing on RunKit.
+BTW, you can try TDSCore without configuring anything with RunKit.
 
 [RunKit for TDSCore](https://npm.runkit.com/tdscore)
 
@@ -64,7 +64,7 @@ BTW, you can try TDSCore without configure any thing on RunKit.
 [**View online document in official website**](http://ds.zsh2401.top)
 
 # Join development🤝
-您可以[使用Github1s在线浏览代码](https://github1s.com/zsh2401/tdscore/)，也可以直接将代码克隆到本地。
+You can [view code online with github1s](https://github1s.com/zsh2401/tdscore/)
 
 ## Clone & Checkout
 ```sh
@@ -107,4 +107,4 @@ Notice:
 </a>
 
 # License
-TDSCore is licensed under [Mulan PSL v2](http://license.coscl.org.cn/MulanPSL2).
+TDSCore is licensed under [Mulan PSL v2](https://opensource.org/licenses/MulanPSL-2.0).

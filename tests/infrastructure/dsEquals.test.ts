@@ -1,4 +1,4 @@
-import { dsHashCode, DSNumber } from "../../src";
+import { dsHashCode, DSNumber, hash } from "../../src";
 import equals from "../../src/equals"
 import DSObject from "../../src/DSObject";
 import { IHashCodeGettable } from "../../src/util/hashing";

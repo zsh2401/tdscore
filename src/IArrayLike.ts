@@ -23,7 +23,7 @@ import DSArray from "./DSArray";
 import { isJSArray } from "./util/type/determine-type";
 
 export default interface IArrayLike<T> {
-    length: number;
+    readonly length: number;
     [index: number]: T;
 }
 

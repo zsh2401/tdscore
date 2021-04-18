@@ -10,5 +10,7 @@ export default function (factory: <E>() => IIterable<E>) {
             const iterable = factory()
             expect(iterable.getIterator() === iterable.getIterator()).toBeFalsy()
         })
+
+        it()
     })
 }

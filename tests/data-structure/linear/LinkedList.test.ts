@@ -1,5 +1,5 @@
 import LinkedList from "../../../src/data-structure/linear/LinkedList";
-import { doCollectionTest } from "../util/doCollectionTest";
+import doCollectionTest from "../util/doCollectionTest";
 import doIterableTest from "../util/doIterableTest";
 import doListTest from "../util/doListTest";
 import doQueueTest from "../util/doQueueTest";

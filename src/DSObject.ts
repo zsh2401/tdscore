@@ -30,7 +30,7 @@ import dsHashCode from "./hash";
 export default class DSObject implements IHashCodeGettable {
 
     /**
-     * 标记其实一个DSObject
+     * 标记其为一个DSObject
      */
     private readonly ______ds_this_ds_object = true
 

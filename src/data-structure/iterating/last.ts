@@ -1,6 +1,8 @@
 import { Func1 } from "../../Func";
+import ElementNotFoundError from "../ElementNotFoundError";
 import IIterable from "../IIterable";
 import getIterator from "./getIterator";
+
 export default function last<E>(i: IIterable<E>, predicate?: Func1<E, boolean>): E {
     const iterator = getIterator<E>(i)
     let last: E | null = null
@@ -17,6 +19,6 @@ export default function last<E>(i: IIterable<E>, predicate?: Func1<E, boolean>):
     if (last !== null) {
         return last
     } else {
-        throw new Error("Last element not found")
+        throw new ElementNotFoundError("Last element not found")
     }
 }

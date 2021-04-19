@@ -1,6 +1,3 @@
-import { IIterable } from ".."
-import toESIterator from "./toESIterator"
-
 /*
  * toESIterable.ts
  * Created on Tue Apr 13 2021 21:51:36
@@ -20,6 +17,11 @@ import toESIterator from "./toESIterator"
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+
+import IIterable from "../IIterable"
+import toESIterator from "./toESIterator"
+
+
 export default function <E>(source: IIterable<E>): Iterable<E> {
     return {
         [Symbol.iterator]() {

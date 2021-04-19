@@ -10,7 +10,7 @@ export default function toList<E>(i: IIterable<E>, reverse: boolean = false): IL
 
     while (iterator.hasNext()) {
         if (reverse) {
-            list.queueEn(iterator.next());
+            list.listInsert(0, iterator.next());
         } else {
             list.stackPush(iterator.next());
         }

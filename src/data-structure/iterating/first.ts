@@ -1,7 +1,3 @@
-import { IIterable } from "..";
-import { Func1 } from "../../Func";
-import getIterator from "./getIterator";
-
 /*
  * first.ts
  * Created on Thu Apr 15 2021 13:55:41
@@ -21,6 +17,11 @@ import getIterator from "./getIterator";
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+
+import IIterable from "../IIterable";
+import { Func1 } from "../../Func";
+import getIterator from "./getIterator";
+
 export default function <E>(iterable: IIterable<E>, predicate?: Func1<E, boolean>): E {
     const iterator = getIterator(iterable)
     while (iterator.hasNext()) {

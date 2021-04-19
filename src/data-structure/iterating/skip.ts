@@ -18,6 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
+import ElementNotFoundError from "../ElementNotFoundError";
 import IIterable from "../IIterable";
 import IIterator from "../IIterator"
 import getIterator from "./getIterator";
@@ -41,6 +42,7 @@ class SkipIterator<E> implements IIterator<E>{
     }
     reset() {
         this.source.reset()
+        this.status = "new"
     }
     private moveToRightPlace() {
         for (let i = 0; i < this.count; i++) {
@@ -63,6 +65,8 @@ class SkipIterator<E> implements IIterator<E>{
     current() {
         if (this.status === "new") {
             this.moveToRightPlace()
+        } else if (this.status === "failed") {
+            throw new ElementNotFoundError()
         }
         return this.source.current()
     }

@@ -1,4 +1,5 @@
-import { IIterable, IIterator } from "..";
+import IIterable from "../IIterable";
+import IIterator from "../IIterator"
 import NoMoreElementError from "../NoMoreElementError";
 
 /*

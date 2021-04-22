@@ -1,6 +1,6 @@
 {
   "name": "tdscore",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "Data Structure, algorithms, mathmatic codes and enhancement of ECMAScript written by TypeScript",
   "repository": "https://github.com/zsh2401/tdscore",
   "author": "Seymour Zhang<zsh2401@163.com>",
@@ -50,11 +50,11 @@
     "terser-webpack-plugin": "^5.1.1",
     "threads-plugin": "^1.4.0",
     "ts-jest": "^26.5.5",
-    "ts-loader": "^8.1.0",
+    "ts-loader": "^9.1.0",
     "ts-node": "^9.1.1",
     "ts_dependency_graph": "^1.2.0",
     "typescript": "^4.2.4",
-    "webpack": "^5.33.2",
+    "webpack": "^5.35.0",
     "webpack-bundle-analyzer": "^4.4.1",
     "webpack-cli": "^4.6.0"
   }

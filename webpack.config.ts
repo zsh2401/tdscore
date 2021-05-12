@@ -4,8 +4,7 @@ import fs from "fs"
 import TerserPlugin from "terser-webpack-plugin"
 import WebpackBundleAnalyzer from "webpack-bundle-analyzer"
 import pkfInf from './package.json'
-// const WEB = process.env.WEB !== undefined && process.env.WEB !== "0";
-// const NODE_MajorVersion = Number.parseInt(process.version.split(".")[0].replace("v", ""));
+
 const config: webpack.Configuration = {
 	entry: {
 		"tdscore": path.resolve(__dirname, "./src/index.ts"),

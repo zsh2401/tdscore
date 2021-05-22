@@ -19,7 +19,7 @@
  */
 
 import DSNumber from "../../../DSNumber";
-import MixedNumber from "../../../MixedNumber";
+import MixedNumber, { asDSNumber } from "../../../MixedNumber";
 import IElementOperator from "./IElementOperator";
 
 const NumberOperator: IElementOperator<MixedNumber> = {
@@ -36,7 +36,7 @@ const NumberOperator: IElementOperator<MixedNumber> = {
         return DSNumber.valueOf(a).dividedBy(b);
     },
     nagated: (x: MixedNumber): MixedNumber => {
-        return x.toDSNumber().negated();
+        return asDSNumber(x).negated();
     },
     defaultValue: 0
 };

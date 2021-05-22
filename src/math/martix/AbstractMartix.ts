@@ -9,6 +9,7 @@ import martixAdd from "./raw/add"
 import martixSub from "./raw/sub"
 import martixMul from "./raw/mul"
 import RawMartix from "./raw/MartixTypes";
+import { getIterator } from "../../data-structure";
 
 export type RowIndex = number;
 export type ColIndex = number;
@@ -62,9 +63,11 @@ export default abstract class
         }
         return [row, col];
     }
+
     getIterator(): IIterator<E> {
-        return toDSArray(reduceDimension(this.data)).getIterator();
+        return getIterator(reduceDimension(this.data))
     }
+
     clone(): M {
         return this.newInstanceOf(this.cloneData(), this.sign);
     }

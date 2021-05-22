@@ -19,7 +19,4 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import "./array-ext"
-import "./string-ext"
-import "./number-ext"
-import "./boolean-ext"
+export { default as loadPrototype } from "./load"

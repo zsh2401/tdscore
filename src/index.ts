@@ -40,6 +40,7 @@ export { default as DSObjectType } from "./DSObjectType"
 export { default as defaultOf } from './util/type/defaultOf'
 export { default as StopWatch } from "./StopWatch"
 export { default as MixedNumber } from "./MixedNumber"
+export * from "./MixedNumber"
 export { default as AsyncDSEvent } from "./AsyncDSEvent"
 export { default as ProtectedDSEvent } from "./ProtectedDSEvent"
 export {

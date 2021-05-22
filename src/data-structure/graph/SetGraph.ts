@@ -29,6 +29,7 @@ import IGraph from "./IGraph";
 import IGraphEdge from "./IGraphEdge";
 import Edge from "./Edge";
 import { LinkedList } from "../linear";
+import asIterable from "../iterating/asIterable";
 
 /**
  * 基于HashSet存储的图，时间效率较高，但空间消耗较大
@@ -81,7 +82,7 @@ export default class SetGraph<E> extends DSObject
                 r.push(_edge.from)
             }
         })
-        return r
+        return asIterable(r)
     }
 
     outOf(e: E): IIterable<E> {

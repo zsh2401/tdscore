@@ -1,6 +1,7 @@
 import { cos, ONE_DEGREE, pow, sin } from "..";
 import DSObject from "../../DSObject";
 import dsHashCode from "../../hash";
+import { asJSNumber } from "../../MixedNumber";
 import Transformation2 from "./Transformation2";
 import Vector from "./Vector";
 
@@ -38,7 +39,7 @@ export default class Vector2
      * 计算向量长度
      */
     get length(): number {
-        return pow(pow(this.x, 2) + (pow(this.y, 2)), 0.5).toJSNumber()
+        return asJSNumber(pow(pow(this.x, 2) + (pow(this.y, 2)), 0.5))
     }
 
     /**

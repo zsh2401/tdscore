@@ -5,7 +5,7 @@ it("lazy", () => {
     let shouldBe = 0
     const s = select([1, 2, 3, 4], (n: number) => {
         times++
-        return n;
+        return n
     })
     expect(times).toBe(shouldBe)
     const i = s.getIterator()

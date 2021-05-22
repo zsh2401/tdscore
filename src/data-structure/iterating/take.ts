@@ -20,6 +20,7 @@
 
 import { IIterator } from "..";
 import IIterable from "../IIterable";
+import NoMoreElementError from "../NoMoreElementError";
 import getIterator from "./getIterator";
 
 export default function <E>(iterable: IIterable<E>, count: number): IIterable<E> {
@@ -32,6 +33,7 @@ class TakeIterator<E> implements IIterator<E>{
     private readonly count: number
     private readonly source: IIterator<E>
     private took: number
+
     constructor(source: IIterator<E>, count: number) {
         this.source = source
         this.count = count
@@ -43,16 +45,18 @@ class TakeIterator<E> implements IIterator<E>{
         this.took = 0
     }
     hasNext(): boolean {
-        return this.took <= this.count && this.source.hasNext()
+        return this.took < this.count && this.source.hasNext()
     }
+
     next(): E {
-        if (this.took <= this.count) {
+        if (this.hasNext()) {
             this.took++
-            return this.next()
+            return this.source.next()
         } else {
-            throw new Error("There's no more element")
+            throw new NoMoreElementError()
         }
     }
+
     current(): E {
         if (this.took <= this.count) {
             return this.source.current()

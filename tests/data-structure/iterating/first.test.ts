@@ -2,10 +2,10 @@ import "ts-jest"
 import { first, LinkedList } from "../../../src"
 
 it("should be the first one", () => {
-    const collection = new LinkedList();
+    const collection = new LinkedList()
     collection.collectionAdd("A")
     collection.collectionAdd("B")
-    expect(first(collection)).toBe("A");
+    expect(first(collection)).toBe("A")
 })
 
 it("throws when there's no element", () => {

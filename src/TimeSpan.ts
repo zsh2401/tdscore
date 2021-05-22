@@ -1,6 +1,6 @@
 /*
- * Optional.ts
- * Created on Sat Mar 06 2021 00:59:28
+ * TimeSpan.ts
+ * Created on Sat May 22 2021 12:49:11
  *
  * Description: 
  *   No description.
@@ -16,29 +16,38 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
 
-import DSObject from "./DSObject";
+import NotImplementedError from "./NotImplementedError";
 
-/**
- * @deprecated
- */
-export default class Optional<E> extends DSObject {
-    private readonly _innerValue: E | undefined | null;
-    constructor(value?: E | null | undefined) {
-        super();
-        this._innerValue = value;
+export default class TimeSpan {
+    private readonly _totalMS: number;
+    constructor(ms: number) {
+        this._totalMS = ms
+    }
+    
+    get totalMS(): number {
+        return this._totalMS
     }
 
-    get isPresent() {
-        return this._innerValue !== null && this._innerValue !== undefined;
+    get days(): number {
+        throw new NotImplementedError()
     }
 
-    get value(): E {
-        if (!this.isPresent) {
-            throw new Error("Value not presented!");
-        }
-        return this._innerValue!;
+    get hours(): number {
+        throw new NotImplementedError()
     }
+
+    get minutes(): number {
+        throw new NotImplementedError()
+    }
+
+    get seconds(): number {
+        throw new NotImplementedError()
+    }
+
+    get ms(): number {
+        throw new NotImplementedError()
+    }
+
 }

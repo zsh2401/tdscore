@@ -95,7 +95,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
     }
 
     isEmpty(): boolean {
-        return this.headNode.next === null;
+        return this.headNode === this.lastNode
     }
 
     listGet(position: number): E {
@@ -112,8 +112,8 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         if (!Number.isInteger(position)) {
             throw new ArgumentError("the argument position should be integer")
         }
-        this.throwIfIndexOutOfBound(position);
-        const node = this.findNode(position);
+        this.throwIfIndexOutOfBound(position)
+        const node = this.findNode(position)
         if (node) {
             node.data = element;
         }

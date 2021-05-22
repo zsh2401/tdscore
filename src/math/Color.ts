@@ -4,6 +4,7 @@ import hashCode from "../util/hashing";
 //TODO wait to be tested.
 export default class Color extends DSObject {
     private readonly rgba: number;
+
     constructor(r: number, g: number, b: number, a: number) {
 
         super();
@@ -13,9 +14,8 @@ export default class Color extends DSObject {
         tmp |= Color.to8Bit(b) << 8;
         tmp |= Color.to8Bit(a);
         this.rgba = tmp;
-
     }
-
+    
     private static to8Bit(x: number): number {
         x <<= 24;
         x >>= 24;

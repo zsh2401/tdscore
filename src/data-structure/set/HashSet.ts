@@ -19,20 +19,18 @@
  * Mulan Permissive Software License，Version 2
  */
 
-import CollectionBase from "../CollectionBase";
-import ICollection from "../ICollection";
-import ISet from "./ISet";
-import ESHashMap from "../map/ESHashMap";
+import CollectionBase from "../CollectionBase"
+import ICollection from "../ICollection"
+import ISet from "./ISet"
 import IMap from "../map/IMap"
-import toDSArray from "../iterating/toDSArrayForItertable";
-import contains from "../iterating/contains";
-import { HashMap } from "../map";
+import toDSArray from "../iterating/toDSArrayForItertable"
+import contains from "../iterating/contains"
+import HashMap from "../map/HashMap"
 
 const PRESENT = true
 export default class HashSet<E>
     extends CollectionBase<E>
     implements ISet<E>, ICollection<E>
-
 {
 
     private readonly innerMap: IMap<E, any>;
@@ -41,14 +39,14 @@ export default class HashSet<E>
         super()
         this.innerMap = new HashMap()
     }
-    
+
     setClear() {
         this.innerMap.clear()
     }
 
     setAdd(e: E): HashSet<E> {
         this.innerMap.mapPut(e, PRESENT)
-        return this;
+        return this
     }
 
     setRemove(e: E): boolean {
@@ -72,19 +70,19 @@ export default class HashSet<E>
     }
 
     getIterator() {
-        return this.innerMap.mapGetKeys().getIterator();
+        return this.innerMap.mapGetKeys().getIterator()
     }
 
     size() {
-        return this.innerMap.size();
+        return this.innerMap.size()
     }
 
     contains(e: E) {
-        return contains(this.innerMap.mapGetKeys(), e);
+        return contains(this.innerMap.mapGetKeys(), e)
     }
 
     isEmpty() {
-        return this.innerMap.isEmpty();
+        return this.innerMap.isEmpty()
     }
 
     add(e: E) {

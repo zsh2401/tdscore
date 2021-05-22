@@ -20,6 +20,7 @@
  */
 
 import DSObject from "./DSObject";
+import InvalidStateError from "./InvalidStateError";
 
 /**
  * StopWatch, designed for record time span.
@@ -27,8 +28,8 @@ import DSObject from "./DSObject";
  */
 export default class StopWatch extends DSObject {
 
-    private _start: Date | null = null;
-    private _end: Date | null = null;
+    private _start: number | null = null;
+    private _end: number | null = null;
 
     constructor() {
         super();
@@ -41,9 +42,9 @@ export default class StopWatch extends DSObject {
      */
     get totalMs(): number {
         if (this._start && this._end) {
-            return this._end.getTime() - this._start.getTime();
+            return this._end - this._start;
         } else {
-            throw new Error("Invalid state.");
+            throw new InvalidStateError("Invalid state.");
         }
     }
 
@@ -51,14 +52,21 @@ export default class StopWatch extends DSObject {
      * Start this stopwatch
      */
     start() {
-        this._start = new Date();
+        if (this._start) {
+            throw new InvalidStateError("StopWatch has been started already.")
+        }
+        this._start = Date.now()
     }
 
     /**
      * Stop record.
      */
     end() {
-        this._end = new Date();
+        if (this._start) {
+            this._end = Date.now()
+        } else {
+            throw new InvalidStateError("StopWatch has not been started.");
+        }
     }
 
     /**

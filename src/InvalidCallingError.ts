@@ -1,6 +1,6 @@
 /*
- * Optional.ts
- * Created on Sat Mar 06 2021 00:59:28
+ * InvalidCallingError.ts
+ * Created on Wed May 19 2021 18:45:07
  *
  * Description: 
  *   No description.
@@ -16,29 +16,10 @@
  * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
- * Mulan Permissive Software License，Version 2
  */
 
-import DSObject from "./DSObject";
-
-/**
- * @deprecated
- */
-export default class Optional<E> extends DSObject {
-    private readonly _innerValue: E | undefined | null;
-    constructor(value?: E | null | undefined) {
-        super();
-        this._innerValue = value;
-    }
-
-    get isPresent() {
-        return this._innerValue !== null && this._innerValue !== undefined;
-    }
-
-    get value(): E {
-        if (!this.isPresent) {
-            throw new Error("Value not presented!");
-        }
-        return this._innerValue!;
+export default class InvalidCallingError extends Error {
+    constructor(msg: string) {
+        super(msg)
     }
 }

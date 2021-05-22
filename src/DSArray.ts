@@ -67,15 +67,6 @@ export default class DSArray<E> extends DSObject
         return this;
     }
 
-    // defaultValueOf(i: number): E | undefined {
-    //     if (typeof this.defaultValue === "function") {
-    //         //@ts-ignore
-    //         return this.defaultValue(i);
-    //     } else {
-    //         return this.defaultValue;
-    //     }
-    // }
-
     getIterator(): IIterator<E> {
         return new DSArrayIterator(this);
     }
@@ -170,6 +161,7 @@ function dsarry(
     //@ts-ignore
     return result;
 }
+
 function from<E>(src: ArrayLike<E>): DSArray<E> {
     const a = new DSArray<E>(src.length);
     for (let i = 0; i < src.length; i++) {

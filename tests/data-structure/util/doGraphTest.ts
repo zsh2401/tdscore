@@ -4,6 +4,7 @@ import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertab
 
 export default function (factory: <E>() => IGraph<E>) {
     describe("Standard Graph Test Suite", () => {
+        
         it("add & remove vertices", () => {
             const g = factory<string>()
             g.addVertix("A")
@@ -15,6 +16,7 @@ export default function (factory: <E>() => IGraph<E>) {
             expect(contains(g.vertices, "A")).toBeFalsy()
             expect(contains(g.vertices, "B")).toBeFalsy()
         })
+
         it("add & remove edges", () => {
             const g = factory<string>()
             g.addVertix("A")

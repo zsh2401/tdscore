@@ -34,7 +34,7 @@ npm i tdscore
 # 介绍
 ## 特性
 * 可读性高：开发的首要目标为研习🌌
-* 到处运行：编译产物仅使用ES5语法特性
+* 到处运行：编译产物使用ECMAScript 6语法特性
 * 麻雀虽小：压缩传输仅22.4KiB（v0.1.27)
 * 能够被编译为二进制可执行程序。查看[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 * 迭代器（灵感来自于`C# Linq`）

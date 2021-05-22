@@ -1,5 +1,4 @@
 import IClonable from "../../data-structure/IClonable";
-import toDSArray from "../../data-structure/iterating/toDSArrayForItertable";
 import DSObject from "../../DSObject";
 import IIterable from "../../data-structure/IIterable"
 import IIterator from "../../data-structure/IIterator"
@@ -9,7 +8,7 @@ import martixAdd from "./raw/add"
 import martixSub from "./raw/sub"
 import martixMul from "./raw/mul"
 import RawMartix from "./raw/MartixTypes";
-import { getIterator } from "../../data-structure";
+import getIterator from "../../data-structure/iterating/getIterator";
 
 export type RowIndex = number;
 export type ColIndex = number;

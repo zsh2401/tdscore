@@ -18,8 +18,6 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { ArrayList, LinkedList } from "../../data-structure";
-import DSArray from "../../DSArray";
 import IArrayLike from "../../IArrayLike";
 
 /**

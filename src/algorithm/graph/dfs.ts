@@ -18,11 +18,11 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { Action1 } from "../../Action";
-import HashSet from "../../data-structure/set/HashSet";
+import { Action1 } from "../../Action"
+import HashSet from "../../data-structure/set/HashSet"
 import ISet from "../../data-structure/set/ISet"
-import IGraph from "../../data-structure/graph/IGraph";
-import firstOrDefault from "../../data-structure/iterating/firstOrDefault";
+import IGraph from "../../data-structure/graph/IGraph"
+import firstOrDefault from "../../data-structure/iterating/firstOrDefault"
 
 /**
  * 深度优先搜索算法

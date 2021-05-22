@@ -18,10 +18,10 @@
  * See the Mulan PSL v2 for more details.
  * Mulan Permissive Software License，Version 2
  */
+
 /**
  * 快速排序
  */
-
 import IArrayLike from "../../IArrayLike";
 import comparers from "../comparers";
 import IComparer from "../../IComparer";

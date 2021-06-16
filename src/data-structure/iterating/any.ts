@@ -18,11 +18,11 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IIterable from "../IIterable";
 import { Func1 } from "../../Func";
 import getIterator from "./getIterator";
+import UIterable from "../UIterable";
 
-export default function <E>(iterable: IIterable<E>, predicate: Func1<E, boolean>) {
+export default function <E>(iterable: UIterable<E>, predicate: Func1<E, boolean>) {
     const i = getIterator(iterable)
     while (i.hasNext()) {
         if (predicate(i.next())) {

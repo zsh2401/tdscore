@@ -1,5 +1,5 @@
 export default class NotImplementedError extends Error {
     constructor(msg: string = "") {
-        super("Not implemented: " + msg)
+        super("The part of program has still not been not implemented. " + msg)
     }
 }

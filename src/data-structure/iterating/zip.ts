@@ -1,5 +1,6 @@
 import { IIterable, IIterator } from "..";
 import { Func2 } from "../../Func";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
 /*
@@ -21,7 +22,7 @@ import getIterator from "./getIterator";
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-export default function <EA, EB, R>(a: IIterable<EA>, b: IIterable<EB>, zipper: Func2<EA, EB, R>):
+export default function <EA, EB, R>(a: UIterable<EA>, b: UIterable<EB>, zipper: Func2<EA, EB, R>):
     IIterable<R> {
     return {
         getIterator: () => new Zipper(getIterator(a), getIterator(b), zipper)

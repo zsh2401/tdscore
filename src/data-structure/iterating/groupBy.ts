@@ -23,8 +23,9 @@ import { Func1 } from "../../Func";
 import LinkedList from "../linear/LinkedList";
 import getIterator from "./getIterator";
 import ESHashMap from "../map/ESHashMap";
+import UIterable from "../UIterable";
 
-export default function <E>(iterable: IIterable<E>, spliter: Func1<E, any>): IIterable<IIterable<E>> {
+export default function <E>(iterable: UIterable<E>, spliter: Func1<E, any>): IIterable<IIterable<E>> {
     const map = new ESHashMap<any, LinkedList<E>>()
     const iterator = getIterator(iterable)
     while (iterator.hasNext()) {

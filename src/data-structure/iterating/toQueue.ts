@@ -22,9 +22,10 @@
 import IIterable from "../IIterable";
 import IQueue  from "../linear/IQueue";
 import LinkedList from "../linear/LinkedList";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
-export default function <E>(i: IIterable<E>, reverse: boolean = false): IQueue<E> {
+export default function <E>(i: UIterable<E>, reverse: boolean = false): IQueue<E> {
     const list = new LinkedList<E>()
     const iterator = getIterator<E>(i)
     while (iterator.hasNext()) {

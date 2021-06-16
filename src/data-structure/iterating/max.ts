@@ -20,6 +20,7 @@
 
 import IComparer from "../../IComparer"
 import IIterable from "../IIterable"
+import UIterable from "../UIterable"
 import getIterator from "./getIterator"
 
 /**
@@ -28,7 +29,7 @@ import getIterator from "./getIterator"
  * @param comparaer 
  * @returns 
  */
-export default function <E>(iterable: IIterable<E>, comparaer: IComparer<E>): E {
+export default function <E>(iterable: UIterable<E>, comparaer: IComparer<E>): E {
     const iterator = getIterator<E>(iterable)
     if (iterator.hasNext()) {
         throw new Error("No elemnt")

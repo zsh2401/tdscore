@@ -1,10 +1,11 @@
 import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 export const optimizedSizeGetter = Symbol("hidden optimized symbol")
 export interface IOptionalSizeMethodOptimized {
     [optimizedSizeGetter]?: () => number
 }
-export default function size<E>(i: (IIterable<E> & IOptionalSizeMethodOptimized)) {
+export default function size<E>(i: (UIterable<E> & IOptionalSizeMethodOptimized)) {
     const hidden = i[optimizedSizeGetter]
 
     if (hidden && typeof hidden === "function") {

@@ -19,10 +19,11 @@
  */
 
 import IIterable from "../IIterable"
+import UIterable from "../UIterable"
 import toESIterator from "./toESIterator"
 
 
-export default function <E>(source: IIterable<E>): Iterable<E> {
+export default function <E>(source: UIterable<E>): Iterable<E> {
     return {
         [Symbol.iterator]() {
             return toESIterator(source)

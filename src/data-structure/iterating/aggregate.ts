@@ -18,7 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
 /**
@@ -29,7 +29,7 @@ import getIterator from "./getIterator";
  * @param adder 
  * @returns 
  */
-export default function <E>(i: IIterable<E>, adder: (a: E, b: E) => E, initialValue?: E): E {
+export default function <E>(i: UIterable<E>, adder: (a: E, b: E) => E, initialValue?: E): E {
     const iterator = getIterator<E>(i)
     if (initialValue === undefined && iterator.hasNext() === false) {
         throw new Error("There's no any element")

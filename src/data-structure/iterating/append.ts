@@ -4,6 +4,7 @@ import DSObject from "../../DSObject";
 import IArrayLike from "../../IArrayLike";
 import getIterator from "./getIterator";
 import { isArrayLike } from "../../util/type/determine-type";
+import UIterable from "../UIterable";
 
 /**
  * Append element to a new Iterable object.
@@ -14,14 +15,14 @@ import { isArrayLike } from "../../util/type/determine-type";
  * @param e new element.
  * @returns new iterable object which element has been append to it.
  */
-export default function append<E>(i: IIterable<E>, e: E | IArrayLike<E>): IIterable<E> {
+export default function append<E>(i: UIterable<E>, e: E | IArrayLike<E>): IIterable<E> {
     return new AppendIterable(i, isArrayLike(e) ? e : [e]);
 }
 
 class AppendIterable<E> extends DSObject implements IIterable<E>{
     private readonly source;
     private readonly newEle;
-    constructor(iterable: IIterable<E>, newElements: IArrayLike<E>) {
+    constructor(iterable: UIterable<E>, newElements: IArrayLike<E>) {
         super();
         this.source = iterable;
         this.newEle = newElements;

@@ -21,9 +21,10 @@
 import { IIterator } from "..";
 import IIterable from "../IIterable";
 import NoMoreElementError from "../NoMoreElementError";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
-export default function <E>(iterable: IIterable<E>, count: number): IIterable<E> {
+export default function <E>(iterable: UIterable<E>, count: number): IIterable<E> {
     return {
         getIterator: () => new TakeIterator(getIterator(iterable), count)
     }

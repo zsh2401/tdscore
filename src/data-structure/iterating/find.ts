@@ -1,8 +1,9 @@
 import { Func2 } from "../../Func";
 import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
-export default function find<E>(i: IIterable<E>,
+export default function find<E>(i: UIterable<E>,
     finder: Func2<E, number, boolean>): E | null {
     const iterator = getIterator<E>(i)
     for (let i = 0; iterator.hasNext(); i++) {

@@ -1,6 +1,6 @@
 /*
- * toESIterator.ts
- * Created on Mon Apr 12 2021 09:23:23
+ * UIterable.ts
+ * Created on Wed Jun 16 2021 09:13:37
  *
  * Description: 
  *   No description.
@@ -18,27 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import IIterable from "../IIterable";
-import UIterable from "../UIterable";
-import getIterator from "./getIterator";
+import IIterable from "./IIterable";
 
-export default function <E>(source: UIterable<E>): Iterator<E> {
-
-    const iterator = getIterator<E>(source)
-
-    return {
-        next() {
-            if (iterator.hasNext()) {
-                return {
-                    value: iterator.next(),
-                    done: false
-                }
-            } else {
-                return {
-                    value: undefined,
-                    done: true
-                }
-            }
-        }
-    }
-}
+type UIterable<E> = IIterable<E> | Iterable<E>
+export default UIterable;

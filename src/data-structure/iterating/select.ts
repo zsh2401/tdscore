@@ -20,11 +20,12 @@
 
 import IIterable from "../IIterable";
 import IIterator from "../IIterator";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 import size, { IOptionalSizeMethodOptimized, optimizedSizeGetter } from "./size";
 export type Selector<E, V> = (e: E) => V;
 
-export default function select<E, V>(i: IIterable<E>, selector: Selector<E, V>): IIterable<V> {
+export default function select<E, V>(i: UIterable<E>, selector: Selector<E, V>): IIterable<V> {
     return new SelectIterable(i, selector)
 }
 
@@ -32,8 +33,8 @@ class SelectIterable<E, V> implements IIterable<V>,
     IOptionalSizeMethodOptimized {
 
     private readonly selector: Selector<E, V>
-    private readonly source: IIterable<E>
-    constructor(source: IIterable<E>, selector: Selector<E, V>) {
+    private readonly source: UIterable<E>
+    constructor(source: UIterable<E>, selector: Selector<E, V>) {
         this.selector = selector
         this.source = source
     }
@@ -51,7 +52,7 @@ class SelectIterator<E, V> implements IIterator<V>{
     private readonly iterator: IIterator<E>
     private readonly selector: Selector<E, V>
 
-    constructor(source: IIterable<E>, selector: Selector<E, V>) {
+    constructor(source: UIterable<E>, selector: Selector<E, V>) {
         this.iterator = getIterator(source)
         this.selector = selector
     }

@@ -4,6 +4,7 @@ import { Func1 } from "../../Func";
 import IIterator from "../IIterator";
 import hashCode from "../../util/hashing";
 import getIterator from "./getIterator";
+import UIterable from "../UIterable";
 
 /**
  * 
@@ -15,14 +16,14 @@ import getIterator from "./getIterator";
  * @param predicate 
  * @returns 
  */
-export default function where<E>(i: IIterable<E>, predicate: Func1<E, boolean>): IIterable<E> {
+export default function where<E>(i: UIterable<E>, predicate: Func1<E, boolean>): IIterable<E> {
     return new WhereIterable(i, predicate);
 }
 
 class WhereIterable<E> extends DSObject implements IIterable<E> {
     private readonly predicate: Func1<E, boolean>;
-    private readonly source: IIterable<E>;
-    constructor(source: IIterable<E>, predicate: Func1<E, boolean>) {
+    private readonly source: UIterable<E>;
+    constructor(source: UIterable<E>, predicate: Func1<E, boolean>) {
         super();
         this.predicate = predicate;
         this.source = source;

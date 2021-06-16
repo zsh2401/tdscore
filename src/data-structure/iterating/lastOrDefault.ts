@@ -19,9 +19,10 @@
  */
 
 import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import last from "./last";
 
-export default function <E>(iterable: IIterable<E>, defaultValue: E): E {
+export default function <E>(iterable: UIterable<E>, defaultValue: E): E {
     try {
         return last(iterable)
     } catch {

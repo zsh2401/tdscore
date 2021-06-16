@@ -20,6 +20,7 @@
  */
 
 import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import toList from "./toList";
 
 /**
@@ -27,6 +28,6 @@ import toList from "./toList";
  * @param i 
  * @returns 
  */
-export default function reverse<E>(i: IIterable<E>): IIterable<E> {
+export default function reverse<E>(i: UIterable<E>): IIterable<E> {
     return toList(i, true);
 };

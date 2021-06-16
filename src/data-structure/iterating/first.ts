@@ -21,8 +21,9 @@
 import IIterable from "../IIterable";
 import { Func1 } from "../../Func";
 import getIterator from "./getIterator";
+import UIterable from "../UIterable";
 
-export default function <E>(iterable: IIterable<E>, predicate?: Func1<E, boolean>): E {
+export default function <E>(iterable: UIterable<E>, predicate?: Func1<E, boolean>): E {
     const iterator = getIterator(iterable)
     while (iterator.hasNext()) {
         iterator.next()

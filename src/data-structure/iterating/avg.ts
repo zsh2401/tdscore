@@ -19,6 +19,7 @@
  */
 
 import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
 /**
@@ -28,7 +29,7 @@ import getIterator from "./getIterator";
  * @param divByNumber 
  * @returns 
  */
-export default function avg<E>(i: IIterable<E>,
+export default function avg<E>(i: UIterable<E>,
     add: (a: E, b: E) => E,
     divByNumber: (a: E, b: number) => E) {
 

@@ -1,9 +1,9 @@
 import { Func1 } from "../../Func";
 import ElementNotFoundError from "../ElementNotFoundError";
-import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
-export default function last<E>(i: IIterable<E>, predicate?: Func1<E, boolean>): E {
+export default function last<E>(i: UIterable<E>, predicate?: Func1<E, boolean>): E {
     const iterator = getIterator<E>(i)
     let last: E | null = null
     while (iterator.hasNext()) {

@@ -21,9 +21,10 @@
 import ElementNotFoundError from "../ElementNotFoundError";
 import IIterable from "../IIterable";
 import IIterator from "../IIterator"
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
-export default function <E>(iterable: IIterable<E>,
+export default function <E>(iterable: UIterable<E>,
     count: number): IIterable<E> {
     return {
         getIterator: () => new SkipIterator(getIterator(iterable), count)

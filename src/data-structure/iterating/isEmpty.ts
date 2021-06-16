@@ -1,4 +1,4 @@
-import IIterable from "../IIterable";
+import UIterable from "../UIterable";
 import getIterator from "./getIterator";
 
 /**
@@ -7,6 +7,6 @@ import getIterator from "./getIterator";
  * @param i 
  * @returns 
  */
-export default function isEmpty<E>(i: IIterable<E>): boolean {
+export default function isEmpty<E>(i: UIterable<E>): boolean {
     return !getIterator<E>(i).hasNext();
 }

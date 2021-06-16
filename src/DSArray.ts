@@ -102,7 +102,7 @@ export default class DSArray<E> extends DSObject
         }
     }
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<E> {
         return toESIterator(this)
     }
 

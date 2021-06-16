@@ -8,7 +8,6 @@ import IDirectionIndicator from "../IDirectionIndicator";
  * @param guider
  * @returns
  */
-
 export default function bstSearch
     <E, N extends IBiTreeNode<E> = IBiTreeNode<E>>
     (tree: N | null, guider: IDirectionIndicator<E>): Nullable<IBiTreeNode<E>> {

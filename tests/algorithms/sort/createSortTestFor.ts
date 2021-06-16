@@ -27,10 +27,16 @@ export default function (name: string, iternalSortAlgorithm: (a: IArrayLike<numb
             const arr: any[] = []
             expect(() => iternalSortAlgorithm(arr, ascdeningComparer)).not.toThrow();
         });
+
+        it("Great scale of data test", () => {
+            const arr: any[] = generateRandomArray(10_000)
+            expect(() => iternalSortAlgorithm(arr, ascdeningComparer)).not.toThrow();
+            expect(isAscending(arr)).toBeTruthy();
+        })
     }
 }
-function generateRandomArray(): number[] {
-    const len = Math.floor(3 + Math.random() * 17);
+function generateRandomArray(len: number = -1): number[] {
+    len = len === -1 ? Math.floor(3 + Math.random() * 17) : len;
     const a: number[] = [];
     for (let i = 0; i < len; i++) {
         a.push(Math.floor(Math.random() * 100));

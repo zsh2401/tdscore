@@ -19,32 +19,24 @@
  * Mulan Permissive Software License，Version 2
  */
 
-/**
- * 快速排序
- */
+import LinkedList from "../../data-structure/linear/LinkedList";
+import IStack from "../../data-structure/linear/IStack"
 import IArrayLike from "../../IArrayLike";
-import comparers from "../comparers";
 import IComparer from "../../IComparer";
+import comparers from "../comparers";
 
-/**
-* 
-* Quick Sort
-* 
-* @SortType Exchange Sort
-* @Stability Unstable
-* @BestTimeComplexity O(n log2 n)
-* @WorstTimeComplexity O(n ^ 2)
-* @TimeComplexity O(n log2 n)
-* @SpaceComplexity O(1)
-* 
-* @param a The target array which is being sorted.
-* @param comparer The comparer used to compare elements.
-*/
-export default function <E>(array: IArrayLike<E>, comparer: IComparer<E> = comparers.hash) {
-    quickSortInner(array, comparer, 0, array.length - 1);
+export default function <E>(array: IArrayLike<E>,
+    comparer: IComparer<E> = comparers.hash): void {
+    const suspendedTasks: IStack<() => void> = new LinkedList();
+    suspendedTasks.stackPush(() => quickSortInner(array, comparer, 0, array.length - 1, suspendedTasks))
+    while (!suspendedTasks.isEmpty()) {
+        suspendedTasks.stackPop()()
+    }
 }
+
 function quickSortInner<E>(array: IArrayLike<E>, comparer: IComparer<E>,
-    low: number, high: number) {
+    low: number, high: number,
+    tasks: IStack<() => void>) {
 
     if (low >= high) return;
 
@@ -72,6 +64,7 @@ function quickSortInner<E>(array: IArrayLike<E>, comparer: IComparer<E>,
     array[iPivot] = array[iHigh];
     array[iHigh] = tmp;
 
-    quickSortInner(array, comparer, low, iLow - 1);
-    quickSortInner(array, comparer, iLow + 1, high);
+    tasks.stackPush(() => quickSortInner(array, comparer, low, iLow - 1, tasks))
+    tasks.stackPush(() => quickSortInner(array, comparer, iLow + 1, high, tasks))
+
 }

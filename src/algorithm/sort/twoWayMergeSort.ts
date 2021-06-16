@@ -21,9 +21,10 @@
 
 import IArrayLike from "../../IArrayLike";
 import IComparer from "../../IComparer";
+import NotImplementedError from "../../NotImplementedError";
 
 export default function <E>
     (a: IArrayLike<E>, comparer: IComparer<E>) {
     //TODO
-    throw new Error("Method not implemented");
+    throw new NotImplementedError()
 }

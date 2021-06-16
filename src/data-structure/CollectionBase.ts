@@ -118,7 +118,7 @@ export default abstract class CollectionBase<E>
         return this.collectionToArray()
     }
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<E> {
         return toESIterator(this)
     }
 

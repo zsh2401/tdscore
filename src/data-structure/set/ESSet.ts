@@ -22,7 +22,7 @@ import CollectionBase from "../CollectionBase";
 import ESMap from "../map/ESMap";
 import ICollection from "../ICollection";
 import ISet from "./ISet";
-import { IMap } from "../map";
+import IMap from "../map/IMap";
 import toDSArray from "../iterating/toDSArrayForItertable";
 import contains from "../iterating/contains";
 
@@ -30,7 +30,7 @@ const PRESENT = true
 export default class ESSet<E>
     extends CollectionBase<E>
     implements ISet<E>, ICollection<E>{
-        
+
     private innerMap: IMap<E, any>;
 
     constructor() {

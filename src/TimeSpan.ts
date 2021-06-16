@@ -24,8 +24,9 @@ export default class TimeSpan {
     private readonly _totalMS: number;
     constructor(ms: number) {
         this._totalMS = ms
+        throw new NotImplementedError()
     }
-    
+
     get totalMS(): number {
         return this._totalMS
     }

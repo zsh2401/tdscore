@@ -28,11 +28,6 @@ export default function (name: string, iternalSortAlgorithm: (a: IArrayLike<numb
             expect(() => iternalSortAlgorithm(arr, ascdeningComparer)).not.toThrow();
         });
 
-        it("Great scale of data test", () => {
-            const arr: any[] = generateRandomArray(10_000)
-            expect(() => iternalSortAlgorithm(arr, ascdeningComparer)).not.toThrow();
-            expect(isAscending(arr)).toBeTruthy();
-        })
     }
 }
 function generateRandomArray(len: number = -1): number[] {

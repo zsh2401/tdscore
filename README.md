@@ -42,6 +42,12 @@ npm i tdscore
 </div>
 
 # 介绍
+## 可以做什么？
+### 传递知识
+大量注释
+### 应用基建
+为ECMAScript提供稳定，健全与高性能的数据结构库。
+
 ## 特性
 * 可读性高：开发的首要目标为研习🌌
 * 到处运行：编译产物使用ECMAScript 6语法特性
@@ -68,10 +74,11 @@ npm i tdscore
 | | | prim | |toList/Map/Set |
 | | | **kruskal**| | where | |
 | | | **treeForEach** | |  min/max|
+
 ## 设计理念
 * 避免使用`undefined`
-* 尽可能使用异常而不是空返回值
-* 函数与面向对象API同步推进
+* 尽可能使用异常而不是null
+* 函数式与面向对象API同步推进
 * 力求API高度抽象与推广
 * 系统自洽
 

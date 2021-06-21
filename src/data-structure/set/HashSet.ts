@@ -26,22 +26,28 @@ import IMap from "../map/IMap"
 import toDSArray from "../iterating/toDSArrayForItertable"
 import contains from "../iterating/contains"
 import HashMap from "../map/HashMap"
+import IIterator from "../IIterator"
+import DSArray from "../../DSArray"
 
 const PRESENT = true
+/**
+ * HashSet
+ * 基于哈希表的集合
+ */
 export default class HashSet<E>
     extends CollectionBase<E>
     implements ISet<E>, ICollection<E>
 {
 
-    private readonly innerMap: IMap<E, any>;
+    private readonly innerMap: IMap<E, boolean>;
 
     constructor() {
         super()
         this.innerMap = new HashMap()
     }
 
-    setClear() {
-        this.innerMap.clear()
+    setClear(): void {
+        this.innerMap.collectionClear()
     }
 
     setAdd(e: E): HashSet<E> {
@@ -65,27 +71,27 @@ export default class HashSet<E>
         return this.setRemove(e)
     }
 
-    toArray() {
+    toArray(): DSArray<E> {
         return toDSArray(this.innerMap.mapGetKeys())
     }
 
-    getIterator() {
+    getIterator(): IIterator<E> {
         return this.innerMap.mapGetKeys().getIterator()
     }
 
-    size() {
-        return this.innerMap.size()
+    size(): number {
+        return this.innerMap.collectionSize()
     }
 
-    contains(e: E) {
+    contains(e: E): boolean {
         return contains(this.innerMap.mapGetKeys(), e)
     }
 
-    isEmpty() {
-        return this.innerMap.isEmpty()
+    isEmpty(): boolean {
+        return this.innerMap.collectionIsEmpty()
     }
 
-    add(e: E) {
+    add(e: E): void {
         this.setAdd(e)
     }
 

@@ -25,6 +25,8 @@ import ISet from "./ISet";
 import IMap from "../map/IMap";
 import toDSArray from "../iterating/toDSArrayForItertable";
 import contains from "../iterating/contains";
+import DSArray from "../../DSArray";
+import IIterator from "../IIterator";
 
 const PRESENT = true
 export default class ESSet<E>
@@ -38,8 +40,8 @@ export default class ESSet<E>
         this.innerMap = new ESMap();
     }
 
-    setClear() {
-        this.innerMap.clear()
+    setClear(): void {
+        this.innerMap.collectionClear()
     }
 
     setAdd(e: E): ESSet<E> {
@@ -63,26 +65,26 @@ export default class ESSet<E>
         return this.setRemove(e)
     }
 
-    toArray() {
+    toArray(): DSArray<E> {
         return toDSArray(this.innerMap.mapGetKeys())
     }
-    getIterator() {
+    getIterator(): IIterator<E> {
         return this.innerMap.mapGetKeys().getIterator();
     }
 
-    size() {
-        return this.innerMap.size();
+    size(): number {
+        return this.innerMap.collectionSize();
     }
 
-    contains(e: E) {
+    contains(e: E): boolean {
         return contains(this.innerMap.mapGetKeys(), e)
     }
 
-    isEmpty() {
-        return this.innerMap.isEmpty();
+    isEmpty(): boolean {
+        return this.innerMap.collectionIsEmpty();
     }
 
-    add(e: E) {
+    add(e: E): void {
         this.setAdd(e)
     }
 

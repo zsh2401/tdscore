@@ -20,5 +20,9 @@
 
 import IIterable from "./IIterable";
 
+/**
+ * TDSCore与ECMAScript迭代类型。
+ * 该设计主要用于IXA函数的参数
+ */
 type UIterable<E> = IIterable<E> | Iterable<E>
 export default UIterable;

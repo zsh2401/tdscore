@@ -18,6 +18,10 @@
  * See the Mulan PSL v2 for more details.
  */
 
+/**
+ * 指示代码执行的位置已经没有
+ * 更多的元素可供操作
+ */
 export default class NoMoreElementError extends Error {
     constructor() {
         super("There's no more element")

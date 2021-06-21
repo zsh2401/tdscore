@@ -6,7 +6,17 @@
 
 ![](./icon.png)
 
+
+
 # 😊 [TDSCore](http://ds.zsh2401.top)
+
+<div style="width:100px;height:100px">
+
+![](./reward.png)
+
+</div>
+
+2021年中国大学生计算机设计大赛（云南省级赛）一等奖作品
 
 中文 | [English](./README-en-US.md)
 

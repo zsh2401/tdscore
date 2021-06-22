@@ -4,17 +4,26 @@
 
 # 警告: 此库仍在开发中，请勿用于生产环境
 
+
+
+<div>
+<div style="display:inline-block;width:100px;height:100px">
+
 ![](./icon.png)
 
+</div>
 
-
-# 😊 [TDSCore](http://ds.zsh2401.top)
-
-<div style="width:100px;height:100px">
+<div style="display:inline-block;width:100px;height:100px">
 
 ![](./reward.png)
 
 </div>
+
+</div>
+
+# 😊 [TDSCore](http://ds.zsh2401.top)
+
+
 
 2021年中国大学生计算机设计大赛（云南省级赛）一等奖作品
 
@@ -41,19 +50,16 @@ npm i tdscore
 
 </div>
 
-# 介绍
-## 可以做什么？
-### 传递知识
-大量注释
-### 应用基建
-为ECMAScript提供稳定，健全与高性能的数据结构库。
+## 介绍
+TDSCore目前主要有两个设计用途：科研与应用。一方面，TDSCore中包含大量注释，并力求设计的易理解，以供所有人研习源码。另一方面，项目单元测试覆盖率超过80%，确保在常见与极端情况下的代码健壮性，可用性。
 
-## 特性
+## 特点
 * 可读性高：开发的首要目标为研习🌌
-* 到处运行：编译产物使用ECMAScript 6语法特性
-* 麻雀虽小：压缩传输仅22.4KiB（v0.1.27)
-* 能够被编译为二进制可执行程序。查看[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
-* 迭代器（灵感来自于`C# Linq`）
+* IXA模块：JavaScript生态中的Linq
+* 到处运行：运行在任何ES6环境
+* 麻雀虽小：min+gzipped 30kB
+* 五脏俱全：数据结构与算法持续添加中
+* QJS支持：[tdscore-app-template](https://github.com/zsh2401/tdscore-app-template)
 
 ## 已经实现
 | 线性结构 | 非线性结构 | 算法 | 数学 | 迭代|
@@ -83,10 +89,11 @@ npm i tdscore
 * 系统自洽
 
 # 安装 
+NPM🧡
 ```sh
 npm install tdscore --save
 ```
-浏览器
+浏览器🗺
 ```html
 <srcipt src="//cdn.jsdelivr.net/npm/tdscore/dist/tdscore.min.js"></script>
 ```
@@ -112,7 +119,8 @@ TDSCore同时支持通过以下方式引入：
 [**查看在线文档**](http://ds.zsh2401.top)
 
 # 加入开发🤝
-您可以先[使用Github1s在线浏览代码](https://github1s.com/zsh2401/tdscore/)。
+热烈欢迎任何对数据结构感兴趣的朋友加入开发！
+欢迎Pull Request!
 
 ## 克隆并且切换到dev分支
 ```sh
@@ -136,7 +144,7 @@ yarn build:es
 # 编译为ES5代码，输出产物位于lib文件夹
 yarn build:lib 
 
-# 执行上面全部任务
+# 同步执行上面全部任务
 yarn build
 ```
 ### 单元测试
@@ -146,13 +154,13 @@ yarn test
 
 注意：
 * 请在dev分支上进行开发
-* 欢迎PR
 
 # 贡献者
+所有代码贡献者头像会被展示在此：
 
 <a href="https://github.com/zsh2401/tdscore/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=zsh2401/tdscore" />
 </a>
 
 # 协议
-TDSCore is licensed under [Mulan PSL v2](http://license.coscl.org.cn/MulanPSL2).
+TDSCore以[木兰宽松许可证第二版](http://license.coscl.org.cn/MulanPSL2)进行授权。

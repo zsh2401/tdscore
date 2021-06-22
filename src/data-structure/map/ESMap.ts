@@ -19,8 +19,8 @@
  */
 
 import IIterable from "../IIterable";
-import Chain from "../iterating/Chain";
-import fromESIterator from "../iterating/fromESIterator";
+import Chain from "../../ixa/Chain";
+import fromESIterator from "../../ixa/fromESIterator";
 import { IReadonlyKeyValuePair } from "./IMap";
 import MapBase from "./MapBase";
 
@@ -64,7 +64,7 @@ export default class ESMap<K, V> extends MapBase<K, V> {
     size(): number {
         return this.esmap.size
     }
-    
+
     collectionClear(): void {
         this.esmap.clear()
     }

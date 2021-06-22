@@ -20,7 +20,7 @@
 
 import "ts-jest"
 import { fromESIterator, HashMap, HashSet, IIterable, IIterator, size } from "../../../src"
-import { optimizedSizeGetter } from "../../../src/data-structure/iterating/size"
+import { optimizedSizeGetter } from "../../../src/ixa/size"
 it("to be zero", () => {
     expect(size(new HashMap())).toBe(0)
 })

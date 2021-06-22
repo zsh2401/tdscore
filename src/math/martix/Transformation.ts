@@ -1,9 +1,10 @@
 import Martix  from "./Martix";
-import _getIterator from "../../data-structure/iterating/getIterator"
-import toList from "../../data-structure/iterating/toList"
+import _getIterator from "../../ixa/getIterator"
+import toList from "../../ixa/toList"
 import IReadonlyList from "../../data-structure/linear/IReadonlyList"
 import Vector from "./Vector";
 import DSArray  from "../../DSArray";
+import { IList } from "../../data-structure";
 
 export default class Transformation
     extends Martix {

@@ -5,7 +5,7 @@ it("for of", () => {
 
     const list = new LinkedList<string>()
     list.listAddAll(elements)
-    const result = []
+    const result: string[] = []
     for (let e of list) {
         result.push(e)
     }
@@ -18,8 +18,8 @@ it("double for of", () => {
 
     const list = new LinkedList<string>()
     list.listAddAll(elements)
-    const result1 = []
-    const result2 = []
+    const result1: string[] = []
+    const result2: string[] = []
     for (let e of list) {
         result1.push(e)
     }

@@ -20,7 +20,7 @@
 
 import ITreeNode from "./ITreeNode";
 import DSObject from "../../DSObject";
-import Lazy from "../../Lazy";
+import Lazy from "../../util/Lazy";
 import IList from "../linear/IList";
 import LinkedList from "../linear/LinkedList";
 import Nullable from "../../Nullable";

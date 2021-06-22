@@ -1,6 +1,6 @@
 import "ts-jest"
 import { range, size } from "../../../src"
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable"
+import toJSArray from "../../../src/ixa/toJSArrayForItertable"
 it("zero to zero", () => {
     expect(toJSArray(range(0, 0))).toStrictEqual([0])
 })

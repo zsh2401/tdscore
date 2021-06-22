@@ -1,4 +1,4 @@
-import DSEvent, { EventArgs } from "./DSEvent";
+import DSEvent, { EventArgs } from "./util/DSEvent";
 export type Action = "add" | "remove" | "other";
 export class CollectionChangedEventArgs<E> extends EventArgs {
     action: Action;

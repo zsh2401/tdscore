@@ -24,7 +24,7 @@ import IIterator from "../IIterator"
 import DSObject from "../../DSObject";
 import DSArray from "../../DSArray";
 import MixedNumber from "../../MixedNumber";
-import toJSArrayForItertable from "../iterating/toJSArrayForItertable";
+import toJSArrayForItertable from "../../ixa/toJSArrayForItertable"
 import IList from "./IList";
 import UngrowableArrayList from "./UngrowableArrayList";
 
@@ -46,29 +46,29 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
     }
 
     leftShift(count: number): BitSpan {
-        const result = [];
-        for (; result.length < this.container.size();) {
+        const result: boolean[] = [];
+        for (; result.length < this.container.listSize();) {
             result.push(false)
         }
-        for (let i = count; i < this.container.size(); i++) {
+        for (let i = count; i < this.container.listSize(); i++) {
             result[i - count] = this.container.listGet(i)
         }
         return new BitSpan(result);
     }
 
     rightShift(count: number) {
-        const result = [];
-        for (; result.length < this.container.size();) {
+        const result: boolean[] = [];
+        for (; result.length < this.container.listSize();) {
             result.unshift(false)
         }
-        for (let i = count; i < this.container.size(); i++) {
+        for (let i = count; i < this.container.listSize(); i++) {
             result[i] = this.container.listGet(i - count)
         }
         return new BitSpan(result);
     }
 
     toJSArray(): boolean[] {
-        return this.container.toJSArray()
+        return this.container.collectionToJSArray()
     }
 
 
@@ -76,7 +76,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
         if (other.length !== this.length) {
             throw new Error("Array lengths must be the same");
         }
-        const result = [];
+        const result: boolean[] = [];
         for (let i = 0; i < this.length; i++) {
             result[i] = this.at(i) || other.at(i)
         }
@@ -87,7 +87,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
         if (other.length !== this.length) {
             throw new Error("Array lengths must be the same");
         }
-        const result = [];
+        const result: boolean[] = [];
         for (let i = 0; i < this.length; i++) {
             result[i] = this.at(i) && other.at(i)
         }
@@ -98,7 +98,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
         if (other.length !== this.length) {
             throw new Error("Array lengths must be the same");
         }
-        const result = [];
+        const result: boolean[] = [];
         for (let i = 0; i < this.length; i++) {
             result[i] = !(this.at(i) || other.at(i))
         }
@@ -115,7 +115,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
     }
 
     setAll(value: boolean): BitSpan {
-        const result = []
+        const result: boolean[] = []
         for (let i = 0; i < this.length; i++) {
             result[i] = value
         }
@@ -123,7 +123,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
     }
 
     not(): BitSpan {
-        const result = [];
+        const result: boolean[] = [];
         for (let i = 0; i < this.length; i++) {
             result[i] = !this.at(i)
         }
@@ -134,7 +134,7 @@ export default class BitSpan extends DSObject implements IIterable<boolean>{
         if (other.length !== this.length) {
             throw new Error("Array lengths must be the same");
         }
-        const result = [];
+        const result: boolean[] = [];
         for (let i = 0; i < this.length; i++) {
             result[i] = this.at(i) !== other.at(i)
         }

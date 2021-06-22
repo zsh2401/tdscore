@@ -1,5 +1,4 @@
 import "ts-jest"
-import { } from "../../../src/data-structure/graph"
 import { dfs } from "../../../src/algorithm/graph"
 
 import { IList, LinkedList } from "../../../src";
@@ -13,7 +12,7 @@ describe("DFS", () => {
         }
         const viewed: IList<number> = new LinkedList<number>();
         dfs<number>(g, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(1);
+        expect(viewed.collectionSize()).toBe(1);
     })
 
     it("Won't back", () => {
@@ -23,9 +22,9 @@ describe("DFS", () => {
         g.addEdge("B", "A");
         const viewed: IList<string> = new LinkedList<string>();
         dfs<string>(g, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(1);
-        expect(viewed.contains("B")).toBeFalsy();
-        expect(viewed.contains("A")).toBeTruthy();
+        expect(viewed.collectionSize()).toBe(1);
+        expect(viewed.collectionContains("B")).toBeFalsy();
+        expect(viewed.collectionContains("A")).toBeTruthy();
     })
 
     it("IS DFS", () => {
@@ -42,7 +41,7 @@ describe("DFS", () => {
 
         const viewed: IList<T> = new LinkedList<T>();
         dfs(graph, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(4);
+        expect(viewed.listSize()).toBe(4);
         expect(viewed.listGet(0)).toBe("A")
         if (viewed.listGet(1) === "B") {
             expect(viewed.listGet(1)).toBe("B")
@@ -64,9 +63,9 @@ describe("DFS", () => {
 
         const viewed: IList<T> = new LinkedList<T>();
         dfs(graph, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(2);
-        expect(viewed.contains("A")).toBeTruthy()
-        expect(viewed.contains("B")).toBeTruthy()
+        expect(viewed.listSize()).toBe(2);
+        expect(viewed.collectionContains("A")).toBeTruthy()
+        expect(viewed.collectionContains("B")).toBeTruthy()
     });
 
     it("No cycle and repeat", () => {
@@ -84,9 +83,9 @@ describe("DFS", () => {
 
         const viewed: IList<T> = new LinkedList<T>();
         dfs(graph, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(3);
-        expect(viewed.contains("A")).toBeTruthy()
-        expect(viewed.contains("B")).toBeTruthy()
-        expect(viewed.contains("C")).toBeTruthy()
+        expect(viewed.listSize()).toBe(3);
+        expect(viewed.collectionContains("A")).toBeTruthy()
+        expect(viewed.collectionContains("B")).toBeTruthy()
+        expect(viewed.collectionContains("C")).toBeTruthy()
     })
 });

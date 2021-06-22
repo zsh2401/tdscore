@@ -20,17 +20,17 @@
 
 import DSArray from "../DSArray"
 import DSObject from "../DSObject"
-import contains from "./iterating/contains"
-import size, { IOptionalSizeMethodOptimized, optimizedSizeGetter } from "./iterating/size"
+import contains from "../ixa/contains"
+import size, { IOptionalSizeMethodOptimized, optimizedSizeGetter } from "../ixa/size"
 import IIterator from "./IIterator"
 import ICollection from "./ICollection"
 import IClonable from "./IClonable"
 import { Action1 } from "../Action"
-import toDSArray from "./iterating/toDSArrayForItertable"
-import forEach from "./iterating/forEach"
+import toDSArray from "../ixa/toDSArrayForItertable"
+import forEach from "../ixa/forEach"
 import { Func1 } from "../Func"
 import equals from "../equals"
-import toESIterator from "./iterating/toESIterator"
+import toESIterator from "../ixa/toESIterator"
 import NotImplementedError from "../NotImplementedError"
 
 /**

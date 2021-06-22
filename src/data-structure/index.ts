@@ -5,7 +5,6 @@ export { default as IIterator } from "./IIterator"
 
 export * from "./linear"
 export * from "./map"
-export * from "./iterating"
 export * from "./tree"
 export * from "./set"
 export * from "./graph"

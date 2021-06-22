@@ -4,10 +4,11 @@ import IListIterator from "./IListIterator";
 export default class ListIterator<E> implements IListIterator<E>{
 
     private list: IList<E>;
-    private position: number = -1;
+    private position: number;
 
     constructor(list: IList<E>) {
         this.list = list
+        this.position = -1
     }
 
     reset(): void {
@@ -15,7 +16,7 @@ export default class ListIterator<E> implements IListIterator<E>{
     }
 
     hasPrevious(): boolean {
-        return this.list.size() > 0 && this.position > 0;
+        return this.list.listSize() > 0 && this.position > 0;
     }
 
     previous(): E {
@@ -31,7 +32,7 @@ export default class ListIterator<E> implements IListIterator<E>{
     }
 
     hasNext(): boolean {
-        return this.position + 1 < this.list.size();
+        return this.position + 1 < this.list.listSize();
     }
 
     next(): E {

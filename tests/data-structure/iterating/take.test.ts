@@ -1,6 +1,6 @@
 import "ts-jest"
 import { toJSArrayForItertable } from "../../../src"
-import take from "../../../src/data-structure/iterating/take"
+import take from "../../../src/ixa/take"
 it("take no element", () => {
     const a = toJSArrayForItertable(take([1, 2, 3, 4, 5], 0))
     expect(a).toStrictEqual([])

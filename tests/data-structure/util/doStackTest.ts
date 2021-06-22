@@ -9,7 +9,7 @@ export default function (factory: <E>() => IStack<E>) {
             stack.stackPush(1);
             stack.stackPush(2);
             stack.stackPush(3);
-            expect(stack.size()).toBe(3);
+            expect(stack.collectionSize()).toBe(3);
         })
 
         it("could GetTop", () => {
@@ -26,7 +26,7 @@ export default function (factory: <E>() => IStack<E>) {
             stack.stackPush(2);
             stack.stackPush(3);
             expect(stack.stackPop()).toBe(3);
-            expect(stack.size()).toBe(2);
+            expect(stack.collectionSize()).toBe(2);
         })
     })
 }

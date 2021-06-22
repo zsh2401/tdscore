@@ -2,7 +2,7 @@ import "ts-jest"
 import DSObject from "../../src/DSObject";
 import equals from "../../src/equals";
 
-import DSEvent, { EventArgs } from "../../src/DSEvent"
+import DSEvent, { EventArgs } from "../../src/util/DSEvent"
 describe("DSEvent Test", () => {
 
     it("Could execute", () => {

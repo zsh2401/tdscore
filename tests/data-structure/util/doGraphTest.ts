@@ -1,6 +1,6 @@
 import { contains, size } from "../../../src";
 import IGraph from "../../../src/data-structure/graph/IGraph";
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable";
+import toJSArray from "../../../src/ixa/toJSArrayForItertable";
 
 export default function (factory: <E>() => IGraph<E>) {
     describe("Standard Graph Test Suite", () => {

@@ -29,7 +29,7 @@ export default function <E>(array: IArrayLike<E>,
     comparer: IComparer<E> = comparers.hash): void {
     const suspendedTasks: IStack<() => void> = new LinkedList();
     suspendedTasks.stackPush(() => quickSortInner(array, comparer, 0, array.length - 1, suspendedTasks))
-    while (!suspendedTasks.isEmpty()) {
+    while (!suspendedTasks.collectionIsEmpty()) {
         suspendedTasks.stackPop()()
     }
 }

@@ -1,5 +1,6 @@
-import { DSArray } from "../..";
-import { bstSearch, treeForEach } from "../../algorithm";
+import DSArray from "../../DSArray";
+import bstSearch from "../../algorithm/tree/bstSearch";
+import treeForEach from "../../algorithm/tree/treeForEach"
 import IComparer from "../../IComparer";
 import { AvlBiTreeNode, avlDelete, avlInsert } from "../../algorithm/tree/avltree";
 import { toDSArray } from "../../IArrayLike";
@@ -11,6 +12,7 @@ import MapBase from "./MapBase";
 /**
  * TreeMap<K,V> is based on AVL Tree
  */
+//TODO
 export default class TreeMap<K, V> extends MapBase<K, V>{
 
     private root: Nullable<AvlBiTreeNode<IKeyValuePair<K, V>>> = null

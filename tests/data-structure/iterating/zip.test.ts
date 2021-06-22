@@ -1,6 +1,6 @@
 import { fromESIterator, toJSArray, toJSArrayForItertable } from "../../../src"
-import asIterable from "../../../src/data-structure/iterating/asIterable"
-import zip from "../../../src/data-structure/iterating/zip"
+import asIterable from "../../../src/ixa/asIterable"
+import zip from "../../../src/ixa/zip"
 it("combined", () => {
     const a = ["a", "b", "c", "d", "e"]
     const b = ["a", "b", "c", "d", "e"]

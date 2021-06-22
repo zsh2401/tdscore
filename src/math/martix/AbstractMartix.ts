@@ -8,7 +8,7 @@ import martixAdd from "./raw/add"
 import martixSub from "./raw/sub"
 import martixMul from "./raw/mul"
 import RawMartix from "./raw/MartixTypes";
-import getIterator from "../../data-structure/iterating/getIterator";
+import getIterator from "../../ixa/getIterator";
 
 export type RowIndex = number;
 export type ColIndex = number;

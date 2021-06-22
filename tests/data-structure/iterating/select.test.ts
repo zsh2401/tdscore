@@ -1,5 +1,5 @@
 import "ts-jest"
-import select from "../../../src/data-structure/iterating/select"
+import select from "../../../src/ixa/select"
 it("lazy", () => {
     let times = 0
     let shouldBe = 0

@@ -24,7 +24,7 @@ import ISet from "../../data-structure/set/ISet"
 import LinkedList from "../../data-structure/linear/LinkedList"
 import { Func1 } from "../../Func";
 import IGraph from "../../data-structure/graph/IGraph"
-import firstOrDefault from "../../data-structure/iterating/firstOrDefault"
+import firstOrDefault from "../../ixa/firstOrDefault"
 
 /**
  * BFS 广度优先搜索算法
@@ -42,7 +42,7 @@ export default function <E>
     }
     viewed.setAdd(start)
     queue.queueEn(start)
-    while (!queue.isEmpty()) {
+    while (!queue.collectionIsEmpty()) {
         const current = queue.queueDe()
         if (consumer(current) === false) {
             return
@@ -50,7 +50,7 @@ export default function <E>
         const iterator = g.outOf(current).getIterator()
         while (iterator.hasNext()) {
             const _crt = iterator.next()
-            if (!viewed.contains(_crt)) {
+            if (!viewed.collectionContains(_crt)) {
                 queue.queueEn(_crt)
                 viewed.setAdd(_crt)
             }

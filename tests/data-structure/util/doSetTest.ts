@@ -8,17 +8,17 @@ export default function doSetTest(factory: <E>() => ISet<E>) {
             set.setAdd("A")
             set.setAdd("A")
             set.setAdd("B")
-            expect(set.size()).toBe(2);
-            expect(set.contains("A")).toBeTruthy()
-            expect(set.contains("B")).toBeTruthy()
-            expect(set.contains("C")).toBeFalsy()
+            expect(set.collectionSize()).toBe(2);
+            expect(set.collectionContains("A")).toBeTruthy()
+            expect(set.collectionContains("B")).toBeTruthy()
+            expect(set.collectionContains("C")).toBeFalsy()
         })
 
         it("size", () => {
             const set = factory()
             set.setAdd(1)
             set.setAdd(2)
-            expect(set.size()).toBe(2)
+            expect(set.collectionSize()).toBe(2)
         })
 
         it("remove", () => {
@@ -26,25 +26,25 @@ export default function doSetTest(factory: <E>() => ISet<E>) {
             set.setAdd("A")
             set.setAdd("B")
             set.setRemove("A");
-            expect(set.size()).toBe(1);
-            expect(set.contains("A")).toBeFalsy()
-            expect(set.contains("B")).toBeTruthy();
+            expect(set.collectionSize()).toBe(1);
+            expect(set.collectionContains("A")).toBeFalsy()
+            expect(set.collectionContains("B")).toBeTruthy();
         })
 
         it("contains", () => {
             const set = factory()
             set.setAdd(1)
-            expect(set.contains(17)).toBeFalsy()
-            expect(set.contains(1)).toBeTruthy()
-            // expect(set.contains("B")).toBeFalsy()
+            expect(set.collectionContains(17)).toBeFalsy()
+            expect(set.collectionContains(1)).toBeTruthy()
+            // expect(set.collectionContains("B")).toBeFalsy()
         })
 
         it("clear", () => {
             const set = factory()
             set.setAdd("A")
             set.setAdd("B")
-            set.clear()
-            expect(set.isEmpty()).toBeTruthy()
+            set.collectionClear()
+            expect(set.collectionIsEmpty()).toBeTruthy()
         })
     })
 }

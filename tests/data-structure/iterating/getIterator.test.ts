@@ -2,7 +2,7 @@ import "ts-jest"
 import { DSArray, getIterator, IIterable, IIterator } from "../../../src"
 it("for ECMA Script array", () => {
     const iterator = getIterator([1, 2, 3, 4])
-    const buffer = [];
+    const buffer: number[] = [];
     while (iterator.hasNext()) {
         buffer.push(iterator.next());
     }
@@ -21,7 +21,7 @@ it("for Itertable", () => {
 
 it("for an element", () => {
     const iterator = getIterator("a")
-    const buffer = [];
+    const buffer: string[] = [];
     while (iterator.hasNext()) {
         buffer.push(iterator.next());
     }
@@ -30,7 +30,7 @@ it("for an element", () => {
 
 it("for DSArray", () => {
     const iterator = getIterator(DSArray.from([1, 2, 3, 4]))
-    const buffer = [];
+    const buffer: number[] = [];
     while (iterator.hasNext()) {
         buffer.push(iterator.next());
     }

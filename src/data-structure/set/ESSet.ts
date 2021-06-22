@@ -23,8 +23,8 @@ import ESMap from "../map/ESMap";
 import ICollection from "../ICollection";
 import ISet from "./ISet";
 import IMap from "../map/IMap";
-import toDSArray from "../iterating/toDSArrayForItertable";
-import contains from "../iterating/contains";
+import toDSArray from "../../ixa/toDSArrayForItertable";
+import contains from "../../ixa/contains";
 import DSArray from "../../DSArray";
 import IIterator from "../IIterator";
 

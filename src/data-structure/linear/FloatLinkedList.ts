@@ -1,5 +1,6 @@
 import abs from "../../math/fn/abs";
 import { asJSNumber } from "../../MixedNumber";
+import NotImplementedError from "../../NotImplementedError";
 import ListBase from "./ListBase";
 interface Node<E> {
     prev: Node<E> | null;
@@ -98,7 +99,7 @@ export default class FloatLinkedList<E> extends ListBase<E> {
         this.findNode(position).data = element;
     }
     listAdd(element: E): void {
-        const lastNode = this.findNode(this.size() - 1);
+        const lastNode = this.findNode(this.listSize() - 1);
         const node: Node<E> = {
             prev: lastNode,
             data: element,
@@ -124,16 +125,17 @@ export default class FloatLinkedList<E> extends ListBase<E> {
     private resetSize() {
         this.__size = 0;
     }
-    size(): number {
+    listSize(): number {
         return this.__size;
     }
     private moveCursorToLastNode() {
         this.cursor.node = this.last;
-        this.cursor.position = this.size() - 1;
+        this.cursor.position = this.listSize() - 1;
     }
     private optimizeCursor() {
-
+        throw new NotImplementedError()
     }
+    
     private moveCursorToFirst() {
         if (this.head.next !== null) {
             this.cursor.node = this.head.next;

@@ -1,5 +1,4 @@
 import "ts-jest"
-import { } from "../../../src/data-structure/graph"
 import { bfs } from "../../../src/algorithm/graph"
 
 import SetGraph from '../../../src/data-structure/graph/SetGraph'
@@ -13,7 +12,7 @@ describe("BFS", () => {
         }
         const viewed: IList<number> = new LinkedList<number>();
         bfs<number>(g, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(1);
+        expect(viewed.listSize()).toBe(1);
     })
 
     it("Won't back", () => {
@@ -23,9 +22,9 @@ describe("BFS", () => {
         g.addEdge("B", "A");
         const viewed: IList<string> = new LinkedList<string>();
         bfs<string>(g, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(1);
-        expect(viewed.contains("B")).toBeFalsy();
-        expect(viewed.contains("A")).toBeTruthy();
+        expect(viewed.collectionSize()).toBe(1);
+        expect(viewed.collectionContains("B")).toBeFalsy();
+        expect(viewed.collectionContains("A")).toBeTruthy();
     })
 
     it("IS BFS", () => {
@@ -39,10 +38,10 @@ describe("BFS", () => {
 
         const viewed: IList<T> = new LinkedList<T>();
         bfs<T>(graph, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(3);
+        expect(viewed.listSize()).toBe(3);
         expect(viewed.listGet(0)).toBe("A")
-        expect(viewed.contains("B")).toBeTruthy()
-        expect(viewed.contains("C")).toBeTruthy()
+        expect(viewed.collectionContains("B")).toBeTruthy()
+        expect(viewed.collectionContains("C")).toBeTruthy()
     })
 
     it("Work correctly", () => {
@@ -54,9 +53,9 @@ describe("BFS", () => {
 
         const viewed: IList<T> = new LinkedList<T>();
         bfs(graph, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(2);
-        expect(viewed.contains("A")).toBeTruthy()
-        expect(viewed.contains("B")).toBeTruthy()
+        expect(viewed.collectionSize()).toBe(2);
+        expect(viewed.collectionContains("A")).toBeTruthy()
+        expect(viewed.collectionContains("B")).toBeTruthy()
     });
 
     it("No cycle and repeat", () => {
@@ -77,9 +76,9 @@ describe("BFS", () => {
 
         const viewed: IList<T> = new LinkedList<T>();
         bfs(graph, (node) => viewed.collectionAdd(node));
-        expect(viewed.size()).toBe(3);
-        expect(viewed.contains("A")).toBeTruthy()
-        expect(viewed.contains("B")).toBeTruthy()
-        expect(viewed.contains("C")).toBeTruthy()
+        expect(viewed.collectionSize()).toBe(3);
+        expect(viewed.collectionContains("A")).toBeTruthy()
+        expect(viewed.collectionContains("B")).toBeTruthy()
+        expect(viewed.collectionContains("C")).toBeTruthy()
     })
 });

@@ -1,6 +1,5 @@
 import { ascdeningComparer, descdeningComparer } from "../../../src/algorithm/sort/comparers"
 import "ts-jest"
-import "../../../src/ext"
 import { IArrayLike } from "../../../src";
 import IComparer from "../../../src/IComparer";
 export interface Option {

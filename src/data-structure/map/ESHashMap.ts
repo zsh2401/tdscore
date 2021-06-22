@@ -2,8 +2,8 @@ import IIterable from "../IIterable";
 import dsEquals from "../../equals";
 import uuid from "../../math/uuid";
 import dsHashCode from "../../util/hashing";
-import Chain from "../iterating/Chain";
-import fromESIterator from "../iterating/fromESIterator"
+import Chain from "../../ixa//Chain";
+import fromESIterator from "../../ixa//fromESIterator"
 import UngrowableArrayList from "../linear/UngrowableArrayList";
 import { IReadonlyKeyValuePair } from "./IMap";
 import MapBase from "./MapBase";
@@ -44,8 +44,8 @@ export default class ESHashMap<K, V>
     }
 
     mapGetPairs(): IIterable<IReadonlyKeyValuePair<K, V>> {
-        return new Chain(this.mapGetKeys())
-            .select(key => {
+        return new Chain<K>(this.mapGetKeys())
+            .select<IReadonlyKeyValuePair<K, V>>((key: K) => {
                 return { key, value: this.mapGet(key)! }
             })
     }

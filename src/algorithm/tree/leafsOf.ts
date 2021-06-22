@@ -30,7 +30,7 @@ import forEachNode from "./treeForEachNode";
 export default function leafsOf<E>(tree: Tree<E>): IArrayLike<E> {
     const result: E[] = [];
     forEachNode(tree, (node) => {
-        if (node.children === null || node.children === undefined || node.children.size() === 0) {
+        if (node.children === null || node.children === undefined || node.children.listSize() === 0) {
             result.push(node.data)
         }
     });

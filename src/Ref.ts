@@ -1,4 +1,4 @@
-import DSEvent, { EventArgs } from "./DSEvent";
+import DSEvent, { EventArgs } from "./util/DSEvent";
 import DSObject from "./DSObject";
 import { hash } from "./util/hashing";
 

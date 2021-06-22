@@ -1,6 +1,6 @@
 import "ts-jest"
 import { skip } from "../../../src"
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable"
+import toJSArray from "../../../src/ixa/toJSArrayForItertable"
 
 it("could skip", () => {
     expect(toJSArray(skip([1, 2, 3], 1)))

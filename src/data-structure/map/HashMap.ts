@@ -25,7 +25,7 @@ import HashMapEntry from "./HashMapEntry";
 import MapBase from "./MapBase";
 import equals from "../../equals";
 
-const DEFAULT_INITIAL_CAPCITY: number = 16;
+const DEFAULT_INITIAL_CAPCITY = 16;
 const DEFAULT_LOAD_FACTOR = 0.75;
 const MAXIMUM_CAPCITY = 1 << 30;
 const EMPTY_TABLE: DSArray<any> = new DSArray(0);
@@ -33,12 +33,12 @@ const EMPTY_TABLE: DSArray<any> = new DSArray(0);
 export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
     private table: DSArray<HashMapEntry<K, V> | null>;
-    private _size: number = 0;
+    private _size: number;
     private _loadFactor: number;
     private threshold: number;
     private hashSeed: number;
-    private version: number = 0;
-    private lastUpdateVersion: number = -1;
+    private version: number;
+    private lastUpdateVersion: number;
 
     private keys: DSArray<K>;
     private values: DSArray<V>;
@@ -46,11 +46,14 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
     constructor(initialCapcity = DEFAULT_INITIAL_CAPCITY, loadFactor = DEFAULT_LOAD_FACTOR) {
         super();
+        this._size = 0
+        this.version = 0
+        this.lastUpdateVersion = -1
         this._loadFactor = loadFactor <= 0 || loadFactor >= 1 ? DEFAULT_LOAD_FACTOR : loadFactor;
         this.threshold = Math.max(DEFAULT_INITIAL_CAPCITY, initialCapcity);
         // this,
         this.hashSeed = Math.random() * 24010 * this.threshold;
-        //@ts-ignore
+
         this.table = EMPTY_TABLE;
 
         this.keys = new DSArray(0);
@@ -108,7 +111,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
     }
 
     mapRemove(key: K): boolean {
-        //@ts-ignore
+
         if (EMPTY_TABLE.referenceEquals(this.table)) {
             this.inflateTable(this.threshold);
         }
@@ -121,16 +124,10 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
             if (equals(bucket.key, key)) {
                 this.table[i] = bucket.next;
             } else {
-                // const prevFinder = (it: HashMapEntry<K, V>) => {
-                //     if (key === null && it.next && it.next.key === null) {
-                //         return true;
-                //     } else if (key !== null && it.next && it.next.hash === h && equals(it.next.key, key)) {
-                //         return true;
-                //     }
-                //     return false;
-                // };
                 const [prevNode,] = this.findNodeInBucketByKey(bucket, h, key);
-                prevNode!.next = prevNode?.next?.next ?? null;
+                if (prevNode !== null) {
+                    prevNode.next = prevNode?.next?.next ?? null;
+                }
             }
             this.version++;
             this._size--;
@@ -142,7 +139,6 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
 
     mapPut(key: K, value: V): V | null {
 
-        //@ts-ignore
         if (EMPTY_TABLE.referenceEquals(this.table)) {
             this.inflateTable(this.threshold)
         }
@@ -183,7 +179,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
     }
 
     mapGet(key: K): V | null {
-        //@ts-ignore
+
         if (EMPTY_TABLE.referenceEquals(this.table)) {
             return null;
         }
@@ -200,7 +196,8 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
     isEmpty(): boolean {
         return this.size() === 0;
     }
-    toArray() {
+    
+    toArray(): DSArray<IReadonlyKeyValuePair<K, V>> {
         return this.mapGetPairs();
     }
 
@@ -219,7 +216,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         this.transfer(newTable);
         this.threshold = Math.min(capcity * this._loadFactor, MAXIMUM_CAPCITY + 1);
         this.table = newTable;
-        this.hashSeed = Math.random() * (Number.MAX_VALUE / 2);;
+        this.hashSeed = Math.random() * (Number.MAX_VALUE / 2);
     }
 
     /**
@@ -335,7 +332,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
      * @param dest 
      * @param rehash 
      */
-    private transfer(dest: DSArray<HashMapEntry<K, V> | null>, rehash: boolean = false) {
+    private transfer(dest: DSArray<HashMapEntry<K, V> | null>, rehash = false) {
         for (let i = 0; i < this.table.length; i++) {
             let current: HashMapEntry<K, V> | null = this.table[i]
             while (current !== null) {
@@ -352,7 +349,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         }
     }
 
-    toString() {
+    toString(): string {
         let chainStr = "";
         let notUsed = 0;
         let maximumLength = 0;
@@ -386,6 +383,7 @@ export default class HashMap<K, V> extends MapBase<K, V> implements IMap<K, V>{
         headStr += `Bucket\tChain\n`;
         return headStr + chainStr;
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private hash(key: any): number {
         let h = this.hashSeed;
         h ^= _hashCode(key);

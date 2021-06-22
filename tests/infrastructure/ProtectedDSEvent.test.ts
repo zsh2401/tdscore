@@ -1,6 +1,6 @@
 import "ts-jest"
-import { EventArgs } from "../../src/DSEvent";
-import ProtectedDSEvent from "../../src/ProtectedDSEvent";
+import { EventArgs } from "../../src/util/DSEvent";
+import ProtectedDSEvent from "../../src/util/ProtectedDSEvent";
 
 describe("DSEvent Test", () => {
 

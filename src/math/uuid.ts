@@ -2,7 +2,7 @@ export default function uuid(withLine = false) {
     const len = 36; //长度为36
     let radix = 16; //16进制
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-    const uuid = [];
+    const uuid: string[] = [];
     let i: number;
     radix = radix || chars.length;
     if (withLine) {

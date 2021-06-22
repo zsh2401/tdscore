@@ -23,12 +23,12 @@ import IGraphEdge from "../../data-structure/graph/IGraphEdge"
 import MSTreeNode from "./MSTreeNode";
 import treeForEachNode from "../tree/treeForEachNode";
 import quickSort from "../sort/quickSort";
-import toJSArray from "../../data-structure/iterating/toJSArrayForItertable";
+import toJSArray from "../../ixa/toJSArrayForItertable";
 import equals from "../../equals";
 import HashMap from "../../data-structure/map/HashMap"
 import HashSet from "../../data-structure/set/HashSet"
 import ISet from "../../data-structure/set/ISet"
-import Chain from "../../data-structure/iterating/Chain"
+import Chain from "../../ixa/Chain"
 import TreeNode from "../../data-structure/tree/TreeNode"
 
 /**
@@ -52,7 +52,7 @@ export default function <E>(g: IGraph<E>, root: E): MSTreeNode<E> {
 function minEdges<E>(g: IGraph<E>): ISet<IGraphEdge<E>> {
 
     //将边集转换为JS数组存储
-    const a = toJSArray(g.edges)
+    const a: IGraphEdge<E>[] = toJSArray(g.edges)
     //结果集
     const r = new HashSet<IGraphEdge<E>>()
 
@@ -60,7 +60,7 @@ function minEdges<E>(g: IGraph<E>): ISet<IGraphEdge<E>> {
     const connectedComponents = new HashMap<E, ISet<IGraphEdge<E>>>()
 
     //将所有边按权重/消耗升序排序
-    quickSort(a, (a, b) => {
+    quickSort(a, (a: IGraphEdge<E>, b: IGraphEdge<E>) => {
         return a.weight - b.weight
     })
 
@@ -118,11 +118,11 @@ function combineCC<E>(ccs: HashMap<E, ISet<IGraphEdge<E>>>, a: E, b: E) {
     else if (acc !== null && bcc !== null) {
 
         //将边较少的连通子图集合内容转移到边较多的集合中
-        const toBeForEach = acc.size() < bcc.size() ? acc : bcc;
+        const toBeForEach = acc.collectionSize() < bcc.collectionSize() ? acc : bcc;
         const toBeCombined = toBeForEach === acc ? bcc : acc
 
         //遍历被转移连通子图的边集
-        toBeForEach.forEach(edge => {
+        toBeForEach.collectionForEach(edge => {
             //设置该边起点与终点的连通子图为被合并的子图
             ccs.mapPut(edge.from, toBeCombined)
             ccs.mapPut(edge.to, toBeCombined)
@@ -158,8 +158,8 @@ function asTree<E>(edges: ISet<IGraphEdge<E>>, _root: E): MSTreeNode<E> {
             node.children.listAdd(new TreeNode({ data: child, cost: edge.weight }))
             edges.setRemove(edge)
         })
-    },"pre-order")
-    
+    }, "pre-order")
+
     //返回树根
     return root
 }

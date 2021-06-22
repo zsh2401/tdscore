@@ -14,15 +14,15 @@ describe("", () => {
 
     it("Enq & Deq crosswise", () => {
         const queue: IQueue<number> = new CircularQueue<number>(50);
-        const jsArray = [];
+        const jsArray: number[] = [];
         for (let i = 0; i < Math.random() * 50; i++) {
-            if (Math.random() < 0.5 && !queue.isEmpty()) {
+            if (Math.random() < 0.5 && !queue.collectionIsEmpty()) {
                 expect(queue.queueDe()).toBe(jsArray.shift());
             } else {
                 queue.queueEn(i);
                 jsArray.push(i);
             }
-            expect(queue.size()).toBe(jsArray.length);
+            expect(queue.collectionSize()).toBe(jsArray.length);
         }
     });
 
@@ -31,7 +31,7 @@ describe("", () => {
         queue.queueEn(1);
         queue.queueEn(2);
         queue.queueEn(3);
-        expect(queue.size()).toBe(3);
+        expect(queue.collectionSize()).toBe(3);
     });
 
     it("de empty queue", () => {
@@ -44,7 +44,7 @@ describe("", () => {
         expect(() => queue.queueEn(1)).not.toThrow();
         expect(() => queue.queueEn(1)).toThrow();
         expect(() => queue.queueEn(1)).toThrow();
-        expect(queue.size()).toBe(1);
+        expect(queue.collectionSize()).toBe(1);
     });
 
     it("Clear works", () => {
@@ -53,7 +53,7 @@ describe("", () => {
             queue.queueEn(i);
         }
         expect(() => queue.clear()).not.toThrow();
-        expect(queue.isEmpty()).toBeTruthy();
+        expect(queue.collectionIsEmpty()).toBeTruthy();
         expect(() => queue.clear()).not.toThrow();
     })
 })

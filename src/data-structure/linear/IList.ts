@@ -7,7 +7,12 @@ export default interface IList<E> extends ICollection<E> {
      * Get the count of elements.
      * @returns the count of elements.
      */
-    size(): number;
+    listSize(): number;
+
+    /**
+     * 检查是否为空
+     */
+    listIsEmpty():boolean;
 
     /**
      * Delete the element which at specified position.

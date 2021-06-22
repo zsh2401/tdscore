@@ -1,5 +1,5 @@
 import DSObject from "../../src/DSObject";
-import Lazy from "../../src/Lazy";
+import Lazy from "../../src/util/Lazy";
 
 describe("Lazy test", () => {
     it("Nil value", () => {

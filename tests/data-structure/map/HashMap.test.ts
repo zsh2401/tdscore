@@ -36,7 +36,7 @@ describe("HashMap test", () => {
         map.mapPut("a", 1);
         map.mapPut("b", 2401);
 
-        expect(map.size()).toBe(2);
+        expect(map.collectionSize()).toBe(2);
         expect(map.mapGet("b")).toBe(2401);
     });
 
@@ -133,22 +133,22 @@ describe("HashMap test", () => {
         map.collectionAdd({ key: "2", value: "2" })
         map.collectionAdd({ key: "2", value: "3" })
 
-        expect(map.size()).toBe(2);
+        expect(map.collectionSize()).toBe(2);
         expect(map.collectionContains({ key: "1", value: "1" })).toBeTruthy()
         expect(map.collectionContains({ key: "2", value: "2" })).toBeFalsy()
         expect(map.collectionContains({ key: "2", value: "3" })).toBeTruthy()
 
         expect(map.collectionRemove({ key: "2", value: "2" })).toBeFalsy()
-        expect(map.size()).toBe(2);
+        expect(map.collectionSize()).toBe(2);
         expect(map.collectionContains({ key: "2", value: "3" })).toBeTruthy()
 
         expect(map.collectionRemove({ key: "2", value: "3" })).toBeTruthy()
-        expect(map.size()).toBe(1);
+        expect(map.collectionSize()).toBe(1);
         expect(map.collectionContains({ key: "2", value: "3" })).toBeFalsy()
 
         map.collectionClear();
-        expect(map.size()).toBe(0);
-        expect(map.isEmpty()).toBeTruthy()
+        expect(map.collectionSize()).toBe(0);
+        expect(map.collectionIsEmpty()).toBeTruthy()
     })
 
 

@@ -19,6 +19,12 @@
             "error",
             "windows"
         ],
+        "no-inferrable-types": {
+            "ignoreParameters": true,
+            "ignoreProperties": true
+        },
+        "no-explicit-any":false,
+        
         "no-console": 0
     }
 }

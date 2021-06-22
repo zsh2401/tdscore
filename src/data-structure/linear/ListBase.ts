@@ -1,8 +1,6 @@
 import IList from "./IList";
-import _forEach from "../iterating/forEach"
-import _size from "../iterating/size"
-import _find from "../iterating/find"
-import toDSArray from "../iterating/toDSArrayForItertable"
+import _forEach from "../../ixa/forEach"
+import toDSArray from "../../ixa//toDSArrayForItertable"
 import ListIterator from "./ListIterator";
 import { Action1 } from "../../Action";
 import IReadonlyList from "./IReadonlyList";
@@ -33,8 +31,13 @@ export default abstract class ListBase<E> extends CollectionBase<E>
         return i !== -1;
     }
 
-    protected throwIfIndexOutOfBound(position: number) {
-        if (position < 0 || position >= this.size()) {
+    collectionSize(): number {
+        return this.listSize()
+    }
+
+
+    protected throwIfIndexOutOfBound(position: number): void {
+        if (position < 0 || position >= this.listSize()) {
             throw new RangeError(`Index out of bound. ${position}`);
         }
     }
@@ -62,13 +65,13 @@ export default abstract class ListBase<E> extends CollectionBase<E>
     }
 
     stackPop(): E {
-        const v = this.listGet(this.size() - 1);
-        this.listDelete(this.size() - 1);
+        const v = this.listGet(this.listSize() - 1);
+        this.listDelete(this.listSize() - 1);
         return v;
     }
 
     stackGetTop(): E {
-        return this.listGet(this.size() - 1);
+        return this.listGet(this.listSize() - 1);
     }
 
     toArray(): DSArray<E> {
@@ -94,7 +97,7 @@ export default abstract class ListBase<E> extends CollectionBase<E>
 
     abstract listClear(): void;
 
-    abstract size(): number;
+    abstract listSize(): number;
 
     listIndexOf(element: E): number {
         const iterator = this.getIterator();
@@ -106,8 +109,8 @@ export default abstract class ListBase<E> extends CollectionBase<E>
         return -1;
     }
 
-    isEmpty(): boolean {
-        return this.size() === 0;
+    listIsEmpty(): boolean {
+        return this.listSize() === 0;
     }
 
     getIterator(): IListIterator<E> {

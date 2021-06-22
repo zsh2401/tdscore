@@ -3,13 +3,14 @@ import LinkedList from "./LinkedList";
 import ListBase from "./ListBase";
 
 type GListElemType<E> = E | GList<E>;
+
 /**
  * Is GList a linear structure?
  */
 export default class GList<E> extends ListBase<GListElemType<E>> {
 
-    size(): number {
-        return this.getInnerList().size();
+    listSize(): number {
+        return this.getInnerList().listSize();
     }
 
     listDelete(position: number): void {

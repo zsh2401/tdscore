@@ -1,6 +1,6 @@
 import LinkedList from "./data-structure/linear/LinkedList";
 import IList from "./data-structure/linear/IList";
-import { EventArgs } from "./DSEvent";
+import { EventArgs } from "./util/DSEvent";
 import DSObject from "./DSObject";
 import NotImplementedError from "./NotImplementedError";
 
@@ -49,7 +49,7 @@ export default class DSEvent<TEventArgs = EventArgs> extends DSObject {
      * @param args 
      */
     async raise(sender: any, args: TEventArgs): Promise<void> {
-        const _size = this.handlers.size();
+        const _size = this.handlers.listSize();
         for (let i = 0; i < _size; i++) {
             const handler = this.handlers.listGet(i)
 
@@ -81,6 +81,6 @@ export default class DSEvent<TEventArgs = EventArgs> extends DSObject {
      * 清空所有事件监听函数
      */
     clear() {
-        this.handlers.clear();
+        this.handlers.collectionClear();
     }
 }

@@ -1,6 +1,6 @@
 import IIterable from "../../data-structure/IIterable";
 import IIterator from "../../data-structure/IIterator";
-import getIterator from "../../data-structure/iterating/getIterator";
+import getIterator from "../../ixa/getIterator";
 import Martix from "./Martix";
 import Transformation from "./Transformation";
 

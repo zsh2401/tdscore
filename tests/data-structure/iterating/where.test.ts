@@ -1,7 +1,7 @@
 import "ts-jest"
 import { append, size } from "../../../src"
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable"
-import where from "../../../src/data-structure/iterating/where"
+import toJSArray from "../../../src/ixa/toJSArrayForItertable"
+import where from "../../../src/ixa/where"
 
 it("greater than", () => {
     const i = where([1, 2, 3, 4], (n) => n > 2)

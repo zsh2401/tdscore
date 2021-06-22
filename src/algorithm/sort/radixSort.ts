@@ -74,9 +74,9 @@ export default function <E>
 
 
         let j = 0;
-        buckets.forEach(bucket => {
+        buckets.collectionForEach(bucket => {
             // console.log(`${bucket.toJSArray()}`);
-            while (!bucket.isEmpty()) {
+            while (!bucket.collectionIsEmpty()) {
                 a[j++] = bucket.queueDe();
             }
         })

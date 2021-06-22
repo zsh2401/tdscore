@@ -38,7 +38,7 @@ export default function forEachNode<E>(tree: Tree<E>,
 
         case "pre-order":
             consumer(node);
-            node.children.forEach((child) => {
+            node.children.collectionForEach((child) => {
                 forEachNode(child, consumer, strategy);
             });
             break;
@@ -49,7 +49,7 @@ export default function forEachNode<E>(tree: Tree<E>,
                 forEachNode((<IBiTreeNode<E>>node).left, consumer, strategy)
                 consumer(node)
                 forEachNode((<IBiTreeNode<E>>node).right, consumer, strategy)
-            } else if (node.children.size() > 1) {
+            } else if (node.children.listSize() > 1) {
 
                 const i = node.children.getIterator()
 
@@ -63,7 +63,7 @@ export default function forEachNode<E>(tree: Tree<E>,
             break;
 
         case "post-order":
-            node.children.forEach((child) => {
+            node.children.collectionForEach((child) => {
                 forEachNode(child, consumer, strategy);
             });
             consumer(node);
@@ -82,7 +82,7 @@ function levelOrder<E>(_node: Tree<E>, visitor: Action1<ITreeNode<E>>) {
     const node = toTreeNode(_node)
     if (node === null) return;
     q.queueEn([node, 1]);
-    while (!q.isEmpty()) {
+    while (!q.collectionIsEmpty()) {
         // console.log("?");
         const [n, l] = q.queueDe();
         // visitor(n.data,l);

@@ -21,17 +21,18 @@
 import ListBase from "./ListBase";
 import IList from "./IList";
 import IIterable from "../IIterable";
-import asIterable from "../iterating/asIterable";
+import asIterable from "../../ixa/asIterable";
 import ElementNotFoundError from "../ElementNotFoundError";
 import ArgumentError from "../../ArgumentError";
 interface LinkedListNode<E> {
-    data: E | null;
+    data: E;
     next: LinkedListNode<E> | null;
 }
 export default class LinkedList<E> extends ListBase<E> implements IList<E> {
 
     private readonly headNode: LinkedListNode<E> = {
-        data: null,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        data: null!,
         next: null,
     }
 
@@ -39,7 +40,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
 
     private _size = 0;
 
-    size(): number {
+    listSize(): number {
         return this._size;
     }
 
@@ -82,7 +83,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         if (!Number.isInteger(position)) {
             throw new ArgumentError("the argument position should be integer")
         }
-        const prev = this.findNode(position - 1)!;
+        const prev = this.findNode(position - 1);
         const newNode: LinkedListNode<E> = {
             next: prev.next ?? null,
             data: element,
@@ -94,7 +95,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         this._size++
     }
 
-    isEmpty(): boolean {
+    listIsEmpty(): boolean {
         return this.headNode === this.lastNode
     }
 
@@ -105,7 +106,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         if (position < 0) {
             throw new ArgumentError("position")
         }
-        return this.findNode(position)?.data!;
+        return this.findNode(position).data;
     }
 
     listSet(position: number, element: E): void {
@@ -119,7 +120,7 @@ export default class LinkedList<E> extends ListBase<E> implements IList<E> {
         }
     }
 
-    listAppend(iterable: IIterable<E>) {
+    listAppend(iterable: IIterable<E>): void {
         const i = iterable.getIterator()
         while (i.hasNext()) {
             this.listAdd(i.next())

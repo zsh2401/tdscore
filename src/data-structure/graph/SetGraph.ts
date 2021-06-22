@@ -22,14 +22,14 @@ import IIterable from "../IIterable";
 import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
 import equals from "../../equals";
-import find from "../iterating/find";
+import find from "../../ixa/find";
 import HashSet from "../set/HashSet";
 import ISet from "../set/ISet"
 import IGraph from "./IGraph";
 import IGraphEdge from "./IGraphEdge";
 import Edge from "./Edge";
 import { LinkedList } from "../linear";
-import asIterable from "../iterating/asIterable";
+import asIterable from "../../ixa/asIterable";
 
 /**
  * 基于HashSet存储的图，时间效率较高，但空间消耗较大
@@ -60,8 +60,8 @@ export default class SetGraph<E> extends DSObject
         this._vertices.setRemove(e)
     }
 
-    addEdge(from: E, to: E, weight: number = 0): void {
-        if (!this._vertices.contains(from) || !this._vertices.contains(to)) {
+    addEdge(from: E, to: E, weight = 0): void {
+        if (!this._vertices.collectionContains(from) || !this._vertices.collectionContains(to)) {
             throw new Error("Invalid node.")
         }
         const e = new Edge(from, to, weight)
@@ -73,11 +73,11 @@ export default class SetGraph<E> extends DSObject
     }
 
     inOf(e: E): IIterable<E> {
-        if (!this._vertices.contains(e)) {
+        if (!this._vertices.collectionContains(e)) {
             return new DSArray<E>(0)
         }
         const r: E[] = []
-        this._edges.forEach(_edge => {
+        this._edges.collectionForEach(_edge => {
             if (equals(e, _edge.to)) {
                 r.push(_edge.from)
             }
@@ -86,11 +86,11 @@ export default class SetGraph<E> extends DSObject
     }
 
     outOf(e: E): IIterable<E> {
-        if (!this._vertices.contains(e)) {
+        if (!this._vertices.collectionContains(e)) {
             return new DSArray<E>(0)
         }
         const r = new LinkedList<E>()
-        this._edges.forEach(_edge => {
+        this._edges.collectionForEach(_edge => {
             if (equals(e, _edge.from)) {
                 r.stackPush(_edge.to)
             }
@@ -99,7 +99,7 @@ export default class SetGraph<E> extends DSObject
     }
 
     weightOf(from: E, to: E): number {
-        return find(this._edges, (_edge) => {
+        return find<IGraphEdge<E>>(this._edges, (_edge: IGraphEdge<E>) => {
             return equals(_edge.from, from) && equals(_edge.to, to)
         })?.weight
             ??

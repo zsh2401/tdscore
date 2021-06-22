@@ -1,5 +1,5 @@
 import { ESMap, IMap, size, toESIterable, TreeMap } from "../../../src";
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable";
+import toJSArray from "../../../src/ixa/toJSArrayForItertable";
 
 export default function (factory: <K, V>() => IMap<K, V>) {
     describe("Map Test Suite", () => {
@@ -14,11 +14,11 @@ export default function (factory: <K, V>() => IMap<K, V>) {
             map.mapPut("a", 1);
             map.mapPut("b", 2)
             map.mapPut("c", 3)
-            expect(map.size()).toBe(3)
+            expect(map.collectionSize()).toBe(3)
             expect(map.mapGet("a")).toBe(1)
             map.mapRemove("c")
             expect(() => map.mapRemove("d")).not.toThrow()
-            expect(map.size()).toBe(2)
+            expect(map.collectionSize()).toBe(2)
         })
 
         it("handle null key", () => {
@@ -27,7 +27,7 @@ export default function (factory: <K, V>() => IMap<K, V>) {
             map.mapPut("b", 2)
             map.mapPut("c", 3)
             map.mapPut(null, 2401)
-            expect(map.size()).toBe(4)
+            expect(map.collectionSize()).toBe(4)
             expect(map.mapGet(null)).toBe(2401)
         })
 
@@ -42,7 +42,7 @@ export default function (factory: <K, V>() => IMap<K, V>) {
             const map = factory<string, string>()
             map.mapPut("a", "a")
             map.mapPut("a", "b")
-            expect(map.size()).toBe(1)
+            expect(map.collectionSize()).toBe(1)
             expect(map.mapGet("a")).toBe("b")
         })
 
@@ -55,8 +55,8 @@ export default function (factory: <K, V>() => IMap<K, V>) {
         it("contains", () => {
             const map = factory()
             map.mapPut("a", "b")
-            expect(map.contains({ key: "a", value: "b" })).toBeTruthy()
-            expect(map.contains({ key: "a", value: "c" })).toBeFalsy()
+            expect(map.collectionContains({ key: "a", value: "b" })).toBeTruthy()
+            expect(map.collectionContains({ key: "a", value: "c" })).toBeFalsy()
         })
 
         it("clear", () => {
@@ -65,10 +65,10 @@ export default function (factory: <K, V>() => IMap<K, V>) {
             for (let i = 0; i < MAX_SIZE; i++) {
                 map.mapPut(i, i)
             }
-            expect(map.size()).toBe(MAX_SIZE)
-            expect(() => map.clear()).not.toThrow()
-            expect(() => map.clear()).not.toThrow()
-            expect(map.size()).toBe(0)
+            expect(map.collectionSize()).toBe(MAX_SIZE)
+            expect(() => map.collectionClear()).not.toThrow()
+            expect(() => map.collectionClear()).not.toThrow()
+            expect(map.collectionSize()).toBe(0)
         })
 
         it("get keys", () => {

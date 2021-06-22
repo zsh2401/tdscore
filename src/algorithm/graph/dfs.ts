@@ -22,7 +22,7 @@ import { Action1 } from "../../Action"
 import HashSet from "../../data-structure/set/HashSet"
 import ISet from "../../data-structure/set/ISet"
 import IGraph from "../../data-structure/graph/IGraph"
-import firstOrDefault from "../../data-structure/iterating/firstOrDefault"
+import firstOrDefault from "../../ixa/firstOrDefault"
 
 /**
  * 深度优先搜索算法
@@ -44,7 +44,7 @@ function _dfs<E>(g: IGraph<E>, e: E,
     const iterator = g.outOf(e).getIterator()
     while (iterator.hasNext()) {
         const _crt = iterator.next()
-        if (!viewed.contains(_crt)) {
+        if (!viewed.collectionContains(_crt)) {
             _dfs(g, _crt, consumer, viewed)
         }
     }

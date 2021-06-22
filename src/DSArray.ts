@@ -22,12 +22,12 @@
 import DSObject from "./DSObject";
 import IIterable from "./data-structure/IIterable";
 import IIterator from "./data-structure/IIterator";
-import find from "./data-structure/iterating/find"
-import toJSArray from "./data-structure/iterating/toJSArrayForItertable";
+import find from "./ixa/find"
+import toJSArray from "./ixa/toJSArrayForItertable";
 import hashCode from "./util/hashing";
 import IArrayLike from "./IArrayLike";
-import { optimizedSizeGetter, IOptionalSizeMethodOptimized } from "./data-structure/iterating/size";
-import toESIterator from "./data-structure/iterating/toESIterator";
+import { optimizedSizeGetter, IOptionalSizeMethodOptimized } from "./ixa/size";
+import toESIterator from "./ixa/toESIterator";
 
 /**
  * 默认数据提供器

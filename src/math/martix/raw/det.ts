@@ -25,7 +25,7 @@ import RawMartix from "./MartixTypes";
 
 export default function martixDet<E>(m: RawMartix<E>, operator: IElementOperator<E>): E {
     const fnp = (n: number): E => {
-        const eles = [];
+        const eles: E[] = [];
         for (let i = 0; i < m.length; i++) {
             const li = i;
             const lj = (m.length - i + n) % m.length;
@@ -48,7 +48,7 @@ export default function martixDet<E>(m: RawMartix<E>, operator: IElementOperator
     };
 
     const fpp = (n: number): E => {
-        const eles = [];
+        const eles: E[] = [];
         for (let i = 0; i < m.length; i++) {
             const li = i;
             const lj = (i + n) % m.length;

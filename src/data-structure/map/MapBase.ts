@@ -1,11 +1,11 @@
 import DSArray from "../../DSArray";
 import IIterator from "../IIterator";
-import toDSArray from "../iterating/toDSArrayForItertable";
+import toDSArray from "../../ixa/toDSArrayForItertable";
 import CollectionBase from "../CollectionBase";
 import IMap, { IKeyValuePair, IReadonlyKeyValuePair } from "./IMap";
 import equals from "../../equals";
 import IIterable from "../IIterable";
-import contains from "../iterating/contains";
+import contains from "../../ixa/contains";
 
 /**
  * Map类型的基类
@@ -50,6 +50,7 @@ export default abstract class MapBase<K, V>
 
     getIterator(): IIterator<IReadonlyKeyValuePair<K, V>> {
         const iterator = this.mapGetKeys().getIterator();
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const that = this;
         class I implements IIterator<IReadonlyKeyValuePair<K, V>>{
             reset(): void {

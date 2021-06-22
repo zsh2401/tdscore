@@ -7,17 +7,20 @@ import ListBase from "./ListBase";
 export default class UngrowableArrayList<E> extends ListBase<E>{
 
     protected array: DSArray<E>;
-    protected length: number = 0;
-    protected capcity: number = 0;
+    protected length: number;
+    protected capcity: number;
 
     /**
      * O(n)
      * @param maxSize 
      */
-    constructor(maxSize: number = 100) {
+    constructor(maxSize?: number) {
         super();
 
-        if (maxSize < 0) {
+        this.length = 0
+        this.capcity = 0
+
+        if (maxSize === undefined || maxSize < 0) {
             maxSize = 0;
         }
 
@@ -25,7 +28,7 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
         this.array = new DSArray(this.capcity);
     }
 
-    size(): number {
+    listSize(): number {
         return this.length;
     }
 
@@ -34,8 +37,8 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
             throw new ArgumentError("the argument position should be integer")
         }
         this.throwIfOutOfRange(position);
-        for (let i = position; i < this.size() - 1; i++) {
-            this.array.set(i, this.array.get(i + 1)!);
+        for (let i = position; i < this.listSize() - 1; i++) {
+            this.array.set(i, this.array[i + 1]!);
         }
         this.length--;
     }
@@ -45,7 +48,7 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
             throw new ArgumentError("the argument position should be integer")
         }
         this.ensureCapcity();
-        for (let i = this.size(); i > position; i--) {
+        for (let i = this.listSize(); i > position; i--) {
             this.array.set(i, this.array.get(i - 1));
         }
         this.array.set(position, element);
@@ -60,14 +63,14 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
         return this.array[position];
     }
 
-    protected throwIfOutOfRange(position: number) {
-        if (position < 0 || position >= this.size()) {
+    protected throwIfOutOfRange(position: number): void {
+        if (position < 0 || position >= this.listSize()) {
             throw new Error("Index out of bound!" + position);
         }
     }
 
-    protected ensureCapcity() {
-        if (this.size() + 1 > this.capcity) {
+    protected ensureCapcity(): void {
+        if (this.listSize() + 1 > this.capcity) {
             throw new Error("No more space");
         }
     }
@@ -80,7 +83,7 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
 
     listAdd(element: E): void {
         this.ensureCapcity();
-        this.array.set(this.size(), element);
+        this.array.set(this.listSize(), element);
         this.length++;
     }
     listClear(): void {

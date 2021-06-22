@@ -1,12 +1,13 @@
 import DSArray from "../../DSArray";
 import DSObject from "../../DSObject";
-import toDSArray from "../iterating/toDSArrayForItertable"
-import toJSArray from "../iterating/toJSArrayForItertable"
+import toDSArray from "../../ixa/toDSArrayForItertable"
+import toJSArray from "../../ixa/toJSArrayForItertable"
 import IIterator from "../IIterator";
 import IQueue from "./IQueue";
 import { Action1 } from "../../Action";
 import { Func1 } from "../../Func";
-import first from "../iterating/first";
+import first from "../../ixa/first";
+import NotImplementedError from "../../NotImplementedError";
 
 export default class CircularQueue<E> extends DSObject
 
@@ -14,8 +15,8 @@ export default class CircularQueue<E> extends DSObject
 {
     private readonly capcity;
     private readonly array: DSArray<E>;
-    private front: number = 0;
-    private rear: number = 0;
+    private front = 0;
+    private rear = 0;
     private readonly m;
 
     constructor(capcity: number) {
@@ -25,10 +26,14 @@ export default class CircularQueue<E> extends DSObject
         this.capcity = capcity;
         this.array = new DSArray(capcity);
     }
-    forEach(consumer: Action1<E>) {
-        this.array
+
+
+    collectionForEach(consumer: Action1<E>): void {
+        //TODO
+        throw new NotImplementedError()
     }
-    map<T>(mapper: Func1<E, T>): DSArray<T> {
+
+    collectionMap<T>(mapper: Func1<E, T>): DSArray<T> {
         return toDSArray(this, mapper);
     }
     collectionIsReadOnly(): boolean {

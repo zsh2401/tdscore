@@ -21,14 +21,14 @@ export default class ArrayList<E> extends UngrowableArrayList<E>{
         growthRate: number = DEFAULT_GROWTH_RATE,
         criticalPercent: number = DEFAULT_CRITICAL_PERCENT) {
         super(initialCapcity);
-        this.growthRate = growthRate <= 1 ? DEFAULT_GROWTH_RATE : growthRate;;
+        this.growthRate = growthRate <= 1 ? DEFAULT_GROWTH_RATE : growthRate;
         this.criticalPercent = criticalPercent >= 1 || criticalPercent <= 0 ? DEFAULT_CRITICAL_PERCENT : criticalPercent;
     }
 
     /**
      * Ensuring the capcity for storing element.
      */
-    protected ensureCapcity() {
+    protected ensureCapcity(): void {
         if (this.reachCriticalValue()) {
             this.grow();
         }
@@ -37,7 +37,7 @@ export default class ArrayList<E> extends UngrowableArrayList<E>{
     /**
      * To make the inner list's size to be larger.
      */
-    protected grow() {
+    protected grow(): void {
         const newCapcity = (this.capcity <= 0 ? DEFAULT_INITIAL_CAPCITY : this.capcity) * this.growthRate;
         const newArray = new DSArray<E>(newCapcity);
         this.copyToNewArray(this.array, newArray);
@@ -50,13 +50,13 @@ export default class ArrayList<E> extends UngrowableArrayList<E>{
      * @param oldArray 
      * @param newArray 
      */
-    protected copyToNewArray(oldArray: DSArray<E>, newArray: DSArray<E>) {
+    protected copyToNewArray(oldArray: DSArray<E>, newArray: DSArray<E>): void {
         for (let i = 0; i < oldArray.length; i++) {
             newArray[i] = oldArray[i];
         }
     }
 
     protected reachCriticalValue(): boolean {
-        return this.size() >= (this.capcity * this.criticalPercent);
+        return this.listSize() >= (this.capcity * this.criticalPercent);
     }
 }

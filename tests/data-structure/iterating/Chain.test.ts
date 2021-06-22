@@ -1,5 +1,5 @@
 import { Chain, IList, last, LinkedList, range } from "../../../src";
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable";
+import toJSArray from "../../../src/ixa/toJSArrayForItertable";
 
 it("append", () => {
     expect(new Chain([1, 2])

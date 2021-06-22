@@ -1,6 +1,6 @@
 import "ts-jest"
 import { fromESIterator } from "../../../src"
-import toJSArray from "../../../src/data-structure/iterating/toJSArrayForItertable"
+import toJSArray from "../../../src/ixa/toJSArrayForItertable"
 it("test all function", () => {
     const i = fromESIterator("abcdefg").getIterator()
     expect(i.hasNext()).toBeTruthy()

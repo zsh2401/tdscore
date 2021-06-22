@@ -58,12 +58,12 @@ export default function <E>(g: IGraph<E>, start: E): IMap<E, PathNote<E>> {
     viewed.setAdd(start)
     result.mapPut(start, { prev: start, cost: 0 })
 
-    while (!queue.isEmpty()) {
+    while (!queue.collectionIsEmpty()) {
         const current = queue.queueDe()
         const iterator = g.outOf(current).getIterator()
         while (iterator.hasNext()) {
             const _crt = iterator.next()
-            if (!viewed.contains(_crt)) {
+            if (!viewed.collectionContains(_crt)) {
                 result.mapPut(_crt, {
                     prev: current,
                     cost: (result.mapGet(current)?.cost ?? 0) + 1

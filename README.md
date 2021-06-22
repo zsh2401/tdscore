@@ -15,7 +15,7 @@
 
 <div style="display:inline-block;width:100px;height:100px">
 
-![](./reward.png)
+![](./cccc.png)
 
 </div>
 

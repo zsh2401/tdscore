@@ -15,27 +15,30 @@
  * 基建
  */
 export { default as DSNumber } from "./DSNumber"
+export { int8, int16, int32, int64, float, double } from "./DSNumber"
 export { default as DSArray } from "./DSArray"
 export { default as DSObject } from "./DSObject"
 export { default as DSEvent } from "./util/DSEvent"
-export { default as equals } from "./equals"
+export { default as Optional } from "./Optional"
 
-/**
- * @deprecated
- */
+
 export { default as dsEquals } from "./equals"
-
-/**
- * @deprecated
- */
 export { default as dsHashCode } from "./hash"
+export { default as dsToString } from "./toString"
 
+export { default as equals } from "./equals"
 export { default as hash } from "./hash"
+export { default as toString } from "./toString"
+
+export { default as ArgumentError } from "./ArgumentError"
+export { default as InvalidStateError } from "./InvalidStateError"
+export { default as InvalidCallingError } from "./InvalidCallingError"
+export { default as NotImplementedError } from "./NotImplementedError"
+
 export { default as Lazy } from "./util/Lazy"
 export { default as INotifyCollectionChanged } from "./INotifyCollectionChanged"
 export { default as Ref } from "./Ref"
 export { default as Nullable } from "./Nullable"
-export { default as Optional } from "./Optional"
 export { default as DSObjectType } from "./DSObjectType"
 export { default as defaultOf } from './util/type/defaultOf'
 export { default as StopWatch } from "./util/StopWatch"
@@ -52,7 +55,6 @@ export {
 export * from "./Func"
 export * from "./Action"
 
-
 /**
  * 数据结构模块
  */
@@ -62,6 +64,7 @@ export * from "./data-structure"
  * IXA
  */
 export * from "./ixa"
+export * as ixa from "./ixa"
 
 /**
  * 算法模块

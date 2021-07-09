@@ -4,6 +4,14 @@ import dsHashCode from "./hash";
 import IArrayLike from "./IArrayLike";
 import MixedNumber from "./MixedNumber";
 
+export declare type int8 = number
+export declare type int16 = number
+export declare type int32 = number
+export declare type int64 = number
+
+export declare type float = number
+export declare type double = number
+
 const cache: DSNumber[] = [];
 function initCache(factory: (num: number) => DSNumber) {
     for (let i = 0; i < 2 ** 8; i++) {

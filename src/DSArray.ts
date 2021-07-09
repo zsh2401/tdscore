@@ -73,8 +73,6 @@ export default class DSArray<E> extends DSObject
 
     [index: number]: E;
 
-    readonly length: number;
-
     /**
      * 
      * @deprecated use indexer. e.g array[0]

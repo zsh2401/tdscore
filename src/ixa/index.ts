@@ -17,7 +17,8 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-
+export { default as where } from "./where"
+export { default as aggregate } from "./aggregate"
 export { default as append } from "./append"
 export { default as find } from "./find"
 export { default as contains, optimizedContainsMethod, IOptionalContainsOptimized } from "./contains"

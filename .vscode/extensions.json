@@ -3,6 +3,7 @@
         "doi.fileheadercomment",
         "orta.vscode-jest",
         "markis.code-coverage",
-        "redjue.git-commit-plugin"
+        "redjue.git-commit-plugin",
+        "gruntfuggly.todo-tree"
     ]
 }

@@ -17,6 +17,7 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
+export { default as map } from "./select"
 export { default as where } from "./where"
 export { default as aggregate } from "./aggregate"
 export { default as append } from "./append"

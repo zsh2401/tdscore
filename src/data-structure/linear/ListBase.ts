@@ -11,6 +11,8 @@ import IQueue from "./IQueue";
 import CollectionBase from "../CollectionBase";
 import IListIterator from "./IListIterator";
 import equals from "../../equals";
+import UIterable from "../UIterable";
+import forEach from "../../ixa/forEach";
 
 export default abstract class ListBase<E> extends CollectionBase<E>
     implements IStack<E>, IQueue<E>, IList<E>, IReadonlyList<E>{
@@ -81,8 +83,10 @@ export default abstract class ListBase<E> extends CollectionBase<E>
         return this.listIndexOf(value) !== -1;
     }
 
-    listAddAll(elements: E[]): void {
-        elements.forEach(ele => this.listAdd(ele));
+    listAddAll(elements: UIterable<E>): void {
+        forEach(elements, (ele) => {
+            this.listAdd(ele)
+        })
     }
 
     abstract listDelete(position: number): void;

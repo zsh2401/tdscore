@@ -196,7 +196,6 @@ export default abstract class CollectionBase<E>
     /**
      * 集合大小
      * @returns 
-     * @deprecated
      */
     size(): number {
         return size(this);

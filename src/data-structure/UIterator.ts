@@ -1,6 +1,6 @@
 /*
- * UIterable.ts
- * Created on Wed Jun 16 2021 09:13:37
+ * UIterator.ts
+ * Created on Sun Jul 11 2021 14:02:48
  *
  * Description: 
  *   No description.
@@ -17,13 +17,7 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-
-import IIterable from "./IIterable";
 import IIterator from "./IIterator";
 
-/**
- * TDSCore与ECMAScript迭代类型。
- * 该设计主要用于IXA函数的参数
- */
-type UIterable<E> = IIterable<E> | Iterable<E>
-export default UIterable;
+type UIterator<E> = Iterator<E> | IIterator<E>
+export default UIterator

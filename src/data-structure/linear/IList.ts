@@ -1,6 +1,7 @@
 import ICollection from "../ICollection";
 import { Action1 } from "../../Action";
 import IListIterator from "./IListIterator";
+import UIterable from "../UIterable";
 export default interface IList<E> extends ICollection<E> {
 
     /**
@@ -12,7 +13,7 @@ export default interface IList<E> extends ICollection<E> {
     /**
      * 检查是否为空
      */
-    listIsEmpty():boolean;
+    listIsEmpty(): boolean;
 
     /**
      * Delete the element which at specified position.
@@ -50,7 +51,7 @@ export default interface IList<E> extends ICollection<E> {
      * Append all items
      * @param elements 
      */
-    listAddAll(elements: E[]): void;
+    listAddAll(elements: UIterable<E>): void;
 
     /**
      * delete all elements.

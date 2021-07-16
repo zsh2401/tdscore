@@ -30,6 +30,11 @@ import IIterable from "./IIterable";
 export default interface ICollection<E> extends DSObject, IIterable<E> {
 
     /**
+     * the size of collection
+     */
+    size(): number;
+
+    /**
    * 检查集合是否为只读
    * @returns 
    */

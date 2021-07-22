@@ -18,7 +18,6 @@ function initCache(factory: (num: number) => DSNumber) {
         cache[i] = factory(i - 128);
     }
 }
-
 /**
  * 支持任意精度计算的DSNumber包装类
  */

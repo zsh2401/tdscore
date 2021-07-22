@@ -20,6 +20,7 @@
 
 import NotImplementedError from "../NotImplementedError";
 
+//TODO
 export default class TimeSpan {
     private readonly _totalMS: number;
     constructor(ms: number) {

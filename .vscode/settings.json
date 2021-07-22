@@ -32,5 +32,6 @@
         ]
     },
     "GitCommitPlugin.MaxSubjectWords": 200,
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "jest.autoRun": {"watch": false, "onSave": "test-file", "onStartup": []}
 }

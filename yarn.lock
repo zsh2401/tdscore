@@ -2865,6 +2865,11 @@ es-module-lexer@^0.7.1:
   resolved "https://registry.npmjs.org/es-module-lexer/-/es-module-lexer-0.7.1.tgz#c2c8e0f46f2df06274cdaf0dd3f3b33e0a0b267d"
   integrity sha512-MgtWFl5No+4S3TmhDmCz2ObFGm6lEpTnzbQi+Dd+pw4mlTIZTmM2iAs5gRlmx5zS9luzobCSBSI90JM/1/JgOw==
 
+esbuild@^0.12.15:
+  version "0.12.15"
+  resolved "https://registry.nlark.com/esbuild/download/esbuild-0.12.15.tgz#9d99cf39aeb2188265c5983e983e236829f08af0"
+  integrity sha1-nZnPOa6yGIJlxZg+mD4jaCnwivA=
+
 escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"

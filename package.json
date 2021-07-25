@@ -1,11 +1,11 @@
 {
   "name": "tdscore",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Data Structure, algorithms, mathmatic codes and enhancement of ECMAScript written by TypeScript",
   "repository": "https://github.com/zsh2401/tdscore",
   "author": {
     "name": "Seymour Zhang",
-    "email": "zsh2401@163.com.com",
+    "email": "zsh2401@163.com",
     "url": "https://zsh2401.top/"
   },
   "sideEffects": false,

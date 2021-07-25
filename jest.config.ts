@@ -5,7 +5,7 @@ const config: Config.InitialOptions = {
     testEnvironment: "jsdom",
     maxConcurrency: 5,
     globals: {
-        'ts-jest': {
+        'ts-jest': { 
             tsconfig: 'tsconfig.test.json'
         }
     },

@@ -3,22 +3,24 @@ import { build } from "esbuild"
     const ENTRY_POINT = "src/index.ts"
     await Promise.all([
         build({
-            entryPoints: [ENTRY_POINT],
+            entryPoints: ["./umd.ts"],
             bundle: true,
             platform: "browser",
             minify: false,
             sourcemap: true,
-            format: "iife",
-            outfile: "dist/tdscore.browser.js"
+            format: "cjs",
+            outfile: "dist/tdscore.js"
         }),
 
         build({
-            entryPoints: [ENTRY_POINT],
+            entryPoints: ["./umd.ts"],
             bundle: true,
             platform: "browser",
-            format: "iife",
-            outfile: "dist/tdscore.browser.min.js"
-        })
+            minify: true,
+            sourcemap: false,
+            format: "cjs",
+            outfile: "dist/tdscore.min.js"
+        }),
 
     ])
 })();

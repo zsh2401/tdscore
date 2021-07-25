@@ -1,10 +1,10 @@
-import * as tdscore from "./src/index"
+import * as tdscore from "./index"
 
 const NAME = "tdscore"
+//@ts-ignore
 const MOUNT_ROOT = typeof window === 'undefined' ? global : window;
 
 (function (root, factory) {
-    console.log("exporting")
     //@ts-ignore
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.

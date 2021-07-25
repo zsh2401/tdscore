@@ -10,3 +10,4 @@ package-lock.json
 !jest.config.js
 !src/util/sha256.js
 tests-output
+build.js

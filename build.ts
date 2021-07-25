@@ -1,9 +1,12 @@
 import { build } from "esbuild"
+
 (async () => {
     const ENTRY_POINT = "src/index.ts"
+
     await Promise.all([
+        
         build({
-            entryPoints: ["./umd.ts"],
+            entryPoints: ["./src/umd.ts"],
             bundle: true,
             platform: "browser",
             minify: false,
@@ -13,7 +16,7 @@ import { build } from "esbuild"
         }),
 
         build({
-            entryPoints: ["./umd.ts"],
+            entryPoints: ["./src/umd.ts"],
             bundle: true,
             platform: "browser",
             minify: true,

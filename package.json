@@ -1,8 +1,11 @@
 {
   "name": "tdscore",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Data Structure, algorithms, mathmatic codes and enhancement of ECMAScript written by TypeScript",
-  "repository": "https://github.com/zsh2401/tdscore",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zsh2401/tdscore",
+  },
   "author": {
     "name": "Seymour Zhang",
     "email": "zsh2401@163.com",
@@ -13,23 +16,24 @@
   "homepage": "http://ds.zsh2401.top",
   "main": "lib/index.js",
   "unpkg": "dist/tdscore.js",
-  "typings": "es/index.d.ts",
-  "module": "es/index.js",
+  "typings": "lib/index.d.ts",
+  "module": "esm/index.js",
   "lint": "eslint src/*",
   "engines": {
     "node": ">= 6.17.1"
   },
   "scripts": {
     "build:dist": "npx ts-node build.ts",
-    "build:lib": "tsc",
-    "build:es": "tsc --project tsconfig.es.json",
-    "build": "concurrently \"npm run build:es\" \"npm run build:dist\" \"npm run build:lib\"",
+    "build:lib": "tsc --project tsconfig.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build": "concurrently \"npm run build:esm\" \"npm run build:dist\" \"npm run build:lib\"",
     "lint": "eslint src/",
     "release": "npm run build && npm publish",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "prepare": "husky install",
-    "dep": "yarn ts_dependency_graph --start src/index.ts"
+    "dep": "yarn ts_dependency_graph --start src/index.ts",
+    "clean": "rimraf dist es esm lib *.log"
   },
   "dependencies": {
     "bignumber.js": "^9.0.1",
@@ -46,6 +50,7 @@
     "eslint": "^7.31.0",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
     "ts_dependency_graph": "^1.2.0",

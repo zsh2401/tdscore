@@ -1,4 +1,6 @@
-import { cos, ONE_DEGREE, pow, sin } from "..";
+import cos from "../fn/cos";
+import sin from "../fn/sin"
+import pow from "../fn/pow"
 import DSObject from "../../DSObject";
 import dsHashCode from "../../hash";
 import { asJSNumber } from "../../MixedNumber";
@@ -47,7 +49,7 @@ export default class Vector2
      * @param degree 度数
      */
     rotateClockwisely(degree: number): Vector2 {
-        const theta = ONE_DEGREE * degree;
+        const theta = (Math.PI / 180) * degree;
         const t = new Transformation2(
             cos(theta),
             -sin(theta),

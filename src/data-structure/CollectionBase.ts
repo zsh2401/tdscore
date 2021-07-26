@@ -42,6 +42,7 @@ export default abstract class CollectionBase<E>
     extends DSObject implements
     ICollection<E>,
     IClonable<ICollection<E>>,
+    Iterable<E>,
     IOptionalSizeMethodOptimized {
 
     constructor() {

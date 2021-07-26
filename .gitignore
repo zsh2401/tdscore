@@ -3,6 +3,7 @@ node_modules
 dist
 lib
 es
+esm
 coverage
 .VSCodeCounter
 package-lock.json

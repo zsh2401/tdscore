@@ -4,7 +4,6 @@ import toList from "../../ixa/toList"
 import IReadonlyList from "../../data-structure/linear/IReadonlyList"
 import Vector from "./Vector";
 import DSArray  from "../../DSArray";
-import { IList } from "../../data-structure";
 
 export default class Transformation
     extends Martix {

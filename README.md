@@ -25,7 +25,7 @@
 
 
 
-[2021年中国大学生计算机设计大赛（云南省级赛）一等奖作品](https://2021.jsjds.com.cn/Backend/Common/work/detail?id=2021009237)
+[2021-CCCC 一等奖作品](https://2021.jsjds.com.cn/Backend/Common/work/detail?id=2021009237)
 
 中文 | [English](./README-en-US.md)
 

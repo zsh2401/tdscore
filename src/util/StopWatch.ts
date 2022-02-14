@@ -19,6 +19,7 @@
  * Mulan Permissive Software License，Version 2
  */
 
+import { HashMap } from "..";
 import DSObject from "../DSObject";
 import InvalidStateError from "../InvalidStateError";
 
@@ -28,41 +29,63 @@ import InvalidStateError from "../InvalidStateError";
  */
 export default class StopWatch extends DSObject {
 
-    private _start: number | null = null;
-    private _end: number | null = null;
+    private _passed: number = 0;
+    private _resumed: number = -1;
+    private _end: number = -1;
+    private readonly map: HashMap<string, number>;
 
     constructor() {
         super();
-        this.end = this.end.bind(this);
-        this.start = this.start.bind(this);
+        this.map = new HashMap()
     }
 
     /**
      * Get total ms.
      */
     get totalMs(): number {
-        if (this._start && this._end) {
-            return this._end - this._start;
-        } else {
-            throw new InvalidStateError("Invalid state.");
-        }
+        return this.getRecord()
     }
 
     /**
      * Start this stopwatch
      */
     start() {
-        if (this._start) {
+        if (this._end !== -1) {
             throw new InvalidStateError("StopWatch has been started already.")
         }
-        this._start = Date.now()
+        this._resumed = Date.now()
+    }
+
+    /**
+     * Pause timing.
+     */
+    pause() {
+        this._passed += Date.now() - this._resumed;
+    }
+
+    /**
+     * make a record
+     * @param key 
+     */
+    record(key: string) {
+        const t = this._passed + Date.now() - this._resumed
+        this.map.mapPut(key, t)
+    }
+
+    getRecord(key?: string): number {
+        if (key) {
+            return this.map.mapGet(key) ?? 0;
+        } else {
+            const end = this._end === -1 ? Date.now() : this._end
+            return end - this._resumed + this._passed
+        }
     }
 
     /**
      * Stop record.
      */
     end() {
-        if (this._start) {
+        if (this._resumed !== -1) {
             this._end = Date.now()
         } else {
             throw new InvalidStateError("StopWatch has not been started.");
@@ -71,9 +94,18 @@ export default class StopWatch extends DSObject {
 
     /**
      * Clear record.
+     * @deprecated use reset() to instead
      */
     clear() {
-        this._start = null;
-        this._end = null;
+        this.reset()
+    }
+
+    /**
+     * Reset the stopwatch
+     */
+    reset() {
+        this._resumed = -1;
+        this._end = -1;
+        this.map.collectionClear();
     }
 }

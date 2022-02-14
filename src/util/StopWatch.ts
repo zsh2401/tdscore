@@ -32,6 +32,7 @@ export default class StopWatch extends DSObject {
     private _passed: number = 0;
     private _resumed: number = -1;
     private _end: number = -1;
+    private isPaused: boolean = false;
     private readonly map: HashMap<string, number>;
 
     constructor() {
@@ -54,6 +55,7 @@ export default class StopWatch extends DSObject {
             throw new InvalidStateError("StopWatch has been started already.")
         }
         this._resumed = Date.now()
+        this.isPaused = false
     }
 
     /**
@@ -61,6 +63,7 @@ export default class StopWatch extends DSObject {
      */
     pause() {
         this._passed += Date.now() - this._resumed;
+        this.isPaused = true;
     }
 
     /**
@@ -68,14 +71,16 @@ export default class StopWatch extends DSObject {
      * @param key 
      */
     record(key: string) {
-        const t = this._passed + Date.now() - this._resumed
-        this.map.mapPut(key, t)
+        this.map.mapPut(key, this.getRecord())
     }
 
     getRecord(key?: string): number {
         if (key) {
             return this.map.mapGet(key) ?? 0;
         } else {
+            if (this.isPaused) {
+                return this._passed
+            }
             const end = this._end === -1 ? Date.now() : this._end
             return end - this._resumed + this._passed
         }

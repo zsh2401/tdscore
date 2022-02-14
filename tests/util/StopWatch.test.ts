@@ -66,4 +66,17 @@ describe("Stop Watch Test", () => {
 
         // expect(sw.getRecord() / 100).toBeCloseTo(0.5, 1)
     })
+
+    test("won't update if paused", async () => {
+        const sw = new StopWatch()
+
+        sw.start()
+        await sleep(100)
+        sw.pause()
+
+        const a= sw.getRecord()
+        await sleep(100)
+        const b = sw.getRecord();
+        expect(a).toBe(b)
+    })
 })

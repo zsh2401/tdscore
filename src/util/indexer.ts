@@ -40,4 +40,3 @@ export default function (getter?: string, setter?: string) {
         return newClazz;
     }
 }
-type ConstructorFunction = new (...args: any[]) => any;

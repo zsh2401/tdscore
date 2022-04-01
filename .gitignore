@@ -12,3 +12,4 @@ package-lock.json
 !src/util/sha256.js
 tests-output
 build.js
+example.ts

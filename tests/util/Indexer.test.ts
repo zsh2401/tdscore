@@ -1,8 +1,8 @@
-import Indexer from "../../src/util/Indexer"
+import indexer from "../../src/util/indexer"
 import HashMap from "../../src/data-structure/map/HashMap"
 describe("Indexer Test", () => {
     it("Getter Test", () => {
-        @Indexer({ getter: "get" })
+        @indexer({ getter: "get" })
         class GetterTest {
             get(index: number) {
                 return index;
@@ -18,7 +18,7 @@ describe("Indexer Test", () => {
 
     it("Setter Test", () => {
 
-        @Indexer({ setter: "set" })
+        @indexer({ setter: "set" })
         class SetterTest {
             // Use ES map to test, avoid possible circular reference.
             map = new Map<number, any>();
@@ -38,7 +38,7 @@ describe("Indexer Test", () => {
 
     it("Getter and Setter", () => {
 
-        @Indexer({ getter: "get", setter: "set" })
+        @indexer({ getter: "get", setter: "set" })
         class A {
             private map = new Map();
             set(index: number, value: string) {
@@ -59,7 +59,7 @@ describe("Indexer Test", () => {
     })
 
     it("Won't pollute prototype", () => {
-        @Indexer({})
+        @indexer({})
         class A extends HashMap<any, any>{
         }
 
@@ -69,7 +69,7 @@ describe("Indexer Test", () => {
     it("Passing static properties", () => {
         const MAGIC_NUMBER = 2401;
 
-        @Indexer({})
+        @indexer({})
         class A {
             static value = MAGIC_NUMBER;
             static doSomething(): void {

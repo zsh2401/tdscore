@@ -28,7 +28,7 @@ import hashCode from "./util/hashing";
 import IArrayLike from "./IArrayLike";
 import { optimizedSizeGetter, IOptionalSizeMethodOptimized } from "./ixa/size";
 import toESIterator from "./ixa/toESIterator";
-import Indexer from "./util/Indexer";
+import indexer from "./util/indexer";
 
 /**
  * 默认数据提供器
@@ -48,7 +48,7 @@ type DefaultValue<E> = ((i: number) => E) | E;
  * DO NOT EXTENDS THIS OBJECT
  * 
  */
-@Indexer({ getter: "get", setter: "set" })
+@indexer({ getter: "get", setter: "set" })
 export default class DSArray<E> extends DSObject
     implements IArrayLike<E>, IIterable<E>,
     IOptionalSizeMethodOptimized {

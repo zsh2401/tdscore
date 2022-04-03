@@ -5,6 +5,11 @@ describe("DSArray Test", () => {
         expect(() => new DSArray<number>(1000)).not.toThrow();
     });
 
+    it("other properties accessiblity", () => {
+        const dsArray = new DSArray(10)
+        expect(dsArray)
+    })
+
     it("length", () => {
         const array = new DSArray<number>(1000);
         expect(array.length).toBe(1000)

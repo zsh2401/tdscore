@@ -38,7 +38,7 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
         }
         this.throwIfOutOfRange(position);
         for (let i = position; i < this.listSize() - 1; i++) {
-            this.array.set(i, this.array[i + 1]!);
+            this.array[i] = this.array[i + 1]!;
         }
         this.length--;
     }
@@ -49,9 +49,9 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
         }
         this.ensureCapcity();
         for (let i = this.listSize(); i > position; i--) {
-            this.array.set(i, this.array.get(i - 1));
+            this.array[i] =  this.array[i - 1];
         }
-        this.array.set(position, element);
+        this.array[position] = element;
         this.length++;
     }
 
@@ -78,12 +78,12 @@ export default class UngrowableArrayList<E> extends ListBase<E>{
     listSet(position: number, element: E): void {
         this.throwIfOutOfRange(position);
         // this.ensureCapcity();
-        this.array.set(position, element);
+        this.array[position] = element;
     }
 
     listAdd(element: E): void {
         this.ensureCapcity();
-        this.array.set(this.listSize(), element);
+        this.array[this.listSize()] = element;
         this.length++;
     }
     listClear(): void {

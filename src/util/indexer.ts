@@ -1,42 +1,62 @@
+export interface IndexerCongfiguration {
+    readonly getter?: string;
+    readonly setter?: string;
+}
 //@ts-ignore
-export default function (getter?: string, setter?: string) {
+export default function (conf: IndexerCongfiguration) {
     return (clazz: any): any => {
+
+        function _getter(target: any, p: any) {
+            const [valid, index] = toValidIndex(p);
+            if (valid && conf.getter) {
+                return target[conf.getter](index);
+            } else {
+                return target[p];
+            }
+        }
+
+        function _setter(target: any, p: string | symbol, value: any): boolean {
+            const [valid, index] = toValidIndex(p);
+            if (valid && conf.setter) {
+                target[conf.setter](index, value);
+            } else {
+                target[p] = value;
+            }
+            return true;
+        }
+
+
         const newClazz = function (...args: any[]): {} {
             const oldInstance = new clazz(...args);
             const handeler: ProxyHandler<any> = {
-                get: (target: any, p): any => {
-                    try {
-                        if (typeof p === "string") {
-                            const index: number = Number.parseInt(p);
-                            if (!Number.isNaN(index) && getter) {
-                                return target[getter](index);
-                            }
-                        }
-                        return target[p];
-                    }catch{
-                        return target[p];
-                    }
-                },
-                set: (target: any, p, value):boolean => {
-                    try {
-                        if (typeof p === "string") {
-                            const index: number = Number.parseInt(p);
-                            if (!Number.isNaN(index) && setter) {
-                                target[setter](index, value);
-                                return true;
-                            }
-                        }
-                    } catch {
-                        
-                    }
-                    target[p] = value;
-                    return true;
-                }
+                get: _getter,
+                set: _setter
             }
             return new Proxy(oldInstance, handeler);
         }
-        newClazz.prototype = clazz.prototype;
+
+        // // newClazz extends clazz
+        // newClazz.prototype = clazz.prototype;
+
+        // copy static properties
+        const staticProperties = Object.getOwnPropertyNames(clazz)
+            .filter((prop: string)=>{
+                return prop !== "length" && prop !== "name";
+            });
+        
+            for (const key of staticProperties) {
+            newClazz[key] = clazz[key];
+        }
+
         //@ts-ignore
         return newClazz;
+    }
+}
+function toValidIndex(symbol: any): [boolean, number] {
+    if (typeof symbol === "string") {
+        const index = Number.parseFloat(symbol)
+        return [Number.isInteger(index), index]
+    } else {
+        return [false, 0];
     }
 }

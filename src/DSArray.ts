@@ -28,6 +28,7 @@ import hashCode from "./util/hashing";
 import IArrayLike from "./IArrayLike";
 import { optimizedSizeGetter, IOptionalSizeMethodOptimized } from "./ixa/size";
 import toESIterator from "./ixa/toESIterator";
+import Indexer from "./util/Indexer";
 
 /**
  * 默认数据提供器
@@ -47,8 +48,7 @@ type DefaultValue<E> = ((i: number) => E) | E;
  * DO NOT EXTENDS THIS OBJECT
  * 
  */
-//@ts-expect-error
-@dsarry
+@Indexer({ getter: "get", setter: "set" })
 export default class DSArray<E> extends DSObject
     implements IArrayLike<E>, IIterable<E>,
     IOptionalSizeMethodOptimized {
@@ -56,6 +56,8 @@ export default class DSArray<E> extends DSObject
     readonly length: number;
 
     private readonly defaultValue?: DefaultValue<E>;
+
+    private readonly formatArea = {};
 
     constructor(size: number, defaultValue?: DefaultValue<E>) {
         super();
@@ -73,23 +75,38 @@ export default class DSArray<E> extends DSObject
 
     [index: number]: E;
 
+
     /**
      * 
-     * @deprecated use indexer. e.g array[0]
      * @param index 
      */
-    get(index: number): E {
-        return this[index];
+    private get(index: number): E {
+        if (index < 0 || index >= this.length) {
+            throw new Error("Invalid index.")
+        }
+        let v:E =  this.formatArea[index];
+        if(v === undefined && this.defaultValue !== undefined){
+            if(typeof this.defaultValue === "function"){
+                //@ts-ignore
+                v = this.defaultValue(index);
+            }else{
+                v = this.defaultValue
+            }
+            this.set(index,v);
+        }
+        return v;
     }
 
     /**
      * 
-     * @deprecated use indexer. e.g array[0]
      * @param index 
      * @param value 
      */
-    set(index: number, value: E): void {
-        this[index] = value;
+    private set(index: number, value: E): void {
+        if (index < 0 || index >= this.length) {
+            throw new Error("Invalid index.")
+        }
+        this.formatArea[index] = value;
     }
 
     copyTo(dest: IArrayLike<E>, start?: number, length?: number): void {
@@ -125,39 +142,6 @@ export default class DSArray<E> extends DSObject
         return copy(src, dest, start, count);
     }
 
-}
-function dsarry(
-    constructor: (new (length: number, defaultValue?: DefaultValue<any>) => DSArray<any>)
-): (new (length: number, defaultValue?: DefaultValue<any>) => DSArray<any>) {
-    //@ts-ignore
-    const result = function (length: number, defaultValue?: DefaultValue): {} {
-        const dsarray: DSArray<any> = new constructor(length);
-        const handler: ProxyHandler<DSArray<any>> = {
-            get: (target, p) => {
-                const [isNumber, isValidIndex, index] = toIndex(target.length, p);
-                if (isValidIndex) {
-                    let v = target[index];
-                    if (typeof v === "undefined" && defaultValue !== undefined) {
-                        v = (typeof defaultValue === "function" ? defaultValue(index) : defaultValue);
-                        target[index] = v;
-                    }
-                    return v;
-                } else if (isNumber) {
-                    throw new RangeError(`Index out of range ${String(p)}`);
-                } else {
-                    //@ts-ignore
-                    return target[p];
-                }
-            }
-        }
-
-        return new Proxy(dsarray, handler);
-    }
-
-    result.copy = copy;
-    result.from = from;
-    //@ts-ignore
-    return result;
 }
 
 function from<E>(src: ArrayLike<E>): DSArray<E> {
@@ -195,7 +179,7 @@ class DSArrayIterator<E> implements IIterator<E>{
         const nextPosition = this.position + 1;
         const inRange = nextPosition < this.array.length && nextPosition >= 0;
         if (inRange) {
-            return this.array.get(nextPosition) !== undefined;
+            return this.array[nextPosition] !== undefined;
         } else {
             return false;
         }

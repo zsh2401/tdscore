@@ -1,6 +1,6 @@
 {
   "name": "tdscore",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "Data Structure, algorithms, mathmatic codes and enhancement of ECMAScript written by TypeScript",
   "repository": {
     "type": "git",

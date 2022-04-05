@@ -302,8 +302,12 @@ describe("HashMap test", () => {
         map.mapPut(keyOne, "a");
 
         expect(map.mapGet(keyOne)).toEqual(map.mapGet(keyTwo));
+
         //@ts-ignore
-        expect(keyOne[CACHED_HASHCODE_GETTER]).toBeDefined();
+        if (!WeakMap) {
+            expect(keyOne[CACHED_HASHCODE_GETTER]).toBeDefined();
+        }
+
 
         expect(map.mapGet(keyThree)).toBeNull();
         map.mapPut(keyThree, "b");

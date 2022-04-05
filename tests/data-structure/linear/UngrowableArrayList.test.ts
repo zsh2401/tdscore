@@ -1,5 +1,5 @@
 import UngrowableArrayList from "../../../src/data-structure/linear/UngrowableArrayList"
-import doIterableTest from "../util/doIterableTest";
+import doIterableTest from "../do-xxx-test/doIterableTest";
 describe("ArrayList's test", () => {
     
     doIterableTest(()=>new UngrowableArrayList(10_000))

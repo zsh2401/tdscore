@@ -7,21 +7,14 @@ type GListElemType<E> = E | GList<E>;
 /**
  * Is GList a linear structure?
  */
-export default class GList<E> extends ListBase<GListElemType<E>> {
+export default class GList<E> extends LinkedList<GListElemType<E>> {
 
-    listSize(): number {
-        return this.getInnerList().listSize();
+    constructor(initialElems: E[] = []) {
+        super();
+        this.listAddAll(initialElems);
     }
 
-    listDelete(position: number): void {
-        this.getInnerList().listDelete(position);
-    }
-    listInsert(position: number, element: GListElemType<E>): void {
-        this.getInnerList().listInsert(position, element);
-    }
-    listGet(position: number): GListElemType<E> {
-        return this.getInnerList().listGet(position);
-    }
+
     /**
      * 
      * @throws if the target is not a GList
@@ -36,6 +29,22 @@ export default class GList<E> extends ListBase<GListElemType<E>> {
         }
     }
 
+    isNormalElementAt(position: number): boolean {
+        if (isNormalElement(this.listGet(position))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isGListAt(position: number): boolean {
+        if (isGList(this.listGet(position))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     getAsElement(position: number): E {
         const v = this.listGet(position);
         if (isNormalElement(v)) {
@@ -44,29 +53,7 @@ export default class GList<E> extends ListBase<GListElemType<E>> {
             throw new Error("the target is glist.");
         }
     }
-    listSet(position: number, element: GListElemType<E>): void {
-        this.getInnerList().listSet(position, element);
-    }
-    listAdd(element: GListElemType<E>): void {
-        this.getInnerList().listAdd(element);
-    }
-    listClear(): void {
-        this.getInnerList().listClear();
-    }
-    getIterator() {
-        return this.getInnerList().getIterator();
-    }
 
-    private list: IList<GListElemType<E>> = new LinkedList<GListElemType<E>>();
-
-    constructor(initialElems: E[] = []) {
-        super();
-        this.listAddAll(initialElems);
-    }
-
-    protected getInnerList() {
-        return this.list;
-    }
 }
 
 export function isGList<E>(element: GListElemType<E>): element is GList<E> {

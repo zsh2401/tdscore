@@ -3,6 +3,7 @@
   "include": [
     "./tests",
     "./src",
+    "./benchmark"
   ],
   "compilerOptions": {
     "outDir": "tests-output"

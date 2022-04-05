@@ -1,8 +1,8 @@
 import "ts-jest"
-import { seal } from "../../../src/util/type";
+import { sealed } from "../../../src/util/decorator";
 describe("seal", () => {
-    it("Seald", () => {
-        @seal
+    it("is sealed", () => {
+        @sealed
         class A { }
         class B{}
 

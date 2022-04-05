@@ -1,5 +1,6 @@
-import indexer from "../../src/util/indexer"
-import HashMap from "../../src/data-structure/map/HashMap"
+import indexer from "../../../src/util/decorator/indexer"
+import HashMap from "../../../src/data-structure/map/HashMap"
+import { DSObject } from "../../../src";
 describe("Indexer Test", () => {
     it("Getter Test", () => {
         @indexer({ getter: "get" })
@@ -64,6 +65,14 @@ describe("Indexer Test", () => {
         }
 
         expect(new A() instanceof HashMap).toBeTruthy();
+    })
+
+    it("Get class name",()=>{
+        @indexer({})
+        class A extends DSObject{
+    
+        }
+        expect(new A().getClassName()).toBe("A");
     })
 
     it("Passing static properties", () => {

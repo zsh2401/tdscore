@@ -1,9 +1,9 @@
 import ArrayList from "../../../src/data-structure/linear/ArrayList";
-import doCollectionTest from "../util/doCollectionTest";
-import doIterableTest from "../util/doIterableTest";
-import doListTest from "../util/doListTest";
-import doQueueTest from "../util/doQueueTest";
-import doStackTest from "../util/doStackTest";
+import doCollectionTest from "../do-xxx-test/doCollectionTest";
+import doIterableTest from "../do-xxx-test/doIterableTest";
+import doListTest from "../do-xxx-test/doListTest"
+import doQueueTest from "../do-xxx-test/doQueueTest";
+import doStackTest from "../do-xxx-test/doStackTest";
 
 describe("ArrayList test", () => {
     const f = <E>() => new ArrayList<E>()

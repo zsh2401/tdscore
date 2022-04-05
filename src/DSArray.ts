@@ -28,7 +28,7 @@ import hashCode from "./util/hashing";
 import IArrayLike from "./IArrayLike";
 import { optimizedSizeGetter, IOptionalSizeMethodOptimized } from "./ixa/size";
 import toESIterator from "./ixa/toESIterator";
-import indexer from "./util/indexer";
+import indexer from "./util/decorator/indexer";
 
 /**
  * 默认数据提供器

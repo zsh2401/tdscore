@@ -1,7 +1,7 @@
 import HashMap from "../../../src/data-structure/map/HashMap";
 import IMap, { IReadonlyKeyValuePair } from "../../../src/data-structure/map/IMap";
 import { CACHED_HASHCODE_GETTER } from "../../../src/util/hashing/hashCodeForAny";
-import dsEquals from "../../../src/equals";
+import dsEquals from "../../../src/dsEquals";
 import ICollection from "../../../src/data-structure/ICollection";
 import { DSObject } from "../../../src";
 

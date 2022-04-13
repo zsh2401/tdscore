@@ -23,7 +23,7 @@ import IMap, { IReadonlyKeyValuePair } from "./IMap";
 import _hashCode from "../../util/hashing/hash"
 import HashMapEntry from "./HashMapEntry";
 import MapBase from "./MapBase";
-import equals from "../../equals";
+import equals from "../../dsEquals";
 
 const DEFAULT_INITIAL_CAPCITY = 16;
 const DEFAULT_LOAD_FACTOR = 0.75;

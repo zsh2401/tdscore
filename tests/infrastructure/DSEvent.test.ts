@@ -1,6 +1,6 @@
 import "ts-jest"
 import DSObject from "../../src/DSObject";
-import equals from "../../src/equals";
+import equals from "../../src/dsEquals";
 
 import DSEvent, { EventArgs } from "../../src/util/DSEvent"
 describe("DSEvent Test", () => {

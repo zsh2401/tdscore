@@ -18,6 +18,7 @@
  * See the Mulan PSL v2 for more details.
  */
 
+import IArrayLike from "src/IArrayLike";
 import IIterable from "./IIterable";
 import IIterator from "./IIterator";
 
@@ -25,5 +26,9 @@ import IIterator from "./IIterator";
  * TDSCore与ECMAScript迭代类型。
  * 该设计主要用于IXA函数的参数
  */
-type UIterable<E> = IIterable<E> | Iterable<E>
+type UIterable<E> = IIterable<E> | Iterable<E> | IArrayLike<E>
+export function isUIterable<E>(obj: any): obj is UIterable<E> {
+    return typeof obj[Symbol.iterator] === "function" ||
+        typeof obj["getIterator"] === "function";
+}
 export default UIterable;

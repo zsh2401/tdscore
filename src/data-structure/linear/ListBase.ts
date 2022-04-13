@@ -10,7 +10,7 @@ import IStack from "./IStack";
 import IQueue from "./IQueue";
 import CollectionBase from "../CollectionBase";
 import IListIterator from "./IListIterator";
-import equals from "../../equals";
+import equals from "../../dsEquals";
 import UIterable from "../UIterable";
 import forEach from "../../ixa/forEach";
 

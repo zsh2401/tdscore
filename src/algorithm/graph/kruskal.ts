@@ -24,7 +24,7 @@ import MSTreeNode from "./MSTreeNode";
 import treeForEachNode from "../tree/treeForEachNode";
 import quickSort from "../sort/quickSort";
 import toJSArray from "../../ixa/toJSArrayForItertable";
-import equals from "../../equals";
+import equals from "../../dsEquals";
 import HashMap from "../../data-structure/map/HashMap"
 import HashSet from "../../data-structure/set/HashSet"
 import ISet from "../../data-structure/set/ISet"

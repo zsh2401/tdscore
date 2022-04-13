@@ -13,3 +13,4 @@ package-lock.json
 tests-output
 build.js
 example.ts
+.DS_Store

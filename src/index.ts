@@ -22,11 +22,17 @@ export { default as DSEvent } from "./util/DSEvent"
 export { default as Optional } from "./Optional"
 
 
-export { default as dsEquals } from "./equals"
+export { default as dsEquals } from "./dsEquals"
 export { default as dsHashCode } from "./hash"
 export { default as dsToString } from "./toString"
 
-export { default as equals } from "./equals"
+/**
+ * @deprecated use dsEquals to instead
+ */
+export { default as equals } from "./dsEquals"
+/**
+ * @deprecated use dsHashCode to instead
+ */
 export { default as hash } from "./hash"
 export { default as toString } from "./toString"
 

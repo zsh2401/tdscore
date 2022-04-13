@@ -2,7 +2,7 @@
  * Codes come from https://github.com/NoHomey/bind-decorator/blob/master/src/index.ts
  */
 import { bind } from "../../../src/util/decorator"
-import dsEquals from "../../../src/equals"
+import dsEquals from "../../../src/dsEquals"
 describe("bind decorator", () => {
     it("bind", () => {
         class A {

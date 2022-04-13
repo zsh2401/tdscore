@@ -1,5 +1,5 @@
 import { dsHashCode, DSNumber, hash } from "../../src";
-import equals from "../../src/equals"
+import equals from "../../src/dsEquals"
 import DSObject from "../../src/DSObject";
 import { IHashCodeGettable } from "../../src/util/hashing";
 

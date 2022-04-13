@@ -44,9 +44,10 @@ import IDirectionIndicator from "../IDirectionIndicator";
  * @key the key for searching
  */
 export default function <E>(a: ArrayLike<E>, indicator: IDirectionIndicator<E>): number {
-    let low = 0, high = a.length - 1, mid;
+    let low = 0, high = a.length - 1, mid=0;
     while (low !== high) {
         mid = Math.floor((low + high) / 2)
+        console.log(mid)
         const cr = indicator(a[mid])
         if (cr === 0) {
             return mid

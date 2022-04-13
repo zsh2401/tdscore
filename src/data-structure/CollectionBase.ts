@@ -29,7 +29,7 @@ import { Action1 } from "../Action"
 import toDSArray from "../ixa/toDSArrayForItertable"
 import forEach from "../ixa/forEach"
 import { Func1 } from "../Func"
-import equals from "../equals"
+import equals from "../dsEquals"
 import toESIterator from "../ixa/toESIterator"
 import NotImplementedError from "../NotImplementedError"
 

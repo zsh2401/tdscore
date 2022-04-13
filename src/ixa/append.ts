@@ -1,11 +1,14 @@
 import IIterable from "../data-structure/IIterable"
 import IIterator from "../data-structure/IIterator"
 import DSObject from "../DSObject";
-import IArrayLike from "../IArrayLike";
+import IArrayLike, { toESArray } from "../IArrayLike";
 import getIterator from "./getIterator";
 import { isArrayLike } from "../util/type/determine-type";
-import UIterable from "../data-structure/UIterable";
+import UIterable, { isUIterable } from "../data-structure/UIterable";
+import forEach from "./forEach";
+import { iteratorOf } from ".";
 
+type Appendable<E> = UIterable<E> | E | IArrayLike<E>;
 /**
  * Append element to a new Iterable object.
  * 
@@ -15,57 +18,60 @@ import UIterable from "../data-structure/UIterable";
  * @param e new element.
  * @returns new iterable object which element has been append to it.
  */
-export default function append<E>(i: UIterable<E>, e: E | IArrayLike<E>): IIterable<E> {
-    return new AppendIterable(i, isArrayLike(e) ? e : [e]);
+export default function append<E>(...all: Appendable<E>[]): IIterable<E> {
+    return new AppendIterable(all);
 }
 
 class AppendIterable<E> extends DSObject implements IIterable<E>{
-    private readonly source;
-    private readonly newEle;
-    constructor(iterable: UIterable<E>, newElements: IArrayLike<E>) {
+
+    private readonly all: Appendable<E>[];
+    constructor(all: Appendable<E>[]) {
         super();
-        this.source = iterable;
-        this.newEle = newElements;
+        this.all = all;
     }
 
     getIterator(): IIterator<E> {
-        return new AppendIterator(getIterator(this.source), getIterator(this.newEle));
+        const iterators = this.all.map(iteratorOf)
+        return new AppendIterator(iterators);
     }
 }
 class AppendIterator<E> extends DSObject implements IIterator<E>{
 
-    private readonly source: IIterator<E>;
-    private readonly newElements: IIterator<E>;
-    private stage: "source" | "new" = "source"
+    private readonly interators: IArrayLike<IIterator<E>>;
+    private stage: number;
 
-    constructor(source: IIterator<E>, newElements: IIterator<E>) {
+    constructor(interators: IArrayLike<IIterator<E>>) {
         super();
-        this.stage = source.hasNext() ? "source" : "new"
-        this.source = source;
-        this.newElements = newElements
+        this.interators = interators;
+        this.stage = 0;
     }
 
     reset() {
-        this.source.reset();
-        this.newElements.reset()
-        this.stage = this.source.hasNext() ? "source" : "new"
+        forEach(this.interators, (i) => i.reset());
+        this.stage = 0;
     }
 
     hasNext() {
-        return this.source.hasNext() || this.newElements.hasNext();
+        while (this.stage < this.interators.length) {
+            if (this.interators[this.stage].hasNext()) {
+                return true;
+            }
+            this.stage++;
+        }
+        return false;
     }
 
     next() {
-        if (this.stage === "source" && this.source.hasNext()) {
-            return this.source.next();
-        } else {
-            this.stage = "new"
-            return this.newElements.next()
+        while (this.stage < this.interators.length) {
+            if (this.interators[this.stage].hasNext()) {
+                return this.interators[this.stage].next();
+            }
+            this.stage++;
         }
+        throw new Error("Can not iterate.")
     }
 
     current() {
-        return this.stage === "source" ?
-            this.source.current() : this.newElements.current()
+        return this.interators[this.stage].current();
     }
 }

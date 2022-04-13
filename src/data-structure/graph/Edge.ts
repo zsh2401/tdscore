@@ -1,5 +1,5 @@
 import DSObject from "../../DSObject";
-import equals from "../../equals";
+import equals from "../../dsEquals";
 import { IHashCodeGettable } from "../../util/hashing";
 import hashForEdge from "./hashForEdge";
 import IGraphEdge from "./IGraphEdge";

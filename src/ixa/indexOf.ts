@@ -1,4 +1,4 @@
-import equals from "../equals";
+import equals from "../dsEquals";
 import getIterator from "./getIterator";
 import UIterable from "../data-structure/UIterable";
 

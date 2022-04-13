@@ -4,13 +4,15 @@ import IArrayLike from "../IArrayLike";
 import { isArrayLike, isDSArray, isESIterable, isIterable } from "../util/type/determine-type";
 import IIterator from "../data-structure/IIterator";
 import fromESIterator from "./fromESIterator";
+import { UIterable } from "src/data-structure";
+import { isUIterable } from "src/data-structure/UIterable";
 
 /**
  * Get iterator for anything!
  * @param e 
  * @returns 
  */
-export default function <E>(e: IIterable<E> | Iterable<E> | IArrayLike<E> | ArrayLike<E> | E): IIterator<E> {
+export default function <E>(e: UIterable<E> | E): IIterator<E> {
 
     if (isIterable<E>(e) || isDSArray<E>(e)) {
         return e.getIterator();

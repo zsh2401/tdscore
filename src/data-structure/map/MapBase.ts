@@ -3,7 +3,7 @@ import IIterator from "../IIterator";
 import toDSArray from "../../ixa/toDSArrayForItertable";
 import CollectionBase from "../CollectionBase";
 import IMap, { IKeyValuePair, IReadonlyKeyValuePair } from "./IMap";
-import equals from "../../equals";
+import equals from "../../dsEquals";
 import IIterable from "../IIterable";
 import contains from "../../ixa/contains";
 

@@ -42,6 +42,7 @@ export default function where<E>(i: UIterable<E>, predicate: Func1<E, boolean>):
 class WhereIterable<E> extends DSObject implements IIterable<E> {
     private readonly predicate: Func1<E, boolean>;
     private readonly source: UIterable<E>;
+
     constructor(source: UIterable<E>, predicate: Func1<E, boolean>) {
         super();
         this.predicate = predicate;
@@ -56,18 +57,20 @@ class WhereIterator<E> implements IIterator<E>{
 
     private readonly source: IIterator<E>;
     private readonly predicate: Func1<E, boolean>;
+    private moved: boolean = false;
+    private logicCurrent: E = undefined!;
+    private interatedOnce = false;
 
     constructor(source: IIterator<E>, predicate: Func1<E, boolean>) {
         this.source = source;
         this.predicate = predicate;
     }
 
-    private available: boolean = false;
     private moveToNextAvailable(): boolean {
         while (this.source.hasNext()) {
             const element = this.source.next()
             if (this.predicate(element)) {
-                this.available = true
+                this.moved = true
                 return true
             }
         }
@@ -75,33 +78,37 @@ class WhereIterator<E> implements IIterator<E>{
     }
 
     hasNext() {
-        if (this.available === false) {
-            this.available = this.moveToNextAvailable()
+        if (this.moved === false) {
+            this.moved = this.moveToNextAvailable()
         }
-        return this.available
+        return this.moved
     }
 
     reset() {
-        this.available = false
+        this.moved = false
+        this.interatedOnce = false;
+        this.current = undefined!;  
         this.source.reset();
     }
 
     current() {
-        if (this.available) {
-            return this.source.current();
+        if (!this.interatedOnce) {
+            throw new Error()
         } else {
-            throw new Error("There's no current element.")
+            return this.logicCurrent;
         }
     }
 
     next(): E {
-        if (this.available === false) {
-            this.available = this.moveToNextAvailable()
+        if (this.moved === false) {
+            this.moved = this.moveToNextAvailable()
         }
-        if (this.available === false) {
+        if (this.moved === false) {
             throw new Error("There's no more element!")
         }
-        this.available = false;
-        return this.source.current()
+        this.moved = false;
+        this.logicCurrent = this.source.current()
+        this.interatedOnce = true;
+        return this.logicCurrent;
     }
 }

@@ -1,5 +1,5 @@
 import IIterable from "../IIterable";
-import dsEquals from "../../equals";
+import dsEquals from "../../dsEquals";
 import uuid from "../../math/uuid";
 import dsHashCode from "../../util/hashing";
 import Chain from "../../ixa//Chain";

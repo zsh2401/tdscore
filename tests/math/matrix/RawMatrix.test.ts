@@ -1,7 +1,6 @@
-
 /*
- * rotation2.ts
- * Created on Tue Mar 23 2021 09:26:06
+ * RawMartix.test.ts
+ * Created on Fri Mar 19 2021 20:08:35
  *
  * Description: 
  *   No description.
@@ -18,16 +17,8 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import { asNumber } from "../../../../DSNumber";
-import MixedNumber from "../../../../MixedNumber";
-import sin from "../../../fn/sin"
-import cos from "../../../fn/cos"
-import { RawTransformation2 } from "../MartixTypes";
-import { ONE_DEGREE } from "../../../";
-export default function (degree: MixedNumber): RawTransformation2<number> {
-    const theta = asNumber(degree) * ONE_DEGREE;
-    return [
-        [cos(theta), -sin(theta)],
-        [sin(theta), cos(theta)]
-    ]
-}
+import "ts-jest"
+import { matrixMul, NumberOperator } from "../../../src/math/matrix"
+it("martix", () => {
+    const r = matrixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
+})

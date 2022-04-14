@@ -1,6 +1,6 @@
 /*
- * RawMartix.test.ts
- * Created on Fri Mar 19 2021 20:08:35
+ * getColVectors.ts
+ * Created on Sat Mar 27 2021 01:56:40
  *
  * Description: 
  *   No description.
@@ -17,17 +17,18 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import "ts-jest"
-import { martixMul, martixDet, NumberOperator } from "../../src/math/martix"
-it("martix", () => {
-    const r = martixMul([[1, 2], [1, -1]], [[1, 2, -3], [-1, 1, 2]], NumberOperator);
-    // expect()
-})
+import RawMatrix, { RawVector } from "./MatrixTypes";
 
-// it("det", () => {
-//     expect(martixDet([
-//         [0, 0, 3],
-//         [0, 5, 0],
-//         [8, 0, 0]
-//     ], NumberOperator)).toBe(0);
-// })
+//TODO 
+export default function <E>(m: RawMatrix<E>): RawVector<E>[] {
+    const vectors: RawVector<E>[] = []
+    m[0].forEach(e => {
+        vectors.push([[e]])
+    })
+    for (let i = 1; i < m.length; i++) {
+        for (let j = 0; j < m[0].length; j++) {
+            vectors[j].push([m[i][j]])
+        }
+    }
+    return vectors;
+}

@@ -4,29 +4,48 @@ import IIterable from "../../data-structure/IIterable"
 import IIterator from "../../data-structure/IIterator"
 import defaultValue from "../../util/type/defaultOf";
 import IElementOperator from "./raw/IElementOperator"
-import martixAdd from "./raw/add"
-import martixSub from "./raw/sub"
-import martixMul from "./raw/mul"
-import RawMartix from "./raw/MartixTypes";
+import matrixAdd from "./raw/add"
+import matrixSub from "./raw/sub"
+import matrixMul from "./raw/mul"
+import RawMatrix from "./raw/MatrixTypes";
 import getIterator from "../../ixa/getIterator";
 
 export type RowIndex = number;
 export type ColIndex = number;
 //TODO waiting for more test cases.
 export default abstract class
-    AbstractMartix<E, M extends AbstractMartix<E, M>>
+    AbstractMatrix<E, M extends AbstractMatrix<E, M>>/*
+ * AbstractMatrix.ts
+ * Created on Thu Apr 14 2022 14:13:44
+ *
+ * Description: 
+ *   No description.
+ *
+ * Copyright (c) 2022 tdscore
+ * 
+ * Copyright (c) 2022 Seymour Zhang and all contributors of this project.
+ * tdscore is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *          http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+ * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+ * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
+ */
+
     extends DSObject
     implements IClonable<M>, IIterable<E>
 {
 
-    protected readonly data: RawMartix<E>;
+    protected readonly data: RawMatrix<E>;
     readonly row: number;
     readonly col: number;
     private readonly elementOperator: IElementOperator<E>;
 
-    protected constructor(data: RawMartix<E>, elementOperator: IElementOperator<E>, sign: boolean = true) {
+    protected constructor(data: RawMatrix<E>, elementOperator: IElementOperator<E>, sign: boolean = true) {
         super();
-        [this.data, this.row, this.col] = AbstractMartix.complete(data);
+        [this.data, this.row, this.col] = AbstractMatrix.complete(data);
         this.sign = sign;
         this.elementOperator = elementOperator
     }
@@ -35,8 +54,8 @@ export default abstract class
      * 补完矩阵，使其规则化
      * @param data 
      */
-    protected static complete<E>(data: RawMartix<E>): [RawMartix<E>, number, number] {
-        const [row, col] = AbstractMartix.sizeof(data);
+    protected static complete<E>(data: RawMatrix<E>): [RawMatrix<E>, number, number] {
+        const [row, col] = AbstractMatrix.sizeof(data);
         const defaultData: E = (row + col) >= 2
             ? defaultValue<E>(typeof data[0][0]) : defaultValue<E>("object");
         for (let r = 0; r < row; r++) {
@@ -49,7 +68,7 @@ export default abstract class
         }
         return [data, row, col]
     }
-    protected static sizeof<E>(data: RawMartix<E>): [number, number] {
+    protected static sizeof<E>(data: RawMatrix<E>): [number, number] {
         let row = data.length;
         let col = 0;
         if (row > 0) {
@@ -184,17 +203,17 @@ export default abstract class
     }
 
     plus(other: M): M {
-        const newData = martixAdd(this.data, other.data, this.elementOperator)
+        const newData = matrixAdd(this.data, other.data, this.elementOperator)
         return this.newInstanceOf(newData, this.sign);
     }
 
     sub(other: M): M {
-        const newData = martixSub(this.data, other.data, this.elementOperator)
+        const newData = matrixSub(this.data, other.data, this.elementOperator)
         return this.newInstanceOf(newData, this.sign);
     }
 
     mul(other: E | M): M {
-        const newData = martixMul<E>(this.data, other instanceof AbstractMartix ? other.data : other,
+        const newData = matrixMul<E>(this.data, other instanceof AbstractMatrix ? other.data : other,
             this.elementOperator)
         return this.newInstanceOf(newData, this.sign);
     }

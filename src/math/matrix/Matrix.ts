@@ -1,5 +1,5 @@
-import AbstractMartix from "./AbstractMartix";
-export default class Martix extends AbstractMartix<number, Martix>{
+import AbstractMatrix from "./AbstractMatrix";
+export default class Matrix extends AbstractMatrix<number, Matrix>{
 
     public constructor(data: number[][], sign: boolean = true) {
         super(data, {
@@ -12,6 +12,6 @@ export default class Martix extends AbstractMartix<number, Martix>{
         }, sign);
     }
     newInstanceOf(data: number[][], sign: boolean) {
-        return new Martix(data, sign);
+        return new Matrix(data, sign);
     }
 }

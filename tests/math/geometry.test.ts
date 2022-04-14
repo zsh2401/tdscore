@@ -1,5 +1,5 @@
 import inRect from "../../src/math/geometry/inRect"
-import Vector2 from "../../src/math/martix/Vector2"
+import Vector2 from "../../src/math/matrix/Vector2"
 describe("Geometry Test", () => {
     test("in rect", () => {
 

@@ -1,4 +1,4 @@
-import Martix  from "./Martix";
+import Matrix  from "./Matrix";
 import _getIterator from "../../ixa/getIterator"
 import toList from "../../ixa/toList"
 import IReadonlyList from "../../data-structure/linear/IReadonlyList"
@@ -6,7 +6,7 @@ import Vector from "./Vector";
 import DSArray  from "../../DSArray";
 
 export default class Transformation
-    extends Martix {
+    extends Matrix {
 
     readonly baseVectors: IReadonlyList<Vector>;
 

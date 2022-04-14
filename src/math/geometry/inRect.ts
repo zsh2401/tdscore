@@ -1,4 +1,4 @@
-import Vector2 from "../martix/Vector2"
+import Vector2 from "../matrix/Vector2"
 
 /**
 * Checking if the point is in the rect.

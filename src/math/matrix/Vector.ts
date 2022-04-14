@@ -1,19 +1,19 @@
 import IIterable from "../../data-structure/IIterable";
 import IIterator from "../../data-structure/IIterator";
 import getIterator from "../../ixa/getIterator";
-import Martix from "./Martix";
+import Matrix from "./Matrix";
 import Transformation from "./Transformation";
 
 export default class Vector
-    extends Martix
+    extends Matrix
     implements IIterable<number>
 
 {
     constructor(...e: number[]) {
-        super(Vector.toMartix(e));
+        super(Vector.toMatrix(e));
     }
 
-    private static toMartix(e: number[]): number[][] {
+    private static toMatrix(e: number[]): number[][] {
         return e.map(n => [n]);
     }
 

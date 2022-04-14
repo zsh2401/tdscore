@@ -1,5 +1,5 @@
 /*
- * martixMul.ts
+ * mul.ts
  * Created on Tue Mar 23 2021 09:21:52
  *
  * Description: 
@@ -18,18 +18,18 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import RawMartix from "./MartixTypes";
-import martixSizeOf from "./sizeof";
+import RawMatrix from "./MatrixTypes";
+import matrixSizeOf from "./sizeof";
 import IElementOperator from "./IElementOperator";
 import { isJSArray } from "../../../util/type";
 
-export default function martixMul<E>(a: RawMartix<E>, b: RawMartix<E> | E,
-    eleOperator: IElementOperator<E>): RawMartix<E> {
+export default function <E>(a: RawMatrix<E>, b: RawMatrix<E> | E,
+    eleOperator: IElementOperator<E>): RawMatrix<E> {
 
-    let newData: RawMartix<E> = []
+    let newData: RawMatrix<E> = []
     if (b instanceof Array) {
-        const [am, an] = martixSizeOf(a);
-        const [bn, bp] = martixSizeOf(b);
+        const [am, an] = matrixSizeOf(a);
+        const [bn, bp] = matrixSizeOf(b);
         if (an !== bn) {
             throw new Error();
         }

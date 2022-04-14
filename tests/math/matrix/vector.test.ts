@@ -1,6 +1,6 @@
-import Vector2 from "../../src/math/martix/Vector2"
-import Transformation2 from "../../src/math/martix/Transformation2"
-import { cos, sin, DEGREE_90, DEGREE_180 } from "../../src/math"
+import Vector2 from "../../../src/math/matrix/Vector2"
+import Transformation2 from "../../../src/math/matrix/Transformation2"
+import { cos, sin, DEGREE_90, DEGREE_180 } from "../../../src/math"
 import "ts-jest"
 describe("Vector Test", () => {
     it("add", () => {

@@ -1,5 +1,5 @@
 /*
- * martixDet.ts
+ * det.ts
  * Created on Tue Mar 23 2021 09:21:48
  *
  * Description: 
@@ -19,11 +19,11 @@
  */
 
 import IElementOperator from "./IElementOperator";
-import RawMartix from "./MartixTypes";
+import RawMatrix from "./MatrixTypes";
 
 //TODO
 
-export default function martixDet<E>(m: RawMartix<E>, operator: IElementOperator<E>): E {
+export default function<E>(m: RawMatrix<E>, operator: IElementOperator<E>): E {
     const fnp = (n: number): E => {
         const eles: E[] = [];
         for (let i = 0; i < m.length; i++) {

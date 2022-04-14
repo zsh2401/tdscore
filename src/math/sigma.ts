@@ -1,13 +1,13 @@
 /*
- * RawMartix.ts
- * Created on Sun Mar 14 2021 01:21:37
+ * sigma.ts
+ * Created on Wed Apr 13 2022 15:12:02
  *
  * Description: 
  *   No description.
  *
- * Copyright (c) 2021 tdscore
+ * Copyright (c) 2022 tdscore
  * 
- * Copyright (c) 2021 Seymour Zhang and all contributors of this project.
+ * Copyright (c) 2022 Seymour Zhang and all contributors of this project.
  * tdscore is licensed under Mulan PSL v2.
  * You can use this software according to the terms and conditions of the Mulan PSL v2.
  * You may obtain a copy of Mulan PSL v2 at:
@@ -18,11 +18,17 @@
  * See the Mulan PSL v2 for more details.
  */
 
-export type RawMartix<E> = E[][]
-export type RawVector<E> = ([E])[]
-export type RawVector2<E> = [[E], [E]]
-export type RawVector3<E> = [[E], [E], [E]]
-export type RawTransformation2<E> = [[E, E], [E, E]]
-export type RawTransformation3<E> = [[E, E, E], [E, E, E], [E, E, E]]
-
-export default RawMartix;
+/**
+ * ∑ function
+ * @param term 
+ * @param from 
+ * @param to 
+ * @returns 
+ */
+export default function (term: (i: number) => number, from: number, to: number) {
+    let result = 0;
+    for (let i = from; i < to; i++) {
+        result += term(i);
+    }
+    return result;
+}

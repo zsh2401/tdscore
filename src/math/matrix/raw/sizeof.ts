@@ -1,6 +1,6 @@
 /*
- * getColVectors.ts
- * Created on Sat Mar 27 2021 01:56:40
+ * sizeof.ts
+ * Created on Tue Mar 23 2021 09:21:56
  *
  * Description: 
  *   No description.
@@ -17,18 +17,10 @@
  * MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
  * See the Mulan PSL v2 for more details.
  */
-import RawMartix, { RawVector } from "./MartixTypes";
 
-//TODO 
-export default function <E>(m: RawMartix<E>): RawVector<E>[] {
-    const vectors: RawVector<E>[] = []
-    m[0].forEach(e => {
-        vectors.push([[e]])
-    })
-    for (let i = 1; i < m.length; i++) {
-        for (let j = 0; j < m[0].length; j++) {
-            vectors[j].push([m[i][j]])
-        }
-    }
-    return vectors;
+import { RawMatrix } from "./MatrixTypes";
+
+
+export default function <E>(m: RawMatrix<E>): [number, number] {
+    return [m.length, m.length > 0 ? m[0].length : 0];
 }

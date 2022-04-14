@@ -1,6 +1,6 @@
 /*
- * martixAdd.ts
- * Created on Tue Mar 23 2021 09:21:45
+ * martixSub.ts
+ * Created on Tue Mar 23 2021 09:21:32
  *
  * Description: 
  *   No description.
@@ -18,22 +18,22 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import RawMartix from "./MartixTypes";
+import RawMatrix from "./MatrixTypes";
 import martixSizeOf from "./sizeof";
 import IElementOperator from "./IElementOperator";
 
-export default function martixAdd<E>(a: RawMartix<E>, b: RawMartix<E>,
-    eleOperator: IElementOperator<E>): RawMartix<E> {
+export default function <E>(a: RawMatrix<E>, b: RawMatrix<E>,
+    eleOperator: IElementOperator<E>): RawMatrix<E> {
     const [am, an] = martixSizeOf(a);
     const [bn, bp] = martixSizeOf(b);
     if (!(am == bn && an == bp)) {
         throw new Error();
     }
-    const result: RawMartix<E> = [];
+    const result: RawMatrix<E> = [];
     for (let i = 0; i < am; i++) {
         result[i] = [];
         for (let j = 0; j < an; j++) {
-            result[i][j] = eleOperator.add(a[i][j], b[i][j]);
+            result[i][j] = eleOperator.sub(a[i][j], b[i][j]);
         }
     }
     return result;

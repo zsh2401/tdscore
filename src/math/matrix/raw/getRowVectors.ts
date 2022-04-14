@@ -1,6 +1,6 @@
 /*
- * martixSizeOf.ts
- * Created on Tue Mar 23 2021 09:21:56
+ * getRowVectors.ts
+ * Created on Sat Mar 27 2021 01:56:37
  *
  * Description: 
  *   No description.
@@ -18,9 +18,13 @@
  * See the Mulan PSL v2 for more details.
  */
 
-import { RawMartix } from "./MartixTypes";
+import RawMatrix, { RawVector } from "./MatrixTypes";
 
-
-export default function martixSizeOf<E>(m: RawMartix<E>): [number, number] {
-    return [m.length, m.length > 0 ? m[0].length : 0];
+//TODO
+export default function <E>(m: RawMatrix<E>): RawVector<E>[] {
+    return m.map(row => {
+        const v: RawVector<E> = []
+        row.forEach(e => v.push([e]))
+        return v;
+    })
 }

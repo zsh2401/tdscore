@@ -1,15 +1,15 @@
-import Martix from "../../src/math/martix/Martix";
+import Matrix from "../../../src/math/matrix/Matrix";
 
 describe("Martix", () => {
 
 
     it("Plus", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [1],
             [1]
         ]);
 
-        const b = new Martix([
+        const b = new Matrix([
             [1],
             [1]
         ]);
@@ -19,7 +19,7 @@ describe("Martix", () => {
     });
 
     it("Complete", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [1, 2],
             [1],
             [1]
@@ -34,12 +34,12 @@ describe("Martix", () => {
     })
 
     it("Mul", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [0, 2],
             [1, 0]
         ]);
 
-        const b = new Martix([
+        const b = new Matrix([
             [-2],
             [0]
         ]);
@@ -54,7 +54,7 @@ describe("Martix", () => {
     });
 
     it("Mul a number", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [1],
             [1]
         ]);
@@ -67,7 +67,7 @@ describe("Martix", () => {
     });
 
     it("exchange row", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [1, 2],
             [3, 4]
         ]);
@@ -82,7 +82,7 @@ describe("Martix", () => {
     })
 
     it("exchange col", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [1, 2],
             [3, 4]
         ]);
@@ -98,7 +98,7 @@ describe("Martix", () => {
 
 
     it("inner add", () => {
-        const a = new Martix([
+        const a = new Matrix([
             [1, 2],
             [3, 4]
         ]);

@@ -1,8 +1,6 @@
 import { build } from "esbuild"
 
 (async () => {
-    const ENTRY_POINT = "src/index.ts"
-
     await Promise.all([
         
         build({

@@ -15,6 +15,7 @@ export {
 export { default as Complex } from "./Complex"
 export { default as Color } from "./Color"
 export { default as max } from "./max"
+export { default as sigma } from "./sigma"
 export * as ramnujan from "./ramanujan"
 export { default as uuid } from "./uuid"
 export * from "./fn"

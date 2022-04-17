@@ -33,14 +33,12 @@ export default function <E>(a: RawMatrix<E>, b: RawMatrix<E> | E,
         if (an !== bn) {
             throw new Error();
         }
-        const f = isJSArray<E>(b)
         for (let i = 0; i < am; i++) {
             newData[i] = [];
             for (let j = 0; j < bp; j++) {
                 let rij: E = eleOperator.defaultValue;
                 for (let n = 0; n < an; n++) {
-                    //@ts-expect-error
-                    const term = eleOperator.mul(a[i][n], f ? b[n][j] : b);
+                    const term = eleOperator.mul(a[i][n], b[n][j]);
                     rij = rij === null ? term : eleOperator.add(rij, term);
                 }
                 newData[i][j] = rij;
